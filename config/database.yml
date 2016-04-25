@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: borjan_development
+  username: root
+  password: root
+  host: localhost
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: borjan_development
+  username: root
+  password: root
+  host: localhost
