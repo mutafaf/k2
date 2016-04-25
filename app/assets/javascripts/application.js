@@ -13,4 +13,50 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require jquery-1.12.3.min.js
+//= require custom-js.js
+//= require modernizr.js
+//= require js/jquery.flexslider.js
+//= require parallax.js
+//= require parallax.min.js
+//= require jquery-ui.js
+//= require bootstrap.min.js
+//= require bootstrap-hover-dropdown.min.js
+//= require SmoothScroll.js
+//= require jquery.dragtable.js
+//= require jquery.card.js
+//= require owl.carousel.min.js
+//= require twitterFetcher_min.js
+//= require jquery.mb.YTPlayer.min.js
+//= require custom.js
+
+
+  $(".wrapper").click(function(){
+       $(this).next(".hidden").addClass("show");
+       $(".wrapper").addClass("blurry");
+       $("body").css("overflow","hidden");
+   }); 
+
+   $(".close").click(function(){
+       $(".hidden").removeClass("show");
+       $(".wrapper").removeClass("blurry");
+       $("body").css("overflow","auto");
+   });
+
+  $('.parallax-window').parallax({imageSrc: 'assets/images/footer-img.jpg'});
+       $(function(){
+         SyntaxHighlighter.all();
+       });
+  $(window).load(function(){
+   $('.flexslider').flexslider({
+     animation: "slide",
+     animationLoop: false,
+     itemWidth: 250,
+     itemMargin: 45,
+    
+     start: function(slider){
+       $('body').removeClass('loading');
+     }
+   });
+  });
+
