@@ -1,4 +1,82 @@
-<h2>Your basket</h2>
-<%= render 'items', :order => current_order %>
-
-<p><%= link_to 'Empty basket', basket_path, :method => :delete %></p>
+<%order = current_order%>
+<br><br><br>
+<section class="content products">
+   <div class="container">
+      <article class="product-item product-single" style="     padding: 20px;">
+         <div class="row">
+            <br>
+            <center>
+               <h1>  SHOPPING CART</h1>
+               <p>Customer Service Questions? 1-866-979-2676</p>
+            </center>
+            <hr>
+         </div>
+      </article>
+   </div>
+   <section class="container">
+      <div class="col-md-12">
+      <%= render "shopping_cart", order: order %>
+      <div class="">
+         <div class="clear:both"></div>
+         <div class="col-md-12">
+            <div class="col-md-9">
+               <br><br>
+               <div class="clear86"></div>
+               <hr>
+               <div class="col-md-12">
+                  <div class="col-md-4">
+                     <h3>Borjan Guarantee</h3>
+                     <p>
+                        Borjan stands by its products. Our products are guaranteed against defects and workmanship.
+                     </p>
+                  </div>
+                  <div class="col-md-4">
+                     <h3>Returns &amp; Exchanges</h3>
+                     <p>
+                        You may return your purchase within 30 days of shipment for a refund or exchange.
+                     </p>
+                  </div>
+                  <div class="col-md-4">
+                     <h3>Privacy &amp; Security</h3>
+                     <p>
+                        borjan.com does not share or exchange your information with any 3rd parties. All Order information you submit is encrypted with SSL security.
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <aside class="sidebar">
+                  <div class="total">
+                     <p>
+                        <label>Subtotal:</label><!-- --><span>273.00</span>
+                     </p>
+                     <p>
+                        <label>Shipping:</label><!-- --><span>0.00</span>
+                     </p>
+                     <p>
+                        <label>Discount:</label><!-- --><span>0.00</span>
+                     </p>
+                     <p class="final">
+                        <label>Grand Total:</label><!-- --><span><%= number_to_currency order.total %></span>
+                     </p>
+                  </div>
+               </aside>
+               <br>
+               <a style="     width: 100%;" href="<%= products_path %>" class="btn btn-default btn-lg">Continue Shopping</a>
+               <br>
+               <a style="    margin-top: 10px; 
+                  margin-top: 10px;
+                  width: 100%;
+                  background: #40B313;
+                  color: #fff;   width: 100%;" href="<%= checkout_path %>" class="btn btn-default btn-lg">Continue to Checkout</a>
+               <center>
+                  <br>
+                  <p>* Next Day &amp; Second Day shipping not available for PO Boxes, AK, HI, PR, or APO/FPO addresses.</p>
+               </center>
+            </div>
+         </div>
+         <!--  ....................... -->
+      </div>
+      </div>
+   </section>
+</section>

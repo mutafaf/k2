@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425103642) do
+ActiveRecord::Schema.define(version: 20160426150806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,14 @@ ActiveRecord::Schema.define(version: 20160425103642) do
   add_index "shoppe_product_category_translations", ["locale"], name: "index_shoppe_product_category_translations_on_locale", using: :btree
   add_index "shoppe_product_category_translations", ["shoppe_product_category_id"], name: "index_75826cc72f93d014e54dc08b8202892841c670b4", using: :btree
 
+  create_table "shoppe_product_sizes", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "size_id"
+    t.integer  "product_quantity"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "shoppe_product_translations", force: :cascade do |t|
     t.integer  "shoppe_product_id", null: false
     t.string   "locale",            null: false
@@ -287,6 +295,12 @@ ActiveRecord::Schema.define(version: 20160425103642) do
   end
 
   add_index "shoppe_settings", ["key"], name: "index_shoppe_settings_on_key", using: :btree
+
+  create_table "shoppe_sizes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "shoppe_stock_level_adjustments", force: :cascade do |t|
     t.integer  "item_id"

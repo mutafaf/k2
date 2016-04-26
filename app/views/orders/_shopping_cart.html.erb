@@ -1,0 +1,43 @@
+<div>
+<% order.order_items.each do |item| %>
+   <div class="col-md-2">
+      <img src='<%= item.ordered_item.try(:default_image).try(:path)%>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
+   </div>
+   <div class="col-md-10">
+      <div class="col-md-3 allan">
+         <h3> <%= item.ordered_item.full_name %> |<strong><%= number_to_currency item.unit_price %> 
+         <small>
+         <!-- PKR -->
+         </small>
+         </strong></h3>
+         <p class="details-cart">peltro distressed (H38222)</p>
+         <strong>Size: </strong>
+         <select class="qty" >
+            <option value="1" selected="selected"> 5</option>
+            <option value="2">6</option>
+            <option value="3">7</option>
+            <option value="4">8</option>
+         </select>
+      </div>
+      <div class="col-md-3  allan">
+         <strong><span class="qty-font">COLOR: </span></strong>
+         <select class="qty" style=" width:40%;">
+            <option value="1" selected="selected"> Black</option>
+            <option value="2">White</option>
+            <option value="3">Blue</option>
+            <option value="4">Green</option>
+         </select>
+      </div>
+      <div class="col-md-3  allan">
+         <strong><span class="qty-font">QTY:</span> </strong>
+         <%= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9,10], item.quantity), :class=> "qty" %>
+         <span class="remove-qty">
+         <button class="removerow">Remove</button>
+         </span>
+      </div>
+      <div class="col-md-3  allan"><span class="cart-total"> Total <%= number_to_currency item.sub_total %> </span></div>
+   </div>
+   <div style="clear:both"></div>
+   <br><br>
+<% end %>
+</div>

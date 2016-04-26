@@ -1,0 +1,120 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin: 0 0 1em;
+	font-size: .8125em;
+	color: #555;
+}
+
+ul, ol {
+	padding-left: 1.5em;
+}
+
+button,
+a.button {
+	font-size: 1.2em;
+	line-height: 1;
+	padding: .25em .5em;
+	border: none;
+	text-decoration: none;
+	color: #fff;
+	background: #333;
+	border-radius: 7px;
+}
+
+button:hover,
+a.button:hover {
+	background-color: #111;
+}
+
+a img {
+	border: 0;
+}
+
+figure {
+	margin: 0;
+}
+
+pre, code, var, tt {
+	font-size: 15px;
+	font-style: normal;
+	font-family: Consolas, "Lucida Console", Monaco, monospace;
+}
+
+pre {
+	overflow: auto;
+	padding: 1em .5em;
+	border: 1px solid #333;
+	line-height: 1.25;
+	text-align: left;
+	border-radius: 5px;
+}
+
+table {
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+}
+
+tr > * {
+	border-right: 1px solid #ddd;
+}
+
+tr > :last-child {
+	border-right: 0;
+}
+
+th, td {
+	padding: 5px;
+	text-align: left;
+	min-width: 150px;
+}
+
+th {
+	background: #fafafa;
+}
+
+td {
+	border-top: 1px solid #ddd;
+}
+
+
+.container section + section {
+	margin-top: 3em;
+	border-top: 1px solid #ccc;
+	padding-top: 1em;
+}
+
+.thumbnails {
+	overflow: hidden;
+	margin: 1em 0;
+	padding: 0;
+	text-align: center;
+}
+
+.thumbnails li {
+	display: inline-block;
+	width: 140px;
+	margin: 0 5px;
+}
+
+.thumbnails img {
+	display: block;
+	min-width: 100%;
+	max-width: 100%;
+}
+
+.toggle {
+	display: block;
+	margin: 10px auto 1.5em;
+}

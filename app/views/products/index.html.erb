@@ -1,14 +1,157 @@
-<h2>Products</h2>
-
-<% @products.each do |category, products| %>
-  <h3><%= category.name %></h3>
-  <ul>
-    <% products.each do |product| %>
-    <li>
-      <h4><%= link_to product.name, product_path(product.permalink) %></h4>
-      <p><%= product.short_description %></p>
-      <p><b>Price:</b> <%= number_to_currency product.price %></p>
-    </li>
-    <% end %>
-  </ul>
-<% end %>
+<!-- ==========================
+   PRODUCTS - START 
+   =========================== -->
+<br>
+<section class="content grid-products border-top" id="just" style="background:#f5f5f6 url(assets/pro-bg.png) no-repeat; ; background-size: 100% auto; ">
+   <div class="container"  style=" ">
+      <br> <br> <br> <br>
+      <section class="breadcrumb-wrapper" style=" ">
+         <div class="container">
+            <div class="row">
+               <div class="col-xs-12">
+                  <center>
+                     <h2><span style=" color:#333;">Men's </span>Collection</h2>
+                  </center>
+               </div>
+            </div>
+         </div>
+      </section>
+      <div class="col-md-12" style="     margin-top: 14px;
+         padding-left: 0px;
+         border-bottom: solid 1px #aaaaaa;
+         margin-bottom: 20px;">
+         <div class="col-md-8">
+         </div>
+         <div class="col-md-4">
+            <p class="pull-right">
+               <a href="#">1</a> &nbsp;&nbsp;  <a href="#">2</a>&nbsp;&nbsp;   <a href="#">3</a> &nbsp;&nbsp;   <a href="#">4</a> &nbsp;&nbsp;   <a href="#">5</a>&nbsp;&nbsp;   <a href="#">6</a> &nbsp;&nbsp;    <a href="#"><strong>VIEW ALL</strong></a> 
+            </p>
+         </div>
+         <hr>
+      </div>
+      <h2 class="hidden">Products</h2>
+      <div class="row">
+         <div class="col-sm-2" style="    text-align: right;">
+            <%= render "categories_sidebar" %>
+         </div>
+         <div class="col-sm-10">
+            <div class="row grid" id="products">
+               <%= render "products" %>
+            </div>
+            <div class="pagination-wrapper" style="    background: transparent;">
+               <ul class="pagination">
+                  <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                  <li><a href="#">1</a></li>
+                  <li class="active"><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- ==========================
+   PRODUCTS - END 
+   =========================== -->
+<!-- ==========================
+   PRODUCT QUICKVIEW - START
+   =========================== -->
+<div class="modal fade modal-quickview" id="product-quickview" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close button-stype" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+         </div>
+         <div class="modal-body">
+            <article class="product-item product-single">
+               <div class="row">
+                  <div class="col-sm-4">
+                     <div class="product-carousel-wrapper hidden">
+                        <div id="product-carousel-modal">
+                           <div class="item"><img src="assets/products/product-1.jpg" class="img-responsive" alt=""></div>
+                           <div class="item"><img src="assets/products/product-2.jpg" class="img-responsive" alt=""></div>
+                           <div class="item"><img src="assets/products/product-3.jpg" class="img-responsive" alt=""></div>
+                           <div class="item"><img src="assets/products/product-4.jpg" class="img-responsive" alt=""></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-8">
+                     <div class="product-item product-single">
+                        <h3>Fusce Aliquam</h3>
+                     </div>
+                     <div class="product-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                     </div>
+                     <ul class="list-unstyled product-info">
+                        <li><span>ID</span>U-187423</li>
+                        <li><span>Availability</span>In Stock</li>
+                        <li><span>Brand</span>Esprit</li>
+                        <li><span>Tags</span>Dress, Black, Women</li>
+                     </ul>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat mauris eget magna TAMARA porta. Curabitur sagittis sagittis neque rutrum congue. Donec lobortis dui sagittis, ultrices nunc ornare, ultricies elit. Curabitur tristique felis pulvinar nibh porta. </p>
+                     <div class="product-form clearfix">
+                        <div class="row row-no-padding">
+                           <div class="col-lg-3 col-md-4 col-sm-6">
+                              <div class="product-quantity clearfix">
+                                 <a class="btn btn-default" id="modal-qty-minus">-</a>
+                                 <input type="text" class="form-control" id="modal-qty" value="1">
+                                 <a class="btn btn-default" id="modal-qty-plus">+</a>
+                              </div>
+                           </div>
+                           <div class="col-lg-3 col-md-4 col-sm-6">
+                              <div class="product-size">
+                                 <form class="form-inline">
+                                    <div class="form-group">
+                                       <label>Size:</label>
+                                    </div>
+                                    <div class="form-group">
+                                       <select class="form-control">
+                                          <option>XS</option>
+                                          <option>S</option>
+                                          <option selected="selected">M</option>
+                                          <option>L</option>
+                                          <option>XL</option>
+                                          <option>XXL</option>
+                                       </select>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                           <div class="col-lg-3 col-md-4 col-sm-6">
+                              <div class="product-color">
+                                 <form class="form-inline">
+                                    <div class="form-group">
+                                       <label>Color:</label>
+                                    </div>
+                                    <div class="form-group">
+                                       <select class="form-control">
+                                          <option selected="selected">Black</option>
+                                          <option>White</option>
+                                          <option>Red</option>
+                                          <option>Yellow</option>
+                                       </select>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                           <div class="col-lg-3 col-md-12 col-sm-6">
+                              <a href="#" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </article>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- ==========================
+   PRODUCT QUICKVIEW - END 
+   =========================== -->
