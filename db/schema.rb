@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426150806) do
+ActiveRecord::Schema.define(version: 20160427161421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160426150806) do
     t.decimal  "weight",            precision: 8, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "size"
   end
 
   add_index "shoppe_order_items", ["order_id"], name: "index_shoppe_order_items_on_order_id", using: :btree
@@ -282,6 +283,7 @@ ActiveRecord::Schema.define(version: 20160426150806) do
     t.text     "in_the_box"
     t.boolean  "stock_control",                             default: true
     t.boolean  "default",                                   default: false
+    t.string   "color"
   end
 
   add_index "shoppe_products", ["parent_id"], name: "index_shoppe_products_on_parent_id", using: :btree

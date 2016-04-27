@@ -15,8 +15,8 @@
             <div class="col-md-7">
                <div id="example">
                   <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-                     <a href="<%= @product.default_image.path%>">
-                     <img src="<%= @product.default_image.path%>" alt="" width="640" height="360" />
+                     <a href="<%= @product.try(:default_image).try(:path)%>">
+                     <img src="<%= @product.try(:default_image).try(:path)%>" alt="" width="640" height="360" />
                      </a>
                   </div>
                   <ul class="thumbnails">
@@ -34,62 +34,62 @@
                <div class="product-carousel-wrapper">
                </div>
             </div>
-            <div class="col-md-5">
-               <div class="product-body" style="    margin-top: 2%;">
-                  <h2><%= @product.name %></h2>
-                  <span class="">
-                  <%= number_to_currency @product.price %> 
-                  <br>
-                  </span>
-                  <p style=" margin: 6px 0 0px;"><%= @product.short_description %>
-                  </p>
-                  <br>
-                  <div class="product-form clearfix">
-                     <div class="row row-no-padding">
-                        <br>
-                        <h3>Available Sizes</h3>
-                        <% @sizes.each do |s| %>
-                        <div style="    border: solid 1px #ddd;
-                           width: 30px;
-                           text-align: center;
-                           margin-right: 2px;     float: left;" ><%=s.name%></div>
-                        <% end %>
-                        <br>
-                        <br>
-                        <br>
-                        <h3 style="    margin-top: -12px;">Available Colors</h3>
-                        <% @variants.each do |v| %>
-                          <%= link_to v.name, product_path(v.permalink) , 'data-no-turbolink' => true%>
-                        <% end %>
-                        <div style="margin-top: 12px;     width: 58%;">
-                           <div class="color1"></div>
-                           <div class="color2"></div>
-                           <div class="color3"></div>
-                           <div class="color4"></div>
-                           <div class="color5"></div>
-                           <div class="color6"></div>
-                           <div class="color7"></div>
-                        </div>
-                        <br> <br> <br>
-                        <h3>Quantity</h3>
-                        <div class="product-quantity clearfix">
-                           <a class="btn btn-default" id="modal-qty-minus">-</a>
-                           <input type="text" class="form-control" id="modal-qty" value="1" disabled>
-                           <a class="btn btn-default" id="modal-qty-plus">+</a>
-                        </div>
-                        <div style="clear;both"></div>
-                        <br>
-                     </div>
-                  </div>
-                  In Stock. Ships within 1-2  business days.
-                  <br>
-                  <br>
-                  <%= link_to product_path(@product.permalink), :method => :post, :class=> "btn btn-primary add-to-cart", :style=>" color: #ddd; background: #00215F;float: left;" do %>
-                  Add to cart
-                  <i class="fa fa-shopping-cart"></i>
-                  <% end %>
-               </div>
-            </div>
+            <%= form_tag product_path(@product.permalink), :method => :post do %>
+              <div class="col-md-5">
+                 <div class="product-body" style="    margin-top: 2%;">
+                    <h2><%= @product.get_name %></h2>
+                    <span class="">
+                    <%= number_to_currency @product.get_price %> 
+                    <br>
+                    </span>
+                    <p style=" margin: 6px 0 0px;"><%= @product.short_description %>
+                    </p>
+                    <br>
+                    <div class="product-form clearfix">
+                       <div class="row row-no-padding">
+                          <br>
+                          <h3>Available Sizes</h3>
+                          <% @sizes.each do |s| %>
+                          <div onclick="selectSize(this)" class="size-list" style="    border: solid 1px #ddd;
+                             width: 30px;
+                             text-align: center;
+                             margin-right: 2px;     float: left;" ><%=s.name%></div>
+                          <% end %>
+                          <%= hidden_field_tag :size,{}, :value=>"", :id=>"size"  %>
+                          <br>
+                          <br>
+                          <br>
+                          <h3 style="    margin-top: -12px;">Available Colors</h3>
+
+                          <div style="margin-top: 12px;     width: 58%;">
+                            <% @variants.each do |v| %>
+                              <%= link_to product_path(v.permalink) do%>
+                                <%= v.name %>
+                               <div class="color1" style="background:#<%= v.color %>;"></div>
+                              <% end %>
+                            <% end %>
+                          </div>
+                          <br> <br> <br>
+                          <h3>Quantity</h3>
+                          <div class="product-quantity clearfix">
+                             <a class="btn btn-default" id="modal-qty-minus">-</a>
+                             <%= text_field_tag :quantity, params[:quantity], id: 'modal-qty', :class=>"form-control", :value=>"1" %>
+                             <a class="btn btn-default" id="modal-qty-plus">+</a>
+                          </div>
+                          <div style="clear;both"></div>
+                          <br>
+                       </div>
+                    </div>
+                    In Stock. Ships within 1-2  business days.
+                    <br>
+                    <br>
+                    <button class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;float: left;">
+                      Add to cart
+                      <i class="fa fa-shopping-cart"></i>
+                    </button>
+                 </div>
+              </div>
+            <% end %>
          </div>
       </article>
    </div>
@@ -130,7 +130,17 @@
            api2._init();
        }
    });
-</script>
-<script type="text/javascript">
-   $('.parallax-window').parallax({imageSrc: 'assets/images/footer-img.jpg'});
+
+
+   $('#modal-qty-plus').click(function(e) {
+    var temp = $('#modal-qty').val();
+    $('#modal-qty').prop("value",parseInt(temp) + 1);
+   });
+   
+   $('#modal-qty-minus').click(function(e) {
+    var temp = $('#modal-qty').val();
+    if(parseInt(temp) > 0) {
+      $('#modal-qty').prop("value",parseInt(temp) - 1);
+    }
+   });
 </script>

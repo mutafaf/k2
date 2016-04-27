@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
 
+  def show
+    
+  end
+
   def destroy
     current_order.destroy
     session[:order_id] = nil

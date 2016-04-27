@@ -5,6 +5,8 @@ module Shoppe
   class Product < ActiveRecord::Base
     self.table_name = 'shoppe_products'
 
+    QUANTITY = (1..15).to_a
+
     # Add dependencies for products
     require_dependency 'shoppe/product/product_attributes'
     require_dependency 'shoppe/product/variants'
@@ -83,17 +85,17 @@ module Shoppe
     # @return [Boolean]
     def orderable?
       return false unless active?
-      # return false if has_variants?
+      return false if has_variants?
       true
     end
 
     # The price for the product
     #
     # @return [BigDecimal]
-    def price
-      # self.default_variant ? self.default_variant.price : read_attribute(:price)
-      default_variant ? default_variant.price : read_attribute(:price)
-    end
+    # def price
+    #   # self.default_variant ? self.default_variant.price : read_attribute(:price)
+    #   default_variant ? default_variant.price : read_attribute(:price)
+    # end
 
     # Is this product currently in stock?
     #
@@ -199,6 +201,41 @@ module Shoppe
       when '.xlsx' then Roo::Excelx.new(file.path)
       else fail I18n.t('shoppe.imports.errors.unknown_format', filename: File.original_filename)
       end
+    end
+
+    def get_short_description
+      return  self.parent.short_description if self.variant?
+      return self.short_description
+    end
+
+    def get_name
+      return  self.parent.name if self.variant?
+      return self.name
+    end
+
+    def get_price
+      return  self.parent.price if self.variant?
+      return self.price
+    end
+
+    def get_cost_price
+      return  self.parent.cost_price if self.variant?
+      return self.cost_price
+    end
+
+    def get_variants
+      return  self.parent.variants if self.variant?
+      return self.variants
+    end
+
+    def get_sizes
+      return  self.parent.sizes if self.variant?
+      return self.sizes
+    end
+
+    def get_colors
+      return  self.parent.variants.collect(&:name) if self.variant?
+      return self.variants.collect(&:name)
     end
 
     private

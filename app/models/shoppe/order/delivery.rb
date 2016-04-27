@@ -120,7 +120,8 @@ module Shoppe
     #
     # @return [Boolean]
     def delivery_required?
-      total_weight > BigDecimal(0)
+      # total_weight > BigDecimal(0)
+      return false
     end
 
     # An array of all the delivery services which are suitable for this order in it's

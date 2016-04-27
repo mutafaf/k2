@@ -5,32 +5,22 @@
    </div>
    <div class="col-md-10">
       <div class="col-md-3 allan">
-         <h3> <%= item.ordered_item.full_name %> |<strong><%= number_to_currency item.unit_price %> 
+         <h3> <%= item.ordered_item.get_name %> |<strong><%= number_to_currency item.unit_price %> 
          <small>
          <!-- PKR -->
          </small>
          </strong></h3>
          <p class="details-cart">peltro distressed (H38222)</p>
          <strong>Size: </strong>
-         <select class="qty" >
-            <option value="1" selected="selected"> 5</option>
-            <option value="2">6</option>
-            <option value="3">7</option>
-            <option value="4">8</option>
-         </select>
+         <%= select_tag 'size', options_for_select(item.ordered_item.get_sizes.collect(&:name), item.size), :class=> "qty" %>
       </div>
       <div class="col-md-3  allan">
          <strong><span class="qty-font">COLOR: </span></strong>
-         <select class="qty" style=" width:40%;">
-            <option value="1" selected="selected"> Black</option>
-            <option value="2">White</option>
-            <option value="3">Blue</option>
-            <option value="4">Green</option>
-         </select>
+         <%= select_tag 'color', options_for_select(item.ordered_item.get_variants.collect{ |v| [v.name, v.id] }, item.ordered_item.id), :class=> "qty", :style=>"width:40%;" %>
       </div>
       <div class="col-md-3  allan">
          <strong><span class="qty-font">QTY:</span> </strong>
-         <%= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9,10], item.quantity), :class=> "qty" %>
+         <%= select_tag 'quantity', options_for_select(Shoppe::Product::QUANTITY, item.quantity), :class=> "qty" %>
          <span class="remove-qty">
          <button class="removerow">Remove</button>
          </span>

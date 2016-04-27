@@ -18,6 +18,11 @@
         %dt= f.label :sku, t('shoppe.variants.sku')
         %dd= f.text_field :sku, :class => 'text'
 
+    .splitContainer
+      %dl.third
+        %dt= f.label :color, t('shoppe.variants.color')
+        %dd= f.text_field :color, :class => 'text focus jscolor'
+
   = field_set_tag t('shoppe.variants.image') do
     %dl
       %dd

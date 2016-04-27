@@ -7,7 +7,7 @@
            <div class="col-sm-3 ">
               <div class="">
                  <div class="product-mask"></div>
-                 <a href="<%=product_path(product.permalink)%>" class="product-permalink"></a>
+                 <a href="<%=product_path(product.permalink)%>" class="product-permalink" data-no-turbolink=true ></a>
                  <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive" alt="Not found">
                  <div class="product-quickview">
                     <a class="btn btn-quickview" data-toggle="modal" data-target="#product-quickview"><i class="fa fa-search"></i></a>

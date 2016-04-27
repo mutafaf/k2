@@ -6,13 +6,24 @@ class ProductsController < ApplicationController
 
   def show
     @product = Shoppe::Product.active.find_by_permalink(params[:permalink])
-    @sizes = @product.sizes
-    @variants = @product.variants
+    @sizes = @product.get_sizes
+    @variants = @product.get_variants
   end
 
   def buy
-    @product = Shoppe::Product.root.find_by_permalink!(params[:permalink])
-    current_order.order_items.add_item(@product, 1)
-    redirect_to basket_path, :notice => "Product has been added successfuly!"
+    @product = Shoppe::Product.active.find_by_permalink!(params[:permalink])
+    quantity = params[:quantity] ? params[:quantity].to_i : 1
+
+    if @product.has_variants?
+      # For Main Product
+      @product = @product.default_variant # get default variant here
+    end
+
+    if params[:size].blank?
+    redirect_to product_path(@product.permalink), :notice => "Please select any size of the Product"
+    else
+      current_order.order_items.add_item(@product, quantity, params[:size])
+      redirect_to basket_path, :notice => "Product has been added successfuly!"
+    end
   end
 end
