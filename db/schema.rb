@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427161421) do
+ActiveRecord::Schema.define(version: 20160428155937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20160427161421) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "company"
-    t.string   "billing_address1"
+    t.text     "billing_address1"
     t.string   "billing_address2"
     t.string   "billing_address3"
     t.string   "billing_address4"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20160427161421) do
     t.text     "notes"
     t.boolean  "separate_delivery_address",                         default: false
     t.string   "delivery_name"
-    t.string   "delivery_address1"
+    t.text     "delivery_address1"
     t.string   "delivery_address2"
     t.string   "delivery_address3"
     t.string   "delivery_address4"
@@ -166,6 +166,8 @@ ActiveRecord::Schema.define(version: 20160427161421) do
     t.boolean  "exported",                                          default: false
     t.string   "invoice_number"
     t.integer  "customer_id"
+    t.string   "city"
+    t.text     "order_notes"
   end
 
   add_index "shoppe_orders", ["delivery_service_id"], name: "index_shoppe_orders_on_delivery_service_id", using: :btree

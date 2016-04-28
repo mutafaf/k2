@@ -1,0 +1,35 @@
+<div class="col-md-4 summary-box">
+   <h3>ORDER SUMMARY</h3>
+   <% order.order_items.each do |item| %>
+      <div class="col-md-6 col-sm-6 "><img src="<%= item.ordered_item.try(:default_image).try(:path)%>" class="img-responsive" alt=""></div>
+      <div class="col-md-6 col-sm-6 " style="padding: 0;">
+         <h3><%= item.ordered_item.get_name %> | <%= number_to_currency item.unit_price %> 
+         <!-- <small>PKR</small> -->
+         </h3>
+         <p> peltro distressed (h38222)<br>
+            SIZE: <%= item.size %><br>
+            QTY: <%= item.quantity %>
+         </p>
+      </div>
+      <br>
+      <div style="clear:both"></div>
+      <br>
+   <% end %>
+
+   <aside class="sidebar">
+      <div class="total">
+         <p>
+            <label>Subtotal:</label><!-- --><span><%= number_to_currency order.products_total %></span>
+         </p>
+         <p>
+            <label>Shipping:</label><!-- --><span>0.00</span>
+         </p>
+         <p>
+            <label>Discount:</label><!-- --><span>0.00</span>
+         </p>
+         <p class="final">
+            <label>GRAND TOTAL</label><!-- --><span><%= number_to_currency order.total %></span>
+         </p>
+      </div>
+   </aside>
+</div>

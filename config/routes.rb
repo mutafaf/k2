@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   post "product/:permalink", to: "products#buy"
   get "basket", to: "orders#show"
   delete "basket", to: "orders#destroy"
+  post "update_order_items", to: "orders#update_order_items"
 
   match "checkout", to: "orders#checkout", as: "checkout", via: [:get, :patch]
+  match "checkout/details", to: "orders#details", as: "checkout_details", via: [:get, :patch]
   match "checkout/pay", to: "orders#payment", as: "checkout_payment", via: [:get, :post]
   match "checkout/confirm", to: "orders#confirmation", as: "checkout_confirmation", via: [:get, :post]
 

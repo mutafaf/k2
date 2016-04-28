@@ -3,26 +3,27 @@
    <div class="col-md-2">
       <img src='<%= item.ordered_item.try(:default_image).try(:path)%>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
    </div>
-   <div class="col-md-10">
+   <div class="col-md-10 order-item">
       <div class="col-md-3 allan">
          <h3> <%= item.ordered_item.get_name %> |<strong><%= number_to_currency item.unit_price %> 
          <small>
          <!-- PKR -->
          </small>
          </strong></h3>
+         <%= hidden_field_tag :item_id,{}, :value=>item.id  %>
          <p class="details-cart">peltro distressed (H38222)</p>
          <strong>Size: </strong>
-         <%= select_tag 'size', options_for_select(item.ordered_item.get_sizes.collect(&:name), item.size), :class=> "qty" %>
+         <%= select_tag 'size', options_for_select(item.ordered_item.get_sizes.collect(&:name), item.size), :class=> "qty", :onChange=>"updateOrderItem(this)" %>
       </div>
       <div class="col-md-3  allan">
          <strong><span class="qty-font">COLOR: </span></strong>
-         <%= select_tag 'color', options_for_select(item.ordered_item.get_variants.collect{ |v| [v.name, v.id] }, item.ordered_item.id), :class=> "qty", :style=>"width:40%;" %>
+         <%= select_tag 'color', options_for_select(item.ordered_item.get_variants.collect{ |v| [v.name, v.id] }, item.ordered_item.id), :class=> "qty", :style=>"width:40%;", :onChange=>"updateOrderItem(this)" %>
       </div>
       <div class="col-md-3  allan">
          <strong><span class="qty-font">QTY:</span> </strong>
-         <%= select_tag 'quantity', options_for_select(Shoppe::Product::QUANTITY, item.quantity), :class=> "qty" %>
+         <%= select_tag 'quantity', options_for_select(Shoppe::Product::QUANTITY, item.quantity), :class=> "qty", :onChange=>"updateOrderItem(this)" %>
          <span class="remove-qty">
-         <button class="removerow">Remove</button>
+         <button class="removerow" onclick="updateOrderItem(this)">Remove</button>
          </span>
       </div>
       <div class="col-md-3  allan"><span class="cart-total"> Total <%= number_to_currency item.sub_total %> </span></div>
@@ -31,3 +32,30 @@
    <br><br>
 <% end %>
 </div>
+
+<script type="text/javascript">
+   function updateOrderItem(element){
+      var removeRow;
+      if ($(element).hasClass('removerow')) {
+         removeRow = true
+      };
+      var OrderItemRow = $(element).closest(".order-item");
+      var OrderItemSize = OrderItemRow.find("#size").val();
+      var OrderItemColorId = OrderItemRow.find("#color").val();
+      var OrderItemQuantity = OrderItemRow.find("#quantity").val();
+      var OrderItem = OrderItemRow.find("#item_id").val();
+
+      $.ajax({
+        url: '/update_order_items',
+        data: {"item_id" : OrderItem,
+               "item_size": OrderItemSize, 
+               "item_color_id": OrderItemColorId, 
+               "item_quantity": OrderItemQuantity,
+               "remove_row": removeRow},
+        method: 'post',
+        success: function(data) {
+          $("#cart_page").html(data);
+        }
+      });
+   }
+</script>
