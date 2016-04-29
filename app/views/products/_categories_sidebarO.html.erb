@@ -1,18 +1,16 @@
 <div id="MainMenu">
    <div class="list-group panel">
-   <% unless @product_categories_without_parent.empty? %>
-      <% for cat in @product_categories_without_parent %>
-         <a href="#<%= cat.name %>" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"><%= cat.name %></a>
-         <%= nested_product_category_rows2(cat)%>
-      <% end %>
-   <% end %>
-   <br><br>
       <a href="#casual" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Men</a>
       <div class="collapse" id="casual">
          <!-- caucal -->
          <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Casual <i class="fa fa-caret-down"></i></a>
          <div class="collapse list-group-submenu" id="SubMenu1">
             <a href="#" class="list-group-item" data-parent="#SubMenu1">Sandals</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Slippers</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Moccs</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Boat Shoes</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Driving Moccs</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Sporty</a>
          </div>
          <!-- Office -->
          <a href="#office" class="list-group-item" data-toggle="collapse" data-parent="#office">Office <i class="fa fa-caret-down"></i></a>
@@ -33,10 +31,6 @@
             <a href="#" class="list-group-item" data-parent="#SubMenu1">Slip ons</a>
          </div>
       </div>
-
-
-
-      
       <!-- Women -->
       <a href="#Women" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Women</a>
       <div class="collapse" id="Women">

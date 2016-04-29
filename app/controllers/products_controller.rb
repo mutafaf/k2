@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+    @product_categories_without_parent = Shoppe::ProductCategory.without_parent.ordered
     @products = Shoppe::Product.root.active#.ordered.includes(:product_categories, :variants)
     # @products = @products.group_by(&:product_category)
   end
