@@ -7,21 +7,6 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
-  <% if current_order %>
-  <p style="border:1px solid black;padding:10px;">
-    You have <%= pluralize current_order.total_items, 'item'%> in your basket which cost
-    <%= number_to_currency current_order.total_before_tax %>.
-  </p>
-  <% end %>
-
-  <%= link_to "View basket", basket_path %>
-  <%= flash[:notice] %>
-<!--   <p class="notice"><%#= notice %></p>
-  <p class="alert"><%#= alert %></p> -->
-
-  <%#= link_to "Checkout", checkout_path %>
-
     <div id="scrolltop" class="hidden-xs "><i class="fa fa-angle-up"></i></div>
     <div id="page-wrapper">
       <%= render "home/header" %>
