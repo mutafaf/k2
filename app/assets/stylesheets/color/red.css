@@ -22,8 +22,8 @@ header.navbar .dropdown-menu > li > a:focus,
 header.navbar .dropdown-menu > li > a:hover:before,
 header.navbar .megamenu .dropdown-menu li ul li a:hover,
 header.navbar .megamenu .dropdown-menu li ul li a:focus,
-header.navbar li.navbar-cart .dropdown-menu a.remove:hover,
-. {
+header.navbar li.navbar-cart .dropdown-menu a.remove:hover
+ {
 	color:#E6E6E6;
 	font-weight:bold;
 }

@@ -38,7 +38,7 @@ html, body, #page-wrapper {
 header.navbar-transparent .navbar-nav > li > a {  font-family: 'HelveticaNeueLTPro-Th';}
 
 body {
-	font-family: Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', 
+	font-family: Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman'; 
 	background: #f4f4f4;
 	    overflow-x: hidden;
 }
@@ -856,7 +856,6 @@ textarea {
 
 @media (min-width: 768px) {
 	
-}
 	.modal-quickview .modal-dialog {
 		width:600px;
 		margin:30px auto;
@@ -1504,7 +1503,6 @@ header.navbar-transparent .megamenu .dropdown-menu,
 header.navbar-transparent li.navbar-search .dropdown-menu {
 	              margin-top: 9px;
 	            padding-bottom: 15px !important;
-	            background: 
 
 }
 
