@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   mount Shoppe::Engine => "/shoppe"
+
+  Shoppe::Engine.routes.draw do
+    resources :sizes
+  end
   get 'home/index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,23 @@
+- @page_title = t('shoppe.sizes.sizes')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.sizes.new_size'), :new_size, class: 'button green'
+  %h2.users= t('shoppe.sizes.sizes')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.sizes.name')
+    %tbody
+      - if @sizes.empty?
+        %tr.empty
+          %td= t('shoppe.sizes.no_sizes')
+      - else
+        - for size in @sizes
+          %tr
+            %td= link_to size.name, size
+= paginate @sizes
