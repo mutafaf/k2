@@ -107,6 +107,8 @@ en:
       shoppe/product_category:
         name: Name
         permalink: Permalink
+      shoppe/size:
+        name: Size
       shoppe/setting:
         key: Key
         value: Value
@@ -797,6 +799,30 @@ en:
         email_address: sales@example.com
         store_name: Widgets Inc.
         tax_name: Tax
+
+    sizes:
+      sizes: Sizes
+      new_size: New size
+      name: Name
+      no_sizes: No sizes to display.
+      search: Search
+      first_or_last_name: First or last name
+      back_to_sizes_list: Back to size list
+      new_address: New address
+      edit: Edit
+      size_information: Size Information
+      size_detail: Size Detail
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_size: Creating Size...
+      updating_size: Updating Size...
+      delete_confirmation: Are you sure you wish to remove this size?
+      type: Type
+      default: Default
+      created_successfully: Size has been created successfully.
+      updated_successfully: Size has been updated successfully.
+      deleted_successfully: Size has been deleted successfully.
 
   layouts:
     shoppe:

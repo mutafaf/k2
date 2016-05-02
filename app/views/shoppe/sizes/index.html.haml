@@ -19,5 +19,5 @@
       - else
         - for size in @sizes
           %tr
-            %td= link_to size.name, size
+            %td=link_to size.name, [:edit, size]
 = paginate @sizes

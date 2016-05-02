@@ -1,0 +1,21 @@
+= form_for @size do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.sizes.size_detail') do
+    .splitContainer
+      %dl.second
+        %dt= f.label :name, t('shoppe.sizes.name')
+        %dd= f.text_field :name, class: 'text focus'
+
+  %p.submit
+    - unless @size.new_record?
+      %span.right
+        = link_to t('shoppe.sizes.delete'),
+                  @size,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.sizes.delete_confirmation')}
+    = f.submit t('shoppe.sizes.save'),
+               class: 'button green',
+               data: {disable_with: (@size.new_record? ? t('shoppe.sizes.creating_size') : t('shoppe.sizes.updating_size'))}
+    = link_to t('shoppe.sizes.cancel'), :sizes, class: 'button'
