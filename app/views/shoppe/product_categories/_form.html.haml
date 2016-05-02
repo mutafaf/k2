@@ -46,6 +46,20 @@
         = f.hidden_field "attachments[image][role]", value: "image"
         = f.hidden_field "attachments[image][parent_id]", value: @product_category.id
 
+  = field_set_tag t('shoppe.product_category.homepage_settings') do
+    %dl
+      %dt &nbsp;
+      %dd.checkbox
+        = f.check_box :view_on_homepage
+        = f.label :view_on_homepage, t('shoppe.product_category.view_on_homepage')
+    .splitContainer
+      %dl.half
+        %dt= f.label :homepage_title, t('shoppe.product_category.homepage_title')
+        %dd= f.text_field :homepage_title, :class => 'text'
+      %dl.half
+        %dt= f.label :position, t('shoppe.product_category.position')
+        %dd= f.number_field :position, :class => 'text', :min=>0
+
   %p.submit
     - unless @product_category.new_record?
       %span.right= link_to t('shoppe.delete') , @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.product_category.delete_confirmation') }

@@ -21,15 +21,21 @@ module ProductsHelper
             #   s << "#{link_to(child.name, "#").html_safe} (#{t('shoppe.product_category.nesting.current_category')})"
             # end
           else
-            s << "<div class='collapse' id='#{category.name}'>"
+            # s << "<div class='collapse' id='#{category.name}'>"
             # byebug
-            s << "#{link_to("#{child.name} <i class='fa fa-caret-down'></i>".html_safe, "##{child.name}", :class=>'list-group-item', :'data-toggle'=>'collapse', :'data-parent'=>'#SubMenu1').html_safe}"
+             s << "<!-- #{category.name}AA -->"
+             s << "<a href='##{category.name}' class='list-group-item' data-toggle='collapse' data-parent='##{category.name}'>"
+             s << "<li class='collapse list-group-submenu' id='#{category.name}'>"
+            s << "<!-- inner -->"
+            s << "#{link_to("#{child.name} <i class='fa fa-caret-down'></i>".html_safe, products_path(category_id: child.id), {:class=>'list-group-item', :'data-toggle'=>'collapse', :'data-parent'=>'#SubMenu1', :remote => true}).html_safe}"
             
           end
           # s << (link_to I18n.t('shoppe.products.products'), products_path(category_id: child.id), style: 'float: right')
           # s << '</td>'
           s << nested_product_category_rows2(child, current_category, link_to_current, relative_depth)
-          s << '</div>'
+          # s << '</div>'
+          s << "</li>"
+          s << "</a>"
         end
       end.html_safe
     else

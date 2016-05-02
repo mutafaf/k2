@@ -466,6 +466,7 @@ en:
       attachments: Attachments
       back_to_categories: Back to categories list
       category_details: Category Details
+      homepage_settings: Homepage Settings
       choose_product_category: Choose a product category
       create_notice: Category has been created successfully
       delete_confirmation:  Are you sure you wish to remove this category?
@@ -474,9 +475,12 @@ en:
       destroy_alert: Category could not be removed
       image: Image
       name: Name
+      homepage_title: Homepage Title
+      position: Position
       new_category: New category
       no_categories: No categories to display.
       permalink: Permalink
+      view_on_homepage: View on homepage
       permalink_includes_ancestors: Prefix links in store with ancestor categories
       product_categories: Product categories
       update_notice: Category has been updated successfully
