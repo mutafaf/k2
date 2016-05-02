@@ -16,6 +16,9 @@
         %dt= f.label :sku, t('shoppe.products.sku')
         %dd= f.text_field :sku, :class => 'text', :required => true
     %dl
+      %dt= f.label :available_sizes, t('shoppe.products.available_sizes')
+      %dd= f.collection_select :size_ids, Shoppe::Size.all, :id, :name, {}, {:multiple => true, class: "text", :id=>"sizes", :size=>15}
+    %dl
       %dt= f.label :description, t('shoppe.products.description')
       %dd= f.text_area :description, :class => 'text', :required => true
     %dl

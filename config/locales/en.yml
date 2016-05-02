@@ -96,6 +96,7 @@ en:
       shoppe/product:
         cost_price: Cost price
         description: Description
+        available_sizes: Available Sizes
         name: Name
         permalink: Permalink
         price: Price
