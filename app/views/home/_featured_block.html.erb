@@ -20,7 +20,7 @@
                      <img src="<%= fc.try(:image).try(:path) %>" class="img-responsive "  alt="">
                      <div class="item-overlay top"></div>
                      <div class="category-mask"></div>
-                     <h3 class="category-title"><%= get_homepage_title(fc.homepage_title) %></h3>
+                     <h3 class="category-title"><%= get_homepage_title(fc.homepage_title) if fc.homepage_title.present? %></h3>
                   </a>
                </div>
             </div>
