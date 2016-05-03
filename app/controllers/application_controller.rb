@@ -2,6 +2,22 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
+  before_action :set_header
+
+
+  def set_header
+    @men = Shoppe::ProductCategory.search_category("Men")
+    @women = Shoppe::ProductCategory.search_category("Women")
+
+    @belts = Shoppe::ProductCategory.search_category("Belts")
+    @cufflinks = Shoppe::ProductCategory.search_category("Cufflinks")
+
+    @shoulder = Shoppe::ProductCategory.search_category("Shoulder")
+    @clutch = Shoppe::ProductCategory.search_category("Clutch")
+
+    @earrings = Shoppe::ProductCategory.search_category("Earrings")
+    @bracelets = Shoppe::ProductCategory.search_category("Bracelets")
+  end
 
   private
 

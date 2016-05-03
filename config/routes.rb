@@ -24,6 +24,11 @@ Rails.application.routes.draw do
 
   get "products", to: "products#index"
 
+   get "blog", to: "home#blog"
+   get "videos", to: "home#videos"
+   get "store_location", to: "home#store_location"
+
+
   root to: "home#index"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

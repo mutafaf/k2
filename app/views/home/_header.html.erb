@@ -16,16 +16,20 @@
                   <div class="dropdown-menu"   style=" width: 405px;  ">
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
-                           <a href="men.html" >
-                              <img src="/assets/menu-men.jpg" class="img-responsive center-block more-img" alt="" >
-                              <div class="more menucall"> Men </div>
+                        <% if @men.present? %>
+                           <a href="<%= products_path(category_id: @men.id) %>" >
+                              <img src="<%= @men.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                              <div class="more menucall"> <%= @men.name %></div>
                            </a>
+                        <% end %>
                         </li>
                         <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
-                           <a href="women.html">
-                              <img src="/assets/menu-women.jpg" class="img-responsive center-block more-img" alt="" />
-                              <div class="more menucall"> Women </div>
+                        <% if @women.present? %>
+                           <a href="<%= products_path(category_id: @women.id) %>">
+                              <img src="<%= @women.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" />
+                              <div class="more menucall"> <%= @women.name %> </div>
                            </a>
+                        <% end %>
                         </li>
                      </ul>
                   </div>
@@ -36,16 +40,20 @@
                      margin-top: 9px; ">
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
+                        <% if @belts.present? %>
                            <a href="belts.html">
-                              <img src="/assets/menu-belts.jpg" class="img-responsive center-block more-img" alt="" >
-                              <div class="more menucall" > Belts  </div>
+                              <img src="<%= @belts.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                              <div class="more menucall" > <%= @belts.name %>  </div>
                            </a>
+                        <% end %>
                         </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
+                        <% if @cufflinks.present? %>
                            <a href="cufflinks.html">
-                              <img src="/assets/menu-cufflinks.jpg" class="img-responsive center-block  more-img" alt="" />
-                              <div class="more menucall"> Cufflinks</div>
+                              <img src="<%= @cufflinks.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                              <div class="more menucall" > <%= @cufflinks.name %>  </div>
                            </a>
+                        <% end %>
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                            <a href="#">
@@ -62,16 +70,20 @@
                      margin-top: 9px; ">
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
-                           <a href="#">
-                              <img src="/assets/menu-sholder.jpg" class="img-responsive center-block  more-img" alt="" >
-                              <div class="more menucall"> Shoulder </div>
-                           </a>
+                           <% if @shoulder.present? %>
+                              <a href="shoulder.html">
+                                 <img src="<%= @shoulder.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                                 <div class="more menucall" > <%= @shoulder.name %>  </div>
+                              </a>
+                           <% end %>
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="#">
-                              <img src="/assets/menu-cluch.jpg" class="img-responsive center-block  more-img" alt="" />
-                              <div  class="more menucall"> Clutch</div>
-                           </a>
+                           <% if @clutch.present? %>
+                              <a href="clutch.html">
+                                 <img src="<%= @clutch.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                                 <div class="more menucall" > <%= @clutch.name %>  </div>
+                              </a>
+                           <% end %>
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
                            <a href="#">
@@ -88,16 +100,20 @@
                      margin-top: 9px; ">
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="#">
-                              <img src="/assets/menu-earrings.jpg" class="img-responsive center-block  more-img" alt="" />
-                              <div class="more menucall"> Earrings</div>
+                        <% if @earrings.present? %>
+                           <a href="earrings.html">
+                              <img src="<%= @earrings.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                              <div class="more menucall" > <%= @earrings.name %>  </div>
                            </a>
+                        <% end %>
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="#">
-                              <img src="/assets/menu-bracelets.jpg" class="img-responsive center-block more-img" alt="" />
-                              <div class="more menucall"> Bracelets</div>
-                           </a>
+                           <% if @bracelets.present? %>
+                              <a href="bracelets.html">
+                                 <img src="<%= @bracelets.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                                 <div class="more menucall" > <%= @bracelets.name %>  </div>
+                              </a>
+                           <% end %>
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                            <a href="#">
@@ -114,19 +130,19 @@
                      margin-top: 9px;">
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
-                           <a href="blog.html">
+                           <a href="/blog" data-no-turbolink=true>
                               <img src="/assets/menu-blog.jpg" class="img-responsive center-block more-img" alt="" />
                               <div class="more menucall"> Blog</div>
                            </a>
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="video.html">
+                           <a href="/videos" data-no-turbolink=true>
                               <img src="/assets/menu-video.jpg" class="img-responsive center-block more-img" alt="" />
                               <div class="more menucall"> Videos</div>
                            </a>
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="stor-location.html">
+                           <a href="/store_location" data-no-turbolink=true >
                               <img src="/assets/menu-location.jpg" class="img-responsive center-block more-img" alt="" />
                               <div class="more menucall"> locations</div>
                            </a>

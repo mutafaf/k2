@@ -238,6 +238,14 @@ module Shoppe
       return self.variants.collect(&:name)
     end
 
+    def self.new_arrivals
+      where(new_arrivals: true).limit(6)
+    end
+
+    def self.hot_selling
+      where(hot_selling: true).limit(6)
+    end
+
     private
 
     # Validates

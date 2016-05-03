@@ -517,6 +517,10 @@ en:
       no_tax: No tax
       on_sale?: On sale?
       on_sale_info:  If checked, this product will be displayed within the public store
+      new_arrivals?: New Arrivals?
+      new_arrivals_info: If checked, this product will appear on New Arrivals section on your homepage
+      hot_selling? : Hot Selling?
+      hot_selling_info: If checked, this product will appear on Hot Selling section on your homepage
       permalink: Permalink
       price: Price
       price_variants: Price/Variants

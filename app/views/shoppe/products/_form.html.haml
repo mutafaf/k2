@@ -124,6 +124,18 @@
   = field_set_tag  t('shoppe.products.website_properties') do
     .splitContainer
       %dl.half
+        %dt= f.label :new_arrivals,  t('shoppe.products.new_arrivals?')
+        %dd.checkbox
+          = f.check_box :new_arrivals
+          = f.label :new_arrivals,  t('shoppe.products.new_arrivals_info')
+      %dl.half
+        %dt= f.label :hot_selling,  t('shoppe.products.hot_selling?')
+        %dd.checkbox
+          = f.check_box :hot_selling
+          = f.label :hot_selling, t('shoppe.products.hot_selling_info')
+
+    .splitContainer
+      %dl.half
         %dt= f.label :active,  t('shoppe.products.on_sale?')
         %dd.checkbox
           = f.check_box :active
