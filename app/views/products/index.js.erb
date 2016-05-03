@@ -1,2 +1,12 @@
-// alert("ajax")
-$('#products').html('<%= escape_javascript(render(:partial => "products", :products => @products)) %>');
+
+// Append new data
+$("<%=j render(:partial => 'products', :object => @products) %>")
+  .appendTo($(".infinite-table #products"));
+
+// Update pagination link
+<% if @products.last_page? %>
+  $('.pagination').html("That's all, folks!");
+<% else %>
+  $('.pagination')
+    .html("<%=j link_to_next_page(@products, 'Next Page', :remote => true) %>");
+<% end %>

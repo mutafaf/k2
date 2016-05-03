@@ -29,11 +29,11 @@
                </div>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">Email Address*</span>
-                  <%= f.text_field :email_address, :class=>"input-checkout", :placeholder=>"Email Address" %>
+                  <%= f.text_field :email_address, :class=>"input-checkout", :placeholder=>"Email Address" , :required=>true %>
                </div>
                <div class="col-md-6">  
                   <span class="checkout-bulit">Phone Number*</span>
-                  <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" %>
+                  <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" , :required=>true %>
                </div>
                <div style="clear:both"></div>
                <hr>
@@ -43,28 +43,28 @@
                </div>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">First Name*</span>
-                  <%= f.text_field :first_name, :class=>"input-checkout", :placeholder=>"Enter First Name" %>
+                  <%= f.text_field :first_name, :class=>"input-checkout", :placeholder=>"Enter First Name" , :required=>true %>
 
                </div>
                <div class="col-md-6">  
                   <span class="checkout-bulit">Last Name*</span>
-                  <%= f.text_field :last_name, :class=>"input-checkout", :placeholder=>"Enter Last Name" %>
+                  <%= f.text_field :last_name, :class=>"input-checkout", :placeholder=>"Enter Last Name" , :required=>true %>
                </div>
                <div style="clear:both"></div>
                <br>
                <div class="col-md-6">
                   <span class="checkout-bulit">Country*</span>
-                  <%= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name,{},{ :include_blank => true, :class=>"input-checkout"} %>
+                  <%= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name,{},{ :include_blank => true, :class=>"input-checkout", :required=>true} %>
                </div>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">City/Town*</span>
-                  <%= f.text_field :city, :class=>"input-checkout", :placeholder=>"Enter & Select City" %>
+                  <%= f.text_field :city, :class=>"input-checkout", :placeholder=>"Enter & Select City" , :required=>true %>
                </div>
                <div style="clear:both"></div>
                <br>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">Address*</span>
-                  <%= f.text_area :billing_address1, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" %>
+                  <%= f.text_area :billing_address1, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" , :required=>true %>
                </div>
                <div style="clear:both"></div>
                <hr>

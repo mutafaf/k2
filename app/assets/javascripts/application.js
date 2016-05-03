@@ -30,3 +30,4 @@
 //= require jquery.mb.YTPlayer.min.js
 //= require custom.js
 //= require js/easyzoom.js
+//= require jquery.infinite-pages

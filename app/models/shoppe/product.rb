@@ -234,8 +234,8 @@ module Shoppe
     end
 
     def get_colors
-      return  self.parent.variants.collect(&:name) if self.variant?
-      return self.variants.collect(&:name)
+      return  self.parent.variants.collect(&:color) if self.variant?
+      return self.variants.collect(&:color)
     end
 
     def self.new_arrivals

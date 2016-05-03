@@ -34,6 +34,9 @@ en:
       shoppe/size:
         one: Sizes
         other: Sizes
+      shoppe/subscriber:
+        one: Subscribers
+        other: Subscribers
       shoppe/setting:
         one: Setting
         other: Settings
@@ -759,6 +762,7 @@ en:
         orders: Orders
         products: Products
         sizes: Sizes
+        subscribers: Subscribers
         product_categories: Product Categories
         delivery_services: Delivery Services
         tax_rates: Tax Rates
@@ -832,6 +836,30 @@ en:
       created_successfully: Size has been created successfully.
       updated_successfully: Size has been updated successfully.
       deleted_successfully: Size has been deleted successfully.
+
+    subscribers:
+      subscribers: Subscribers
+      new_subscriber: New Subscriber
+      name: Name
+      no_subscribers: No Subscribers to display.
+      search: Search
+      first_or_last_name: First or last name
+      back_to_subscribers_list: Back to Subscriber list
+      new_address: New address
+      edit: Edit
+      subscriber_information: Subscriber Information
+      subscriber_detail: Subscriber Detail
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_subscriber: Creating Subscriber...
+      updating_subscriber: Updating Subscriber...
+      delete_confirmation: Are you sure you wish to remove this Subscriber?
+      type: Type
+      default: Default
+      created_successfully: Subscriber has been created successfully.
+      updated_successfully: Subscriber has been updated successfully.
+      deleted_successfully: Subscriber has been deleted successfully.
 
   layouts:
     shoppe:

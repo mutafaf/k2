@@ -477,7 +477,6 @@ function print_window(){
 ------------------------------*/
 
 function selectSize(element){
-	console.log($(element).text())
 	$("#size").val($(element).text());
 	$(".size-list").css("border", "solid 1px #ddd");
 	$(element).css("border", "solid 3px #ddd");

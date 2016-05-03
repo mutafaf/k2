@@ -1,0 +1,25 @@
+- @page_title = t('shoppe.subscribers.subscribers')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.subscribers.new_subscriber'), :new_subscriber, class: 'button green'
+  %h2.users= t('shoppe.subscribers.subscribers')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.subscribers.email')
+        %th= t('shoppe.subscribers.contact_no')
+    %tbody
+      - if @subscribers.empty?
+        %tr.empty
+          %td{:colspan => 2}= t('shoppe.subscribers.no_subscribers')
+      - else
+        - for subscriber in @subscribers
+          %tr
+            %td=link_to subscriber.email, [:edit, subscriber]
+            %td=link_to subscriber.contact_no, [:edit, subscriber]
+= paginate @subscribers

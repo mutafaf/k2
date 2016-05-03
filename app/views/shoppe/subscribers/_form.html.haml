@@ -1,0 +1,25 @@
+= form_for @subscriber do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.subscribers.subscriber_detail') do
+    .splitContainer
+      %dl.half
+        %dt= f.label :email, t('shoppe.subscribers.email')
+        %dd= f.text_field :email, class: 'text focus'
+      %dl.half
+        %dt= f.label :contact_no, t('shoppe.subscribers.contact_no')
+        %dd= f.text_field :contact_no, class: 'text focus'
+
+
+  %p.submit
+    - unless @subscriber.new_record?
+      %span.right
+        = link_to t('shoppe.subscribers.delete'),
+                  @subscriber,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.subscribers.delete_confirmation')}
+    = f.submit t('shoppe.subscribers.save'),
+               class: 'button green',
+               data: {disable_with: (@subscriber.new_record? ? t('shoppe.subscribers.creating_subscriber') : t('shoppe.subscribers.updating_subscriber'))}
+    = link_to t('shoppe.subscribers.cancel'), :subscribers, class: 'button'

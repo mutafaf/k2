@@ -141,15 +141,7 @@
                               </div>
                               <div id="collapseOne" class="panel-collapse collapse ">
                                  <div class="panel-body">
-                                    <ul>
-                                       <li> Børn Signature Crown Series </li>
-                                       <li> Vegetable or metallic leather </li>
-                                       <li> Vegetable leather lining </li>
-                                       <li> Polyurethane and rubber outsole </li>
-                                       <li> Cork-wrapped wedge </li>
-                                       <li> Opanka hand-sewn construction </li>
-                                       <li> Heel Height: 1 ½ inches </li>
-                                    </ul>
+                                    <%= @product.description.try(:html_safe) %>
                                  </div>
                               </div>
                            </div>
