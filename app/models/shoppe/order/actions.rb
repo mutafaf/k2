@@ -86,7 +86,8 @@ module Shoppe
     end
 
     def deliver_received_order_email
-      Shoppe::OrderMailer.received(self).deliver
+      Shoppe::OrderMailer.delay.received(self)
+      # Shoppe::OrderMailer.received(self).deliver
     end
   end
 end

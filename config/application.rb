@@ -21,6 +21,7 @@ module Borjan
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_job.queue_adapter = :delayed_job
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join('app', 'assets', 'stylesheets','fonts')
   end

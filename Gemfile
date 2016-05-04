@@ -31,6 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'shoppe', '~> 1.0'
 gem 'hirb'
 gem 'jquery-infinite-pages'
+gem 'delayed_job_active_record'
+gem "daemons"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
