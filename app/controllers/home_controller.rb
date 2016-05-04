@@ -14,6 +14,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def contact
+    Shoppe::UserMailer.delay.contact_us(params)
+    flash[:notice] = "Thank you for your message."
+    redirect_to "/"
+  end
+
   private
 
   def safe_params

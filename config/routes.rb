@@ -30,9 +30,11 @@ Rails.application.routes.draw do
    get "store_location", to: "home#store_location"
    get "about_us", to: "home#about_us"
    get "contact_us", to: "home#contact_us"
+   post '/contact' => "home#contact"
    get "careers", to: "home#careers"
    post "add_subscriber", to: "home#add_subscriber"
 
+   devise_for :users #, :controllers => { :sessions => "sessions", :passwords => "passwords"}
 
   root to: "home#index"
   # You can have the root of your site routed with "root"

@@ -16,23 +16,24 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <div class="signin-half ">
-        <span class="checkout-bulit">First Name:</span><!--
-          --><input type="type" value="" class="input-checkout">
-        <span class="checkout-bulit">Last Name:</span><!--
-          --><input type="type" value="" class="input-checkout">
-        <span class="checkout-bulit">Email</span><!--
-          --><input type="type" value="" class="input-checkout">
-        <span class="checkout-bulit">Address </span><!--
-          --><input type="type" value="" class="input-checkout">
-        <span class="checkout-bulit">Comment </span><!--
-          --><br>
-        <textarea style="    width: 100%;     height: 120px;"></textarea>
+      <%= form_for :user , :url=> "/contact", :html => {:id => "contact_form"} do |f|%>
+        <span class="checkout-bulit">First Name:</span>
+        <%= f.text_field :first_name, :class=>"input-checkout", :required=>true %>
+        <span class="checkout-bulit">Last Name:</span>
+        <%= f.text_field :last_name, :class=>"input-checkout", :required=>true %>
+        <span class="checkout-bulit">Email</span>
+        <%= f.text_field :email, :class=>"input-checkout", :required=>true %>
+        <span class="checkout-bulit">Address </span>
+        <%= f.text_field :address, :class=>"input-checkout", :required=>true%>
+        <span class="checkout-bulit">Comment </span><br>
+        <%= f.text_area :comment, :class=>"input-checkout", :style=>"width: 100%;height: 120px;", :required=>true %>
         <div style="clear:both"></div>
         <br>
         <center>
-          <a href="index.html" class="btn btn-default btn-lg">Send</a>
+          <input type="submit" value="Send" class="btn btn-default btn-lg">
         </center>
         <br><br>
+        <% end %>
       </div>
     </div>
     <div class="col-md-2"></div>
