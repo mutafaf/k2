@@ -10,8 +10,10 @@
                         <div class="col-md-4">
                            <h4>SIGN UP FOR NEWSLETTER</h4>
                            <div class="">
+                           <%= form_tag "/add_subscriber", :method => :post, :remote=>true do %>
                            <button type="submit" title="Subscribe" class="btn btn-default btn-lg  button-grnt"><span><span>Subscribe</span></span></button>
-                           <input  title="SIGN UP FOR EMAILS:" class="inputnews ">
+                           <%= text_field_tag :email, params[:email], :class=>"inputnews", :title=>"SIGN UP FOR EMAILS:", :placeholder=>"   Enter Your Email", :required=>true %>
+                           <% end %>
                            </div>
                         </div>
                         <br>
@@ -48,10 +50,10 @@
                      <div class="footer-widget footer-widget-links">
                         <h4>ABOUT</h4>
                         <ul class="list-unstyled">
-                           <li><a href="about.html">The Company</a></li>
-                           <li><a href="stor-location.html">Store Locator</a></li>
-                           <li><a href="contact.html">Contact</a></li>
-                           <li><a href="careers.html">Careers</a></li>
+                           <li><a href="/about_us">The Company</a></li>
+                           <li><a href="/store_location">Store Locator</a></li>
+                           <li><a href="/contact_us">Contact</a></li>
+                           <li><a href="/careers">Careers</a></li>
                         </ul>
                      </div>
                   </div>
@@ -111,25 +113,23 @@
                   </center>
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
-                     <form>
+                     <%= form_tag "/add_subscriber", :method => :post, :remote=>true do %>
                         <div class="input-group" style="    width: 100%;
                            margin-bottom: 5px;">
-                           <input type="email" class="form-control" placeholder="Email Address" style="background: transparent;
-                              border: solid 1px;">
+                           <%= text_field_tag :email, params[:email], :class=>"form-control", :placeholder=>"Email Address", :required=>true ,:style=>"background: transparent;border: solid 1px;" %>
                         </div>
                         <br>
                         <div class="input-group" style="    width: 100%;
                            margin-bottom: 5px;">
-                           <input type="tel" class="form-control" placeholder="Number" style="background: transparent;
-                              border: solid 1px;">
+                           <%= text_field_tag :contact_no, params[:contact_no], :class=>"form-control", :placeholder=>"Number", :required=>true ,:style=>"background: transparent;border: solid 1px;" %>
                         </div>
                         <br>
                         <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button" style="float: right;
+                        <button class="btn btn-primary" type="submit" style="float: right;
                            background: transparent;
                            border: solid 1px;">Submit</button>
                         </span>
-                     </form>
+                     <% end %>
                      <div class="checkbox">  
                         <input id="modal-hide" type="checkbox" value="hidden">  
                         <label for="modal-hide">Don't show this popup again</label>
@@ -148,4 +148,27 @@
 
 <script type="text/javascript">
    $('.parallax-window').parallax({imageSrc: '/assets/footer-img.jpg'});
+</script>
+
+<script type="text/javascript">
+   // function add_subscriber(element){
+   //    var removeRow;
+   //    if ($(element).hasClass('removerow')) {
+   //       removeRow = true
+   //    };
+   //    var OrderItemRow = $(element).closest(".order-item");
+
+   //    $.ajax({
+   //      url: '/update_order_items',
+   //      data: {"item_id" : OrderItem,
+   //             "item_size": OrderItemSize, 
+   //             "item_color_id": OrderItemColorId, 
+   //             "item_quantity": OrderItemQuantity,
+   //             "remove_row": removeRow},
+   //      method: 'post',
+   //      success: function(data) {
+   //        $("#cart_page").html(data);
+   //      }
+   //    });
+   // }
 </script>

@@ -5,13 +5,19 @@ class HomeController < ApplicationController
     @hot_selling = Shoppe::Product.hot_selling
   end
 
-  def blog
+  def add_subscriber
+    @subscriber = Shoppe::Subscriber.new(safe_params)
+    if @subscriber.save
+      flash[:notice] = t('shoppe.subscribers.subbscribed_successfully')
+    else
+      flash[:notice] = @subscriber.errors.full_messages.join()
+    end
   end
 
-  def videos
-  end
+  private
 
-  def store_location
+  def safe_params
+    params.permit(:email, :contact_no)
   end
 
 end

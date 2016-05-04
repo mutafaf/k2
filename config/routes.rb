@@ -28,6 +28,10 @@ Rails.application.routes.draw do
    get "blog", to: "home#blog"
    get "videos", to: "home#videos"
    get "store_location", to: "home#store_location"
+   get "about_us", to: "home#about_us"
+   get "contact_us", to: "home#contact_us"
+   get "careers", to: "home#careers"
+   post "add_subscriber", to: "home#add_subscriber"
 
 
   root to: "home#index"
