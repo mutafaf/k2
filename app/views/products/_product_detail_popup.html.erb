@@ -1,0 +1,95 @@
+<!-- ==========================
+   PRODUCT QUICKVIEW - START
+   =========================== -->
+<div class="modal fade modal-quickview" id="product_detail_popup" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close button-stype" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+         </div>
+         <div class="modal-body">
+            <article class="">
+               <div class="row">
+                  <div class="col-md-4">
+                     <img src="<%= @product.try(:default_image).try(:path)%>" class="img-responsive" alt="" width="265" height="179">
+                  </div>
+                  <div class="col-sm-8">
+                     <div class="product-item product-single">
+                        <h3><%= @product.get_name %></h3>
+                     </div>
+                     <div class="product-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                     </div>
+                     <ul class="list-unstyled product-info">
+                        <li><span>ID</span>U-187423</li>
+                        <li><span>Availability</span>In Stock</li>
+                        <li><span>Brand</span>Esprit</li>
+                        <li><span>Tags</span>Dress, Black, Women</li>
+                     </ul>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat mauris eget magna TAMARA porta. Curabitur sagittis sagittis neque rutrum congue. Donec lobortis dui sagittis, ultrices nunc ornare, ultricies elit. Curabitur tristique felis pulvinar nibh porta. </p>
+                     <div class="product-form clearfix">
+                        <div class="row row-no-padding">
+                           <form class="form-inline">
+                              <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="product-quantity clearfix">
+                                    <a class="btn btn-default" id="modal-qty-minus">-</a>
+                                    <input type="text" class="form-control" id="modal-qty" value="1">
+                                    <a class="btn btn-default" id="modal-qty-plus">+</a>
+                                 </div>
+                              </div>
+                              <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="product-size">
+                                    
+                                       <div class="form-group">
+                                          <label>Size:</label>
+                                       </div>
+                                       <div class="form-group">
+                                          <select class="form-control">
+                                             <option>XS</option>
+                                             <option>S</option>
+                                             <option selected="selected">M</option>
+                                             <option>L</option>
+                                             <option>XL</option>
+                                             <option>XXL</option>
+                                          </select>
+                                       </div>
+                                    
+                                 </div>
+                              </div>
+                              <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="product-color">
+                                    <form class="form-inline">
+                                       <div class="form-group">
+                                          <label>Color:</label>
+                                       </div>
+                                       <div class="form-group">
+                                          <select class="form-control">
+                                             <option selected="selected">Black</option>
+                                             <option>White</option>
+                                             <option>Red</option>
+                                             <option>Yellow</option>
+                                          </select>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div>
+                              <div class="col-lg-3 col-md-12 col-sm-6">
+                                 <a href="#" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </article>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- ==========================
+   PRODUCT QUICKVIEW - END 
+   =========================== -->

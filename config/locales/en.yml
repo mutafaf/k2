@@ -857,6 +857,8 @@ en:
       delete_confirmation: Are you sure you wish to remove this Subscriber?
       type: Type
       default: Default
+      subbscribtion_failed: Sorry! You can not subscribe at this time due to some error.
+      subbscribed_successfully: Thank you! You have successfully subscribed to our Newsletter!
       created_successfully: Subscriber has been created successfully.
       updated_successfully: Subscriber has been updated successfully.
       deleted_successfully: Subscriber has been deleted successfully.

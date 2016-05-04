@@ -19,6 +19,11 @@ class ProductsController < ApplicationController
 
     @sizes = @product.get_sizes
     @variants = @product.get_variants
+
+    if request.xhr?
+      render :partial => "product_detail_popup"
+    end
+
   end
 
   def buy

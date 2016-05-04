@@ -21,5 +21,5 @@
         - for subscriber in @subscribers
           %tr
             %td=link_to subscriber.email, [:edit, subscriber]
-            %td=link_to subscriber.contact_no, [:edit, subscriber]
+            %td= subscriber.contact_no
 = paginate @subscribers

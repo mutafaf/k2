@@ -9,8 +9,9 @@
                  <div class="product-mask"></div>
                  <a href="<%=product_path(product.permalink)%>" class="product-permalink" data-no-turbolink=true ></a>
                  <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive" alt="Not found">
-                 <div class="product-quickview">
-                    <a class="btn btn-quickview" data-toggle="modal" data-target="#product-quickview"><i class="fa fa-search"></i></a>
+                 <div class="product-quickview" onclick="getProductDetail(this)">
+                    <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>
+                    <a class="btn btn-quickview"><i class="fa fa-search"></i></a>
                  </div>
               </div>
            </div>
@@ -37,3 +38,22 @@
 <%else%>
   <h1 class="text-center">No Results Found</h1>
 <%end%>
+
+<div id="product-quickview2">
+</div>
+
+<script type="text/javascript">
+
+   function getProductDetail(element) {
+    var permalink = $(element).find('input').val();
+     $.ajax({
+         url: '/product/'+permalink,
+         method: 'GET',
+         success: function (data) {
+            $("#product-quickview2").html(data);
+            $('#product_detail_popup').modal('show');
+         }
+     });
+   }
+
+</script>
