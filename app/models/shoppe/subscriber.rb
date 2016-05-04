@@ -3,5 +3,5 @@ class Shoppe::Subscriber < ActiveRecord::Base
   PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/
   self.table_name = 'shoppe_subscribers'
   validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX }
-  validates :contact_no, presence: true, format: { with: PHONE_REGEX }
+  # validates :contact_no, presence: true, format: { with: PHONE_REGEX }
 end
