@@ -1,0 +1,13 @@
+
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <script type="text/javascript">
+    set_toastr_options();
+      <%if name == "notice" %>
+        toastr.success("<%=msg%>");
+      <%else%>
+        toastr.error("<%=msg%>");
+      <%end%>
+    </script>
+  <%end%>
+<%end%>

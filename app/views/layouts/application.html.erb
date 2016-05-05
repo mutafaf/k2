@@ -4,12 +4,20 @@
     <title>Borjan</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div id="scrolltop" class="hidden-xs "><i class="fa fa-angle-up"></i></div>
     <div id="page-wrapper">
+    <%#= flash[:notice] %>
+      <%= render "layouts/messages" %>
       <%= render "home/header" %>
+      <%= render "popup_partials/login_popup" %>
+      <%= render "popup_partials/forgot_password" %>
+      
+
 
       <%= yield %>
 
