@@ -189,9 +189,16 @@
                <a href=""  class="dropdown-toggle" type="button" data-toggle="dropdown">
                <img src="/assets/user.png" class="img-responsive" alt=""></a>
                <ul class="dropdown-menu">
+                  <% if user_signed_in? %>
                   <li><a href="#">My Profile</a></li>
                   <li><a href="#">Settings</a></li>
-                  <li><a href="#">Log out</a></li>
+                  <li>
+                     <%= link_to "Log out", destroy_user_session_path , :method => "delete" %>
+                  </li>
+                  <% else %>
+                  <li><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
+                  <li><a href="/users/sign_up">Sign up</a></li>
+                  <% end %>
                </ul>
             </li>
          </ul>

@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   delete "basket", to: "orders#destroy"
   post "update_order_items", to: "orders#update_order_items"
 
-  match "checkout", to: "orders#checkout", as: "checkout", via: [:get, :patch]
-  match "checkout/details", to: "orders#details", as: "checkout_details", via: [:get, :patch]
+  match "checkout", to: "orders#checkout", as: "checkout", via: [:get]
+  match "checkout/details", to: "orders#details", as: "checkout_details", via: [:get, :patch, :post]
   match "checkout/pay", to: "orders#payment", as: "checkout_payment", via: [:get, :post]
   match "checkout/confirm", to: "orders#confirmation", as: "checkout_confirmation", via: [:get, :post]
 
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
    get "careers", to: "home#careers"
    post "add_subscriber", to: "home#add_subscriber"
 
-   devise_for :users #, :controllers => { :sessions => "sessions", :passwords => "passwords"}
+   devise_for :users , :controllers => { :sessions => "sessions", :passwords => "passwords", :registrations => "registrations"}
 
   root to: "home#index"
   # You can have the root of your site routed with "root"

@@ -1,0 +1,5 @@
+<%if !current_user%>
+toastr.error("Oops! Wrong email or password!")
+<%else%>
+  window.location.reload();
+<%end%>

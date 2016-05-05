@@ -30,7 +30,7 @@
             <div class="signin-half no-padding" style=" border: solid 1px #ddd;padding: 20px;">
                <h3>RETURNING CUSTOMERS</h3>
                <div >
-                  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :remote=>true) do |f| %>
+                  <%= form_for(:user, url: checkout_details_path) do |f| %>
                     <%= devise_error_messages! %>
                      <span style="font-size: 18px;">Email address* </span>
                      <%= f.email_field :email, autofocus: true, :class=>"input-checkout", :placeholder=>"Enter Email address" %>

@@ -14,6 +14,11 @@ class OrdersController < ApplicationController
   end
 
   def details
+    if params[:user].present?
+      login_user(params)
+    end
+
+
       @order = Shoppe::Order.find(current_order.id)
       if request.patch?
         if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :billing_address1, :city, :order_notes, :billing_country_id, :billing_postcode, :email_address, :phone_number))
@@ -56,6 +61,21 @@ class OrdersController < ApplicationController
     # render :nothing => true
     # redirect_to basket_path
     render :partial => "cart_page"
+  end
+
+
+  private
+
+  def login_user(params)
+    user = User.find_by_email(params[:user][:email])
+    if user.present?
+       if user.valid_password?(params[:user][:password])
+        sign_in(:user, user)
+        redirect_to checkout_details_path, :notice => "Signed in successfully."
+        return
+       end
+    end
+      redirect_to checkout_path, :notice => "Email or Password is invalid."
   end
 
 end
