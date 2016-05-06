@@ -14,7 +14,6 @@ class RegistrationsController < DeviseController
 
   # POST /resource
   def create
-    byebug
     build_resource(sign_up_params)
 
     resource.save
