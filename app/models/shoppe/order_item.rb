@@ -111,7 +111,7 @@ module Shoppe
     # @return [BigDecimal]
     def unit_price
       # read_attribute(:unit_price) || ordered_item.try(:price) || BigDecimal(0)
-      read_attribute(:unit_price) || ordered_item.get_price || BigDecimal(0)
+      read_attribute(:unit_price) || ordered_item.try(:get_price) || BigDecimal(0)
     end
 
     # The cost price for the item
