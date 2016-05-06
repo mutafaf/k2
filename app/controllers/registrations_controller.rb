@@ -37,6 +37,10 @@ class RegistrationsController < DeviseController
 
   # GET /resource/edit
   def edit
+    unless resource.customer
+      resource.build_customer
+      resource.customer.addresses.build
+    end
     render :edit
   end
 
@@ -141,7 +145,8 @@ class RegistrationsController < DeviseController
   end
 
   def account_update_params
-    devise_parameter_sanitizer.sanitize(:account_update)
+    #devise_parameter_sanitizer.sanitize(:account_update)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,:current_password, customer_attributes: [:id, :first_name, :last_name, :phone, :mobile, addresses_attributes: [:id, :address_type, :country_id, :address1, :city]])
   end
 
   def translation_scope

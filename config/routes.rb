@@ -34,7 +34,7 @@ Rails.application.routes.draw do
    get "careers", to: "home#careers"
    post "add_subscriber", to: "home#add_subscriber"
 
-   devise_for :users , :controllers => { :sessions => "sessions", :passwords => "passwords", :registrations => "registrations"}
+   devise_for :users , :controllers => { :sessions => "sessions", :registrations => "registrations"}
 
   root to: "home#index"
   # You can have the root of your site routed with "root"

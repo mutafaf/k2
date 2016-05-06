@@ -152,10 +152,10 @@
     var size = $("#size").val();
     var quantity = $('#modal-qty').val();
        if (size == null || size == "") {
-           alert("Please select any Size.");
+           toastr.error("Please select any Size.");
            return false;
        } else if (quantity == null || quantity == "" || quantity < 1){
-           alert("Please Enter a valid Quantity.");
+           toastr.error("Please Enter a valid Quantity.");
            return false;
        }
    });

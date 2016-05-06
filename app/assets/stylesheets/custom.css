@@ -6969,4 +6969,36 @@ hr {
 
 }
 
+.quent{ width: 50px !important;
+  border: 2px solid #A5A3A3 !important;
+  height: 39px;
+  text-align: center; }
+.quent1{ width: 80px !important ;  height: 39px; border: 2px solid #A5A3A3 !important ; }
+.padding-left{padding-left: 0;}
+.clear20{ clear: both; margin-bottom: 20px}
+
+
+
+.btn-count {
+  font-size: 16px;
+  font-weight: bold;
+  width: 40px;
+  float: left;
+  background-color: #F0F0F0;
+  z-index: 500;
+  padding: 6px 12px;
+  height: 39px;
+}
+.btn-count2 {
+  font-size: 16px;
+  font-weight: bold;
+  width: 40px;
+  float: right;
+  background-color: #F0F0F0;
+  z-index: 500;
+  padding: 6px 12px;
+  height: 39px;
+  margin-right: 9px;
+}
+
 

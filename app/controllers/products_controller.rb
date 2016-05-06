@@ -27,6 +27,7 @@ class ProductsController < ApplicationController
   end
 
   def buy
+    params[:permalink] = params[:color] if params[:color]
     @product = Shoppe::Product.active.find_by_permalink!(params[:permalink])
     quantity = params[:quantity] ? params[:quantity].to_i : 1
 
@@ -34,7 +35,6 @@ class ProductsController < ApplicationController
       # For Main Product
       @product = @product.default_variant # get default variant here
     end
-
     if params[:size].blank?
     redirect_to product_path(@product.permalink), :notice => "Please select any size of the Product"
     else

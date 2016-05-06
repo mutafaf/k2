@@ -5,7 +5,7 @@
         <div class="row">
            <br>
            <center>
-              <h1>SIGN UP</h1>
+              <h1>MY PROFILE</h1>
            </center>
            <hr>
         </div>
@@ -13,15 +13,15 @@
   </div>
   <div  class="container">
      <div class="col-md-12">
-       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
        <%= f.fields_for :customer do |c| %>
        <%= c.fields_for :addresses do |a| %>
          <div class="">
             <div class="col-md-12">
-               <h3>Your Information</h3>
+               <h3>My Information</h3>
                <br>
             </div>
-            <%= devise_error_messages! %>  
+            <%= devise_error_messages! %>
             <div class="col-md-6"> 
                <span class="checkout-bulit">First Name*</span>
                <%= c.text_field :first_name , :autofocus => true,:class=>"input-checkout", :placeholder=>"First Name", :required => true %>
@@ -39,12 +39,16 @@
                <%= c.text_field :phone , :autofocus => true,:class=>"input-checkout", :placeholder=>"Phone Number", :required => true %>
             </div>
             <div class="col-md-6"> 
-               <span class="checkout-bulit">Password*</span>
-               <%= f.password_field :password, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password" , :required=>true  %>
+               <span class="checkout-bulit">New Password</span>
+               <%= f.password_field :password, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password"%>
             </div>
             <div class="col-md-6"> 
-               <span class="checkout-bulit">Password Confirmation*</span>
-               <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password Confirmation" , :required=>true  %>
+               <span class="checkout-bulit">New Password Confirmation</span>
+               <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password Confirmation"%>
+            </div>
+            <div class="col-md-6"> 
+               <span class="checkout-bulit">Current Password*</span>
+               <%= f.password_field :current_password, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password" , :required=>true  %>
             </div>
             <div style="clear:both"></div>
             <hr>

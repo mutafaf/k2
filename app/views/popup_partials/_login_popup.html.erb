@@ -14,9 +14,9 @@
                      <div class="clear20"></div>
                        <%= devise_error_messages! %>
                         <span style="font-size: 18px;">Email address* </span>
-                        <%= f.email_field :email, autofocus: true, :class=>"input-checkout", :placeholder=>"Enter Email address" %>
+                        <%= f.email_field :email, autofocus: true, :class=>"input-checkout", :placeholder=>"Enter Email address", :required=>true %>
                         <span style="font-size: 18px;">Password* </span>
-                        <%= f.password_field :password, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Enter Password" %>
+                        <%= f.password_field :password, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Enter Password", :required=>true %>
                         <div style="     margin-bottom: 28px;"></div>
                         <button  style="background: #000;
                            color: #fff;

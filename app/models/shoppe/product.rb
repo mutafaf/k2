@@ -246,6 +246,11 @@ module Shoppe
       where(hot_selling: true).limit(6)
     end
 
+    def get_product_attributes
+      return  self.parent.product_attributes if self.variant?
+      return self.product_attributes
+    end
+
     private
 
     # Validates
