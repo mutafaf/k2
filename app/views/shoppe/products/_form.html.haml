@@ -67,12 +67,12 @@
           = f.hidden_field "attachments[default_image][role]", value: "default_image"
           = f.hidden_field "attachments[default_image][parent_id]", value: @product.id
       %dl.half
-        %dt= f.label "attachments[data_sheet][file]", t('shoppe.products.datasheet')
-        %dd
-          = attachment_preview @product.data_sheet
-          %p= f.file_field "attachments[data_sheet][file]"
-          = f.hidden_field "attachments[data_sheet][role]", value: "data_sheet"
-          = f.hidden_field "attachments[data_sheet][parent_id]", value: @product.id
+        / %dt= f.label "attachments[data_sheet][file]", t('shoppe.products.datasheet')
+        / %dd
+        /   = attachment_preview @product.data_sheet
+        /   %p= f.file_field "attachments[data_sheet][file]"
+        /   = f.hidden_field "attachments[data_sheet][role]", value: "data_sheet"
+        /   = f.hidden_field "attachments[data_sheet][parent_id]", value: @product.id
 
     .splitContainer.extraAttachments
       %dl.half
@@ -112,8 +112,8 @@
     = field_set_tag  t('shoppe.products.stock_control') do
       .splitContainer
         %dl.half
-          %dt= f.label :weight, t('shoppe.products.weight')
-          %dd= f.text_field :weight, :class => 'text'
+          / %dt= f.label :weight, t('shoppe.products.weight')
+          %dd= f.hidden_field :weight, :class => 'text', :value=>"0.0"
 
         %dl.half
           %dt= f.label :stock_control,  t('shoppe.products.stock_control')
