@@ -41,7 +41,7 @@
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
                         <% if @belts.present? %>
-                           <a href="belts.html">
+                           <a href="<%= products_path(category_id: @belts.id) %>">
                               <img src="<%= @belts.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                               <div class="more menucall" > <%= @belts.name %>  </div>
                            </a>
@@ -49,7 +49,7 @@
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
                         <% if @cufflinks.present? %>
-                           <a href="cufflinks.html">
+                           <a href="<%= products_path(category_id: @cufflinks.id) %>">
                               <img src="<%= @cufflinks.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                               <div class="more menucall" > <%= @cufflinks.name %>  </div>
                            </a>
@@ -71,7 +71,7 @@
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
                            <% if @shoulder.present? %>
-                              <a href="shoulder.html">
+                              <a href="<%= products_path(category_id: @shoulder.id) %>">
                                  <img src="<%= @shoulder.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                                  <div class="more menucall" > <%= @shoulder.name %>  </div>
                               </a>
@@ -79,7 +79,7 @@
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                            <% if @clutch.present? %>
-                              <a href="clutch.html">
+                              <a href="<%= products_path(category_id: @clutch.id) %>">
                                  <img src="<%= @clutch.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                                  <div class="more menucall" > <%= @clutch.name %>  </div>
                               </a>
@@ -101,7 +101,7 @@
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                         <% if @earrings.present? %>
-                           <a href="earrings.html">
+                           <a href="<%= products_path(category_id: @earrings.id) %>">
                               <img src="<%= @earrings.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                               <div class="more menucall" > <%= @earrings.name %>  </div>
                            </a>
@@ -109,7 +109,7 @@
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                            <% if @bracelets.present? %>
-                              <a href="bracelets.html">
+                              <a href="<%= products_path(category_id: @bracelets.id) %>">
                                  <img src="<%= @bracelets.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                                  <div class="more menucall" > <%= @bracelets.name %>  </div>
                               </a>
