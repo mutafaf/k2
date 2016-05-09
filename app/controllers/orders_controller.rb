@@ -14,16 +14,6 @@ class OrdersController < ApplicationController
     redirect_to checkout_details_path if user_signed_in?
   end
 
-  def guest
-    @order = Shoppe::Order.find(current_order.id)
-    if request.patch?
-      if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :billing_address1, :city, :order_notes, :billing_country_id, :billing_postcode, :email_address, :phone_number))
-        redirect_to checkout_payment_path
-        # redirect_to checkout_confirmation_path
-      end
-    end
-  end
-
   def details
     if params[:user].present?
       login_user(params)
@@ -32,9 +22,10 @@ class OrdersController < ApplicationController
 
       @order = Shoppe::Order.find(current_order.id)
       if request.patch?
-        if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :delivery_address1, :city, :order_notes, :billing_country_id, :billing_postcode, :email_address, :phone_number))
-          redirect_to checkout_payment_path
-          # redirect_to checkout_confirmation_path
+        for_separate_delivery_address(params)
+        if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :billing_address1, :billing_city, :billing_country_id, :delivery_address1, :delivery_city, :delivery_country_id, :order_notes, :email_address, :phone_number, :separate_delivery_address, :delivery_name))
+          # redirect_to checkout_payment_path
+          redirect_to checkout_confirmation_path
         end
       end
   end
@@ -77,7 +68,8 @@ class OrdersController < ApplicationController
   def get_order_address
     if user_signed_in?
       customer_id = current_user.try(:customer).try(:id)
-      @address = Shoppe::Address.where(customer_id: customer_id, address_type: params[:address_type]).try(:first)
+      @address = Shoppe::Address.find_address(customer_id, params[:address_type])
+      # @address = Shoppe::Address.where(customer_id: customer_id, address_type: params[:address_type]).try(:first)
     end
   end
 
@@ -94,6 +86,18 @@ class OrdersController < ApplicationController
        end
     end
       redirect_to checkout_path, :notice => "Email or Password is invalid."
+  end
+
+  def for_separate_delivery_address(params)
+    if params[:order][:separate_delivery_address].present? and user_signed_in?
+      customer_id = current_user.try(:customer).try(:id)
+      address = Shoppe::Address.find_address(customer_id, "permanent")
+      if address.present?
+        params[:order][:billing_address1] = address.address1
+        params[:order][:billing_city] = address.city
+        params[:order][:billing_country_id] = address.country_id
+      end
+    end
   end
 
 end

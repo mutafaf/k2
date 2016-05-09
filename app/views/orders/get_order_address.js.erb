@@ -1,9 +1,9 @@
 <% if @address.present? %>
-  $("#order_billing_country_id").val("<%= @address.country_id %>")
-  $("#order_city").val("<%= @address.city %>")
+  $("#order_delivery_country_id").val("<%= @address.country_id %>")
+  $("#order_delivery_city").val("<%= @address.city %>")
   $("#order_delivery_address1").val("<%= @address.address1 %>")
 <% else %>
-  $("#order_billing_country_id").val("")
-  $("#order_city").val("")
+  $("#order_delivery_country_id").val("")
+  $("#order_delivery_city").val("")
   $("#order_delivery_address1").val("")
 <% end %>

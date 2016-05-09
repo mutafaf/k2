@@ -39,5 +39,8 @@ module Shoppe
     def full_address
       [address1, address2, address3, address4, postcode, country.try(:name)].join(', ')
     end
+    def self.find_address(customer_id, address_type)
+      Shoppe::Address.where(customer_id: customer_id, address_type: address_type).try(:first)
+    end
   end
 end

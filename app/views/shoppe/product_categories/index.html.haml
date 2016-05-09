@@ -9,9 +9,6 @@
     %thead
       %tr
         %th= t('shoppe.product_category.name')
-        - unless @product_categories_without_parent.empty?
-          - I18n.available_locales.each do |i|
-            %th
     %tbody
       - if @product_categories_without_parent.empty?
         %tr.empty
@@ -22,9 +19,4 @@
             %td
               = link_to cat.name, [:edit, cat]
               = link_to I18n.t('shoppe.products.products'), products_path(category_id: cat.id), style: 'float: right'
-            - I18n.available_locales.each do |i|
-              - if cat.translations.where(locale: i).count >= 1
-                %td= link_to i, edit_product_category_localisation_path(cat, cat.translations.where(locale: i).first.id)
-              - else
-                %td= link_to i, new_product_category_localisation_path(cat, locale_field: i)
           = nested_product_category_rows(cat)

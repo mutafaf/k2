@@ -12,7 +12,7 @@ module Shoppe
     with_options if: proc { |o| !o.building? } do |order|
       order.validates :first_name, presence: true
       order.validates :last_name, presence: true
-      order.validates :billing_address1, presence: true
+      # order.validates :billing_address1, presence: true
       # order.validates :billing_address3, presence: true
       # order.validates :billing_address4, presence: true
       # order.validates :billing_country, presence: true
@@ -98,6 +98,10 @@ module Shoppe
     # @return [Boolean]
     def invoiced?
       !invoice_number.blank?
+    end
+
+    def full_billing_address
+      [self.billing_address1, self.billing_city, self.billing_country.try(:name)].join(" ")
     end
   end
 end

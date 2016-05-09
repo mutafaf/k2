@@ -25,7 +25,8 @@ module Shoppe
       # order.validates :delivery_address3, presence: true
       # order.validates :delivery_address4, presence: true
       # order.validates :delivery_postcode, presence: true
-      # order.validates :delivery_country, presence: true
+      order.validates :delivery_city, presence: true
+      order.validates :delivery_country, presence: true
     end
 
     validate do
@@ -223,6 +224,10 @@ module Shoppe
         save!
         Shoppe::OrderMailer.shipped(self).deliver
       end
+    end
+
+    def full_delivery_address
+      [self.delivery_address1, self.delivery_city, self.delivery_country.try(:name)].join(" ")
     end
   end
 end

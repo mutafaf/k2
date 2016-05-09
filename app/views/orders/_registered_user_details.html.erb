@@ -1,0 +1,136 @@
+<br><br><br>
+<section class="content products">
+   <div class="container">
+      <article class="product-item product-single" style="     padding: 20px;">
+         <div class="row">
+            <br>
+            <center>
+               <h1>CHECKOUT</h1>
+            </center>
+            <hr>
+         </div>
+      </article>
+   </div>
+   <div  class="container">
+      <div class="col-md-12">
+         <div >
+         <% if @order.errors.any? %>
+         <ul>
+           <% @order.errors.full_messages.each do |msg| %>
+             <li><%= msg %></li>
+           <% end %>
+         </ul>
+         <% end %>
+         <%= form_for @order, :url => checkout_details_path do |f| %>
+            <div class="signin-half col-md-8 ">
+               <div class="col-md-12">
+                  <h3>Contact Details</h3>
+                  <br>
+               </div>
+               <div class="col-md-6"> 
+                  <span class="checkout-bulit">Email Address*</span>
+                  <%= f.text_field :email_address, :class=>"input-checkout", :placeholder=>"Email Address", :value=>current_user.try(:email) , :required=>true %>
+               </div>
+               <div class="col-md-6">  
+                  <span class="checkout-bulit">Phone Number*</span>
+                  <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" , :value=>current_user.try(:customer).try(:phone), :required=>true %>
+               </div>
+               <div style="clear:both"></div>
+               <br>
+               <div class="col-md-6"> 
+                  <span class="checkout-bulit">First Name*</span>
+                  <%= f.text_field :first_name, :class=>"input-checkout", :placeholder=>"Enter First Name" , :value=>current_user.try(:customer).try(:first_name), :required=>true %>
+
+               </div>
+               <div class="col-md-6">  
+                  <span class="checkout-bulit">Last Name*</span>
+                  <%= f.text_field :last_name, :class=>"input-checkout", :placeholder=>"Enter Last Name" , :value=>current_user.try(:customer).try(:last_name), :required=>true %>
+               </div>
+               <div style="clear:both"></div>
+               <hr>
+               <div id="address-type" class="col-md-12">
+                  <h3>Delivery Details</h3>
+                  <%= f.hidden_field :separate_delivery_address, :value=>true %>
+                  <br>
+                  <div class="col-md-3">
+                     <%= radio_button_tag(:address, "current") %>
+                     <%= label_tag(:current, "Current Address") %>
+                  </div>
+                  <div class="col-md-3">
+                     <%= radio_button_tag(:address, "permanent") %>
+                     <%= label_tag(:permanent, "Permanent Address") %>
+                  </div>
+                  <div class="col-md-3">
+                     <%= radio_button_tag(:address, "other") %>
+                     <%= label_tag(:other, "Other Address") %>
+                  </div>
+                  <div>
+
+                   <br>
+                   <br>
+                   <br>
+                  </div>
+               </div>
+
+
+
+               <br>
+               <div class="col-md-6">
+                  <span class="checkout-bulit">Delivery Name*</span>
+                  <%= f.text_field :delivery_name, :class=>"input-checkout", :placeholder=>"Delivery Name" , :required=>true %>
+               </div>
+               <div class="col-md-6">
+                  <span class="checkout-bulit">Country*</span>
+                  <%= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name,{},{ :include_blank => true, :class=>"input-checkout", :required=>true} %>
+               </div>
+               <div style="clear:both"></div>
+               <br>
+               <div class="col-md-6"> 
+                  <span class="checkout-bulit">Address*</span>
+                  <%= f.text_area :delivery_address1, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" , :required=>true %>
+               </div>
+               <div class="col-md-6"> 
+                  <span class="checkout-bulit">City/Town*</span>
+                  <%= f.text_field :delivery_city, :class=>"input-checkout", :placeholder=>"Enter & Select City" , :required=>true %>
+               </div>
+
+               <div style="clear:both"></div>
+               <hr>
+               <br>
+               <div class="col-md-6"> 
+                  <span class="checkout-bulit">Order Notes</span>
+                  <%= f.text_area :order_notes, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" %>
+               </div>
+               <div class="col-md-6"> </div>
+               <div style="clear:both"></div>
+               <hr>
+               <div class="col-md-6"> 
+                  <input type="checkbox"> <span class="checkout-bulit">I agree to the Terms & Conditions.</span><br><br>
+                  <%= f.submit 'Order Now', :class=>"btn btn-default btn-lg" %>
+               </div>
+            </div>
+         <% end %>
+            <!-- ..................................................... -->
+            <%= render "order_summary", order:@order %>
+         </div>
+      </div>
+   </div>
+</section>
+
+<script type="text/javascript">
+    setTimeout(function(){ $("#address_current").click(); }, 150);
+   $(document).ready(function(){
+       $('#address-type input[type="radio"]').click(function(){
+         var addressType = $(this).val();
+            $.ajax({
+              url: '/get_order_address',
+              data: {"address_type" : addressType},
+              method: 'get',
+              type: 'js',
+              success: function(data) {
+               // alert("success")
+              }
+            });
+       });
+   });
+</script>

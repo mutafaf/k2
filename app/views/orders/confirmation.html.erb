@@ -25,11 +25,8 @@
                   <div class="signin-half  no-padding">
                      <div class="col-md-6 " style="padding:0;">
                         <h3>Shipping to:</h3>
-                        <p>Faraz Malik <br>
-                           15403 Foster Drive North<br>
-                           Hugo<br>
-                           Hugo MN 123435423<br> 
-                           123123123
+                        <p>
+                          <%= @order.full_delivery_address %>
                         </p>
                      </div>
                      <div class="col-md-6">
@@ -40,19 +37,12 @@
                      </div>
                      <div style="clear:both"></div>
                      <br><br>
-                     <h3>Billing &amp; Payment</h3>
-                     <br><br>
-                     <div class="col-md-6 " style="padding:0;">
-                        <h3>Payment method:</h3>
-                        <p>Visa ************1400 <br>
-                           15403 Foster Drive North<br>
-                           Exp. date: 06/19<br>
-                        </p>
-                     </div>
+                     <h3>Billing Address</h3>
+                     <br>
                      <div class="col-md-6">
                         <h3>Billing to:</h3>
                         <p>
-                        <%= @order.billing_address1 %>
+                          <%= @order.full_billing_address %>
                         </p>
                      </div>
                      <div style="clear:both"></div>
