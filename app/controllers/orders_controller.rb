@@ -11,6 +11,17 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    redirect_to checkout_details_path if user_signed_in?
+  end
+
+  def guest
+    @order = Shoppe::Order.find(current_order.id)
+    if request.patch?
+      if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :billing_address1, :city, :order_notes, :billing_country_id, :billing_postcode, :email_address, :phone_number))
+        redirect_to checkout_payment_path
+        # redirect_to checkout_confirmation_path
+      end
+    end
   end
 
   def details
@@ -21,7 +32,7 @@ class OrdersController < ApplicationController
 
       @order = Shoppe::Order.find(current_order.id)
       if request.patch?
-        if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :billing_address1, :city, :order_notes, :billing_country_id, :billing_postcode, :email_address, :phone_number))
+        if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :delivery_address1, :city, :order_notes, :billing_country_id, :billing_postcode, :email_address, :phone_number))
           redirect_to checkout_payment_path
           # redirect_to checkout_confirmation_path
         end
@@ -61,6 +72,13 @@ class OrdersController < ApplicationController
     # render :nothing => true
     # redirect_to basket_path
     render :partial => "cart_page"
+  end
+
+  def get_order_address
+    if user_signed_in?
+      customer_id = current_user.try(:customer).try(:id)
+      @address = Shoppe::Address.where(customer_id: customer_id, address_type: params[:address_type]).try(:first)
+    end
   end
 
 

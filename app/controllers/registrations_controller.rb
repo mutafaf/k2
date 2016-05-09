@@ -7,7 +7,8 @@ class RegistrationsController < DeviseController
     build_resource({})
     set_minimum_password_length
     resource.build_customer
-    resource.customer.addresses.build
+    # resource.customer.addresses.build
+    2.times { resource.customer.addresses.build  }
     yield resource if block_given?
     respond_with self.resource
   end
@@ -39,7 +40,8 @@ class RegistrationsController < DeviseController
   def edit
     unless resource.customer
       resource.build_customer
-      resource.customer.addresses.build
+      # resource.customer.addresses.build
+      2.times { resource.customer.addresses.build  }
     end
     render :edit
   end
@@ -141,12 +143,12 @@ class RegistrationsController < DeviseController
 
   def sign_up_params
     # devise_parameter_sanitizer.sanitize(:sign_up)
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, customer_attributes: [:first_name, :last_name, :phone, :mobile, addresses_attributes: [:country_id, :address1, :city]])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, customer_attributes: [:first_name, :last_name, :phone, :mobile, addresses_attributes: [:address_type, :country_id, :address1, :city]])
   end
 
   def account_update_params
     #devise_parameter_sanitizer.sanitize(:account_update)
-    params.require(:user).permit(:name, :email, :password, :password_confirmation,:current_password, customer_attributes: [:id, :first_name, :last_name, :phone, :mobile, addresses_attributes: [:id, :address_type, :country_id, :address1, :city]])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,:current_password, customer_attributes: [:id, :address_type, :first_name, :last_name, :phone, :mobile, addresses_attributes: [:id, :address_type, :country_id, :address1, :city]])
   end
 
   def translation_scope

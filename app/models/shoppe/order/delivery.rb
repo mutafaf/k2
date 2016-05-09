@@ -22,10 +22,10 @@ module Shoppe
     with_options if: :separate_delivery_address? do |order|
       order.validates :delivery_name, presence: true
       order.validates :delivery_address1, presence: true
-      order.validates :delivery_address3, presence: true
-      order.validates :delivery_address4, presence: true
-      order.validates :delivery_postcode, presence: true
-      order.validates :delivery_country, presence: true
+      # order.validates :delivery_address3, presence: true
+      # order.validates :delivery_address4, presence: true
+      # order.validates :delivery_postcode, presence: true
+      # order.validates :delivery_country, presence: true
     end
 
     validate do

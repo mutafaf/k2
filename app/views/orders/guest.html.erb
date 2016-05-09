@@ -36,7 +36,11 @@
                   <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" , :required=>true %>
                </div>
                <div style="clear:both"></div>
-               <br>
+               <hr>
+               <div class="col-md-12">
+                  <h3>Delivery Details</h3>
+                  <br>
+               </div>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">First Name*</span>
                   <%= f.text_field :first_name, :class=>"input-checkout", :placeholder=>"Enter First Name" , :required=>true %>
@@ -47,32 +51,6 @@
                   <%= f.text_field :last_name, :class=>"input-checkout", :placeholder=>"Enter Last Name" , :required=>true %>
                </div>
                <div style="clear:both"></div>
-               <hr>
-               <div id="address-type" class="col-md-12">
-                  <h3>Delivery Details</h3>
-                  <br>
-                  <div class="col-md-3">
-                     <%= label_tag(:permanent, "Permanent Address") %>
-                     <%= radio_button_tag(:address, "permanent", true) %>
-                  </div>
-                  <div class="col-md-3">
-                     <%= label_tag(:current, "Current Address") %>
-                     <%= radio_button_tag(:address, "current") %>
-                  </div>
-                  <div class="col-md-3">
-                     <%= label_tag(:other, "Other Address") %>
-                     <%= radio_button_tag(:address, "other") %>
-                  </div>
-                  <div>
-
-                   <br>
-                   <br>
-                   <br>
-                  </div>
-               </div>
-
-
-
                <br>
                <div class="col-md-6">
                   <span class="checkout-bulit">Country*</span>
@@ -86,14 +64,14 @@
                <br>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">Address*</span>
-                  <%= f.text_area :delivery_address1, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" , :required=>true %>
+                  <%= f.text_area :billing_address1, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" , :required=>true %>
                </div>
                <div style="clear:both"></div>
                <hr>
                <br>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">Order Notes</span>
-                  <%= f.text_area :order_notes, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" %>
+                  <%= f.text_area :order_notes, :class=>"input-checkout", :placeholder=>"Order Notes", :style=>"min-height: 80px;" %>
                </div>
                <div class="col-md-6"> </div>
                <div style="clear:both"></div>
@@ -110,20 +88,3 @@
       </div>
    </div>
 </section>
-
-<script type="text/javascript">
-   $(document).ready(function(){
-       $('#address-type input[type="radio"]').click(function(){
-         var addressType = $(this).val();
-            $.ajax({
-              url: '/get_order_address',
-              data: {"address_type" : addressType},
-              method: 'get',
-              type: 'js',
-              success: function(data) {
-               // alert("success")
-              }
-            });
-       });
-   });
-</script>

@@ -15,7 +15,6 @@
      <div class="col-md-12">
        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
        <%= f.fields_for :customer do |c| %>
-       <%= c.fields_for :addresses do |a| %>
          <div class="">
             <div class="col-md-12">
                <h3>Your Information</h3>
@@ -46,32 +45,43 @@
                <span class="checkout-bulit">Password Confirmation*</span>
                <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password Confirmation" , :required=>true  %>
             </div>
+              <div style="clear:both"></div>
+              <hr>
+              <div class="col-md-12">
+                 <h3>Address</h3>
+                 
+                 <br>
+              </div>
+            <%= c.fields_for :addresses do |a| %>
+              <div style="clear:both"></div>
+              <hr>
+                <div class="col-md-6">
+                   <span class="checkout-bulit">Address Type </span>
+                   <%= a.select :address_type, Shoppe::Address::TYPES,{},{ :class=>"input-checkout", :placeholder=>"Address Type" , :required=>true} %>
+                </div>
+
+                <div class="col-md-6">
+                   <span class="checkout-bulit">Country </span>
+                   <%= a.collection_select :country_id, Shoppe::Country.ordered, :id, :name,{},{ :include_blank => true, :class=>"input-checkout"} %>
+                </div>
+                <div class="col-md-6"> 
+                   <span class="checkout-bulit">Address </span>
+                   <%= a.text_area :address1, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" %>
+                </div>
+                <br>
+                <div class="col-md-6"> 
+                   <span class="checkout-bulit">City/Town </span>
+                   <%= a.text_field :city, :class=>"input-checkout", :placeholder=>"Enter & Select City" , :required=>true %>
+                </div>
+                <div style="clear:both"></div>
+
+            <% end %>
             <div style="clear:both"></div>
-            <hr>
-            <div class="col-md-12">
-               <h3>Address</h3>
-               <br>
-            </div>
-            <div class="col-md-6">
-               <span class="checkout-bulit">Country </span>
-               <%= a.collection_select :country_id, Shoppe::Country.ordered, :id, :name,{},{ :include_blank => true, :class=>"input-checkout"} %>
-            </div>
+            <hr />
             <div class="col-md-6"> 
-               <span class="checkout-bulit">City/Town </span>
-               <%= a.text_field :city, :class=>"input-checkout", :placeholder=>"Enter & Select City" , :required=>true %>
-            </div>
-            <div style="clear:both"></div>
-            <br>
-            <div class="col-md-6"> 
-               <span class="checkout-bulit">Address </span>
-               <%= a.text_area :address1, :class=>"input-checkout", :placeholder=>"Enter Address", :style=>"min-height: 80px;" %>
-            </div>
-            <div style="clear:both"></div>
-            <div class="col-md-6"> 
-              <%= f.submit 'Order Now', :class=>"btn btn-default btn-lg" %>
+              <%= f.submit 'Sign up', :class=>"btn btn-default btn-lg" %>
             </div>
          </div>
-         <% end %>
          <% end %>
       <% end %>
      </div>
