@@ -19,4 +19,12 @@ module HomeHelper
     return s.html_safe
   end
 
+  def get_homepage_image(category)
+    if category.homepage_image
+      return category.try(:homepage_image).try(:path)
+    else
+      return category.try(:image).try(:path)
+    end
+  end
+
 end

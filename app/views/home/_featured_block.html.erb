@@ -17,7 +17,7 @@
                <div class="<%= get_featured_category_class(index) %>" >
                <div class="category item-pro">
                   <a href="<%= products_path(category_id: fc.id) %>" class="">
-                     <img src="<%= fc.try(:image).try(:path) %>" class="img-responsive "  alt="">
+                     <img src="<%= get_homepage_image(fc) %>" class="img-responsive "  alt="">
                      <div class="item-overlay top"></div>
                      <div class="category-mask"></div>
                      <h3 class="category-title"><%= get_homepage_title(fc.homepage_title) if fc.homepage_title.present? %></h3>

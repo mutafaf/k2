@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
   def index
     if params[:category_id].present?
-      @products = Shoppe::ProductCategory.find(params[:category_id]).products.page(params[:page]).per(4)
+      @category = Shoppe::ProductCategory.find(params[:category_id])
+      @products = @category.products.page(params[:page]).per(4)
     else
       @products = Shoppe::Product.root.active.page(params[:page]).per(4) #.ordered.includes(:product_categories, :variants)
     end
     @product_categories_without_parent = Shoppe::ProductCategory.without_parent.ordered
+    # @product_categories_without_parent = Shoppe::ProductCategory.without_parent.ordered.where(id: 3)
     # @products = @products.group_by(&:product_category)
   end
 

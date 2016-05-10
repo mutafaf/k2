@@ -36,6 +36,8 @@ module Shoppe
     after_save :set_child_permalinks
 
     def attachments=(attrs)
+      attachments.build(attrs['homepage_image']) if attrs['homepage_image']['file'].present?
+      attachments.build(attrs['background_image']) if attrs['background_image']['file'].present?
       attachments.build(attrs['image']) if attrs['image']['file'].present?
     end
 
@@ -60,6 +62,32 @@ module Shoppe
     def image
       attachments.for('image')
     end
+
+
+    # Return attachment for the background_image role
+    #
+    # @return [String]
+    def background_image
+      attachments.for('background_image')
+    end
+
+    # Set attachment for the background_image role
+    def background_image_file=(file)
+      attachments.build(file: file, role: 'background_image')
+    end
+
+    # Return attachment for the background_image role
+    #
+    # @return [String]
+    def homepage_image
+      attachments.for('homepage_image')
+    end
+
+    # Set attachment for the homepage_image role
+    def homepage_image_file=(file)
+      attachments.build(file: file, role: 'homepage_image')
+    end
+
 
     def self.get_featured_categories
       where(view_on_homepage: true).limit(5).order("position")

@@ -1,12 +1,17 @@
+<%if @products.present? %>
+  // Append new data
+  $("<%=j render(:partial => 'products', :object => @products) %>")
+    .appendTo($(".infinite-table #products"));
 
-// Append new data
-$("<%=j render(:partial => 'products', :object => @products) %>")
-  .appendTo($(".infinite-table #products"));
+  // Update pagination link
+  <% if @products.last_page? %>
+    $('.pagination').html("That's all!");
+  <% else %>
+    $('.pagination')
+      .html("<%=j link_to_next_page(@products, 'Next Page', :remote => true) %>");
+  <% end %>
 
-// Update pagination link
-<% if @products.last_page? %>
-  $('.pagination').html("That's all, folks!");
-<% else %>
-  $('.pagination')
-    .html("<%=j link_to_next_page(@products, 'Next Page', :remote => true) %>");
-<% end %>
+<%else%>
+  $('#products').html('<h1 class="text-center">No Results Found</h1>');
+  
+<%end%>

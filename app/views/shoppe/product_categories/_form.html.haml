@@ -45,6 +45,14 @@
         %p= f.file_field "attachments[image][file]"
         = f.hidden_field "attachments[image][role]", value: "image"
         = f.hidden_field "attachments[image][parent_id]", value: @product_category.id
+      %br
+      %br
+      %dt= f.label "attachments[background_image][file]", t('shoppe.product_category.background_image')
+      %dd
+        = attachment_preview @product_category.background_image
+        %p= f.file_field "attachments[background_image][file]"
+        = f.hidden_field "attachments[background_image][role]", value: "background_image"
+        = f.hidden_field "attachments[background_image][parent_id]", value: @product_category.id
 
   = field_set_tag t('shoppe.product_category.homepage_settings') do
     %dl
@@ -59,6 +67,14 @@
       %dl.half
         %dt= f.label :position, t('shoppe.product_category.position')
         %dd= f.number_field :position, :class => 'text', :min=>0
+    %br
+    %dl
+      %dt= f.label "attachments[homepage_image][file]", t('shoppe.product_category.homepage_image')
+      %dd
+        = attachment_preview @product_category.homepage_image
+        %p= f.file_field "attachments[homepage_image][file]"
+        = f.hidden_field "attachments[homepage_image][role]", value: "homepage_image"
+        = f.hidden_field "attachments[homepage_image][parent_id]", value: @product_category.id
 
   %p.submit
     - unless @product_category.new_record?
