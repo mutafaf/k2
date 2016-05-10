@@ -49,7 +49,7 @@ module Shoppe
     validates :name, presence: true
     validates :permalink, presence: true, uniqueness: true, permalink: true
     validates :sku, presence: true
-    validates_presence_of :size_ids, :message => "Available Sizes can't be blank" 
+    # validates_presence_of :size_ids, :message => "Available Sizes can't be blank" 
     validates :weight, numericality: true
     validates :price, numericality: true
     validates :cost_price, numericality: true, allow_blank: true
@@ -230,7 +230,7 @@ module Shoppe
     end
 
     def get_sizes
-      return  self.parent.sizes if self.variant?
+      return  self.default_variant.sizes if self.has_variants?
       return self.sizes
     end
 
