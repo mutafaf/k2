@@ -29,6 +29,7 @@
 //= require twitterFetcher_min.js
 //= require jquery.mb.YTPlayer.min.js
 //= require custom.js
+//= require products.js
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
 

@@ -7,7 +7,9 @@
             <div class="row">
                <div class="col-xs-12">
                   <center>
-                     <h2><span style=" color:#333;"><%= @category.name %>'s </span>Collection</h2>
+                     <% if @category %>
+                      <h2 ><span id="category_heading" style=" color:#333;"><%= @category.name %></span><span style=" color:#333;">'s </span>Collection</h2>
+                     <% end %>
                   </center>
                </div>
             </div>

@@ -1,3 +1,7 @@
-alert("<%= flash[:notice] %>")
-localStorage.setItem("modalhidden", "hidden");
-window.location = "/"
+<% if @errors.present? %>
+  toastr.error("<%= @errors %>")
+<%else%>
+  toastr.success("<%= t('shoppe.subscribers.subbscribed_successfully') %>")
+  localStorage.setItem("modalhidden", "hidden");
+  setTimeout(function(){ window.location = "/"; }, 3000);
+<% end %>
