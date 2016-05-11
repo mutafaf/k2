@@ -30,6 +30,8 @@
 //= require jquery.mb.YTPlayer.min.js
 //= require custom.js
 //= require products.js
+//= require orders.js
+//= require home.js
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
 
@@ -50,3 +52,5 @@ function set_toastr_options() {
         "hideMethod": "fadeOut"
     }
 }
+// Footer image
+$('.parallax-window').parallax({imageSrc: '/assets/footer-img.jpg'});

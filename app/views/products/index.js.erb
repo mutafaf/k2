@@ -1,4 +1,6 @@
-$("#category_heading").html("<%= @category.name %>")
+<%if @category.present? %>
+  $("#category_heading").html("<%= @category.name %>")
+<%end%>
 
 <%if @products.present? %>
   // Append new data
