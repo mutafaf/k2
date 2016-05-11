@@ -1,5 +1,10 @@
+<%if @category.present? %>
+  $("#category_heading").html("<%= @category.name %>")
+<%end%>
+
 <%if @products.present? %>
   // Append new data
+  $("#products").find("h1").remove();
   $("<%=j render(:partial => 'products', :object => @products) %>")
     .appendTo($(".infinite-table #products"));
 
@@ -13,5 +18,4 @@
 
 <%else%>
   $('#products').html('<h1 class="text-center">No Results Found</h1>');
-  
 <%end%>

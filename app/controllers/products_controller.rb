@@ -7,8 +7,11 @@ class ProductsController < ApplicationController
       @products = Shoppe::Product.root.active.page(params[:page]).per(4) #.ordered.includes(:product_categories, :variants)
     end
     @product_categories_without_parent = Shoppe::ProductCategory.without_parent.ordered
-    # @product_categories_without_parent = Shoppe::ProductCategory.without_parent.ordered.where(id: 3)
     # @products = @products.group_by(&:product_category)
+    respond_to do |format|
+      format.js{}
+      format.html{}
+    end
   end
 
   def show

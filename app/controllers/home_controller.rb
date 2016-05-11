@@ -7,11 +7,8 @@ class HomeController < ApplicationController
 
   def add_subscriber
     @subscriber = Shoppe::Subscriber.new(safe_params)
-    if @subscriber.save
-      flash[:notice] = t('shoppe.subscribers.subbscribed_successfully')
-    else
-      flash[:notice] = @subscriber.errors.full_messages.join()
-    end
+    @subscriber.save
+    @errors = @subscriber.errors.full_messages.join()
   end
 
   def contact

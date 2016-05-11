@@ -12,7 +12,7 @@
                            <div class="">
                            <%= form_tag "/add_subscriber", :method => :post, :remote=>true do %>
                            <button type="submit" title="Subscribe" class="btn btn-default btn-lg  button-grnt"><span><span>Subscribe</span></span></button>
-                           <%= text_field_tag :email, params[:email], :class=>"inputnews", :title=>"SIGN UP FOR EMAILS:", :placeholder=>"   Enter Your Email", :required=>true %>
+                           <%= text_field_tag :email, params[:email], :class=>"inputnews", :title=>"SIGN UP FOR EMAILS:", :placeholder=>"   Enter Your Email", :required=>true, :autocomplete=> :off %>
                            <% end %>
                            </div>
                         </div>
@@ -91,61 +91,5 @@
 
 </div>
 
+<%= render "popup_partials/subscribtion_popup"  %>
 
-<!-- footer end -->
-<style type="text/css">
-   .modal {
-   z-index: 999999 !important;
-   }
-</style>
-<div class="modal modal-fullscreen fade "  tabindex="1" role="dialog" id="modalAdvertising" style="  ">
-   <div class="modal-dialog" style="    margin-top: 10%;">
-      <div class="modal-content">
-         <div class="modal-header">
-         </div>
-         <div class="modal-body">
-            <div class="row">
-               <div class="col-sm-12">
-                  <center>
-                     <h3>Stay Updated!</h3>
-                     <p>Enter your email address and get 10% discount for your first purchase.</p>
-                     <br>
-                  </center>
-                  <div class="col-md-2"></div>
-                  <div class="col-md-8">
-                    <%=form_tag({:controller => :home, :action => :add_subscriber},{:id => "subscription_form", :method => "post", :remote => true, "data-parsley-validate" => true}) do%>   
-                    <div class="input-group" style="    width: 100%;
-                           margin-bottom: 5px;">
-                           <%= text_field_tag :email, params[:email], :class=>"form-control", :placeholder=>"Email Address", :required=>"", :type=>"email" ,:style=>"background: transparent;border: solid 1px;" %>
-                        </div>
-                        <br>
-                        <div class="input-group" style="    width: 100%;
-                           margin-bottom: 5px;">
-                           <%= text_field_tag :contact_no, params[:contact_no], :class=>"form-control", :placeholder=>"Number", :required=>true ,:style=>"background: transparent;border: solid 1px;" %>
-                        </div>
-                        <br>
-                        <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit" style="float: right;
-                           background: transparent;
-                           border: solid 1px;">Submit</button>
-                        </span>
-                     <% end %>
-                     <div class="checkbox">  
-                        <input id="modal-hide" type="checkbox" value="hidden">  
-                        <label for="modal-hide">Don't show this popup again</label>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div style="clear:both"></div>
-      <center>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">Start</button>
-      </center>
-   </div>
-</div>
-
-<script type="text/javascript">
-   $('.parallax-window').parallax({imageSrc: '/assets/footer-img.jpg'});
-</script>

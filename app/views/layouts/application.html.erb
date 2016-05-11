@@ -12,16 +12,14 @@
     <div id="scrolltop" class="hidden-xs "><i class="fa fa-angle-up"></i></div>
     <div id="page-wrapper">
     <%#= flash[:notice] %>
-      <%= render "layouts/messages" %>
-      <%= render "home/header" %>
+      <%= render "shared/messages" %>
+      <%= render "shared/header" %>
       <%= render "popup_partials/login_popup" %>
       <%= render "popup_partials/forgot_password" %>
-      
-
 
       <%= yield %>
 
-      <%= render "home/footer" %>
+      <%= render "shared/footer" %>
     </div>
 
   </body>
