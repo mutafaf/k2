@@ -22,3 +22,7 @@
  .modal {
  z-index: 999999 !important;
  }
+
+ .popbottom{
+  min-height: 200px;
+ }

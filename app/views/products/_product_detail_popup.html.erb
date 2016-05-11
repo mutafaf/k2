@@ -34,11 +34,13 @@
                            <%end%>
                         </ul>
                      </ul>
-                     <p><%= @product.description.try(:html_safe) %></p>
+                     <div class="popbottom">
+                       <p><%= @product.description.try(:html_safe) %></p>
+                     </div>
 
                      <div class="clear20"></div>
                      <div class="product-form clearfix">
-                        <div class="row row-no-padding">
+                        <div id="popup_product_form" class="row row-no-padding ">
                            <%= form_tag product_path(@product.permalink), :method => :post, :class=>"form-inline" do %>
                               <div class="col-lg-3 col-md-4 col-sm-6 no-padding">
                                  <div class="product-quantity clearfix">
@@ -52,7 +54,7 @@
                                     
                                        <div class="form-group">
                                           <label>Size:</label>
-                                       <%= select_tag 'size', options_for_select(@product.get_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1", :required=>true} %>
+                                       <%= select_tag 'size', options_for_select(@product.get_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                        </div>
                                     
                                  </div>
@@ -61,7 +63,7 @@
                                  <div class="product-color">
                                        <div class="form-group">
                                           <label>Color:</label>
-                                          <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Please select", :class=> "form-control quent1", :required=>true} %>
+                                          <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                        </div>
                                  </div>
                               </div>
@@ -84,3 +86,37 @@
 <!-- ==========================
    PRODUCT QUICKVIEW - END 
    =========================== -->
+
+<script type="text/javascript">
+   $('#popup_product_form form').submit(function() {
+       var size = $("#size").val();
+       var color = $("#color").val();
+       var quantity = $('#modal-qty').val();
+          if (size == null || size == "") {
+              toastr.error("Please select any Size.");
+              return false;
+          } else if (color == null || color == "") {
+              toastr.error("Please select any Color.");
+              return false;
+          } else if (quantity == null || quantity == "" || quantity < 1){
+              toastr.error("Please Enter a valid Quantity.");
+              return false;
+          }
+      });
+
+   $('#modal-qty-plus').click(function(e) {
+    var temp = $('#modal-qty').val();
+      if (temp == null || temp == "") {
+        $('#modal-qty').prop("value", 1);
+      } else {
+        $('#modal-qty').prop("value",parseInt(temp) + 1);
+      }
+   });
+   
+   $('#modal-qty-minus').click(function(e) {
+    var temp = $('#modal-qty').val();
+    if(parseInt(temp) > 1) {
+      $('#modal-qty').prop("value",parseInt(temp) - 1);
+    }
+   });
+</script>

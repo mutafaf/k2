@@ -23,23 +23,6 @@ function getProductDetail(element) {
   });
 }
 
-$('#modal-qty-plus').click(function(e) {
- var temp = $('#modal-qty').val();
-   if (temp == null || temp == "") {
-     $('#modal-qty').prop("value", 1);
-   } else {
-     $('#modal-qty').prop("value",parseInt(temp) + 1);
-   }
-});
-
-$('#modal-qty-minus').click(function(e) {
- var temp = $('#modal-qty').val();
- if(parseInt(temp) > 1) {
-   $('#modal-qty').prop("value",parseInt(temp) - 1);
- }
-});
-
-
 $(function() {
   return $('.infinite-table').infinitePages({
     loading: function() {

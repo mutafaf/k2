@@ -33,6 +33,7 @@ gem 'hirb'
 gem 'jquery-infinite-pages'
 gem 'delayed_job_active_record'
 gem "daemons"
+gem 'jquery-turbolinks'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
