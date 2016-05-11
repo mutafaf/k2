@@ -30,12 +30,12 @@
             <div class="signin-half no-padding" style=" border: solid 1px #ddd;padding: 20px;">
                <h3>RETURNING CUSTOMERS</h3>
                <div >
-                  <%= form_for(:user, url: checkout_details_path) do |f| %>
+                  <%= form_for(:user, url: checkout_details_path, html: {"data-parsley-validate" => true} ) do |f| %>
                     <%= devise_error_messages! %>
                      <span style="font-size: 18px;">Email address* </span>
-                     <%= f.email_field :email, autofocus: true, :class=>"input-checkout", :placeholder=>"Enter Email address" %>
+                     <%= f.email_field :email, :autocomplete=> :off, autofocus: true, :class=>"input-checkout", :placeholder=>"Enter Email address", :required=>true %>
                      <span style="font-size: 18px;">Password* </span>
-                     <%= f.password_field :password, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Enter Password" %>
+                     <%= f.password_field :password, :autocomplete=> :off , :class=>"input-checkout", :placeholder=>"Enter Password", :required=>true %>
                      <div style="     margin-bottom: 28px;"></div>
                      <button  style="background: #000;
                         color: #fff;

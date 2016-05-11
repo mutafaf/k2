@@ -13,16 +13,16 @@
   </div>
   <div  class="container">
      <div class="col-md-12">
-       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {"data-parsley-validate" => true}) do |f| %>
        <%= devise_error_messages! %>
          <div class="">
             <div class="col-md-6"> 
                <span class="checkout-bulit">Email*</span>
-               <%= f.email_field :email, autofocus: true, :class=>"input-checkout", :placeholder=>"Email" , :required=>true %>
+               <%= f.email_field :email, autofocus: true, :class=>"input-checkout", :placeholder=>"Email" , :required=>true, :autocomplete=> :off %>
             </div>
             <div class="col-md-6"> 
                <span class="checkout-bulit">Password*</span>
-               <%= f.password_field :password, autofocus: true, :class=>"input-checkout", :placeholder=>"Password" , :required=>true %>
+               <%= f.password_field :password, autofocus: true, :class=>"input-checkout", :placeholder=>"Password" , :required=>true, :autocomplete=> :off %>
             </div>
             <div class="col-md-6" style="margin-top:5px;margin-bottom:10px;"> 
                <% if devise_mapping.rememberable? -%>

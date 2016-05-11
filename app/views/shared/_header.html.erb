@@ -190,14 +190,14 @@
                <img src="/assets/user.png" class="img-responsive" alt=""></a>
                <ul class="dropdown-menu">
                   <% if user_signed_in? %>
-                  <li><a href="<%= edit_user_registration_path %>">My Profile</a></li>
+                  <li><a href="<%= edit_user_registration_path %>" data-no-turbolink =true>My Profile</a></li>
                   <li><a href="#">Settings</a></li>
                   <li>
                      <%= link_to "Sign out", destroy_user_session_path , :method => "delete" %>
                   </li>
                   <% else %>
                   <li><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
-                  <li><a href="/users/sign_up">Sign up</a></li>
+                  <li><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
                   <% end %>
                </ul>
             </li>

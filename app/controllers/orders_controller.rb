@@ -19,13 +19,12 @@ class OrdersController < ApplicationController
       login_user(params)
     end
 
-
       @order = Shoppe::Order.find(current_order.id)
       if request.patch?
         for_separate_delivery_address(params)
         if @order.proceed_to_confirm(params[:order].permit(:first_name, :last_name, :billing_address1, :billing_city, :billing_country_id, :delivery_address1, :delivery_city, :delivery_country_id, :order_notes, :email_address, :phone_number, :separate_delivery_address, :delivery_name))
-          # redirect_to checkout_payment_path
-          redirect_to checkout_confirmation_path
+          redirect_to checkout_payment_path
+          # redirect_to checkout_confirmation_path
         end
       end
   end
@@ -61,7 +60,6 @@ class OrdersController < ApplicationController
     end
     @current_order = order
     # render :nothing => true
-    # redirect_to basket_path
     render :partial => "cart_page"
   end
 
@@ -69,7 +67,6 @@ class OrdersController < ApplicationController
     if user_signed_in?
       customer_id = current_user.try(:customer).try(:id)
       @address = Shoppe::Address.find_address(customer_id, params[:address_type])
-      # @address = Shoppe::Address.where(customer_id: customer_id, address_type: params[:address_type]).try(:first)
     end
   end
 

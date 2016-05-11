@@ -38,11 +38,14 @@ class RegistrationsController < DeviseController
 
   # GET /resource/edit
   def edit
-    unless resource.customer
+    if !resource.customer
       resource.build_customer
       # resource.customer.addresses.build
       2.times { resource.customer.addresses.build  }
+    elsif resource.customer.addresses.size==1
+      1.times { resource.customer.addresses.build  }
     end
+
     render :edit
   end
 

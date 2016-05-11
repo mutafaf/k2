@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
       @product = @product.default_variant # get default variant here
     end
     if params[:size].blank?
-    redirect_to product_path(@product.permalink), :notice => "Please select any size of the Product"
+    redirect_to product_path(@product.permalink), :alert => "Please select any size of the Product"
     else
       current_order.order_items.add_item(@product, quantity, params[:size])
       redirect_to basket_path, :notice => "Product has been added successfuly!"

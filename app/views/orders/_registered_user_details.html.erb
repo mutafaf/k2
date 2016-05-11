@@ -21,7 +21,7 @@
            <% end %>
          </ul>
          <% end %>
-         <%= form_for @order, :url => checkout_details_path do |f| %>
+         <%= form_for @order, :url => checkout_details_path, html: {"data-parsley-validate" => true} do |f| %>
             <div class="signin-half col-md-8 ">
                <div class="col-md-12">
                   <h3>Contact Details</h3>

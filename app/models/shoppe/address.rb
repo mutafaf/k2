@@ -1,7 +1,7 @@
 module Shoppe
   class Address < ActiveRecord::Base
     # An array of all the available types for an address
-    # ADDRESS_TYPES = %w(permanent current).freeze
+    ADDRESS_TYPES = %w(permanent current).freeze
     TYPES = %w(billing delivery permanent current).freeze
 
     # Set the table name

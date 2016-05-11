@@ -21,7 +21,7 @@
            <% end %>
          </ul>
          <% end %>
-         <%= form_for @order, :url => checkout_details_path do |f| %>
+         <%= form_for @order, :url => checkout_details_path, html: {"data-parsley-validate" => true} do |f| %>
             <div class="signin-half col-md-8 ">
                <div class="col-md-12">
                   <h3>Contact Details</h3>
@@ -29,11 +29,11 @@
                </div>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">Email Address*</span>
-                  <%= f.text_field :email_address, :class=>"input-checkout", :placeholder=>"Email Address" , :required=>true %>
+                  <%= f.email_field :email_address, :class=>"input-checkout", :placeholder=>"Email Address" , :required=>true %>
                </div>
                <div class="col-md-6">  
                   <span class="checkout-bulit">Phone Number*</span>
-                  <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" , :required=>true %>
+                  <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" , :required=>true, :autocomplete=> :off %>
                </div>
                <div style="clear:both"></div>
                <hr>
