@@ -113,10 +113,10 @@
                   </center>
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
-                     <%= form_tag "/add_subscriber", :method => :post, :remote=>true do %>
-                        <div class="input-group" style="    width: 100%;
+                    <%=form_tag({:controller => :home, :action => :add_subscriber},{:id => "subscription_form", :method => "post", :remote => true, "data-parsley-validate" => true}) do%>   
+                    <div class="input-group" style="    width: 100%;
                            margin-bottom: 5px;">
-                           <%= text_field_tag :email, params[:email], :class=>"form-control", :placeholder=>"Email Address", :required=>true ,:style=>"background: transparent;border: solid 1px;" %>
+                           <%= text_field_tag :email, params[:email], :class=>"form-control", :placeholder=>"Email Address", :required=>"", :type=>"email" ,:style=>"background: transparent;border: solid 1px;" %>
                         </div>
                         <br>
                         <div class="input-group" style="    width: 100%;
@@ -148,27 +148,4 @@
 
 <script type="text/javascript">
    $('.parallax-window').parallax({imageSrc: '/assets/footer-img.jpg'});
-</script>
-
-<script type="text/javascript">
-   // function add_subscriber(element){
-   //    var removeRow;
-   //    if ($(element).hasClass('removerow')) {
-   //       removeRow = true
-   //    };
-   //    var OrderItemRow = $(element).closest(".order-item");
-
-   //    $.ajax({
-   //      url: '/update_order_items',
-   //      data: {"item_id" : OrderItem,
-   //             "item_size": OrderItemSize, 
-   //             "item_color_id": OrderItemColorId, 
-   //             "item_quantity": OrderItemQuantity,
-   //             "remove_row": removeRow},
-   //      method: 'post',
-   //      success: function(data) {
-   //        $("#cart_page").html(data);
-   //      }
-   //    });
-   // }
 </script>

@@ -31,6 +31,7 @@
 //= require custom.js
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
+//= require parsley
 
 
 function set_toastr_options() {
