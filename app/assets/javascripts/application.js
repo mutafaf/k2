@@ -35,6 +35,7 @@
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
 
+Turbolinks.enableProgressBar();
 
 function set_toastr_options() {
     toastr.options = {
