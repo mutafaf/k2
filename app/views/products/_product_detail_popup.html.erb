@@ -51,20 +51,22 @@
                               </div>
                               <div class="col-lg-3 col-md-4 col-sm-6 padding-left">
                                  <div class="product-size">
-                                    
-                                       <div class="form-group">
+                                    <% if @product.has_sizes? %>
+                                       <div id="size_block" class="form-group">
                                           <label>Size:</label>
                                        <%= select_tag 'size', options_for_select(@product.get_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                        </div>
-                                    
+                                    <% end %>
                                  </div>
                               </div>
                               <div class="col-lg-3 col-md-4 col-sm-6 no-padding">
                                  <div class="product-color">
-                                       <div class="form-group">
-                                          <label>Color:</label>
-                                          <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Please select", :class=> "form-control quent1"} %>
-                                       </div>
+                                 <% if @product.has_colors? %>
+                                   <div id="color_block" class="form-group">
+                                      <label>Color:</label>
+                                      <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Please select", :class=> "form-control quent1"} %>
+                                   </div>
+                                 <% end %>
                                  </div>
                               </div>
                               <div class="col-lg-3 col-md-12 col-sm-6">
@@ -92,10 +94,10 @@
        var size = $("#size").val();
        var color = $("#color").val();
        var quantity = $('#modal-qty').val();
-          if (size == null || size == "") {
+          if ((size == null || size == "") && ($("#size_block").length)) {
               toastr.error("Please select any Size.");
               return false;
-          } else if (color == null || color == "") {
+          } else if ((color == null || color == "") && ($("#color_block").length)) {
               toastr.error("Please select any Color.");
               return false;
           } else if (quantity == null || quantity == "" || quantity < 1){

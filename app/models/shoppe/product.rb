@@ -252,6 +252,14 @@ module Shoppe
       return self.product_attributes
     end
 
+    def has_sizes?
+      !get_sizes.empty?
+    end
+
+    def has_colors?
+      !get_colors.empty?
+    end
+
     private
 
     # Validates

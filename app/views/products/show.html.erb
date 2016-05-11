@@ -7,7 +7,7 @@
          <div class="row">
             <br>
             <center>
-               <h3 class="text-capitalize"><%= get_category_sequence(@product) %></h3>
+               <h3 class="text-uppercase"><%= get_category_sequence(@product) %></h3>
             </center>
             <br>
             <div class="col-md-7">
@@ -46,27 +46,35 @@
                     <div class="product-form clearfix">
                        <div class="row row-no-padding">
                           <br>
-                          <h3>Available Sizes</h3>
-                          <% @sizes.each do |s| %>
-                          <div onclick="selectSize(this)" class="size-list" style="    border: solid 1px #ddd;
-                             width: 30px;
-                             text-align: center;
-                             margin-right: 2px;     float: left;cursor:pointer;" ><%=s.name%></div>
-                          <% end %>
-                          <%= hidden_field_tag :size,{}, :value=>"", :id=>"size"  %>
-                          <br>
-                          <br>
-                          <br>
-                          <h3 style="    margin-top: -12px;">Available Colors</h3>
-
-                          <div style="margin-top: 12px;     width: 58%;">
-                            <% @variants.each do |v| %>
-                              <%= link_to product_path(v.permalink) do%>
-                                <%#= v.name %>
-                               <div class="color1" style="background:#<%= v.color %>;"></div>
+                          <% if @sizes.present? %>
+                            <div id="size_block">
+                              <h3>Available Sizes</h3>
+                              <% @sizes.each do |s| %>
+                              <div onclick="selectSize(this)" class="size-list" style="    border: solid 1px #ddd;
+                                 width: 30px;
+                                 text-align: center;
+                                 margin-right: 2px;     float: left;cursor:pointer;" ><%=s.name%></div>
                               <% end %>
-                            <% end %>
-                          </div>
+                              <%= hidden_field_tag :size,{}, :value=>"", :id=>"size"  %>
+                            </div>
+                          <% end %>
+                          <br>
+                          <br>
+                          <br>
+                          <% if @variants.present? %>
+                            <div class="color_block">
+                              <h3 style="    margin-top: -12px;">Available Colors</h3>
+
+                              <div style="margin-top: 12px;     width: 58%;">
+                                <% @variants.each do |v| %>
+                                  <%= link_to product_path(v.permalink) do%>
+                                    <%#= v.name %>
+                                   <div class="color1" style="background:#<%= v.color %>;"></div>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                            </div>
+                          <% end %>
                           <br> <br> <br>
                           <h3>Quantity</h3>
                           <div class="product-quantity clearfix">
@@ -78,7 +86,7 @@
                           <br>
                        </div>
                     </div>
-                    In Stock. Ships within 1-2  business days.
+                    <!-- In Stock. Ships within 1-2  business days. -->
                     <br>
                     <br>
                     <button type="submit" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;float: left;">
@@ -149,12 +157,18 @@
    $('#product_form').submit(function() {
     var size = $("#size").val();
     var quantity = $('#modal-qty').val();
-       if (size == null || size == "") {
-           toastr.error("Please select any Size.");
-           return false;
-       } else if (quantity == null || quantity == "" || quantity < 1){
-           toastr.error("Please Enter a valid Quantity.");
-           return false;
-       }
+
+    // if ($("#size_block").length) {
+    //   alert("asdfasdf")
+    // };
+
+     if ((size == null || size == "") && $("#size_block").length) {
+         toastr.error("Please select any Size.");
+         return false;
+     } else if (quantity == null || quantity == "" || quantity < 1){
+         toastr.error("Please Enter a valid Quantity.");
+         return false;
+     }
+
    });
 </script>
