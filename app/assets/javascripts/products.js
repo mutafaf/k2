@@ -1,9 +1,9 @@
 
 function getProducts(element){
-  categoryId = $(element).attr("id")
+  var category_permalink = $(element).attr("id")
    $.ajax({
      url: '/products',
-     data: {"category_id" : categoryId},
+     data: {"category_permalink" : category_permalink},
      method: 'GET',
      success: function(data) {
        // alert("success!")

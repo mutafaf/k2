@@ -2,8 +2,8 @@
    <% for cat in @product_categories_without_parent %>
       <ul id="MainMenu" style="list-style: none;">
         <li class="list-group " style="    margin-bottom: 0px;">
-          <a id="<%= cat.id %>" href="#<%= cat.name %>" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu" onclick="getProducts(this)"><%= cat.name %> <%= add_arrow(cat) %></a>
-          <li class="collapse" id="<%= cat.name %>">
+          <a id="<%= cat.permalink %>" href="#<%= cat.id %>-cat" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu" onclick="getProducts(this)"><%= cat.name %> <%= add_arrow(cat) %></a>
+          <li class="collapse" id="<%= cat.id %>-cat">
              <ul>
              <% if cat.children.count > 0 %>
                <%= nested_product_category_rows2(cat)%>

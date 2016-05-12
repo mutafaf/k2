@@ -17,7 +17,7 @@
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
                         <% if @men.present? %>
-                           <a href="<%= products_path(category_id: @men.id) %>" >
+                           <a href="<%= products_path(category_permalink: @men.permalink) %>" >
                               <img src="<%= @men.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                               <div class="more menucall"> <%= @men.name %></div>
                            </a>
@@ -25,7 +25,7 @@
                         </li>
                         <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
                         <% if @women.present? %>
-                           <a href="<%= products_path(category_id: @women.id) %>">
+                           <a href="<%= products_path(category_permalink: @women.permalink) %>">
                               <img src="<%= @women.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" />
                               <div class="more menucall"> <%= @women.name %> </div>
                            </a>
@@ -41,7 +41,7 @@
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
                         <% if @belts.present? %>
-                           <a href="<%= products_path(category_id: @belts.id) %>">
+                           <a href="<%= products_path(category_permalink: @belts.permalink) %>">
                               <img src="<%= @belts.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                               <div class="more menucall" > <%= @belts.name %>  </div>
                            </a>
@@ -49,7 +49,7 @@
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
                         <% if @cufflinks.present? %>
-                           <a href="<%= products_path(category_id: @cufflinks.id) %>">
+                           <a href="<%= products_path(category_permalink: @cufflinks.permalink) %>">
                               <img src="<%= @cufflinks.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                               <div class="more menucall" > <%= @cufflinks.name %>  </div>
                            </a>
@@ -71,7 +71,7 @@
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
                            <% if @shoulder.present? %>
-                              <a href="<%= products_path(category_id: @shoulder.id) %>">
+                              <a href="<%= products_path(category_permalink: @shoulder.permalink) %>">
                                  <img src="<%= @shoulder.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                                  <div class="more menucall" > <%= @shoulder.name %>  </div>
                               </a>
@@ -79,7 +79,7 @@
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                            <% if @clutch.present? %>
-                              <a href="<%= products_path(category_id: @clutch.id) %>">
+                              <a href="<%= products_path(category_permalink: @clutch.permalink) %>">
                                  <img src="<%= @clutch.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                                  <div class="more menucall" > <%= @clutch.name %>  </div>
                               </a>
@@ -101,7 +101,7 @@
                      <ul style="padding: 4px;" >
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                         <% if @earrings.present? %>
-                           <a href="<%= products_path(category_id: @earrings.id) %>">
+                           <a href="<%= products_path(category_permalink: @earrings.permalink) %>">
                               <img src="<%= @earrings.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                               <div class="more menucall" > <%= @earrings.name %>  </div>
                            </a>
@@ -109,7 +109,7 @@
                         </li>
                         <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
                            <% if @bracelets.present? %>
-                              <a href="<%= products_path(category_id: @bracelets.id) %>">
+                              <a href="<%= products_path(category_permalink: @bracelets.permalink) %>">
                                  <img src="<%= @bracelets.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
                                  <div class="more menucall" > <%= @bracelets.name %>  </div>
                               </a>

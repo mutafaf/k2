@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   def index
-    if params[:category_id].present?
-      @category = Shoppe::ProductCategory.find(params[:category_id])
-      @products = @category.products.page(params[:page]).per(4)
+    if params[:category_permalink].present?
+      @category = Shoppe::ProductCategory.ordered.find_by_permalink(params[:category_permalink])
+      @products = @category.products.page(params[:page]).per(4) if @category
     else
       @products = Shoppe::Product.root.active.page(params[:page]).per(4) #.ordered.includes(:product_categories, :variants)
     end

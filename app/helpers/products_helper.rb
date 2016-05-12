@@ -8,15 +8,15 @@ module ProductsHelper
           # s << "<!-- #{child.name} ChilDepth: #{child.depth} -->"
           unless child.depth == 2
             anchor = true
-            s << "<a id='#{child.id}' href='##{child.name}' class='list-group-item' data-toggle='collapse' data-parent='##{child.name}' onclick='getProducts(this)'>"
+            s << "<a id='#{child.permalink}' href='##{child.id}-cat' class='list-group-item' data-toggle='collapse' data-parent='##{child.id}-cat' onclick='getProducts(this)'>"
             s << "#{child.name} #{add_arrow(child)}"
             s << "</a>"
-            s << "<li class='collapse list-group-submenu' id='#{child.name}'>"
+            s << "<li class='collapse list-group-submenu' id='#{child.id}-cat'>"
           end
 
           if anchor == true
           else
-            s << "#{link_to("#{child.name} #{add_arrow(child)}".html_safe, products_path(category_id: child.id), {:class=>'list-group-item', :'data-toggle'=>'collapse', :'data-parent'=>'#SubMenu1', :remote => true}).html_safe}"
+            s << "#{link_to("#{child.name} #{add_arrow(child)}".html_safe, products_path(category_permalink: child.permalink), {:class=>'list-group-item', :'data-toggle'=>'collapse', :'data-parent'=>'#SubMenu1', :remote => true}).html_safe}"
           end
 
           s << nested_product_category_rows2(child, current_category, link_to_current, relative_depth)

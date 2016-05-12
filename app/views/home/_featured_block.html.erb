@@ -16,7 +16,7 @@
             <!-- CATEGORY - START -->
                <div class="<%= get_featured_category_class(index) %>" >
                <div class="category item-pro">
-                  <a href="<%= products_path(category_id: fc.id) %>" class="">
+                  <a href="<%= products_path(category_permalink: fc.permalink) %>" class="">
                      <img src="<%= get_homepage_image(fc) %>" class="img-responsive "  alt="">
                      <div class="item-overlay top"></div>
                      <div class="category-mask"></div>
