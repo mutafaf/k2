@@ -7013,3 +7013,7 @@ p {word-wrap: break-word !important;}
 
 body {background: #fff !important;}
 
+.subscription_popup{
+  background-color: transparent !important;
+}
+
