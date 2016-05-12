@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
     end
     @product_categories_without_parent = Shoppe::ProductCategory.without_parent.ordered
     # @products = @products.group_by(&:product_category)
+    @pagination = params[:pagination]
     respond_to do |format|
       format.js{}
       format.html{}

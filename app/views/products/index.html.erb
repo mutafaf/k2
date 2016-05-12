@@ -38,7 +38,7 @@
               <%end%>
             </div>
             <p class="pagination hidden">
-                <%= link_to_next_page(@products, 'Next Page', :remote => true) %>
+                <%= link_to_next_page(@products, 'Next Page', :remote => true, params: { pagination: true }) %>
               </p>
          </div>
       </div>
