@@ -11,9 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery-1.12.3.min.js
 //= require custom-js.js
 //= require modernizr.js
@@ -36,8 +34,6 @@
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
 //= require parsley
-
-Turbolinks.enableProgressBar();
 
 function set_toastr_options() {
     toastr.options = {
