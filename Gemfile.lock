@@ -257,6 +257,8 @@ GEM
       activerecord (>= 3.0)
     puma (3.4.0)
     rack (1.6.4)
+    rack-cache (1.6.1)
+      rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -375,6 +377,7 @@ DEPENDENCIES
   parsley-rails
   pg
   puma
+  rack-cache
   rails (= 4.2.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
