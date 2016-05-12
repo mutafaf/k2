@@ -26,7 +26,11 @@ class ProductsController < ApplicationController
     @variants = @product.get_variants
 
     if request.xhr?
-      render :partial => "product_detail_popup"
+      if params[:color].present?
+        render :partial => "product_display"
+      else
+        render :partial => "product_detail_popup"
+      end
     end
 
   end
@@ -40,11 +44,21 @@ class ProductsController < ApplicationController
       # For Main Product
       @product = @product.default_variant # get default variant here
     end
+
     if params[:size].blank? and @product.has_sizes?
-    redirect_to product_path(@product.permalink), :alert => "Please select any size of the Product"
+    redirect_to product_path(@product.permalink), :alert => "Please select any Size."
     else
-      current_order.order_items.add_item(@product, quantity, params[:size])
-      redirect_to basket_path, :notice => "Product has been added successfuly!"
+      begin
+        current_order.order_items.add_item(@product, quantity, params[:size])
+        redirect_to basket_path, :notice => "Product has been added successfuly!"
+      rescue Shoppe::Errors::NotEnoughStock
+        flash[:error] = "Not enough stock available for this product."
+        redirect_to product_path(@product.permalink)
+      rescue Errors::UnorderableItem
+        flash[:error] = "Sorry, This product can not be ordered."
+        redirect_to product_path(@product.permalink)
+      end
     end
   end
+
 end

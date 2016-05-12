@@ -33,3 +33,15 @@ $(function() {
     }
   });
 });
+
+function updateProductDisplay(element){
+  var permalink = color_value = $(element).find('input').val();
+   $.ajax({
+     url: '/product/'+permalink,
+     data: {color: true},
+     method: 'get',
+     success: function(data) {
+       $("#product_display").html(data);
+     }
+   });
+}
