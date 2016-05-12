@@ -56,6 +56,10 @@ module Shoppe
       parent.hierarchy_array.concat [self]
     end
 
+    def get_category_sequence
+      return self.hierarchy_array.collect(&:name).join(" / ")
+    end
+
     # Attachment with the role image
     #
     # @return [String]
