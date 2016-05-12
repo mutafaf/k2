@@ -108,8 +108,12 @@ module Shoppe
     # Return the total number of items currently in stock
     #
     # @return [Fixnum]
-    def stock
-      stock_level_adjustments.sum(:adjustment)
+    def stock(size_id = nil)
+      if size_id.present?
+        return stock_level_adjustments.where(size_id: size_id).sum(:adjustment)
+      end
+
+      return stock_level_adjustments.sum(:adjustment)
     end
 
     # Return the first product category

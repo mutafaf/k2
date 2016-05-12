@@ -192,7 +192,7 @@ module Shoppe
     # @return [Boolean]
     def in_stock?
       if ordered_item && ordered_item.stock_control?
-        ordered_item.stock >= unallocated_stock
+        ordered_item.stock(get_size_id) >= unallocated_stock # size stock
       else
         true
       end
@@ -219,7 +219,7 @@ module Shoppe
       if in_stock?
         false
       else
-        self.quantity = ordered_item.stock
+        self.quantity = ordered_item.stock(get_size_id) # size stock
         self.quantity == 0 ? destroy : save!
         self
       end
@@ -228,8 +228,13 @@ module Shoppe
     # Allocate any unallocated stock for this order item. There is no return value.
     def allocate_unallocated_stock!
       if ordered_item.stock_control? && unallocated_stock != 0
-        ordered_item.stock_level_adjustments.create!(parent: self, adjustment: 0 - unallocated_stock, description: "Order ##{order.number}")
+        ordered_item.stock_level_adjustments.create!(parent: self, adjustment: 0 - unallocated_stock, description: "Order ##{order.number}", size_id: get_size_id)
       end
+    end
+
+    def get_size_id
+      return Shoppe::Size.find_by_name(self.size).try(:id) if ordered_item.present?
+      return
     end
   end
 end

@@ -51,10 +51,10 @@ class OrdersController < ApplicationController
       order_item.remove
     else
       if order_item
-        order_item.size = params[:item_size]
-        order_item.quantity = params[:item_quantity]
+        order_item.size = params[:item_size] if params[:item_size]
+        order_item.quantity = params[:item_quantity] if params[:item_quantity]
         # Here params[:item_color_id] is the id of selected variant 
-        order_item.ordered_item_id = params[:item_color_id].to_i
+        order_item.ordered_item_id = params[:item_color_id].to_i if params[:item_color_id]
         order_item.save
       end
     end
