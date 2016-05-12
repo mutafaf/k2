@@ -234,7 +234,8 @@ module Shoppe
     end
 
     def get_sizes
-      return  self.default_variant.sizes if self.has_variants?
+      return  self.default_variant.sizes if self.has_variants? and self.default_variant.present?
+      # return  self.default_variant.sizes if self.has_variants?
       return self.sizes
     end
 
