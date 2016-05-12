@@ -27,7 +27,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#load choosen drop down plugin
+gem 'compass-rails'
+gem 'chosen-rails'
+
+#validations
 gem "parsley-rails"
+
 gem 'shoppe', '~> 1.0'
 gem 'hirb'
 gem 'jquery-infinite-pages'
