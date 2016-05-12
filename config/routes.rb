@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Shoppe::Engine => "/shoppe"
+  mount Shoppe::Engine => "/admin"
 
   Shoppe::Engine.routes.draw do
     resources :sizes
