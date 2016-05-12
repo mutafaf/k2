@@ -16,13 +16,13 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <div class="signin-half ">
-      <%= form_for :user , :url=> "/contact", :html => {:id => "contact_form"} do |f|%>
+      <%= form_for :user , :url=> "/contact", :html => {:id => "contact_form", "data-parsley-validate" => true} do |f|%>
         <span class="checkout-bulit">First Name:</span>
         <%= f.text_field :first_name, :class=>"input-checkout", :required=>true %>
         <span class="checkout-bulit">Last Name:</span>
         <%= f.text_field :last_name, :class=>"input-checkout", :required=>true %>
         <span class="checkout-bulit">Email</span>
-        <%= f.text_field :email, :class=>"input-checkout", :required=>true %>
+        <%= f.email_field :email, :class=>"input-checkout", :required=>true %>
         <span class="checkout-bulit">Address </span>
         <%= f.text_field :address, :class=>"input-checkout", :required=>true%>
         <span class="checkout-bulit">Comment </span><br>
