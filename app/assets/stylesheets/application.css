@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require chosen-compass
  *= require_self
  */
 
@@ -26,3 +27,6 @@
  .popbottom{
   min-height: 200px;
  }
+
+
+ 

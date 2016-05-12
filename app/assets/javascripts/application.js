@@ -34,6 +34,7 @@
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
 //= require parsley
+//= require chosen-jquery
 
 function set_toastr_options() {
     toastr.options = {
@@ -53,3 +54,5 @@ function set_toastr_options() {
 }
 // Footer image
 $('.parallax-window').parallax({imageSrc: '/assets/footer-img.jpg'});
+
+
