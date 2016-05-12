@@ -5,8 +5,8 @@ threads 1, threads_count
 preload_app!
 
 rackup      DefaultRackup
-port 9899
-environment "production"
+port        ENV['PORT']     || 9899
+environment ENV['RACK_ENV'] || 'development'
 stdout_redirect 'log/puma.log', 'log/puma_error.log', true
 on_worker_boot do
   require "active_record"
