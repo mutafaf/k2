@@ -39,6 +39,7 @@ class Shoppe::SizesController < Shoppe::ApplicationController
   private
 
   def safe_params
+    params[:size][:name] = params[:size][:name].squish if params[:size][:name]
     params[:size].permit(:name)
   end
 end
