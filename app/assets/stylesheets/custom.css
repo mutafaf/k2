@@ -7001,4 +7001,15 @@ hr {
   margin-right: 9px;
 }
 
+.modal-content {background-color: rgba(255, 255, 255, 0.79) !important}
+
+.modal .modal-header .close{    padding: 0px !important;}
+
+.parsley-type {color: red;font-size: 12px;border: solid 1px #F3AFAF;padding: 4px;}
+
+ol, ul {margin-top: 0;margin-bottom: 0px;}
+
+p {word-wrap: break-word !important;}
+
+body {background: #fff !important;}
 
