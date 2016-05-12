@@ -182,7 +182,7 @@
                </ul>
             </li>
             <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
-               <span class="label label-danger pull-right"><%= pluralize current_order.total_items, ''%></span>
+               <span id="cart_count" class="label label-danger pull-right"><%= pluralize current_order.total_items, ''%></span>
                <a href="<%= basket_path %>"><img src="/assets/bag_icon.png" class="img-responsive" alt=""></a>
             </li>
             <li class="dropdown hidden-xs" style="    margin-top: 7px;">

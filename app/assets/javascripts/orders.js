@@ -18,8 +18,9 @@ function updateOrderItem(element){
             "item_quantity": OrderItemQuantity,
             "remove_row": removeRow},
      method: 'post',
+     format: 'js',
      success: function(data) {
-       $("#cart_page").html(data);
+       // $("#cart_page").html(data);
      }
    });
 }

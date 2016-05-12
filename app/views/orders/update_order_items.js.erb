@@ -1,0 +1,5 @@
+<% if @errors.present? %>
+  toastr.error("<%= @errors %>");
+<% end %>
+$("#cart_page").html($("<%=j render(:partial => 'cart_page') %>"));
+$("#cart_count").html("<%= pluralize @current_order.total_items, ''%>")

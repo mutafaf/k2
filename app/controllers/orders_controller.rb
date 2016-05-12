@@ -56,11 +56,16 @@ class OrdersController < ApplicationController
         # Here params[:item_color_id] is the id of selected variant 
         order_item.ordered_item_id = params[:item_color_id].to_i if params[:item_color_id]
         order_item.save
+        @errors = order_item.errors.full_messages.join()
       end
     end
     @current_order = order
-    # render :nothing => true
-    render :partial => "cart_page"
+
+    if request.xhr?
+      respond_to do |format|
+        format.js {}
+      end
+    end
   end
 
   def get_order_address
