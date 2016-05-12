@@ -40,11 +40,8 @@ gem 'jquery-infinite-pages'
 gem 'delayed_job_active_record'
 gem "daemons"
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+#cache
+gem "rack-cache"
 
 group :production do
   gem 'puma'
