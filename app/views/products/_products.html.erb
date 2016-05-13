@@ -8,7 +8,7 @@
               <div class="">
                  <div class="product-mask"></div>
                  <a href="<%=product_path(product.permalink)%>" class="product-permalink" data-no-turbolink=true ></a>
-                 <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive" alt="Not found">
+                 <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive product_image_size" alt="Not found">
                  <div class="product-quickview" onclick="getProductDetail(this)">
                     <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>
                     <a class="btn btn-quickview"><i class="fa fa-search"></i></a>

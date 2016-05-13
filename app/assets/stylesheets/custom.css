@@ -8,6 +8,7 @@
 /*------------------------------
 	FONT AWESOME CORE
 ------------------------------*/
+.chosen-container {width: 40% !important; margin-left:10px !important;}
 
 
 header.navbar .navbar-nav > li > a.dropdown-toggle:after,
@@ -7077,6 +7078,13 @@ ul, ol {
       padding: 5%;
 }
 
+.product_image_size {
+  min-width: 100%;
+  height: 140px !important;
+}
 
+
+.border-shade {
+   min-height: 279px;}
 
 

@@ -17,7 +17,7 @@
                      <li>
                         <div>
                            <article class="product-item" style="border: solid 1px #fff;">
-                              <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive" alt="">
+                              <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive product_image_size" alt="">
                               <h3>
                                  <%= link_to product.name, product_path(product.permalink) , 'data-no-turbolink' => true%>
                               </h3>

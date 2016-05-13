@@ -13,7 +13,7 @@
                   </center>
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
-                    <%=form_tag({:controller => :home, :action => :add_subscriber},{:id => "subscription_form", :method => "post", :remote => true, "data-parsley-validate" => true}) do%>   
+                  <%= form_tag "/add_subscriber", :method => :post, :remote=>true,:id => "subscription_form", "data-parsley-validate" => true do %>
                     <div class="input-group" style="    width: 100%;
                            margin-bottom: 5px;">
                            <%= text_field_tag :email, params[:email], :class=>"form-control", :placeholder=>"Email Address", :required=>true, :type=>"email" ,:style=>"background: transparent;border: solid 1px;" %>
