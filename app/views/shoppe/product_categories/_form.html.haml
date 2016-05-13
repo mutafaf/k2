@@ -21,7 +21,7 @@
   = field_set_tag t('shoppe.product_category.nesting.category_nesting') do
     %dl
       %dt= f.label :parent_id, t('shoppe.product_category.nesting.category_parent')
-      %dd= f.collection_select :parent_id, Shoppe::ProductCategory.except_descendants(@product_category).ordered, :id, :name, {:include_blank => t('shoppe.product_category.nesting.blank_option')}, {:class => 'chosen'}
+      %dd= f.collection_select :parent_id, Shoppe::ProductCategory.except_descendants(@product_category).ordered, :id, :get_category_sequence, {:include_blank => t('shoppe.product_category.nesting.blank_option')}, {:class => 'chosen'}
     %dl
       %dt= f.label :child_ids, t('shoppe.product_category.nesting.hierarchy')
       %dd

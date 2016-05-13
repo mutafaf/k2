@@ -57,7 +57,13 @@ module Shoppe
     end
 
     def get_category_sequence
-      return self.hierarchy_array.collect(&:name).join(" / ")
+      sequence  = self.hierarchy_array.collect(&:name)
+      current_category = sequence.slice(-1)
+      sequence = sequence.slice(0, sequence.length-1).join("/")
+      return current_category unless sequence.present?
+      return [current_category, " ( ", sequence, " )"].join
+
+      # return self.hierarchy_array.collect(&:name)
     end
 
     # Attachment with the role image

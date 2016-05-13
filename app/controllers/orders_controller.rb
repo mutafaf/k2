@@ -87,7 +87,7 @@ class OrdersController < ApplicationController
         return
        end
     end
-      redirect_to checkout_path, :notice => "Email or Password is invalid."
+      redirect_to checkout_path, :alert => "Email or Password is invalid."
   end
 
   def for_separate_delivery_address(params)
