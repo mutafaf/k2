@@ -20,7 +20,7 @@ module Shoppe
     end
 
     def logged_in?
-      current_user_admin.is_a?(User)
+      current_user_admin.is_a?(Shoppe::User)
     end
 
     def current_user_admin
@@ -29,12 +29,12 @@ module Shoppe
 
     def login_from_session
       if session[:shoppe_user_id]
-        @user = User.find_by_id(session[:shoppe_user_id])
+        @user = Shoppe::User.find_by_id(session[:shoppe_user_id])
       end
     end
 
     def login_with_demo_mode
-      @user = User.first if Shoppe.settings.demo_mode?
+      @user = Shoppe::User.first if Shoppe.settings.demo_mode?
     end
 
     helper_method :current_user_admin, :logged_in?
