@@ -52,7 +52,3 @@ function set_toastr_options() {
         "hideMethod": "fadeOut"
     }
 }
-// Footer image
-$('.parallax-window').parallax({imageSrc: '/assets/footer-img.jpg'});
-
-

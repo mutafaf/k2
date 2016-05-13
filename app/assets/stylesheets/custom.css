@@ -6329,6 +6329,7 @@ html[xmlns] .flexslider .slides {
   *height: 0;
 }
 .flex-direction-nav a {
+  height: 24px !important;
   text-decoration: none;
   display: block;
   width: 10px;
@@ -7001,7 +7002,6 @@ hr {
   margin-right: 9px;
 }
 
-.modal-content {background-color: rgba(255, 255, 255, 0.79) !important}
 
 .modal .modal-header .close{    padding: 0px !important;}
 
@@ -7021,4 +7021,62 @@ body {background: #fff !important;}
    width: 22px !important;
    height: 22px  !important;
  }
+
+  .flex-direction-nav a {opacity: 1;}
+
+ .flex-next {
+     right: 10px; 
+     left:auto;
+ }
+ .flex-prev {
+     right: 10px; /*this value should be the width of the buttons can be in percent if needed*/
+     left:auto;
+     margin-left: -20px; /* this is minus the value of the right for flex-next plus the amount of space you want in between the buttons*/
+ }
+
+ .flex-direction-nav a {
+   
+   margin: 0px;
+   height: 50px;
+   
+ }
+
+ // Arrow right - always visible
+ .flexslider:hover .flex-direction-nav .flex-next {
+   left: 99% !important;
+ }
+ .flex-next {
+   left: 99% !important;
+ }
+
+ // Arrow left - always visible
+ .flexslider:hover .flex-direction-nav .flex-prev {
+   left: 102% !important;
+ }
+ .flex-prev {
+   left: 100% !important;
+ }
+
+
+ul, ol {
+  padding-left: 0.5em !important;
+}
+
+ .products_not_found {
+  margin-top: 20% !important;
+  font-weight: 600;
+  color: #C6C6CA;
+  /* margin-top: 0; */
+  font-size: 30px !important;
+  font-family: 'narzissregularregular';
+}
+
+.parallax_footer{
+  background-image: url("/assets/footer-img.jpg");
+      background-attachment: fixed;
+      padding: 5%;
+}
+
+
+
 
