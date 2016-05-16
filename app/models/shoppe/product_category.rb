@@ -31,9 +31,15 @@ module Shoppe
     translates :name, :permalink, :description
     scope :ordered, -> { includes(:translations).order(:name) }
 
+    scope :custom_ordered, -> { includes(:translations).order(:position) }
+
     # Set the permalink on callback
     before_validation :set_permalink, :set_ancestral_permalink
     after_save :set_child_permalinks
+
+    attr_accessor :view_on_homepage
+    validates :homepage_title, presence: true,
+                               if: -> { view_on_homepage ? view_on_homepage > '0' : false }
 
     def attachments=(attrs)
       attachments.build(attrs['homepage_image']) if attrs['homepage_image']['file'].present?
@@ -100,7 +106,7 @@ module Shoppe
 
 
     def self.get_featured_categories
-      where(view_on_homepage: true).limit(5).order("position")
+      where(view_on_homepage: true).limit(5).order("home_categories_position")
     end
 
     def self.search_category(category_name)
