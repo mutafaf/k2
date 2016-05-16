@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   Shoppe::Engine.routes.draw do
     resources :sizes
     resources :subscribers
+    resources :brands
   end
   get 'home/index'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
 
   get "product/:permalink", to: "products#show", as: "product"
   post "product/:permalink", to: "products#buy", as: "buy"
+
+  get "brand/:permalink", to: "home#brand_page", as: "brand"
   # root to: "products#index"
 
   post "product/:permalink", to: "products#buy"
