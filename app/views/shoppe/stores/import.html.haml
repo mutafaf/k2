@@ -1,0 +1,47 @@
+- @page_title = t('shoppe.stores.stores')
+
+= content_for :header do
+  %h2.stores= t('shoppe.stores.import_stores')
+
+= form_for "import", :url => import_stores_path, :html => {:multipart => true} do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.imports.file_upload') do
+    %dl
+      %dt= f.label :import_file, t('shoppe.imports.required_formats')
+      %dd= f.file_field :import_file
+
+  = field_set_tag t('shoppe.imports.example_file') do
+    %dl
+      %dd
+        %table.importExample
+          %thead
+            %tr
+              %th Store No
+              %th Name
+              %th City
+              %th Phone Number
+          %tbody
+            %tr
+              %td= t('shoppe.stores.imports.examples.first.store_no')
+              %td= t('shoppe.stores.imports.examples.first.name')
+              %td= t('shoppe.stores.imports.examples.first.city')
+              %td= t('shoppe.stores.imports.examples.first.phone_number')
+            %tr
+              %td= t('shoppe.stores.imports.examples.first.store_no')
+              %td= t('shoppe.stores.imports.examples.first.name')
+              %td= t('shoppe.stores.imports.examples.first.city')
+              %td= t('shoppe.stores.imports.examples.first.phone_number')
+            %tr
+              %td= t('shoppe.stores.imports.examples.first.store_no')
+              %td= t('shoppe.stores.imports.examples.first.name')
+              %td= t('shoppe.stores.imports.examples.first.city')
+              %td= t('shoppe.stores.imports.examples.first.phone_number')
+            %tr.tear-off
+              %td{:colspan => "4"}
+      %dd
+        %p.help= t('shoppe.stores.imports.help')
+
+  %p.submit
+    = f.submit t('shoppe.import'), :class => "button green"
+    = link_to t('shoppe.cancel'), :stores, :class => "button"

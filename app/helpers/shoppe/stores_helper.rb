@@ -1,0 +1,2 @@
+module Shoppe::StoresHelper
+end

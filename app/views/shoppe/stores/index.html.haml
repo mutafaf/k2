@@ -1,0 +1,30 @@
+- @page_title = t('shoppe.stores.stores')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.stores.new_store'), :new_store, class: 'button green'
+    = link_to t('shoppe.stores.import_stores'), :import_stores, :class => 'button gray'
+  %h2.users= t('shoppe.stores.stores')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.stores.store_no')
+        %th= t('shoppe.stores.name')
+        %th= t('shoppe.stores.city')
+        %th= t('shoppe.stores.phone_number')
+    %tbody
+      - if @stores.empty?
+        %tr.empty
+          %td{:colspan => 4}= t('shoppe.stores.no_stores')
+      - else
+        - for store in @stores
+          %tr
+            %td=link_to store.store_no, [:edit, store]
+            %td= store.name
+            %td= store.city
+            %td= store.phone_number
+= paginate @stores
