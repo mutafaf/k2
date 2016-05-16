@@ -16,14 +16,19 @@
                   <div class="col-sm-8">
                      <div class="product-item product-single">
                         <h3><%= @product.get_name %></h3>
+                        <div>
+                          <%= rating_for @product, "name", :star => 5 %>
+                        </div>
+
                      </div>
-                     <div class="product-rating">
+<!--                      <div class="product-rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
-                     </div>
+                     </div> -->
+                       
                      <ul class="list-unstyled product-info">
                         <li><span>ID</span>U-187423</li>
                         <li><span>Availability</span>In Stock</li>
@@ -88,7 +93,7 @@
 <!-- ==========================
    PRODUCT QUICKVIEW - END 
    =========================== -->
-
+<%= javascript_include_tag 'ratyrate.js'%>
 <script type="text/javascript">
    $('#popup_product_form form').submit(function() {
        var size = $("#size").val();

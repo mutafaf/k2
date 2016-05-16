@@ -7,7 +7,7 @@
            <div class="col-sm-3 ">
               <div class="">
                  <div class="product-mask"></div>
-                 <a href="<%=product_path(product.permalink)%>" class="product-permalink" data-no-turbolink=true ></a>
+                 <a href="<%=product_path(product.permalink)%>" class="product-permalink" ></a>
                  <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive product_image_size" alt="Not found">
                  <div class="product-quickview" onclick="getProductDetail(this)">
                     <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>
@@ -17,11 +17,12 @@
            </div>
            <div class="col-sm-9" style="    padding: 0px;">
               <div class="product-body">
-                 <h3><%= link_to product.name, product_path(product.permalink) , 'data-no-turbolink' => true%></h3>
+                 <h3><%= link_to product.name, product_path(product.permalink)%></h3>
                  <span class="price">
                  <ins><span class="amount"><%= number_to_currency product.price %></span></ins>
                  </span>                                          
                  <center>
+
                     <div style="margin-top: 12px;     width: 58%;">
                       <% product.get_colors.each do |color| %>
                         <div class="color1" style="background:#<%= color %>;"></div>

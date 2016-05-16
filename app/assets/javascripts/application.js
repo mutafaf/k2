@@ -34,7 +34,8 @@
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
 //= require parsley
-//= require chosen-jquery
+//= require jquery.raty
+//= require ratyrate
 
 function set_toastr_options() {
     toastr.options = {

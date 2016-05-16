@@ -30,8 +30,10 @@
      <div class="product-body" style="    margin-top: 2%;">
         <h2><%= @product.get_name %></h2>
         <span class="">
+        <br>
         <%= number_to_currency @product.get_price %> 
         <br>
+        <%= rating_for @product, "name", :star => 5 %>
         </span>
         <p style=" margin: 6px 0 0px;"><%= @product.short_description.try(:html_safe) %>
         </p>
@@ -82,7 +84,9 @@
               <br>
            </div>
         </div>
-        <!-- In Stock. Ships within 1-2  business days. -->
+        <% if @product.in_stock? %>
+          In Stock. Ships within 1-2  business days.
+        <% end %>
         <br>
         <br>
         <button type="submit" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;float: left;">

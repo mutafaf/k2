@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   mount Shoppe::Engine => "/admin"
 
   Shoppe::Engine.routes.draw do
