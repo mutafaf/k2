@@ -4,7 +4,12 @@ require 'globalize'
 class Shoppe::Store < ActiveRecord::Base
   self.table_name = 'shoppe_stores'
 
-  # reverse_geocoded_by :lat, :lng
+  geocoded_by :full_street_address, latitude: :lat, longitude: :lng
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  def full_street_address
+    #convert address to geocoded values
+    "#{self.address}, #{self.city}"
+  end
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -14,14 +19,14 @@ class Shoppe::Store < ActiveRecord::Base
       row = Hash[[header, spreadsheet.row(i)].transpose]
 
       # Don't import stores where the name is blank
-      next if row['Name'].nil?
-      if store = where(name: row['Name']).take
+      next if row['Address'].nil?
+      if store = where(address: row['Address']).take
         # Dont import stores with the same name
       else
         store = new
         store_no = row['Store No'].to_i
         store.store_no = store_no
-        store.name = row['Name']
+        store.address = row['Address']
         store.city = row['City']
         store.phone_number = row['Phone Number']
         store.save!

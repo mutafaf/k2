@@ -13,7 +13,7 @@
     %thead
       %tr
         %th= t('shoppe.stores.store_no')
-        %th= t('shoppe.stores.name')
+        %th= t('shoppe.stores.address')
         %th= t('shoppe.stores.city')
         %th= t('shoppe.stores.phone_number')
     %tbody
@@ -24,7 +24,7 @@
         - for store in @stores
           %tr
             %td=link_to store.store_no, [:edit, store]
-            %td= store.name
+            %td= store.address
             %td= store.city
             %td= store.phone_number
 = paginate @stores

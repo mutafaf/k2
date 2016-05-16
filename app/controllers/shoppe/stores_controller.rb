@@ -50,6 +50,6 @@ class Shoppe::StoresController < Shoppe::ApplicationController
   private
 
   def safe_params
-    params[:store].permit(:store_no, :name, :city, :phone_number)
+    params[:store].permit(:store_no, :address, :city, :phone_number)
   end
 end

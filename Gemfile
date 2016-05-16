@@ -39,6 +39,7 @@ gem 'hirb'
 gem 'jquery-infinite-pages'
 gem 'delayed_job_active_record'
 gem "daemons"
+gem 'geocoder'
 
 # Ratings
 gem 'ratyrate'
