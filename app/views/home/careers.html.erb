@@ -47,14 +47,14 @@
         <div class="modal-body">
           <div class="signin-half">
             <hr>
-            <%= form_tag('/add_careers', html: {"data-parsley-validate" => true}) do %>
+            <%= form_tag('/add_careers',"data-parsley-validate" => true) do %>
             <%= select_tag(:job_id, options_for_select(Shoppe::Job.all.collect{|m| [m.name, m.id]}), class: "input-checkout") %>
             <%= text_field_tag :first_name, nil, class: "input-checkout", placeholder: "First Name:", required: true%>
-            <%= text_field_tag :last_name, nil, class: "input-checkout", placeholder: "Last Name:"%>
+            <%= text_field_tag :last_name, nil, class: "input-checkout", placeholder: "Last Name:", required: true%>
             <%= text_field_tag :email, nil, class: "input-checkout", placeholder: "Email", required: true%>
-            <%= text_field_tag :contact_no, nil, class: "input-checkout", placeholder: "Contact no"%>
+            <%= text_field_tag :contact_no, nil, class: "input-checkout", placeholder: "Contact no", required: true%>
             <%= text_field_tag :cnic_no, nil, class: "input-checkout", placeholder: "NIC", required: true%>
-            <%= date_field(:date_of_birth, :date_of_birth, class: "input-checkout") %>
+            <%= date_field(:date_of_birth, :date_of_birth, class: "input-checkout", required: true) %>
             <%= select_tag(:gender, options_for_select([["Male", "Male"], ["Female", "Female"]]), class: "input-checkout") %>
             <%= select_tag(:martial_status, options_for_select([["Martial Status", ""], ["Single", "Single"], ["Married", "Married"]]), class: "input-checkout") %>
             <%= text_field_tag :mailing_address, nil, class: "input-checkout", placeholder: "Mailing address"%>
