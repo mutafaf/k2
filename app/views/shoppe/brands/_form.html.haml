@@ -1,0 +1,43 @@
+= form_for @brand do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.brands.brand_detail') do
+    .splitContainer
+      %dl.second
+        %dt= f.label :name, t('shoppe.brands.name')
+        %dd= f.text_field :name, class: 'text focus'
+    .splitContainer
+      %dl.second
+        %dt= f.label :permalink, t('shoppe.brands.permalink')
+        %dd= f.text_field :permalink, class: 'text focus'
+    .splitContainer
+      %dl.second
+        %dt= f.label :position, t('shoppe.brands.position')
+        %dd= f.text_field :position, class: 'text focus'
+    .splitContainer-ck
+      %dl.second
+        %dt= f.label :description, t('shoppe.brands.description')
+        %dd= f.text_area :description, class: 'ckeditor'
+
+  = field_set_tag t('shoppe.products.attachments') do
+    .splitContainer
+      %dl.half
+        %dt= f.label "attachments[default_image][file]", t('shoppe.products.default_image')
+        %dd
+          = attachment_preview @brand.default_image
+          %p= f.file_field "attachments[default_image][file]"
+          = f.hidden_field "attachments[default_image][role]", value: "default_image"
+          = f.hidden_field "attachments[default_image][parent_id]", value: @brand.id
+
+  %p.submit
+    - unless @brand.new_record?
+      %span.right
+        = link_to t('shoppe.sizes.delete'),
+                  @brand,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.brands.delete_confirmation')}
+    = f.submit t('shoppe.sizes.save'),
+               class: 'button green',
+               data: {disable_with: (@brand.new_record? ? t('shoppe.brands.creating_size') : t('shoppe.brands.updating_size'))}
+    = link_to t('shoppe.brands.cancel'), :brands, class: 'button'

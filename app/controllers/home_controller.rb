@@ -17,6 +17,10 @@ class HomeController < ApplicationController
     redirect_to "/"
   end
 
+  def brand_page
+    @brand = Shoppe::Brand.find_by_permalink(params[:permalink])
+  end
+
   private
 
   def safe_params

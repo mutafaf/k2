@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
-  before_action :set_header
+  before_action :set_header, :brands
   helper_method :resource, :resource_name, :devise_mapping
 
   def resource_name
@@ -32,6 +32,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def brands
+    @footer_brands = Shoppe::Brand.order("position ASC").all.limit(4)
+  end
 
   def current_order
     @current_order ||= begin
