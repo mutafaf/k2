@@ -59,3 +59,8 @@
       %tr
         %td= t('shoppe.careers.address')
         %td= @career.address
+      %tr
+        %td= 'File'
+        %td
+          - if @career.attachments.first.present?
+            %a{:href => request.base_url + @career.attachments.try(:first).try(:file).try(:url)} Download
