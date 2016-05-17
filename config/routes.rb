@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   match "checkout/details", to: "orders#details", as: "checkout_details", via: [:get, :patch, :post]
   match "checkout/pay", to: "orders#payment", as: "checkout_payment", via: [:get, :post]
   match "checkout/confirm", to: "orders#confirmation", as: "checkout_confirmation", via: [:get, :post]
+  get '/track' => "orders#track"
 
   get "products", to: "products#index"
 

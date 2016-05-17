@@ -162,9 +162,28 @@
                <a href="/" data-no-turbolink=true >
                <img src="/assets/home-icon.png" class="img-responsive" alt="" ></a>
             </li>
+
             <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/track.png" class="img-responsive" alt=""></a>
+               <ul class="dropdown-menu" style="     height: 48px;
+                  padding: 8px;
+                  width: 201px;
+                  right: 0px;
+                  left: -67px;
+                  margin-top: 14px;">
+                  <li>
+                     <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
+                        <div class="">
+                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
+                              font-size: 14px;
+                              width: 100%;
+                              float: left;" %>
+                        </div>
+                     <% end %>
+                  </li>
+               </ul>
             </li>
+
             <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/search.png" class="img-responsive" alt=""></a>
                <ul class="dropdown-menu" style="     height: 48px;
@@ -212,7 +231,7 @@
 <div class="navbar navbar-default navbar-fixed-top  hidden-md hidden-lg" role="navigation">
    <div class="container">
       <div class="navbar-header">
-         <img class="phone-mob" src="/assets/logo.png" alt="borjan">
+         <a href="/"><img class="phone-mob" src="/assets/logo.png" alt="borjan"></a>
          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">  
          <span class="sr-only">Toggle navigation</span>
          <span class="icon-bar"></span>
