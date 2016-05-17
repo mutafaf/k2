@@ -34,6 +34,9 @@ en:
       shoppe/size:
         one: Sizes
         other: Sizes
+      shoppe/job:
+        one: Jobs
+        other: Jobs
       shoppe/subscriber:
         one: Subscribers
         other: Subscribers
@@ -762,6 +765,7 @@ en:
         orders: Orders
         products: Products
         sizes: Sizes
+        jobs: Jobs
         subscribers: Subscribers
         product_categories: Product Categories
         delivery_services: Delivery Services
@@ -836,6 +840,29 @@ en:
       created_successfully: Size has been created successfully.
       updated_successfully: Size has been updated successfully.
       deleted_successfully: Size has been deleted successfully.
+
+    jobs:
+      jobs: jobs
+      new_job: New Job
+      name: Name
+      no_jobs: No jobs to display.
+      search: Search
+      first_or_last_name: First or last name
+      back_to_jobs_list: Back to jobs list
+      edit: Edit
+      size_information: Size Information
+      size_detail: Size Detail
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_size: Creating Size...
+      updating_size: Updating Size...
+      delete_confirmation: Are you sure you wish to remove this Job?
+      type: Type
+      default: Default
+      created_successfully: Job has been created successfully.
+      updated_successfully: Job has been updated successfully.
+      deleted_successfully: Job has been deleted successfully.
 
     subscribers:
       subscribers: Subscribers

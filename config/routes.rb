@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   Shoppe::Engine.routes.draw do
     resources :sizes
     resources :subscribers
+    resources :jobs
   end
   get 'home/index'
   # The priority is based upon order of creation: first created -> highest priority.
