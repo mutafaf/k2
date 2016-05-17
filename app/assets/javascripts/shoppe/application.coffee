@@ -5,12 +5,13 @@
 #= require shoppe/chosen.jquery
 #= require shoppe/jscolor
 #= require nifty/dialog
+#= require ckeditor-jquery
 #= require_tree .
 
 $ ->
   # Automatically focus all fields with the 'focus' class
   $('input.focus').focus()
-  
+  $('.ckeditor').ckeditor {}
   # When clicking the order search button, toggle the form
   $('a[rel=searchOrders]').on 'click', ->
     $('div.orderSearch').toggle()

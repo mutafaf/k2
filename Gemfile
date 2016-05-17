@@ -47,6 +47,9 @@ gem 'ratyrate'
 #cache
 gem "rack-cache"
 
+#editor
+gem 'ckeditor_rails'
+
 group :production do
   gem 'puma'
 end

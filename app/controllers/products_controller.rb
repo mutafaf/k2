@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
     else
       @products = Shoppe::Product.root.active.page(params[:page]).per(4) #.ordered.includes(:product_categories, :variants)
     end
-    @product_categories_without_parent = Shoppe::ProductCategory.without_parent.ordered
+    @product_categories_without_parent = Shoppe::ProductCategory.without_parent.custom_ordered
     # @products = @products.group_by(&:product_category)
     @pagination = params[:pagination]
     respond_to do |format|

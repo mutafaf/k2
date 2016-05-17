@@ -38,10 +38,12 @@
                      <div class="footer-widget footer-widget-links">
                         <h4>BRANDS</h4>
                         <ul class="list-unstyled">
-                           <li><a href="#">Digger</a></li>
-                           <li><a href="#">Skywalk</a></li>
+                        <% @footer_brands.try(:each) do |brand| %>
+                           <li><a href="<%= brand_path(brand.permalink)%>"> <%= brand.name.capitalize %></a></li>
+                        <% end %>
+                         <!--   <li><a href="#">Skywalk</a></li>
                            <li><a href="#">Gig</a></li>
-                           <li><a href="#">Matilla</a></li>
+                           <li><a href="#">Matilla</a></li> -->
                         </ul>
                      </div>
                   </div>

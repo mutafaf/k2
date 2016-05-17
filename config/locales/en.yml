@@ -34,6 +34,9 @@ en:
       shoppe/size:
         one: Sizes
         other: Sizes
+      shoppe/brad:
+        one: Brands
+        other: Brands
       shoppe/subscriber:
         one: Subscribers
         other: Subscribers
@@ -480,6 +483,7 @@ en:
       name: Name
       homepage_title: Homepage Title
       position: Position
+      home_categories_position: Home Page Position
       new_category: New category
       no_categories: No categories to display.
       permalink: Permalink
@@ -762,6 +766,7 @@ en:
         orders: Orders
         products: Products
         sizes: Sizes
+        brands: Brands
         subscribers: Subscribers
         product_categories: Product Categories
         delivery_services: Delivery Services
@@ -837,6 +842,28 @@ en:
       created_successfully: Size has been created successfully.
       updated_successfully: Size has been updated successfully.
       deleted_successfully: Size has been deleted successfully.
+
+    brands:
+      brands: Brands
+      new_brand: New brand
+      name: Name
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_brands : No Brands
+      brand_detail : Brand Detail
+      back_to_brands_list : Back to brand list
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_size: Creating Brand...
+      updating_size: Updating Brand...
+      delete_confirmation: Are you sure you wish to remove this brand?
+      type: Type
+      default: Default
+      created_successfully: Brand has been created successfully.
+      updated_successfully: Brand has been updated successfully.
+      deleted_successfully: Brand has been deleted successfully.
 
     subscribers:
       subscribers: Subscribers

@@ -40,7 +40,7 @@ module Shoppe
 
     def safe_params
       file_params = [:file, :parent_id, :role, :parent_type, file: []]
-      params[:product_category].permit(:name, :permalink, :description, :view_on_homepage, :homepage_title, :position, :parent_id, :permalink_includes_ancestors, attachments: [image: file_params, background_image: file_params, homepage_image: file_params])
+      params[:product_category].permit(:name, :permalink, :description, :view_on_homepage, :homepage_title, :position, :parent_id, :permalink_includes_ancestors, :home_categories_position, attachments: [image: file_params, background_image: file_params, homepage_image: file_params])
     end
   end
 end
