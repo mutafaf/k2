@@ -75,6 +75,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def track
+    if params[:order_id].present?
+      @order = Shoppe::Order.find_by_id(params[:order_id])
+    end
+  end
+
 
   private
 

@@ -1,0 +1,31 @@
+<div class="modal fade" id="track_order" tabindex="-1" role="dialog">
+ <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <div class="signin-half no-padding" style=" border: solid 1px #ddd;padding: 20px;">
+                 <h3>Order Status</h3>
+                 <br />
+                 <% if @order.present? %>
+                  <div >
+                    <p> <strong>Order id: </strong><%= @order.id %></p>
+                    <p> <strong>Order Status: </strong><%= @order.status %></p>
+                    <% for item in @order.order_items %>
+                     <li>
+                      <%=  "#{item.quantity} x #{item.ordered_item.full_name}"%>
+                     </li>
+                    <p><strong>Total: </strong><%= number_to_currency @order.total%></p>
+                    <% end %>
+                  </div>
+                <% else %>
+                <p>Order not found.</p>
+                 <% end %>
+              </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

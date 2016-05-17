@@ -17,6 +17,18 @@ class HomeController < ApplicationController
     redirect_to "/"
   end
 
+  def store_location
+    @store = Shoppe::Store.first
+  end
+
+  def find_nearest_stores
+    if params[:lat] and params[:lng]
+      @stores = Shoppe::Store.near([params[:lat], params[:lng]], 5)
+    else
+      @stores = Shoppe::Store.first
+    end
+  end
+
   def brand_page
     @brand = Shoppe::Brand.find_by_permalink(params[:permalink])
   end
