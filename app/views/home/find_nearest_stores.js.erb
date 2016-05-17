@@ -1,0 +1,8 @@
+<% @stores.each do |store| %>
+  var loc = new google.maps.LatLng("<%=store.lat%>", "<%=store.lng%>")
+  placeMarker(loc);
+<% end %>
+
+google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+    this.setZoom(11);
+});

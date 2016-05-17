@@ -36,6 +36,7 @@ Rails.application.routes.draw do
    get "blog", to: "home#blog"
    get "videos", to: "home#videos"
    get "store_location", to: "home#store_location"
+   get "find_nearest_stores", to: "home#find_nearest_stores"
    get "about_us", to: "home#about_us"
    get "contact_us", to: "home#contact_us"
    post '/contact' => "home#contact"
