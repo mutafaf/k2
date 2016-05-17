@@ -7006,7 +7006,6 @@ hr {
 
 .modal .modal-header .close{    padding: 0px !important;}
 
-.parsley-type {color: red;font-size: 12px;border: solid 1px #F3AFAF;padding: 4px;}
 
 ol, ul {margin-top: 0;margin-bottom: 0px;}
 
@@ -7052,9 +7051,7 @@ body {background: #fff !important;}
  .flexslider:hover .flex-direction-nav .flex-prev {
    left: 102% !important;
  }
- .flex-prev {
-   left: 100% !important;
- }
+ 
 
 
 ul, ol {
@@ -7101,7 +7098,7 @@ ul, ol {
 
 
 @media screen and (max-width: 320px) {
-
+  .label-danger { margin-top: -5px !important;}
 .navbar-default {position: relative !important;}
 .navbar { margin-bottom: 0px !important;}
 .slide-body .container{ margin-top: -59px !important;}
@@ -7115,6 +7112,7 @@ ul, ol {
 }
 
 @media screen and (min-width: 320px) and (max-width: 479px) {
+   .label-danger { margin-top: -5px !important;}
 
 	.navbar-default {position: relative !important;}
 .navbar { margin-bottom: 0px !important;}
@@ -7130,6 +7128,7 @@ ul, ol {
 @media screen and (min-width: 480px) and (max-width: 639px) {
 	.navbar-default {position: relative !important;}
 	.navbar { margin-bottom: 0px !important;}
+  .label-danger { margin-top: -5px !important;}
 
 }
 
@@ -7171,9 +7170,8 @@ ul, ol {
 
 
 
-.flex-next {
-  left: 103% !important;}
-
+.flex-next {left: 103% !important;}
+.flex-prev {margin-left: -40px !important;}
 
 
 
@@ -7190,4 +7188,30 @@ ul, ol {
 }
 
 .flexslider {
-   width: 90% !important;}
+   width: 90% !important; margin: auto;}
+   .phoneicones{ float: left; margin-left:5%; } 
+
+   .phoneicones ul li{ float: left;  width: 50px;}
+
+.search_field{
+
+  height: 48px;
+  padding: 8px;
+  width: 201px;
+  right: 0px;
+  left: -67px;
+  margin-top: 14px;
+}
+.track_order_field {
+  font-size: 14px;
+  width: 35%;
+  /* float: left; */
+  margin-top: 17px;
+  position: fixed;
+  /* margin: auto; */
+}
+.modal-body {
+  position: relative;
+  padding: 15px;
+  margin-top: 6px;
+}

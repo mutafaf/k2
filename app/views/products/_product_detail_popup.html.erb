@@ -30,9 +30,15 @@
                      </div> -->
                        
                      <ul class="list-unstyled product-info">
-                        <li><span>ID</span>U-187423</li>
-                        <li><span>Availability</span>In Stock</li>
-                        <li><span>Brand</span>Esprit</li>
+                        <li><span>ID:</span>U-187423</li>
+                        <li><span>Availability:</span>
+                        <% if @product.in_stock? %>
+                          In Stock
+                        <% else %>
+                          Out of stock
+                        <% end %>
+                        </li>
+                        <li><span>Brand:</span>Esprit</li>
                         <ul>
                           <% @product.get_product_attributes.each do |attribute| %>
                            <li><%= attribute.key %> _ <%= attribute.value %></li>

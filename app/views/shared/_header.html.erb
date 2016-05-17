@@ -231,13 +231,77 @@
 <div class="navbar navbar-default navbar-fixed-top  hidden-md hidden-lg" role="navigation">
    <div class="container">
       <div class="navbar-header">
+      <div class="pull-left">
          <a href="/"><img class="phone-mob" src="/assets/logo.png" alt="borjan"></a>
+         </div>
+         <div class="text-center">
+<div class="phoneicones">
+    <div class="col-md-2"  style="padding: 0;">
+         <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown navbar-search " style="    margin-top: 7px;">
+               <a href="/" data-no-turbolink=true >
+               <img src="/assets/home-icon.png" class="img-responsive" alt="" ></a>
+            </li>
+
+            <li class="dropdown navbar-search " style="    margin-top: 7px;">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/track.png" class="img-responsive" alt=""></a>
+               <ul class="dropdown-menu" >
+                  <li>
+                     <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
+                        <div class="">
+                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control track_order_field", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
+                              " %>
+                        </div>
+                     <% end %>
+                  </li>
+               </ul>
+            </li>
+
+            <li class="dropdown navbar-search " style="    margin-top: 7px;">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/search.png" class="img-responsive" alt=""></a>
+               <ul class="dropdown-menu" style="">
+                  <li>
+                     <form>
+                        <div class="">
+                           <input type="text" class="form-control track_order_field" placeholder="Search ...">
+                        </div>
+                     </form>
+                  </li>
+               </ul>
+            </li>
+            <li class="dropdown navbar-search " style="    margin-top: 7px;">
+               <span id="cart_count" class="label label-danger pull-right"><%= pluralize current_order.total_items, ''%></span>
+               <a href="<%= basket_path %>"><img src="/assets/bag_icon.png" class="img-responsive" alt=""></a>
+            </li>
+            <li class="dropdown " style="    margin-top: 7px;">
+               <a href=""  class="dropdown-toggle" type="button" data-toggle="dropdown">
+               <img src="/assets/user.png" class="img-responsive" alt=""></a>
+               <ul class="dropdown-menu">
+                  <% if user_signed_in? %>
+                  <li><a href="<%= edit_user_registration_path %>" data-no-turbolink =true>My Profile</a></li>
+                  <li><a href="#">Settings</a></li>
+                  <li>
+                     <%= link_to "Sign out", destroy_user_session_path , :method => "delete" %>
+                  </li>
+                  <% else %>
+                  <li><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
+                  <li><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
+                  <% end %>
+               </ul>
+            </li>
+         </ul>
+      </div>
+
+</div>
+</div>
+    <div class="pull-right">
          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">  
          <span class="sr-only">Toggle navigation</span>
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
          </button>
+         </div>
       </div>
       <div class="collapse navbar-collapse navbar-ex1-collapse">
          <ul class="nav navbar-nav">

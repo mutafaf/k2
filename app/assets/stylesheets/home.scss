@@ -4,13 +4,23 @@
 
 @import 'parsley';
 
-.parsley-required{
-    color: red;
+.parsley-required, .parsley-type{
+  color: #EC0606;
+  clear: both;
+  width: 100%;
+  margin-top: 28px;
+  padding: 5px;
+  font-size: 14px !important; 
+  margin: 0px;
+  margin-left: -2px;
+  font-weight:bold;
 }
-.parsley-type
-{
-    color: red;
+
+
+#add_subscriber .parsley-errors-list .parsley-required, .parsley-type {
+  margin-top: 15px !important;
 }
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

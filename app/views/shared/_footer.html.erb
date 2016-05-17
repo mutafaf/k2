@@ -9,7 +9,7 @@
                         <div class="col-md-4">
                            <h4>SIGN UP FOR NEWSLETTER</h4>
                            <div class="">
-                           <%= form_tag "/add_subscriber", :method => :post, :remote=>true, "data-parsley-validate" => true do %>
+                           <%= form_tag "/add_subscriber", :method => :post, :remote=>true, "data-parsley-validate" => true, :id=>"add_subscriber" do %>
                            <button type="submit" title="Subscribe" class="btn btn-default btn-lg  button-grnt"><span><span>Subscribe</span></span></button>
                            <%= text_field_tag :email, params[:email], :class=>"inputnews", :title=>"SIGN UP FOR EMAILS:", :placeholder=>"   Enter Your Email", :required=>true, :autocomplete=> :off, :type=>"email" %>
                            <% end %>
