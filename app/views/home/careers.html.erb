@@ -14,24 +14,17 @@
     <div class="container">
       <div class="col-md-2"></div>
       <div class="col-md-8">
+      <% @jobs.try(:each) do |job| %>
         <div class="job-post" >
           <center>
-            <h2>Designer </h2>
+            <h2><%= job.name %> </h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum illum rerum incidunt vero tempore neque quaerat<br>saepe assumenda beatae nemo, inventore minus, optio maiores nobis, ut eum facere sunt temporibus.
+              <%= job.description%>
             </p>
             <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#applay">apply now</button>
           </center>
         </div>
-        <div class="job-post" >
-          <center>
-            <h2>Developer </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum illum rerum incidunt vero tempore neque quaerat<br>saepe assumenda beatae nemo, inventore minus, optio maiores nobis, ut eum facere sunt temporibus.
-            </p>
-            <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#applay">apply now</button>
-          </center>
-        </div>
+        <% end %>
       </div>
     </div>
     <div class="col-md-2"></div>
@@ -52,19 +45,40 @@
       </div>
       <center>
         <div class="modal-body">
-          <div class="signin-half ">
+          <div class="signin-half">
             <hr>
-            <input type="type" value="" class="input-checkout" placeholder="First Name:">
-            <input type="type" value="" class="input-checkout" placeholder="Last Name:">
-            <input type="type" value="" class="input-checkout" placeholder="Email">
-            <input type="type" value="" class="input-checkout" placeholder="Address">
-            <br>
-            <textarea style="    width: 100%;     height: 120px;" placeholder=" Comment"></textarea>
+            <%= form_tag('/add_careers',"data-parsley-validate" => true) do %>
+            <%= select_tag(:job_id, options_for_select(Shoppe::Job.all.collect{|m| [m.name, m.id]}), class: "input-checkout") %>
+            <%= text_field_tag :first_name, nil, class: "input-checkout", placeholder: "First Name:", required: true%>
+            <%= text_field_tag :last_name, nil, class: "input-checkout", placeholder: "Last Name:", required: true%>
+            <%= text_field_tag :email, nil, class: "input-checkout", placeholder: "Email", required: true%>
+            <%= text_field_tag :contact_no, nil, class: "input-checkout", placeholder: "Contact no", required: true%>
+            <%= text_field_tag :cnic_no, nil, class: "input-checkout", placeholder: "NIC", required: true%>
+            <%= date_field(:date_of_birth, :date_of_birth, class: "input-checkout", required: true) %>
+            <%= select_tag(:gender, options_for_select([["Male", "Male"], ["Female", "Female"]]), class: "input-checkout") %>
+            <%= select_tag(:martial_status, options_for_select([["Martial Status", ""], ["Single", "Single"], ["Married", "Married"]]), class: "input-checkout") %>
+            <%= text_field_tag :mailing_address, nil, class: "input-checkout", placeholder: "Mailing address"%>
+            <%= text_field_tag :city, nil, class: "input-checkout", placeholder: "City"%>
+            <h1>Educational Info </h1>
+            <%= select_tag(:highest_degree, options_for_select([["Highest Degree", ""], ["Computer IT", "Computer IT"], ["Master", "Master"]]), class: "input-checkout") %>
+             <%= select_tag(:institute, options_for_select([["Institute", ""], ["LUMS", "LUMS"], ["FAST", "FAST"], ["COMSATS", "COMSATS"]]), class: "input-checkout") %>
+              <%= select_tag(:year_of_completion, options_for_select([["Year of Completion", ""], ["2000", "2000"], ["2001", "2001"]]), class: "input-checkout") %>
+               <%= text_field_tag :gpa, nil, class: "input-checkout", placeholder: "CGPA / Grade"%>
+               <%= text_field_tag :certification, nil, class: "input-checkout", placeholder: "Certification"%>
+               <h1>Employee Info </h1>
+               <%= select_tag(:relevant_experice, options_for_select([["Relevant Experice", ""], ["2000", "2000"], ["2001", "2001"]]), class: "input-checkout") %>
+               <%= select_tag(:designation, options_for_select([["Title / Designation", ""], ["LUMS", "LUMS"], ["FAST", "FAST"], ["COMSATS", "COMSATS"]]), class: "input-checkout") %>
+               <%= text_field_tag :organization, nil, class: "input-checkout", placeholder: "Organization"%>
+               <%= text_field_tag :address, nil, class: "input-checkout", placeholder: "Address"%>
+               <%= file_field_tag 'attachments[default_image][file]' %>
+               <%= hidden_field_tag 'attachments[default_image][role]', 'default_image' %>
+
             <div style="clear:both"></div>
             <br>
           </div>
           <a href="#" class="btn btn-default">Cancel</a>
-          <a href="#" class="btn btn-default">Send</a>
+           <%= submit_tag("Send", class: "btn btn-default") %>
+          <% end %>
         </div>
       </center>
     </div>

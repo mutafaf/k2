@@ -33,6 +33,11 @@ class HomeController < ApplicationController
     @brand = Shoppe::Brand.find_by_permalink(params[:permalink])
   end
 
+  def careers
+    @jobs = Shoppe::Job.all.enabled.order("position")
+    @career = Shoppe::Career.new
+  end
+
   private
 
   def safe_params

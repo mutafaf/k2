@@ -21,5 +21,6 @@ Shoppe::NavigationManager.build(:admin_primary) do
   add_item :users
   add_item :subscribers
   add_item :countries
+  add_item :jobs
   add_item :settings
 end

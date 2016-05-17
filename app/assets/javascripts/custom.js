@@ -10,9 +10,9 @@
 ------------------------------*/
 
 $(function() {
-    $("select").each(function() {
-    $(this).chosen({no_results_text: "Oops, nothing found!",width: "100%"}); 
-});
+//     $("select").each(function() {
+//     $(this).chosen({no_results_text: "Oops, nothing found!",width: "100%"}); 
+// });
 
 });
 
