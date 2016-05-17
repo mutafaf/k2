@@ -67,6 +67,11 @@
       %dl.half
         %dt= f.label :position, t('shoppe.product_category.position')
         %dd= f.number_field :position, :class => 'text', :min=>0
+    .splitContainer
+      %dl.half
+        %dt= f.label :home_categories_position, t('shoppe.product_category.home_categories_position')
+        %dd= f.number_field :home_categories_position, :class => 'text', :min=>0
+
     %br
     %dl
       %dt= f.label "attachments[homepage_image][file]", t('shoppe.product_category.homepage_image')

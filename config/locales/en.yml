@@ -483,6 +483,7 @@ en:
       name: Name
       homepage_title: Homepage Title
       position: Position
+      home_categories_position: Home Page Position
       new_category: New category
       no_categories: No categories to display.
       permalink: Permalink
