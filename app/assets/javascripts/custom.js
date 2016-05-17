@@ -455,20 +455,7 @@ $(document).ready(function() {
 /*------------------------------
 	WINDOW LOAD
 ------------------------------*/
-$(window).load(function () {
-	
-	/*------------------------------
-		MODAL ADVERTISING
-	------------------------------*/
-	if(typeof(Storage) !== "undefined") {
-		if(localStorage.getItem("modalhidden") !== "hidden") {
-			$('#modalAdvertising').modal('show');
-		}
-	}
-	else {
-		$('#modalAdvertising').modal('show');
-	}
-});
+
 
 /*------------------------------
 	CUSTOM FUNCTIONS

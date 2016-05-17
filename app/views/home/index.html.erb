@@ -3,3 +3,21 @@
   <%= render "featured_block" %>
 
   <%= render "new_arrivals" %>
+
+  <%= render "popup_partials/subscribtion_popup"  %>
+
+  <script type="text/javascript">
+     $(window).load(function () {
+        /*------------------------------
+           MODAL ADVERTISING
+        ------------------------------*/
+        if(typeof(Storage) !== "undefined") {
+           if(localStorage.getItem("modalhidden") !== "hidden") {
+              $('#modalAdvertising').modal('show');
+           }
+        }
+        else {
+           $('#modalAdvertising').modal('show');
+        }
+     });
+  </script>
