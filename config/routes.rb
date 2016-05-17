@@ -51,7 +51,7 @@ Rails.application.routes.draw do
    get "about_us", to: "home#about_us"
    get "contact_us", to: "home#contact_us"
    post '/contact' => "home#contact"
-   get "careers", to: "home#careers"
+   get "careers", to: "careers#careers"
    post "add_subscriber", to: "home#add_subscriber"
    post "add_careers", to: "careers#add_careers"
 

@@ -193,13 +193,13 @@
                   left: -67px;
                   margin-top: 14px;">
                   <li>
-                     <form>
+                  <%= form_tag('/products', method: :get) do %>
                         <div class="">
-                           <input type="text" class="form-control" placeholder="Search ..." style="    font-size: 14px;
+                        <%= text_field_tag :name, nil, class: "form-control", placeholder: "Search ...", style: "font-size: 14px;
                               width: 100%;
-                              float: left;margin-top: -1px;">
+                              float: left;margin-top: -1px;" %>
                         </div>
-                     </form>
+                     <% end %>
                   </li>
                </ul>
             </li>
