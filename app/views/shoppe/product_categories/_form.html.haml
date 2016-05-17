@@ -2,9 +2,13 @@
   = f.error_messages
 
   = field_set_tag t('shoppe.product_category.category_details') do
-    %dl
-      %dt= f.label :name, t('shoppe.product_category.name')
-      %dd= f.text_field :name, :class => 'focus text', :required => true
+    .splitContainer
+      %dl.half
+        %dt= f.label :name, t('shoppe.product_category.name')
+        %dd= f.text_field :name, :class => 'focus text', :required => true
+      %dl.half
+        %dt= f.label :position, t('shoppe.product_category.position')
+        %dd= f.number_field :position, :class => 'text', :min=>0
     .splitContainer
       %dl.half
         %dt= f.label :permalink, t('shoppe.product_category.permalink')
@@ -64,10 +68,6 @@
       %dl.half
         %dt= f.label :homepage_title, t('shoppe.product_category.homepage_title')
         %dd= f.text_field :homepage_title, :class => 'text'
-      %dl.half
-        %dt= f.label :position, t('shoppe.product_category.position')
-        %dd= f.number_field :position, :class => 'text', :min=>0
-    .splitContainer
       %dl.half
         %dt= f.label :home_categories_position, t('shoppe.product_category.home_categories_position')
         %dd= f.number_field :home_categories_position, :class => 'text', :min=>0
