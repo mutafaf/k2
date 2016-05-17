@@ -1,0 +1,18 @@
+- @page_title = t('shoppe.jobs.jobs')
+
+= content_for :header do
+  %h2.users= t('shoppe.jobs.people_applied')
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.careers.email')
+    %tbody
+      - if @careers.empty?
+        %tr.empty
+          %td= t('shoppe.careers.no_careers')
+      - else
+        - for career in @careers
+          %tr
+            %td=link_to career.email, career_path(career)

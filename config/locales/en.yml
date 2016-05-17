@@ -851,9 +851,12 @@ en:
       jobs: jobs
       new_job: New Job
       name: Name
+      description : Description
+      position : Position
+      status : Status
+      people_applied: People Applied
       no_jobs: No jobs to display.
       search: Search
-      first_or_last_name: First or last name
       back_to_jobs_list: Back to jobs list
       edit: Edit
       size_information: Size Information
@@ -891,6 +894,30 @@ en:
       created_successfully: Brand has been created successfully.
       updated_successfully: Brand has been updated successfully.
       deleted_successfully: Brand has been deleted successfully.
+
+    careers:
+      email: Email
+      no_careers: Empty List
+      person_detail: Person Detail
+      back_to_emails_list : Back to Email list
+      first_name: First Name
+      last_name: Last Name
+      nic: NIC
+      contact_no: Contact Number
+      date_of_birth: Date of Birth
+      gender: Gender
+      martial_status: Martial Status
+      mailing_address: Mailing Address
+      city: City
+      highest_degree: Highest Degree
+      institute: Institute
+      year_of_completion: Year Of Completion
+      gpa: CGPA
+      certification: Certification
+      relevant_experice: Relevant Experice
+      designation: Designation
+      organization: Organization
+      address: Address
 
     subscribers:
       subscribers: Subscribers

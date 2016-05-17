@@ -1,0 +1,25 @@
+- @page_title = t('shoppe.jobs.jobs')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.jobs.new_job'), :new_job, class: 'button green'
+  %h2.users= t('shoppe.jobs.jobs')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.jobs.name')
+        %th= t('shoppe.jobs.people_applied')
+    %tbody
+      - if @jobs.empty?
+        %tr.empty
+          %td= t('shoppe.jobs.no_jobs')
+      - else
+        - for job in @jobs
+          %tr
+            %td=link_to job.name, [:edit, job]
+            %td=link_to job.careers.count, get_emails_by_job_job_path(job)
+= paginate @jobs

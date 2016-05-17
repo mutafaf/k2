@@ -1,0 +1,32 @@
+= form_for @job do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.jobs.job_detail') do
+    .splitContainer
+      %dl.second
+        %dt= f.label :name, t('shoppe.jobs.name')
+        %dd= f.text_field :name, class: 'text focus'
+    .splitContainer
+      %dl.second
+        %dt= f.label :status, t('shoppe.jobs.status')
+        %dd= f.select :status, Shoppe::Job::STATUS, {:selected => @job.status ? '1' : '0'  }, {:class => 'chosen'}
+    .splitContainer
+      %dl.second
+        %dt= f.label :position, t('shoppe.jobs.position')
+        %dd= f.text_field :position, class: 'text focus'
+    %dl
+      %dt= f.label :description, t('shoppe.jobs.description')
+      %dd= f.text_area :description, class: 'text'
+
+  %p.submit
+    - unless @job.new_record?
+      %span.right
+        = link_to t('shoppe.jobs.delete'),
+                  @job,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.jobs.delete_confirmation')}
+    = f.submit t('shoppe.jobs.save'),
+               class: 'button green',
+               data: {disable_with: (@job.new_record? ? t('shoppe.jobs.creating_size') : t('shoppe.jobs.updating_size'))}
+    = link_to t('shoppe.jobs.cancel'), :jobs, class: 'button'

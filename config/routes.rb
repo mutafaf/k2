@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   Shoppe::Engine.routes.draw do
     resources :sizes
     resources :subscribers
-    resources :jobs
+    resources :jobs do
+      member do
+        get :get_emails_by_job
+      end
+    end
     resources :stores do
       collection do
         get :import
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
       end
     end
     resources :brands
+    resources :careers
   end
 
   get 'home/index'
@@ -46,6 +51,7 @@ Rails.application.routes.draw do
    post '/contact' => "home#contact"
    get "careers", to: "home#careers"
    post "add_subscriber", to: "home#add_subscriber"
+   post "add_careers", to: "careers#add_careers"
 
    devise_for :users , :controllers => { :sessions => "sessions", :registrations => "registrations"}
 

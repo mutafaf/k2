@@ -1,0 +1,5 @@
+- @page_title = t('shoppe.careers.person_detail')
+= content_for :header do
+  %p.buttons= link_to t('shoppe.jobs.back_to_emails_list'), :back, class: 'button'
+  %h2.users= t('shoppe.careers.person_detail')
+= render 'form'
