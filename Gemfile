@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 #load choosen drop down plugin
 gem 'compass-rails'
-gem 'chosen-rails'
+# gem 'chosen-rails'
 
 #validations
 gem "parsley-rails"
@@ -39,9 +39,16 @@ gem 'hirb'
 gem 'jquery-infinite-pages'
 gem 'delayed_job_active_record'
 gem "daemons"
+gem 'geocoder'
+
+# Ratings
+gem 'ratyrate'
 
 #cache
 gem "rack-cache"
+
+#editor
+gem 'ckeditor_rails'
 
 group :production do
   gem 'puma'

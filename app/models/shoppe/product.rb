@@ -11,6 +11,8 @@ module Shoppe
     require_dependency 'shoppe/product/product_attributes'
     require_dependency 'shoppe/product/variants'
 
+    ratyrate_rateable "name"
+
     has_many :product_sizes, class_name: 'Shoppe::ProductSize'
     has_many :sizes, through: :product_sizes, class_name: 'Shoppe::Size'
 

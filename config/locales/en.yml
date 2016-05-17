@@ -37,6 +37,9 @@ en:
       shoppe/job:
         one: Jobs
         other: Jobs
+      shoppe/brad:
+        one: Brands
+        other: Brands
       shoppe/subscriber:
         one: Subscribers
         other: Subscribers
@@ -483,6 +486,7 @@ en:
       name: Name
       homepage_title: Homepage Title
       position: Position
+      home_categories_position: Home Page Position
       new_category: New category
       no_categories: No categories to display.
       permalink: Permalink
@@ -766,10 +770,12 @@ en:
         products: Products
         sizes: Sizes
         jobs: Jobs
+        brands: Brands
         subscribers: Subscribers
         product_categories: Product Categories
         delivery_services: Delivery Services
         tax_rates: Tax Rates
+        stores: Stores
         users: Users
         countries: Countries
         settings: Settings
@@ -864,6 +870,28 @@ en:
       updated_successfully: Job has been updated successfully.
       deleted_successfully: Job has been deleted successfully.
 
+    brands:
+      brands: Brands
+      new_brand: New brand
+      name: Name
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_brands : No Brands
+      brand_detail : Brand Detail
+      back_to_brands_list : Back to brand list
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_size: Creating Brand...
+      updating_size: Updating Brand...
+      delete_confirmation: Are you sure you wish to remove this brand?
+      type: Type
+      default: Default
+      created_successfully: Brand has been created successfully.
+      updated_successfully: Brand has been updated successfully.
+      deleted_successfully: Brand has been deleted successfully.
+
     subscribers:
       subscribers: Subscribers
       new_subscriber: New Subscriber
@@ -889,6 +917,64 @@ en:
       created_successfully: Subscriber has been created successfully.
       updated_successfully: Subscriber has been updated successfully.
       deleted_successfully: Subscriber has been deleted successfully.
+
+    stores:
+      stores: Stores
+      new_store: New Store
+      name: Name
+      no_stores: No Stores to display.
+      search: Search
+      first_or_last_name: First or last name
+      back_to_stores_list: Back to Store list
+      new_address: New address
+      edit: Edit
+      store_information: Store Information
+      store_detail: Store Detail
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_store: Creating store...
+      updating_store: Updating store...
+      delete_confirmation: Are you sure you wish to remove this store?
+      type: Type
+      default: Default
+      imports:
+        help: Stores matched by name.  If no store is found, a new one will be created with all the attributes on the line..One store per line.
+        success: Stores imported successfully
+        examples:
+          first:
+            name: Plush Teddy Bear
+            sku: BEAR001
+            permalink: plush-teddy-bear
+            description: Fantastically plush. Very cuddly. Great for all ages.
+            short_description: Buy this for your kids.
+            weight: 1.2
+            price: 84.95
+            category_name: Teddy Bears
+            qty: 20
+          second:
+            name: Standard Teddy Bear
+            sku: BEAR002
+            permalink: ""
+            description: Made out of PVC. A little cuddly. Spill resistant.
+            short_description: Buy this for those with two left thumbs.
+            weight: 0.6
+            price: 24.95
+            category_name: Teddy Bears
+            qty: 100
+          third:
+            name: Stick Teddy Bear
+            sku: BEAR003
+            permalink: stick-teddy-bear
+            description: Made out of sticks. Not really cuddly. All natural. Fire hazard.
+            short_description: Buy this for that distant aunt who collects bears.
+            weight: 0.521
+            price: 1.95
+            category_name: Teddy Bears
+            qty: 50
+      created_successfully: Store has been created successfully.
+      updated_successfully: Store has been updated successfully.
+      deleted_successfully: Store has been deleted successfully.
 
   layouts:
     shoppe:

@@ -1,0 +1,32 @@
+= form_for @store do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.stores.store_detail') do
+    .splitContainer
+      %dl.third
+        %dt= f.label :store_no, t('shoppe.stores.store_no')
+        %dd= f.text_field :store_no, class: 'text focus'
+      %dl.third
+        %dt= f.label :address, t('shoppe.stores.address')
+        %dd= f.text_field :address, class: 'text focus'
+      %dl.third
+        %dt= f.label :city, t('shoppe.stores.city')
+        %dd= f.text_field :city, class: 'text focus'
+
+    .splitContainer
+      %dl.third
+        %dt= f.label :phone_number, t('shoppe.stores.phone')
+        %dd= f.text_field :phone_number, class: 'text focus'
+
+  %p.submit
+    - unless @store.new_record?
+      %span.right
+        = link_to t('shoppe.stores.delete'),
+                  @store,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.stores.delete_confirmation')}
+    = f.submit t('shoppe.stores.save'),
+               class: 'button green',
+               data: {disable_with: (@store.new_record? ? t('shoppe.stores.creating_store') : t('shoppe.stores.updating_store'))}
+    = link_to t('shoppe.stores.cancel'), :stores, class: 'button'

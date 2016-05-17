@@ -107,8 +107,8 @@
               .currency= Shoppe.settings.currency_unit.html_safe
               = f.text_field :cost_price, :class => 'text'
         %dl.third
-          %dt= f.label :tax_rate_id, t('shoppe.products.tax_rate')
-          %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.products.no_tax')}}
+          / %dt= f.label :tax_rate_id, t('shoppe.products.tax_rate')
+          / %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.products.no_tax')}}
 
     = field_set_tag  t('shoppe.products.stock_control') do
       .splitContainer
