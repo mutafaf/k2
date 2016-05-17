@@ -37,7 +37,9 @@
               <%end%>
             </div>
             <p class="pagination hidden">
+                <% if @products.present? %>
                 <%= link_to_next_page(@products, 'Next Page', :remote => true, params: { pagination: true }) %>
+                <% end %>
               </p>
          </div>
       </div>

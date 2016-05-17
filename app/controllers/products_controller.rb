@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
     if params[:category_permalink].present?
       @category = Shoppe::ProductCategory.ordered.find_by_permalink(params[:category_permalink])
       @products = @category.products.page(params[:page]).per(4) if @category
+    elsif params[:name].present?
+      @category = Shoppe::ProductCategory.search_home_category(params[:name])
+      @products = @category.products.page(params[:page]).per(4) if @category
     else
       @products = Shoppe::Product.root.active.page(params[:page]).per(4) #.ordered.includes(:product_categories, :variants)
     end

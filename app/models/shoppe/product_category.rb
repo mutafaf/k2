@@ -113,6 +113,10 @@ module Shoppe
       joins(:translations).where("shoppe_product_category_translations.name LIKE ?" , "%#{category_name}%").try(:first)
     end
 
+    def self.search_home_category(category_name)
+      joins(:translations).where("LOWER(shoppe_product_category_translations.name) LIKE ?" , "%#{category_name}%".downcase).try(:first)
+    end
+
     private
 
     def set_permalink
