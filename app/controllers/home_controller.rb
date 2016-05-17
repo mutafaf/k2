@@ -18,14 +18,14 @@ class HomeController < ApplicationController
   end
 
   def store_location
-    @store = Shoppe::Store.first
+    @store = Shoppe::Store.try(:first)
   end
 
   def find_nearest_stores
     if params[:lat] and params[:lng]
       @stores = Shoppe::Store.near([params[:lat], params[:lng]], 5)
     else
-      @stores = Shoppe::Store.first
+      @stores = Shoppe::Store.try(:first)
     end
   end
 
