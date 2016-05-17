@@ -7167,7 +7167,7 @@ ul, ol {
 #modalAdvertising .modal-body p {color: #F1F1F1 !important;}
 .checkbox > label, .radio > label { color: #E6E3E3 !important;}
 
-.modal-open .modal { overflow-x: hidden;  overflow-y: hidden;}
+.modal-open .modal { overflow-x: hidden;  overflow-y: auto;}
 
 
 
@@ -7189,3 +7189,5 @@ ul, ol {
     margin: 0px 5px;
 }
 
+.flexslider {
+   width: 90% !important;}

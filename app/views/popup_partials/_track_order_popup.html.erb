@@ -16,8 +16,8 @@
                      <li>
                       <%=  "#{item.quantity} x #{item.ordered_item.full_name}"%>
                      </li>
-                    <p><strong>Total: </strong><%= number_to_currency @order.total%></p>
                     <% end %>
+                    <p><strong>Total: </strong><%= number_to_currency @order.total%></p>
                   </div>
                 <% else %>
                 <p>Order not found.</p>
