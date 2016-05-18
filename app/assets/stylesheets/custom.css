@@ -2447,10 +2447,10 @@ article.product-item:hover .product-image-2 {
 }
 
 article.product-item .product-quickview {
-	position: absolute;
-    width: 100%;
-        top: 29%;
-    left: 70px;
+	    position: absolute;
+    width: 20px;
+    top: 29%;
+    left: 182px;
     margin-top: -89px;
     transition: all 0.2s ease-out;
     text-align: center;
@@ -2463,7 +2463,7 @@ article.product-item:hover .product-quickview {
 }
 
 article.product-item .product-quickview .btn-quickview {
-    
+    width: 20px !important;
 	padding:20px 0;
 	width:100%;
 	border-radius:0;
@@ -2471,6 +2471,7 @@ article.product-item .product-quickview .btn-quickview {
 	text-transform:uppercase;
 	font-weight:600;
 	transition:all 0.3s ease-in;
+	
 }
 
 article.product-item .product-quickview .btn-quickview:hover, 
@@ -6272,6 +6273,7 @@ flex-container a:hover,
 .flexslider .slides img {
   width: 100%;
   display: block;
+
 }
 .flexslider .slides:after {
   content: "\0020";
@@ -7255,3 +7257,12 @@ ul, ol {
 @media (min-width: 992px){}
 .container {width: 100%;}
 }
+
+.image-size2{ height: 160px;
+       line-height: 300px;
+      
+       display: flex;
+       overflow: hidden;
+       vertical-align: middle;
+       text-align: center;
+       margin: auto;}

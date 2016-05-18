@@ -8,7 +8,15 @@
               <div class="">
                  <div class="product-mask"></div>
                  <a href="<%=product_path(product.permalink)%>" class="product-permalink" ></a>
+                 <div style="height: 160px;
+       line-height: 300px;  
+       display: flex;
+       overflow: hidden;
+       vertical-align: middle;
+       text-align: center;
+       margin: auto;">
                  <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive product_image_size" alt="Not found">
+                 </div>
                  <div class="product-quickview" onclick="getProductDetail(this)">
                     <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>
                     <a class="btn btn-quickview"><i class="fa fa-search"></i></a>
