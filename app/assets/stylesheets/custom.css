@@ -10,7 +10,7 @@
 ------------------------------*/
 /*.chosen-container {width: 40% !important; margin-left:10px !important;}*/
 
-.date_of_birth{width:32% !important; float: left;margin-left: 7px; }
+.date_of_birth{width:100% !important; }
 
 header.navbar .navbar-nav > li > a.dropdown-toggle:after,
 header.navbar .dropdown-menu > li > a:before,
@@ -2907,7 +2907,7 @@ hr {
 }
 .allan{    margin-top: 8px;}
 
-.border-left {border-left: solid 1px #ccc !important;}
+.border-left {border-left: solid 1px #ccc !important;     min-height: 208px;}
 
 footer.navbar a:hover {
 	color:#AAAAAA;
@@ -5134,7 +5134,7 @@ article.product-item h3 {
 	
 	.categories .category .category-title {
 		font-size: 2em;
-		margin-top:-31px;
+		margin-top: -80px;
 	}
 	
 	.categories .category .category-title span {
@@ -7124,12 +7124,14 @@ ul, ol {
 .button-grnt { margin-left: 145px !important;}
 .col-xs-6 {width: 100% !important;}
 .border-left { border-left: solid 0px #ccc !important;}
+.style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
 }
 
 @media screen and (min-width: 480px) and (max-width: 639px) {
 	.navbar-default {position: relative !important;}
 	.navbar { margin-bottom: 0px !important;}
   .label-danger { margin-top: -5px !important;}
+  .style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
 
 }
 
@@ -7151,9 +7153,12 @@ ul, ol {
  .vertical-menu .jumbotron-full-height {
   height:100%;
  }
+ .style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
 }
 
 @media screen and (min-width: 768px) and (max-width: 1003px) {
+	.btn-quickview{ display: none; }
+	.style-may-you{height: auto; width:49% !important;  margin-bottom: 13px !important; margin: auto; }
 .navbar-default {position: relative !important;}
  .navbar { margin-bottom: 0px !important;}
 .jumbotron .owl-carousel .item {height:550px!important;}
@@ -7172,6 +7177,7 @@ ul, ol {
 }
 
 @media screen and (min-width: 1004px) and (max-width: 1259px) {
+
 }
 
 @media screen and (min-width: 1260px) and (max-width: 1279px) {
@@ -7246,3 +7252,6 @@ ul, ol {
   margin-top: 6px;
 }
 
+@media (min-width: 992px){}
+.container {width: 100%;}
+}

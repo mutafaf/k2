@@ -7,7 +7,7 @@
    <div id="example">
       <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
          <a href="<%= @product.try(:default_image).try(:path)%>">
-         <img src="<%= @product.try(:default_image).try(:path)%>" alt="" width="640" height="360" />
+         <img src="<%= @product.try(:default_image).try(:path)%>" alt="" class="img-responsive"/>
          </a>
       </div>
       <ul class="thumbnails">
@@ -28,6 +28,7 @@
 <%= form_tag product_path(@product.permalink), :method => :post, :id => "product_form" do %>
   <div class="col-md-5">
      <div class="product-body" style="    margin-top: 2%;">
+     <div class="col-sm-6 col-xs-6">
         <h2><%= @product.get_name %></h2>
         <span class="">
         <br>
@@ -37,7 +38,8 @@
         </span>
         <p style=" margin: 6px 0 0px;"><%= @product.short_description.try(:html_safe) %>
         </p>
-
+        </div>
+<div class="">
         <div class="product-form clearfix">
            <div class="row row-no-padding">
               <br>
@@ -82,6 +84,7 @@
               <div style="clear;both"></div>
               <br>
            </div>
+        </div>
         </div>
         <% if @product.in_stock? %>
           In Stock. Ships within 1-2  business days.

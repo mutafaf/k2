@@ -53,7 +53,7 @@
                      <div class="product-form clearfix">
                         <div id="popup_product_form" class="row row-no-padding ">
                            <%= form_tag product_path(@product.permalink), :method => :post, :class=>"form-inline" do %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 no-padding">
+                              <div class="col-lg-3 col-md-4 col-sm-6 no-padding" style="width: 139px;">
                                  <div class="product-quantity clearfix">
                                     <a class="btn btn-default btn-count" id="modal-qty-minus">-</a>
                                     <%= text_field_tag :quantity, params[:quantity], id: 'modal-qty', :class=>"form-control quent", :value=>"1" %>
