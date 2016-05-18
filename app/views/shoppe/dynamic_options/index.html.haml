@@ -1,0 +1,26 @@
+- @page_title = t('shoppe.dynamic_options.dynamic_options')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.dynamic_options.new_dynamic_option'), :new_dynamic_option, class: 'button green'
+    = link_to t('shoppe.stores.import_dynamic_options'), :import_dynamic_options, :class => 'button gray'
+  %h2.users= t('shoppe.dynamic_options.dynamic_options')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.dynamic_options.title')
+        %th= t('shoppe.dynamic_options.options_for')
+    %tbody
+      - if @dynamic_options.empty?
+        %tr.empty
+          %td{:colspan=>2}= t('shoppe.dynamic_options.no_dynamic_options')
+      - else
+        - for dynamic_option in @dynamic_options
+          %tr
+            %td=link_to dynamic_option.title, [:edit, dynamic_option]
+            %td= dynamic_option.options_for
+= paginate @dynamic_options

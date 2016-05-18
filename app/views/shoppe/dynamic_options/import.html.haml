@@ -1,0 +1,39 @@
+- @page_title = t('shoppe.dynamic_options.dynamic_options')
+
+= content_for :header do
+  %h2.dynamic_options= t('shoppe.dynamic_options.import_dynamic_options')
+
+= form_for "import", :url => import_dynamic_options_path, :html => {:multipart => true} do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.imports.file_upload') do
+    %dl
+      %dt= f.label :import_file, t('shoppe.imports.required_formats')
+      %dd= f.file_field :import_file
+
+  = field_set_tag t('shoppe.imports.example_file') do
+    %dl
+      %dd
+        %table.importExample
+          %thead
+            %tr
+              %th Title
+              %th Options For
+          %tbody
+            %tr
+              %td= t('shoppe.dynamic_options.imports.examples.first.title')
+              %td= t('shoppe.dynamic_options.imports.examples.first.options_for')
+            %tr
+              %td= t('shoppe.dynamic_options.imports.examples.second.title')
+              %td= t('shoppe.dynamic_options.imports.examples.second.options_for')
+            %tr
+              %td= t('shoppe.dynamic_options.imports.examples.third.title')
+              %td= t('shoppe.dynamic_options.imports.examples.third.options_for')
+            %tr.tear-off
+              %td{:colspan => "4"}
+      %dd
+        %p.help= t('shoppe.dynamic_options.imports.help')
+
+  %p.submit
+    = f.submit t('shoppe.import'), :class => "button green"
+    = link_to t('shoppe.cancel'), :dynamic_options, :class => "button"

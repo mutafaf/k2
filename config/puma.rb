@@ -6,7 +6,7 @@ preload_app!
 
 rackup      DefaultRackup
 port        ENV['PORT']     || 9899
-environment ENV['RACK_ENV'] || 'development'
+environment ENV['RACK_ENV'] || 'production'
 stdout_redirect 'log/puma.log', 'log/puma_error.log', true
 on_worker_boot do
   require "active_record"

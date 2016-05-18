@@ -1,0 +1,5 @@
+- @page_title = t('shoppe.dynamic_options.dynamic_options')
+= content_for :header do
+  %p.buttons= link_to t('shoppe.dynamic_options.back_to_dynamic_options_list'), :dynamic_options, class: 'button'
+  %h2.users= t('shoppe.dynamic_options.dynamic_options')
+= render 'form'

@@ -55,22 +55,21 @@
             <%= f.text_field :cnic_no, class: "input-checkout", placeholder: "NIC", required: true%>
             <label>Date of Birth</label><br>
             <%= f.date_select :date_of_birth, {}, class: "input-checkout date_of_birth", required: true%>
-            <%= f.select :gender, Shoppe::Career::GENDER, {}, {class: "input-checkout"}%>
-            <%= f.select :martial_status, Shoppe::Career::MARTIAL_STATUS, {}, {class: "input-checkout"}%>
+            <%= f.select :gender, Shoppe::Career::GENDER, {:prompt=>"Select Gender"}, {class: "input-checkout"}%>
+            <%= f.select :martial_status, Shoppe::Career::MARTIAL_STATUS, {:prompt=>"Select Maritial Status"}, {class: "input-checkout"}%>
             <%= f.text_field :mailing_address, class: "input-checkout", placeholder: "Mailing address"%>
-             <%= f.text_field :city, class: "input-checkout", placeholder: "City"%>
+            <%= f.select :city, Shoppe::DynamicOption.array_for(Shoppe::Career::CITY), {:prompt=>"Select City"}, {class: "input-checkout"}%>
 
             <h1>Educational Info </h1>
 
-             <%= f.select :highest_degree, Shoppe::Career::HIGHEST_DEGREE, {}, {class: "input-checkout"}%>
-             <%= f.select :institute, Shoppe::Career::INSTITUE, {}, {class: "input-checkout"}%>
-             <%= f.select :institute, Shoppe::Career::YEAR_OF_COMPLETION, {}, {class: "input-checkout"}%>
-             <%= f.text_field :gpa, class: "input-checkout", placeholder: "CGPA / Grade"%>
+             <%= f.select :highest_degree, Shoppe::DynamicOption.array_for(Shoppe::Career::HIGHEST_DEGREE), {:prompt=>"Select Highest Degree"}, {class: "input-checkout"}%>
+             <%= f.select :institute, Shoppe::DynamicOption.array_for(Shoppe::Career::INSTITUE), {:prompt=>"Select Institute"}, {class: "input-checkout"}%>
+             <%= f.select :year_of_completion, Shoppe::Career::YEAR_OF_COMPLETION, {:prompt=>"Select Year Of Completion"}, {class: "input-checkout"}%>
              <%= f.text_field :certification, class: "input-checkout", placeholder: "Certification"%>
 
                <h1>Employee Info </h1>
-               <%= f.select :relevant_experice, Shoppe::Career::RELEVANT_EXPERICE, {}, {class: "input-checkout"}%>
-               <%= f.select :designation, Shoppe::Career::DESIGNATION, {}, {class: "input-checkout"}%>
+               <%= f.select :relevant_experice, Shoppe::Career::RELEVANT_EXPERICE, {:prompt=>"Select Relevant Experiance"}, {class: "input-checkout"}%>
+               <%= f.select :designation, Shoppe::DynamicOption.array_for(Shoppe::Career::RELEVANT_EXPERICE), {:prompt=>"Select Designation"}, {class: "input-checkout"}%>
                <%= f.text_field :organization, class: "input-checkout", placeholder: "Organization"%>
                 <%= f.text_field :address, class: "input-checkout", placeholder: "Address"%>
                 <%= field_set_tag t('shoppe.products.attachments') do %>
