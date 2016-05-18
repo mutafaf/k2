@@ -1,6 +1,10 @@
-<% @stores.each do |store| %>
-  var loc = new google.maps.LatLng("<%=store.lat%>", "<%=store.lng%>")
-  placeMarker(loc);
+<% if @stores.present? %>
+  <% @stores.each do |store| %>
+    var loc = new google.maps.LatLng("<%=store.lat%>", "<%=store.lng%>")
+    placeMarker(loc, "<%= store.full_street_address %>");
+  <% end %>
+<% else %>
+  placeMarker(myCenter, "Borjan");
 <% end %>
 
 google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {

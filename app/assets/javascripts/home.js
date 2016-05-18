@@ -23,7 +23,7 @@ $(window).load(function(){
  });
 });
 
-function placeMarker(location) {
+function placeMarker(location, address) {
   marker = new google.maps.Marker({
     position: location,
     title: 'Borjan',
@@ -31,7 +31,7 @@ function placeMarker(location) {
   });
   infowindow = new google.maps.InfoWindow({
     // content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-    content: 'Borjan'
+    content: address
 
   });
   infowindow.open(map,marker);
@@ -59,19 +59,19 @@ function showError(error) {
     switch(error.code) {
         case error.PERMISSION_DENIED:
             alert("User denied the request for Geolocation.")
-            setTimeout(function(){ placeMarker(myCenter); }, 1000);
+            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
             break;
         case error.POSITION_UNAVAILABLE:
             alert("Location information is unavailable.")
-            setTimeout(function(){ placeMarker(myCenter); }, 1000);
+            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
             break;
         case error.TIMEOUT:
             alert("The request to get user location timed out.")
-            setTimeout(function(){ placeMarker(myCenter); }, 1000);
+            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
             break;
         case error.UNKNOWN_ERROR:
             alert("An unknown error occurred.")
-            setTimeout(function(){ placeMarker(myCenter); }, 1000);
+            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
             break;
     }
 }
