@@ -8,8 +8,9 @@
 /*------------------------------
 	FONT AWESOME CORE
 ------------------------------*/
-.chosen-container {width: 40% !important; margin-left:10px !important;}
+/*.chosen-container {width: 40% !important; margin-left:10px !important;}*/
 
+.date_of_birth{width:32% !important; float: left;margin-left: 7px; }
 
 header.navbar .navbar-nav > li > a.dropdown-toggle:after,
 header.navbar .dropdown-menu > li > a:before,

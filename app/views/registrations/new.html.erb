@@ -27,29 +27,30 @@
             </div>
             <div class="col-md-6">  
                <span class="checkout-bulit">Last Name*</span>
-               <%= c.text_field :last_name , :autofocus => true,:class=>"input-checkout", :placeholder=>"Last Name", :required => true %>
+               <%= c.text_field :last_name,:class=>"input-checkout", :placeholder=>"Last Name", :required => true %>
             </div>
+            <div style="clear:both"></div>
             <div class="col-md-6"> 
                <span class="checkout-bulit">Email Address*</span>
-               <%= f.text_field :email, :class=>"input-checkout", :placeholder=>"Email Address" , :required=>true %>
+               <%= f.email_field :email, :class=>"input-checkout", :placeholder=>"Email Address" , :required=>true %>
             </div>
             <div class="col-md-6">  
                <span class="checkout-bulit">Phone Number*</span>
-               <%= c.text_field :phone , :autofocus => true,:class=>"input-checkout", :placeholder=>"Phone Number", :required => true %>
+               <%= c.text_field :phone,:class=>"input-checkout", :placeholder=>"Phone Number", :required => true %>
             </div>
+            <div style="clear:both"></div>
             <div class="col-md-6"> 
                <span class="checkout-bulit">Password*</span>
                <%= f.password_field :password, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password" , :required=>true  %>
             </div>
             <div class="col-md-6"> 
                <span class="checkout-bulit">Password Confirmation*</span>
-               <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password Confirmation" , :required=>true  %>
+               <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"input-checkout", :placeholder=>"Password Confirmation" , :required=>true, :'data-parsley-equalto'=>"#user_password"  %>
             </div>
               <div style="clear:both"></div>
               <hr>
               <div class="col-md-12">
                  <h3>Address</h3>
-                 
                  <br>
               </div>
               <div style="clear:both"></div>

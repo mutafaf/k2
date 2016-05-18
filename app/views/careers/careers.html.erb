@@ -28,7 +28,6 @@
       </div>
     </div>
     <div class="col-md-2"></div>
-</div>
 </section>
 <div style="clear:both:"></div>
 <br><br>
@@ -54,7 +53,8 @@
             <%= f.text_field :email, class: "input-checkout", placeholder: "Email", required: true%>
             <%= f.text_field :contact_no, class: "input-checkout", placeholder: "Contact Number", required: true%>
             <%= f.text_field :cnic_no, class: "input-checkout", placeholder: "NIC", required: true%>
-            <%= f.date_select :date_of_birth, class: "input-checkout", required: true%>
+            <label>Date of Birth</label><br>
+            <%= f.date_select :date_of_birth, {}, class: "input-checkout date_of_birth", required: true%>
             <%= f.select :gender, Shoppe::Career::GENDER, {}, {class: "input-checkout"}%>
             <%= f.select :martial_status, Shoppe::Career::MARTIAL_STATUS, {}, {class: "input-checkout"}%>
             <%= f.text_field :mailing_address, class: "input-checkout", placeholder: "Mailing address"%>
