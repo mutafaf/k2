@@ -769,6 +769,7 @@ en:
         orders: Orders
         products: Products
         sizes: Sizes
+        dynamic_options: Dynamic Options
         jobs: Jobs
         brands: Brands
         subscribers: Subscribers
@@ -1002,6 +1003,43 @@ en:
       created_successfully: Store has been created successfully.
       updated_successfully: Store has been updated successfully.
       deleted_successfully: Store has been deleted successfully.
+
+    dynamic_options:
+      dynamic_options: Dynamic Options
+      new_dynamic_option: New Dynamic Option
+      name: Name
+      no_dynamic_options: No Dynamic Options to display.
+      search: Search
+      first_or_last_name: First or last name
+      back_to_dynamic options_list: Back to Dynamic Option list
+      new_address: New address
+      edit: Edit
+      dynamic_option_information: Dynamic Option Information
+      dynamic_option_detail: Dynamic Option Detail
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_dynamic_option: Creating Dynamic Option...
+      updating_dynamic_option: Updating Dynamic Option...
+      delete_confirmation: Are you sure you wish to remove this Dynamic Option?
+      type: Type
+      default: Default
+      imports:
+        help: Dynamic Options matched by Title.  If no Dynamic Option is found, a new one will be created with all the attributes on the line..One dynamic Option per line.
+        success: Dynamic Options imported successfully
+        examples:
+          first:
+            title: Lahore
+            options_for: City
+          second:
+            title: Karachi
+            options_for: City
+          third:
+            title: Islamabad
+            options_for: City
+      created_successfully: Dynamic Option has been created successfully.
+      updated_successfully: Dynamic Option has been updated successfully.
+      deleted_successfully: Dynamic Option has been deleted successfully.
 
   layouts:
     shoppe:

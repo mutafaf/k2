@@ -18,10 +18,10 @@ class Shoppe::Store < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
 
-      # Don't import stores where the name is blank
+      # Don't import stores where the Address is blank
       next if row['Address'].nil?
       if store = where(address: row['Address']).take
-        # Dont import stores with the same name
+        # Dont import stores with the same Address
       else
         store = new
         store_no = row['Store No'].to_i

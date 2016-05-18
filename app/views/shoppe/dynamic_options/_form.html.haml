@@ -1,0 +1,24 @@
+= form_for @dynamic_option do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.dynamic_options.dynamic_option_detail') do
+    .splitContainer
+      %dl.half
+        %dt= f.label :title, t('shoppe.dynamic_options.title')
+        %dd= f.text_field :title, class: 'text focus'
+      %dl.half
+        %dt= f.label :options_for, t('shoppe.jobs.options_for')
+        %dd= f.select :options_for, Shoppe::DynamicOption::OPTIONS_FOR, {:selected => @dynamic_option.options_for}, {:class => 'chosen'}
+
+  %p.submit
+    - unless @dynamic_option.new_record?
+      %span.right
+        = link_to t('shoppe.dynamic_options.delete'),
+                  @dynamic_option,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.dynamic_options.delete_confirmation')}
+    = f.submit t('shoppe.dynamic_options.save'),
+               class: 'button green',
+               data: {disable_with: (@dynamic_option.new_record? ? t('shoppe.dynamic_options.creating_dynamic_option') : t('shoppe.dynamic_options.updating_dynamic_option'))}
+    = link_to t('shoppe.dynamic_options.cancel'), :dynamic_options, class: 'button'

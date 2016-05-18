@@ -1,0 +1,2 @@
+module Shoppe::DynamicOptionsHelper
+end

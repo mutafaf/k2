@@ -18,6 +18,13 @@ Rails.application.routes.draw do
     end
     resources :brands
     resources :careers
+    resources :dynamic_options do
+      collection do
+        get :import
+        post :import
+      end
+    end
+
   end
 
   get 'home/index'
