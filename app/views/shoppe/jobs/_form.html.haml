@@ -3,15 +3,13 @@
 
   = field_set_tag t('shoppe.jobs.job_detail') do
     .splitContainer
-      %dl.second
+      %dl.third
         %dt= f.label :name, t('shoppe.jobs.name')
         %dd= f.text_field :name, class: 'text focus'
-    .splitContainer
-      %dl.second
+      %dl.third
         %dt= f.label :status, t('shoppe.jobs.status')
         %dd= f.select :status, Shoppe::Job::STATUS, {:selected => @job.status ? '1' : '0'  }, {:class => 'chosen'}
-    .splitContainer
-      %dl.second
+      %dl.third
         %dt= f.label :position, t('shoppe.jobs.position')
         %dd= f.text_field :position, class: 'text focus'
     %dl

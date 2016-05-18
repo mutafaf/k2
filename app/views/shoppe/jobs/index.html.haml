@@ -16,7 +16,7 @@
     %tbody
       - if @jobs.empty?
         %tr.empty
-          %td= t('shoppe.jobs.no_jobs')
+          %td{:colspan => 2}= t('shoppe.jobs.no_jobs')
       - else
         - for job in @jobs
           %tr
