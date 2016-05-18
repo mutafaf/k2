@@ -1,3 +1,6 @@
+require 'roo'
+require 'globalize'
+
 class Shoppe::DynamicOption < ActiveRecord::Base
   self.table_name = 'shoppe_dynamic_options'
 
