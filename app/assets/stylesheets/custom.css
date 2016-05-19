@@ -7252,6 +7252,6 @@ ul, ol {
   margin-top: 6px;
 }
 
-@media (min-width: 992px){}
+@media (min-width: 992px){
 .container {width: 100%;}
 }
