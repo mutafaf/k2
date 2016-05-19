@@ -69,7 +69,7 @@
 
                <h1>Employee Info </h1>
                <%= f.select :relevant_experice, Shoppe::Career::RELEVANT_EXPERICE, {:prompt=>"Select Relevant Experiance"}, {class: "input-checkout"}%>
-               <%= f.select :designation, Shoppe::DynamicOption.array_for(Shoppe::Career::RELEVANT_EXPERICE), {:prompt=>"Select Designation"}, {class: "input-checkout"}%>
+               <%= f.select :designation, Shoppe::DynamicOption.array_for(Shoppe::Career::DESIGNATION), {:prompt=>"Select Designation"}, {class: "input-checkout"}%>
                <%= f.text_field :organization, class: "input-checkout", placeholder: "Organization"%>
                 <%= f.text_field :address, class: "input-checkout", placeholder: "Address"%>
                 <%= field_set_tag t('shoppe.products.attachments') do %>
