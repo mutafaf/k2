@@ -23,7 +23,8 @@ module Shoppe
 
     # Before saving an order item which belongs to a received order, cache the pricing again if appropriate.
     before_save do
-      if order.received? && (unit_price_changed? || unit_cost_price_changed? || tax_rate_changed? || tax_amount_changed?)
+      # if order.received? && (unit_price_changed? || unit_cost_price_changed? || tax_rate_changed? || tax_amount_changed?)
+      if order.received? && (unit_price_changed? || unit_cost_price_changed?)
         cache_pricing
       end
     end
@@ -162,7 +163,7 @@ module Shoppe
       write_attribute :weight, weight
       write_attribute :unit_price, unit_price
       write_attribute :unit_cost_price, unit_cost_price
-      write_attribute :tax_rate, tax_rate
+      # write_attribute :tax_rate, tax_rate
     end
 
     # Cache the pricing for this order item and save

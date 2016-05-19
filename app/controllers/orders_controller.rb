@@ -11,7 +11,11 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    redirect_to checkout_details_path if user_signed_in?
+    if current_order.total_items == 0
+      redirect_to basket_path, :alert=> "Please add any Item(s) to Cart."
+    else
+      redirect_to checkout_details_path if user_signed_in?
+    end
   end
 
   def details
