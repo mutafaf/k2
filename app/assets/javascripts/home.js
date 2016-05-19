@@ -14,8 +14,8 @@ $(window).load(function(){
  $('.flexslider').flexslider({
    animation: "slide",
    animationLoop: false,
-   itemWidth: 200,
-   itemMargin: 13,
+   itemWidth: 250,
+   itemMargin: 20,
   
    start: function(slider){
      $('body').removeClass('loading');

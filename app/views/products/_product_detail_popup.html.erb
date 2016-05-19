@@ -10,10 +10,10 @@
          <div class="modal-body">
             <article class="">
                <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                      <img src="<%= @product.try(:default_image).try(:path)%>" class="img-responsive" alt="" width="265" height="179">
                   </div>
-                  <div class="col-sm-8">
+                  <div class="col-md-9 col-sm-12">
                      <div class="product-item product-single">
                         <h3><%= @product.get_name %></h3>
                         <div>
@@ -21,6 +21,13 @@
                         </div>
 
                      </div>
+
+
+                      <div class="detail-tab">
+                     <div class="col-md-2 col-sm-3 col-xs-3">ID</div>
+                     <div class="col-md-9 col-sm-9 col-xm-3">UiTEWDSE</div>
+                     </div>
+                     <div class="clearfix"></div>
 <!--                      <div class="product-rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -45,6 +52,9 @@
                            <%end%>
                         </ul>
                      </ul>
+                    
+
+
                      <div class="popbottom">
                        <p><%= @product.description.try(:html_safe) %></p>
                      </div>
@@ -53,34 +63,36 @@
                      <div class="product-form clearfix">
                         <div id="popup_product_form" class="row row-no-padding ">
                            <%= form_tag product_path(@product.permalink), :method => :post, :class=>"form-inline" do %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 no-padding" style="width: 139px;">
+
+                              <div class="product-pop2" style="">
+                                <label class="label-pop">QTY:</label>
                                  <div class="product-quantity clearfix">
                                     <a class="btn btn-default btn-count" id="modal-qty-minus">-</a>
                                     <%= text_field_tag :quantity, params[:quantity], id: 'modal-qty', :class=>"form-control quent", :value=>"1" %>
                                     <a class="btn btn-default btn-count2" id="modal-qty-plus">+</a>
                                  </div>
                               </div>
-                              <div class="col-lg-3 col-md-4 col-sm-6 padding-left">
+                              <div class="product-pop">
                                  <div class="product-size">
                                     <% if @product.has_sizes? %>
                                        <div id="size_block" class="form-group">
-                                          <label>Size:</label>
+                                          <label class="label-pop">Size:</label>
                                        <%= select_tag 'size', options_for_select(@product.get_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                        </div>
                                     <% end %>
                                  </div>
                               </div>
-                              <div class="col-lg-3 col-md-4 col-sm-6 no-padding">
+                              <div class="product-pop">
                                  <div class="product-color">
                                  <% if @product.has_colors? %>
                                    <div id="color_block" class="form-group">
-                                      <label>Color:</label>
+                                      <label class="label-pop">Color:</label>
                                       <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                    </div>
                                  <% end %>
                                  </div>
                               </div>
-                              <div class="col-lg-3 col-md-12 col-sm-6">
+                              <div class="product-pop">
                                  <button type="submit" class="btn btn-primary add-to-cart" style="color: #ddd; background: #00215F;">
                                    <i class="fa fa-shopping-cart"></i>
                                    Add to cart
