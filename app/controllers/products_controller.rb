@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
     else
       begin
         current_order.order_items.add_item(@product, quantity, params[:size])
-        redirect_to basket_path, :notice => "Product has been added successfuly!"
+        redirect_to product_path(@product.permalink), :notice => "Product has been added successfuly!"
       rescue Shoppe::Errors::NotEnoughStock
         flash[:error] = "Not enough stock available for this product."
         redirect_to product_path(@product.permalink)

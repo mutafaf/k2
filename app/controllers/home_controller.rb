@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 
   def find_nearest_stores
     if params[:lat] and params[:lng]
-      @stores = Shoppe::Store.near([params[:lat], params[:lng]], 5)
+      @stores = Shoppe::Store.near([params[:lat], params[:lng]], 10)
     end
   end
 

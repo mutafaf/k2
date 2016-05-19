@@ -57,6 +57,7 @@ module Shoppe
     validates :name, presence: true
     validates :permalink, presence: true, uniqueness: true, permalink: true
     validates :sku, presence: true
+    validates :article_no, :brand, presence: true
     # validates_presence_of :size_ids, :message => "Available Sizes can't be blank" 
     validates :weight, numericality: true
     validates :price, numericality: true
@@ -331,6 +332,30 @@ module Shoppe
 
       return category, products
     end
+
+    def styles
+      products = self.product_category.products.where.not(id:self.id)
+      if products
+        products = products.order("created_at DESC").limit(3)
+      else
+        products = Shoppe::Product.last(3)
+      end
+    end
+
+    # def styles
+    #   if self.variant?
+    #     current_product = self.parent
+    #   else
+    #     current_product = self
+    #   end
+
+    #   products = current_product.product_category.products.where.not(id:current_product.id)
+    #   if products
+    #     products = products.order("created_at DESC").limit(3)
+    #   else
+    #     products = Shoppe::Product.last(3)
+    #   end
+    # end
 
     private
 

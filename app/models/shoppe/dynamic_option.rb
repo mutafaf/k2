@@ -4,7 +4,7 @@ require 'globalize'
 class Shoppe::DynamicOption < ActiveRecord::Base
   self.table_name = 'shoppe_dynamic_options'
 
-   OPTIONS_FOR = ["Gender", "Marital Status", "Highest Degree", "Educational Board", "Certificate Programme", "University", "Province", "City"]
+   OPTIONS_FOR = ["Gender", "Marital Status", "Highest Degree", "Educational Board", "Certificate Programme", "Institute", "Province", "City", "Designation"]
 
    scope :ordered, -> { order("created_at DESC") }
 

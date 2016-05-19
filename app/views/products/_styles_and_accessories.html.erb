@@ -9,60 +9,29 @@
                      <h3 >STYLES YOU MAY LIKE:</h3>
                   </center>
                   <br><br>
-                  <div class="col-md-4">
-                     <article class="product-item pro-inner style-may-you ">
-                        <div class="row">
-                           <div class="col-sm-3">
-                              <div class="" >
-                                 <img src="/assets/products/crop.png" class="img-responsive" alt="">
-                                 <div class="product-body" >
-                                    <h3>TAMARA</h3>
-                                    <span class="price">
-                                    <del><span class="amount">$36.00</span></del>
-                                    <ins><span class="amount">$30.00</span></ins>
-                                    </span>                                          
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
-                  <div class="col-md-4">
-                     <article class="product-item pro-inner style-may-you ">
-                        <div class="row">
-                           <div class="col-sm-3">
-                              <div class="" >
-                                 <img src="/assets/products/crop2.png" class="img-responsive" alt="">
-                                 <div class="product-body">
-                                    <h3>TAMARA</h3>
-                                    <span class="price">
-                                       <!--  <del><span class="amount">$36.00</span></del> -->
-                                       <ins><span class="amount">Rs 30.00</span></ins>
-                                    </span>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
-                  <div class="col-md-4">
-                     <article class="product-item pro-inner style-may-you ">
-                        <div class="row">
-                           <div class="col-sm-3">
-                              <div class="" >
-                                 <img src="/assets/products/crop.png" class="img-responsive" alt="">
-                                 <div class="product-body" >
-                                    <h3>TAMARA</h3>
-                                    <span class="price">
-                                       <!-- <del><span class="amount">$36.00</span></del> -->
-                                       <ins><span class="amount">Rs 30.00</span></ins>
-                                    </span>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
+                  <% if @product.styles.present? %>
+                   <% @product.styles.each do |product| %>
+                   <div class="col-md-4">
+                      <article class="product-item pro-inner style-may-you ">
+                         <div class="row">
+                            <div class="col-sm-3">
+                               <a href="<%=product_path(product.permalink)%>">
+                                  <div class="" >
+                                     <img src="<%= product.try(:default_image).try(:path) %>" class="product-permalink" width="148" height="148" > class="img-responsive" alt="">
+                                     <div class="product-body" >
+                                        <h3><%= product.name %></h3>
+                                        <span class="price">
+                                        <ins><span class="amount"><%= number_to_currency product.price %></span></ins>
+                                        </span>                                          
+                                     </div>
+                                  </div>
+                               </a>
+                            </div>
+                         </div>
+                      </article>
+                   </div>
+                   <% end %>
+                  <% end %>
                </div>
                <div class="col-md-6">
                   <center>
