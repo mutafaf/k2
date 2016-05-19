@@ -1,8 +1,4 @@
-<br>
-<center>
-   <h3 class="text-uppercase"><%= get_category_sequence(@product) %></h3>
-</center>
-<br>
+
 <div class="col-md-7">
    <div id="example">
       <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
@@ -66,8 +62,7 @@
                       <%#= link_to product_path(v.permalink) do%>
                         <%#= v.name %>
 
-                       <div class="color1" style="background:#<%= v.color %>;cursor:pointer;" onclick="updateProductDisplay(this)">
-                       <%= hidden_field_tag :color,{}, :value=>"#{v.permalink}" %>
+                       <div id="<%= v.permalink %>" class="color1" style="background:#<%= v.color %>;cursor:pointer;" onclick="updateProductDisplay(this)">
                        </div>
                       <%# end %>
                     <% end %>

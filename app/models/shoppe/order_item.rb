@@ -127,7 +127,8 @@ module Shoppe
     #
     # @return [BigDecimal]
     def tax_rate
-      read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, order) || BigDecimal(0)
+      BigDecimal(0)
+      # read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, order) || BigDecimal(0)
     end
 
     # The total tax for the item
@@ -155,7 +156,8 @@ module Shoppe
     #
     # @return [BigDecimal]
     def total
-      tax_amount + sub_total
+      # tax_amount + sub_total
+      sub_total
     end
 
     # Cache the pricing for this order item

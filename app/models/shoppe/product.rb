@@ -7,6 +7,12 @@ module Shoppe
 
     QUANTITY = (1..15).to_a
 
+    PER_PAGE = 4
+
+    NEW_ARRIVALS = "New Arrivals"
+
+    HOT_SELLING = "Hot Selling"
+
     # Add dependencies for products
     require_dependency 'shoppe/product/product_attributes'
     require_dependency 'shoppe/product/variants'
@@ -64,6 +70,12 @@ module Shoppe
 
     # All featured products
     scope :featured, -> { where(featured: true) }
+
+    # All New Arrivals products
+    scope :new_arrivals, -> { where(new_arrivals: true) }
+
+    # All Hot Selling products
+    scope :hot_selling, -> { where(hot_selling: true) }
 
     # Localisations
     translates :name, :permalink, :description, :short_description
@@ -241,6 +253,34 @@ module Shoppe
       return self.sizes
     end
 
+    def get_available_sizes
+      if self.has_variants? and self.default_variant.present?
+        current_product = self.default_variant
+        sizes = self.default_variant.sizes
+      else
+        current_product = self
+        sizes = self.sizes
+      end
+
+      #Get stock info, size wise only If current product has enabled stock control
+      if current_product.stock_control?
+        return stockable_sizes(current_product, sizes)
+      else
+        return sizes
+      end
+      
+    end
+
+    def stockable_sizes(current_product, sizes)
+      available_sizes = []
+      sizes.each do |size|
+        if current_product.stock(size.id) > 0
+          available_sizes << size
+        end
+      end
+      return available_sizes
+    end
+
     def get_colors
       return  self.parent.variants.collect(&:color) if self.variant?
       return self.variants.collect(&:color)
@@ -265,6 +305,31 @@ module Shoppe
 
     def has_colors?
       !get_colors.empty?
+    end
+
+    def self.find_products(params)
+      category = ""
+      if params[:new_arrivals].present?
+        category = NEW_ARRIVALS
+        products = self.new_arrivals.page(params[:page]).per(PER_PAGE)
+
+      elsif params[:hot_selling].present?
+        category = HOT_SELLING
+        products = self.hot_selling.page(params[:page]).per(PER_PAGE)
+
+      elsif params[:category_permalink].present?
+        category = Shoppe::ProductCategory.ordered.find_by_permalink(params[:category_permalink])
+        products = category.products.page(params[:page]).per(PER_PAGE) if category
+
+      elsif params[:category_name].present?
+        category = Shoppe::ProductCategory.search_home_category(params[:category_name])
+        products = category.products.page(params[:page]).per(PER_PAGE) if category
+
+      else
+        products = Shoppe::Product.root.active.page(params[:page]).per(PER_PAGE) #.ordered.includes(:product_categories, :variants)
+      end
+
+      return category, products
     end
 
     private

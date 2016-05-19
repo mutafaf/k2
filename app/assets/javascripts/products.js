@@ -35,7 +35,7 @@ $(function() {
 });
 
 function updateProductDisplay(element){
-  var permalink = color_value = $(element).find('input').val();
+  var permalink = color_value = $(element).attr("id");
    $.ajax({
      url: '/product/'+permalink,
      data: {color: true},

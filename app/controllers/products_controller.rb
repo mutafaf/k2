@@ -1,17 +1,12 @@
 class ProductsController < ApplicationController
   def index
-    if params[:category_permalink].present?
-      @category = Shoppe::ProductCategory.ordered.find_by_permalink(params[:category_permalink])
-      @products = @category.products.page(params[:page]).per(4) if @category
-    elsif params[:name].present?
-      @category = Shoppe::ProductCategory.search_home_category(params[:name])
-      @products = @category.products.page(params[:page]).per(4) if @category
-    else
-      @products = Shoppe::Product.root.active.page(params[:page]).per(4) #.ordered.includes(:product_categories, :variants)
-    end
+
+    @category, @products = Shoppe::Product.find_products(params)
+
     @product_categories_without_parent = Shoppe::ProductCategory.without_parent.custom_ordered
     # @products = @products.group_by(&:product_category)
     @pagination = params[:pagination]
+
     respond_to do |format|
       format.js{}
       format.html{}
@@ -26,7 +21,7 @@ class ProductsController < ApplicationController
       @product = @product.parent # get default variant here
     end
 
-    @sizes = @product.get_sizes
+    @sizes = @product.get_available_sizes
     @variants = @product.get_variants
 
     if request.xhr?
@@ -40,7 +35,6 @@ class ProductsController < ApplicationController
   end
 
   def buy
-    params[:permalink] = params[:color] if params[:color]
     @product = Shoppe::Product.active.find_by_permalink!(params[:permalink])
     quantity = params[:quantity] ? params[:quantity].to_i : 1
 

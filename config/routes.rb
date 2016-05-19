@@ -37,7 +37,6 @@ Rails.application.routes.draw do
   get "brand/:permalink", to: "home#brand_page", as: "brand"
   # root to: "products#index"
 
-  post "product/:permalink", to: "products#buy"
   get "basket", to: "orders#show"
   delete "basket", to: "orders#destroy"
   post "update_order_items", to: "orders#update_order_items"
