@@ -17,7 +17,7 @@
                             <div class="col-sm-3">
                                <a href="<%=product_path(product.permalink)%>">
                                   <div class="" >
-                                     <img src="<%= product.try(:default_image).try(:path) %>" class="product-permalink" width="148" height="148" > class="img-responsive" alt="">
+                                     <img style=" width: 100%" src="<%= product.try(:default_image).try(:path) %>" class=""  class="img-responsive " alt="" >
                                      <div class="product-body" >
                                         <h3><%= product.name %></h3>
                                         <span class="price">
