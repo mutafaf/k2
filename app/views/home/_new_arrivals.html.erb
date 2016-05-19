@@ -17,11 +17,20 @@
                      <ul class="slides">
                         <% @new_arrivals.each do |product| %>
                         <li>
+                        <a href="<%=product_path(product.permalink) %>">
                            <div>
                               <article class="product-item" style="border: solid 1px #fff;">
+                              <div style="height: 160px;
+       line-height: 300px;  
+       display: flex;
+       overflow: hidden;
+       vertical-align: middle;
+       text-align: center;
+       margin: auto;">
                                  <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive product_image_size" alt="">
+                                 </div>
                                  <h3>
-                                    <%= link_to product.name, product_path(product.permalink) , 'data-no-turbolink' => true%>
+                                    <%= product.name%>
                                  </h3>
                                  <span class="price">
                                  <del><span class="amount">Rs 36.00</span></del>
@@ -30,6 +39,7 @@
                                  <br> <br>
                               </article>
                            </div>
+                           </a>
                         </li>
                         <% end %>
                      </ul>
