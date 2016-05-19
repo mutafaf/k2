@@ -7071,9 +7071,11 @@ ul, ol {
 }
 
 .parallax_footer{
-  background-image: url("/assets/footer-img.jpg");
-      background-attachment: fixed;
-      padding: 5%;
+background-image: url("/assets/footer-img.jpg");
+    
+    padding: 5%;
+    /* background-repeat: round; */
+    background-size: cover;
 }
 
 .product_image_size {
@@ -7111,10 +7113,21 @@ ul, ol {
 .button-grnt { margin-left: 145px !important;}
 .col-xs-6 {width: 100% !important;}
 .border-left { border-left: solid 0px #ccc !important;}
+#homepage-2-carousel .slide-2 h1 {
+		font-size:26px;
+		margin:59px 0 0 ; 
+	}
+
+.flex-nav-next{ display: none; }
+.flex-nav-prev{ display: none; }
+
 
 }
 
 @media screen and (min-width: 320px) and (max-width: 479px) {
+	.flex-nav-next{ display: none; }
+.flex-nav-prev{ display: none; }
+
    .label-danger { margin-top: -5px !important;}
 
 	.navbar-default {position: relative !important;}
@@ -7123,17 +7136,45 @@ ul, ol {
 .flexslider .carousel{ width: 80% !important; margin: auto !important; }
 .flex-control-nav{ display: none !important;}
 .inputnews { width: 100% !important;}
-.button-grnt { margin-left: 145px !important;}
+.button-grnt { margin-left: 72% !important;}
 .col-xs-6 {width: 100% !important;}
 .border-left { border-left: solid 0px #ccc !important;}
 .style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
+#homepage-2-carousel .slide-2 h1 {
+		font-size:26px;
+		margin:59px 0 0;
+	}
+
+
+.flexslider {
+   width: 90% !important ; margin: auto;}
+
 }
 
 @media screen and (min-width: 480px) and (max-width: 639px) {
+	.flex-nav-next{ display: none; }
+.flex-nav-prev{ display: none; }
+
+	#homepage-2-carousel .slide-2 h1 {
+		font-size:26px;
+		margin:0px 0 0;
+	}
 	.navbar-default {position: relative !important;}
 	.navbar { margin-bottom: 0px !important;}
   .label-danger { margin-top: -5px !important;}
   .style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
+.flex-next { display: none; }
+
+
+.jumbotron .owl-carousel .item {
+  
+    width: 100%;
+    background-size: cover;
+    background-repeat: round;
+}
+
+.flexslider {
+   width: 90% !important ; margin: auto;}
 
 }
 
@@ -7156,6 +7197,15 @@ ul, ol {
   height:100%;
  }
  .style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
+ .jumbotron .owl-carousel .item {
+  
+    width: 100%;
+    background-size: cover;
+    background-repeat: round;
+}
+
+.flexslider {
+   width: 90% !important ; margin: auto;}
 }
 
 @media screen and (min-width: 768px) and (max-width: 1003px) {
@@ -7168,7 +7218,12 @@ ul, ol {
 .vertical-menu .jumbotron .owl-carousel .item {
   height:100%!important;
  }
- 
+ .jumbotron .owl-carousel .item {
+  
+    width: 100%;
+    background-size: cover;
+    background-repeat: round;
+}
  .jumbotron-full-height {
   height:auto;
  }
@@ -7176,25 +7231,48 @@ ul, ol {
  .vertical-menu .jumbotron-full-height {
   height:100%;
  }
+
+
+.flexslider {
+   width: 90% !important ; margin: auto;}
 }
 
 @media screen and (min-width: 1004px) and (max-width: 1259px) {
 
+.flexslider {
+   width: 80% !important ; margin: auto;}
+}
+
+
 }
 
 @media screen and (min-width: 1260px) and (max-width: 1279px) {
+	
+.flexslider {
+       width: 1065px; margin: auto;}
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1365px) {
+
+.flexslider {
+    width: 1065px;  margin: auto;}
 }
 
 @media screen and (min-width: 1366px) and (max-width: 1599px) {
+
+.flexslider {
+   width: 1065px; margin: auto;}
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1679px) {
+
+.flexslider {
+    width: 1065px; margin: auto;}
 }
 
 @media screen and (min-width: 1680px) {
+	.flexslider {
+    width: 1065px; margin: auto;}
 }
 
 
@@ -7225,8 +7303,6 @@ ul, ol {
     margin: 0px 5px;
 }
 
-.flexslider {
-   width: 90% !important; margin: auto;}
    .phoneicones{ float: left; margin-left:5%; } 
 
    .phoneicones ul li{ float: left;  width: 50px;}
@@ -7257,6 +7333,7 @@ ul, ol {
 @media (min-width: 992px){
 .container {width: 100%;}
 }
+}
 
 .image-size2{ height: 160px;
        line-height: 300px;
@@ -7266,3 +7343,15 @@ ul, ol {
        vertical-align: middle;
        text-align: center;
        margin: auto;}
+
+/*.....................*/
+       .quent {
+    width: 50px !important;
+    border: 2px solid #A5A3A3 !important;
+    height: 39px;
+    text-align: center;
+    float: left !important;
+}
+
+.btn-count2 {float: left !important;}
+.product-pop{width: 140px;float: left;}
