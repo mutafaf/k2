@@ -14,7 +14,7 @@ $(window).load(function(){
  $('.flexslider').flexslider({
    animation: "slide",
    animationLoop: false,
-   itemWidth: 250,
+   itemWidth: 248,
    itemMargin: 20,
   
    start: function(slider){
