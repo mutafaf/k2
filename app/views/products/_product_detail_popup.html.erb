@@ -21,6 +21,13 @@
                         </div>
 
                      </div>
+
+
+                      <div class="detail-tab">
+                     <div class="col-md-2 col-sm-3 col-xs-3">ID</div>
+                     <div class="col-md-9 col-sm-9 col-xm-3">UiTEWDSE</div>
+                     </div>
+                     <div class="clearfix"></div>
 <!--                      <div class="product-rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -45,6 +52,9 @@
                            <%end%>
                         </ul>
                      </ul>
+                    
+
+
                      <div class="popbottom">
                        <p><%= @product.description.try(:html_safe) %></p>
                      </div>
@@ -53,7 +63,9 @@
                      <div class="product-form clearfix">
                         <div id="popup_product_form" class="row row-no-padding ">
                            <%= form_tag product_path(@product.permalink), :method => :post, :class=>"form-inline" do %>
-                              <div class="product-pop" style="">
+
+                              <div class="product-pop2" style="">
+                                <label class="label-pop">QTY:</label>
                                  <div class="product-quantity clearfix">
                                     <a class="btn btn-default btn-count" id="modal-qty-minus">-</a>
                                     <%= text_field_tag :quantity, params[:quantity], id: 'modal-qty', :class=>"form-control quent", :value=>"1" %>
@@ -64,7 +76,7 @@
                                  <div class="product-size">
                                     <% if @product.has_sizes? %>
                                        <div id="size_block" class="form-group">
-                                          <label>Size:</label>
+                                          <label class="label-pop">Size:</label>
                                        <%= select_tag 'size', options_for_select(@product.get_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                        </div>
                                     <% end %>
@@ -74,7 +86,7 @@
                                  <div class="product-color">
                                  <% if @product.has_colors? %>
                                    <div id="color_block" class="form-group">
-                                      <label>Color:</label>
+                                      <label class="label-pop">Color:</label>
                                       <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                    </div>
                                  <% end %>

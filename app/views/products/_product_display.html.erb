@@ -45,6 +45,7 @@
               <br>
               <% if @sizes.present? %>
                 <div id="size_block">
+                <div class="clearfix"></div>
                   <h3>Available Sizes</h3>
                   <% @sizes.each do |s| %>
                   <div onclick="selectSize(this)" class="size-list" style="    border: solid 1px #ddd;
@@ -74,7 +75,7 @@
                   </div>
                 </div>
               <% end %>
-              <br>
+             
               <h3>Quantity</h3>
               <div class="product-quantity clearfix">
                  <a class="btn btn-default" id="modal-qty-minus">-</a>
