@@ -247,11 +247,11 @@ module Shoppe
     end
 
     def self.new_arrivals
-      where(new_arrivals: true).limit(6)
+      where(new_arrivals: true).limit(15)
     end
 
     def self.hot_selling
-      where(hot_selling: true).limit(6)
+      where(hot_selling: true).limit(15)
     end
 
     def get_product_attributes

@@ -33,7 +33,7 @@
                </div>
                <div class="col-md-6">  
                   <span class="checkout-bulit">Phone Number*</span>
-                  <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" , :required=>true, :autocomplete=> :off %>
+                  <%= f.text_field :phone_number, :class=>"input-checkout", :placeholder=>"0321-xxxxxxx / 0423-xxxxxxx" , :required=>true, :autocomplete=> :off, :pattern=>"^([0|\+[0-9]{1,5})?([1-9][0-9]{9})$" %>
                </div>
                <div style="clear:both"></div>
                <hr>

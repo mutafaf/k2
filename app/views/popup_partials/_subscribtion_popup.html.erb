@@ -21,7 +21,7 @@
                         <br>
                         <div class="input-group" style="    width: 100%;
                            margin-bottom: 5px;">
-                           <%= text_field_tag :contact_no, params[:contact_no], :class=>"form-control", :placeholder=>"Number", :required=>true ,:style=>"background: transparent;border: solid 1px;" %>
+                           <%= text_field_tag :contact_no, params[:contact_no], :class=>"form-control", :placeholder=>"Number", :required=>true ,:style=>"background: transparent;border: solid 1px;", :pattern=>"^([0|\+[0-9]{1,5})?([1-9][0-9]{9})$" %>
                         </div>
                         <br>
                         <span class="input-group-btn">
