@@ -21,37 +21,35 @@
                         </div>
 
                      </div>
-
-
+                     <br>
                       <div class="detail-tab">
-                     <div class="col-md-2 col-sm-3 col-xs-3">ID</div>
-                     <div class="col-md-9 col-sm-9 col-xm-3">UiTEWDSE</div>
+                       <div class="col-md-2 col-sm-3 col-xs-3">
+                         <% if @product.in_stock? %>
+                           In Stock
+                         <% else %>
+                           Out of stock
+                         <% end %>
+                       </div>
                      </div>
                      <div class="clearfix"></div>
-<!--                      <div class="product-rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                     </div> -->
-                       
-                     <ul class="list-unstyled product-info">
-                        <li><span>ID:</span>U-187423</li>
-                        <li><span>Availability:</span>
-                        <% if @product.in_stock? %>
-                          In Stock
-                        <% else %>
-                          Out of stock
-                        <% end %>
-                        </li>
-                        <li><span>Brand:</span>Esprit</li>
-                        <ul>
-                          <% @product.get_product_attributes.each do |attribute| %>
-                           <li><%= attribute.key %> _ <%= attribute.value %></li>
-                           <%end%>
-                        </ul>
-                     </ul>
+                      <div class="detail-tab">
+                       <div class="col-md-2 col-sm-3 col-xs-3">ID:</div>
+                       <div class="col-md-9 col-sm-9 col-xm-3"><%= @product.article_no %></div>
+                     </div>
+                     <div class="clearfix"></div>
+                      <div class="detail-tab">
+                       <div class="col-md-2 col-sm-3 col-xs-3">Brand:</div>
+                       <div class="col-md-9 col-sm-9 col-xm-3"><%= @product.brand %></div>
+                     </div>
+                     <div class="clearfix"></div>
+                     <br>
+                     <% @product.get_product_attributes.each do |attribute| %>
+                        <div class="detail-tab">
+                         <div class="col-md-2 col-sm-3 col-xs-3"><%= attribute.key %>: </div>
+                         <div class="col-md-9 col-sm-9 col-xm-3"><%= attribute.value %></div>
+                       </div>
+                     <%end%>
+                     <div class="clearfix"></div>
                     
 
 

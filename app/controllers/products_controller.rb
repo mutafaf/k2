@@ -23,7 +23,6 @@ class ProductsController < ApplicationController
 
     @sizes = @product.get_available_sizes
     @variants = @product.get_variants
-    @styles = @product.styles
 
     if request.xhr?
       if params[:color].present?
