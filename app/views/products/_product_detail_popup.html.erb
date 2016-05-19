@@ -77,7 +77,7 @@
                                     <% if @product.has_sizes? %>
                                        <div id="size_block" class="form-group">
                                           <label class="label-pop">Size:</label>
-                                       <%= select_tag 'size', options_for_select(@product.get_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1"} %>
+                                       <%= select_tag 'size', options_for_select(@product.get_available_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1"} %>
                                        </div>
                                     <% end %>
                                  </div>

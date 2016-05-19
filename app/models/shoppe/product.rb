@@ -332,6 +332,15 @@ module Shoppe
       return category, products
     end
 
+    def styles
+      products = self.product_category.products.where.not(id:self.id)
+      if products
+        products = products.order("created_at DESC").limit(3)
+      else
+        products = Shoppe::Product.last(3)
+      end
+    end
+
     private
 
     # Validates

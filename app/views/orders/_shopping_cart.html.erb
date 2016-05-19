@@ -19,7 +19,7 @@
            <!-- <p class="details-cart">peltro distressed (H38222)</p> -->
            <% if item.ordered_item.has_sizes? %>
              <strong>Size: </strong>
-             <%= select_tag 'size', options_for_select(item.ordered_item.get_sizes.collect(&:name), item.size), :class=> "qty", :onChange=>"updateOrderItem(this)" %>
+             <%= select_tag 'size', options_for_select(item.ordered_item.get_available_sizes.collect(&:name), item.size), :class=> "qty", :onChange=>"updateOrderItem(this)" %>
            <% end %>
         </div>
         <div class="col-md-3  allan">
