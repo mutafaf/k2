@@ -11,8 +11,8 @@
   %body
     %nav.sidebar{:style => "overflow-y: scroll;"}
       %header.logo
-        %h1= link_to "Shoppe", root_path
-        %p v#{Shoppe::VERSION}
+        / %h1= link_to "Shoppe", root_path
+        / %p v#{Shoppe::VERSION}
       %p.logged= t('.logged_in_as', user_name: current_user_admin.full_name)
 
       %ul
