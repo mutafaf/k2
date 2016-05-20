@@ -9,7 +9,7 @@
       window.Shoppe = {}
       window.Shoppe.currencyUnit = "#{h Shoppe.settings.currency_unit}";
   %body
-    %nav.sidebar
+    %nav.sidebar{:style => "overflow-y: scroll;"}
       %header.logo
         %h1= link_to "Shoppe", root_path
         %p v#{Shoppe::VERSION}
@@ -30,5 +30,5 @@
         = yield
 
     %footer
-      %p.store= link_to "&larr; #{t('.goto')} #{Shoppe.settings.store_name}".html_safe, '/'
+      / %p.store= link_to "&larr; #{t('.goto')} #{Shoppe.settings.store_name}".html_safe, '/'
 
