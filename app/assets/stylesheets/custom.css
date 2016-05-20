@@ -7073,6 +7073,7 @@ background-image: url("/assets/footer-img.jpg");
     padding: 5%;
     /* background-repeat: round; */
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .product_image_size {
@@ -7403,3 +7404,5 @@ body{font-family: 'HelveticaNeueLTPro-Th' !important;}
 .size-select{ width: 50% }
 
 
+.dob{ width: 25% !important; float: left;; }
+.parsley-errors-list label { margin-top: 6px; }

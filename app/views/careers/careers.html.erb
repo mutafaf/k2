@@ -53,8 +53,8 @@
             <%= f.text_field :email, class: "input-checkout", placeholder: "Email", required: true%>
             <%= f.text_field :contact_no, class: "input-checkout", placeholder: "Contact Number", required: true%>
             <%= f.text_field :cnic_no, class: "input-checkout", placeholder: "NIC", required: true%>
-            <label>Date of Birth</label><br>
-            <%= f.date_select :date_of_birth, {}, class: "input-checkout date_of_birth", required: true%>
+            <label style="margin-top: 20px; text-align: left;" class=" dob">Date of Birth</label><br>
+            <%= f.date_select :date_of_birth, {}, class: "input-checkout date_of_birth dob", required: true%>
             <%= f.select :gender, Shoppe::Career::GENDER, {:prompt=>"Select Gender"}, {class: "input-checkout"}%>
             <%= f.select :martial_status, Shoppe::Career::MARTIAL_STATUS, {:prompt=>"Select Maritial Status"}, {class: "input-checkout"}%>
             <%= f.text_field :mailing_address, class: "input-checkout", placeholder: "Mailing address"%>
@@ -102,3 +102,8 @@
     </div>
   </div>
 </div>
+<style type="text/css">
+  
+  #career_date_of_birth_1i{position: relative;
+    margin-top: 3px;}
+</style>
