@@ -15,7 +15,7 @@ $(window).load(function(){
    animation: "slide",
    animationLoop: false,
    itemWidth: 248,
-   itemMargin: 20,
+   itemMargin: 21,
   
    start: function(slider){
      $('body').removeClass('loading');

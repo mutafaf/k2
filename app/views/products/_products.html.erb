@@ -1,10 +1,14 @@
 
   <% @products.each do |product| %>
   <!-- PRODUCT - START -->
-  <div class=" col-md-3 col-sm-4 col-xs-6">
+
+
+  <div class=" col-md-3 col-sm-4  products-item ">
+
+
      <article class="product-item ">
         <div class="row border-shade">
-           <div class="col-md-3 ">
+           <div class="col-md-3  ">
               <div class="">
                  <div class="product-mask"></div>
                  <a href="<%=product_path(product.permalink)%>" class="product-permalink" ></a>
@@ -23,6 +27,10 @@
                  </div>
               </div>
            </div>
+
+
+
+
            <div class="col-sm-9" style="    padding: 0px;">
               <div class="product-body">
                  <h3><%= link_to product.name, product_path(product.permalink)%></h3>
