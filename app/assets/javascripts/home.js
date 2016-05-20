@@ -84,3 +84,11 @@ function showPosition (position) {
       find_nearest_stores(current_location.lat(), current_location.lng());
     }
 }
+
+function show_other_field(element){
+  if ($(element).val() == "Other") {
+  $('#other_institute').removeClass("hidden");
+  } else {
+    $('#other_institute').addClass('hidden');
+  }
+}

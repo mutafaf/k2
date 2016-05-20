@@ -65,17 +65,19 @@ module Shoppe
       unless separate_delivery_address?
         self.delivery_name = nil
         self.delivery_address1 = nil
-        self.delivery_address2 = nil
-        self.delivery_address3 = nil
-        self.delivery_address4 = nil
-        self.delivery_postcode = nil
+        # self.delivery_address2 = nil
+        # self.delivery_address3 = nil
+        # self.delivery_address4 = nil
+        # self.delivery_postcode = nil
+        self.delivery_city = nil
         self.delivery_country = nil
       end
     end
 
     # Create some delivery_ methods which will mimic the billing methods if the order does
     # not need a seperate address.
-    [:delivery_name, :delivery_address1, :delivery_address2, :delivery_address3, :delivery_address4, :delivery_postcode, :delivery_country].each do |f|
+    # [:delivery_name, :delivery_address1, :delivery_address2, :delivery_address3, :delivery_address4, :delivery_postcode, :delivery_country].each do |f|
+      [:delivery_name, :delivery_address1, :delivery_city, :delivery_country].each do |f|
       define_method(f) do
         separate_delivery_address? ? super() : send(f.to_s.gsub('delivery_', 'billing_'))
       end
