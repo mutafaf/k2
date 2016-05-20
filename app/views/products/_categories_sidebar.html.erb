@@ -1,9 +1,26 @@
-<% unless @product_categories_without_parent.empty? %>
+
+<nav class="navbar navbar-default  prodect-menu">
+  <div class="container-fluid " style="padding: 0;">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand catgory-phone" href="#"><h2>Categories</h2></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse text-left-phone" id="bs-example-navbar-collapse-1" style="padding:0px;">
+      
+     <% unless @product_categories_without_parent.empty? %>
    <% for cat in @product_categories_without_parent %>
-      <ul id="MainMenu" style="list-style: none;">
+      <ul id="MainMenu"  class=" text-left-phone" style="list-style: none;">
         <li class="list-group " style="    margin-bottom: 0px;">
           <a id="<%= cat.permalink %>" href="#<%= cat.id %>-cat" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu" onclick="getProducts(this)"><%= cat.name %></a>
-          <li class="collapse" id="<%= cat.id %>-cat">
+          <li class="collapse " id="<%= cat.id %>-cat">
              <ul>
              <% if cat.children.count > 0 %>
                <%= nested_product_category_rows2(cat)%>
@@ -14,4 +31,10 @@
       </ul>
    <% end %>
 <% end %>
+
+      
+       
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <br><br><br>
