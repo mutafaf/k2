@@ -54,7 +54,7 @@
             <%= f.text_field :contact_no, class: "input-checkout", placeholder: "Contact Number", required: true%>
             <%= f.text_field :cnic_no, class: "input-checkout", placeholder: "NIC", required: true%>
             <label style="margin-top: 20px; text-align: left;" class=" dob">Date of Birth</label><br>
-            <%= f.date_select :date_of_birth, {}, class: "input-checkout date_of_birth dob", required: true%>
+            <%= f.date_select :date_of_birth, {start_year: 100.years.ago.year}, class: "input-checkout date_of_birth dob", required: true%>
             <%= f.select :gender, Shoppe::Career::GENDER, {:prompt=>"Select Gender"}, {class: "input-checkout"}%>
             <%= f.select :martial_status, Shoppe::Career::MARTIAL_STATUS, {:prompt=>"Select Maritial Status"}, {class: "input-checkout"}%>
             <%= f.text_field :mailing_address, class: "input-checkout", placeholder: "Mailing address"%>
@@ -63,7 +63,9 @@
             <h1>Educational Info </h1>
 
              <%= f.select :highest_degree, Shoppe::DynamicOption.array_for(Shoppe::Career::HIGHEST_DEGREE), {:prompt=>"Select Highest Degree"}, {class: "input-checkout"}%>
-             <%= f.select :institute, Shoppe::DynamicOption.array_for(Shoppe::Career::INSTITUE), {:prompt=>"Select Institute"}, {class: "input-checkout"}%>
+             <%= f.select :institute, Shoppe::DynamicOption.array_for(Shoppe::Career::INSTITUE), {:prompt=>"Select Institute"}, {class: "input-checkout", onChange: "show_other_field(this)"}%>
+
+             <%= text_field_tag :other_institute,params[:other_institute], class: "input-checkout hidden", placeholder: "Other Institute"%>
              <%= f.select :year_of_completion, Shoppe::Career::YEAR_OF_COMPLETION, {:prompt=>"Select Year Of Completion"}, {class: "input-checkout"}%>
              <%= f.text_field :certification, class: "input-checkout", placeholder: "Certification"%>
 
@@ -75,9 +77,6 @@
                 <%= field_set_tag t('shoppe.products.attachments') do %>
                   <div class="splitContainer">
                     <dl class="half">
-                      <dt>
-                        <%= f.label "attachments[default_image][file]", t('shoppe.products.default_image') %>
-                      </dt>
                       <dd>
                         <%= attachment_preview @career.default_image %>
                         <p>

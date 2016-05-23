@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
       @product = @product.default_variant # get default variant here
     end
 
-    if params[:size].blank? and @product.has_sizes?
+    if params[:size].blank? and @product.try(:has_sizes?)
     redirect_to product_path(@product.permalink), :alert => "Please select any Size."
     else
       begin

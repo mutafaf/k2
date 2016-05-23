@@ -57,7 +57,7 @@ module Shoppe
     validates :name, presence: true
     validates :permalink, presence: true, uniqueness: true, permalink: true
     validates :sku, presence: true
-    validates :article_no, :brand, presence: true
+    # validates :article_no, :brand, presence: true
     # validates_presence_of :size_ids, :message => "Available Sizes can't be blank" 
     validates :weight, numericality: true
     validates :price, numericality: true
@@ -84,7 +84,7 @@ module Shoppe
 
     def attachments=(attrs)
       if attrs['default_image']['file'].present? then attachments.build(attrs['default_image']) end
-      if attrs['data_sheet']['file'].present? then attachments.build(attrs['data_sheet']) end
+      # if attrs['data_sheet']['file'].present? then attachments.build(attrs['data_sheet']) end
 
       if attrs['extra']['file'].present? then attrs['extra']['file'].each { |attr| attachments.build(file: attr, parent_id: attrs['extra']['parent_id'], parent_type: attrs['extra']['parent_type']) } end
     end

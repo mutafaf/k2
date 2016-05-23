@@ -25,16 +25,16 @@
     - unless @product.has_variants?
       %dl
         %dt= f.label :available_sizes, t('shoppe.products.available_sizes')
-        %dd= f.collection_select :size_ids, Shoppe::Size.all, :id, :name, {}, {:multiple => true, class: "text", :id=>"sizes", :size=>15}
+        %dd= f.collection_select :size_ids, Shoppe::Size.all, :id, :name, {}, {:multiple => true, class: "chosen", :id=>"sizes", :size=>15}
     %dl
       %dt= f.label :description, t('shoppe.products.description')
       %dd= f.text_area :description, :class => 'text', :required => true
     %dl
       %dt= f.label :short_description, t('shoppe.products.short_description')
       %dd= f.text_area :short_description, :class => 'text', :required => true
-    %dl
-      %dt= f.label :in_the_box, t('shoppe.products.in_the_box')
-      %dd= f.text_area :in_the_box, :class => 'text'
+    / %dl
+    /   %dt= f.label :in_the_box, t('shoppe.products.in_the_box')
+    /   %dd= f.text_area :in_the_box, :class => 'text'
 
   = field_set_tag t('shoppe.products.attributes') do
     .margin
@@ -66,7 +66,7 @@
       %p.addAttribute= link_to t('shoppe.products.add_attribute') , '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
 
   = field_set_tag t('shoppe.products.attachments') do
-    .splitContainer
+    .splitContainer.extraAttachments
       %dl.half
         %dt= f.label "attachments[default_image][file]", t('shoppe.products.default_image')
         %dd
@@ -74,16 +74,9 @@
           %p= f.file_field "attachments[default_image][file]"
           = f.hidden_field "attachments[default_image][role]", value: "default_image"
           = f.hidden_field "attachments[default_image][parent_id]", value: @product.id
-      %dl.half
-        %dt= f.label "attachments[data_sheet][file]", t('shoppe.products.datasheet')
-        %dd
-          = attachment_preview @product.data_sheet
-          %p= f.file_field "attachments[data_sheet][file]"
-          = f.hidden_field "attachments[data_sheet][role]", value: "data_sheet"
-          = f.hidden_field "attachments[data_sheet][parent_id]", value: @product.id
 
-    .splitContainer.extraAttachments
       %dl.half
+        %dt= f.label "attachments[default_image][file]", t('shoppe.products.other_images')
         %dd
           = attachment_preview nil, hide_if_blank: false
           %p= f.file_field "attachments[extra][file]", :multiple => true
