@@ -6647,6 +6647,19 @@ article .ship-guest .active #ship-no-login input[type="text"], #checkout-wrap in
   filter: alpha(opacity=97);
   background: #000;
 }
+@media (max-width: 1024px) {
+
+	article.product-item .product-quickview {
+   
+    left: 135px !important;
+    
+}
+article.product-item .product-quickview {
+        left: 135px;}
+
+.ipad-button-size{ padding: 0px !important; }
+    }
+
 
 @media (max-width: 1000px) {
 	.phone-mob {    margin-top: 2px;
@@ -7211,7 +7224,7 @@ background-image: url("/assets/footer-img.jpg");
 
 
 @media screen and (min-width: 640px) and (max-width: 767px) {
-	
+
 .border-left {
     border-left: solid 0px #ccc !important;
     
@@ -7433,3 +7446,5 @@ body{font-family: 'HelveticaNeueLTPro-Th' !important;}
 
 .dob{ width: 25% !important; float: left;; }
 .parsley-errors-list label { margin-top: 6px; }
+
+.total-text{text-align: -webkit-right !important; }
