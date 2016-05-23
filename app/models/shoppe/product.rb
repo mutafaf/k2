@@ -66,6 +66,8 @@ module Shoppe
     # Before validation, set the permalink if we don't already have one
     before_validation { self.permalink = name.parameterize if permalink.blank? && name.is_a?(String) }
 
+    after_create :create_default_variant
+
     # All active products
     scope :active, -> { where(active: true) }
 
@@ -87,6 +89,17 @@ module Shoppe
       # if attrs['data_sheet']['file'].present? then attachments.build(attrs['data_sheet']) end
 
       if attrs['extra']['file'].present? then attrs['extra']['file'].each { |attr| attachments.build(file: attr, parent_id: attrs['extra']['parent_id'], parent_type: attrs['extra']['parent_type']) } end
+    end
+
+    def create_default_variant
+      variant = self.variants.new
+      variant.name = "Default"
+      variant.permalink = "#{self.name}-default"
+      variant.sku = "sku"
+      variant.color = self.color
+      variant.sizes = self.sizes
+      variant.default = true
+      variant.save
     end
 
     # Return the name of the product
