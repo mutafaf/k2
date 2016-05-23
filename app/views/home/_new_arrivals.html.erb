@@ -21,7 +21,7 @@
                            <div class="border-shade">
                               <article class="product-item" style="border: solid 1px #fff;">
                               <div >
-                                 <img src="<%= product.try(:default_image).try(:path) %>" class="img-responsive product_image_size  pro-img " alt="">
+                                 <img src="<%= product.try(:default_image).try(:path) ? product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" class="img-responsive product_image_size  pro-img " alt="">
                                  </div>
                                  <h3>
                                     <%= product.name%>

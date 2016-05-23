@@ -3,7 +3,7 @@
    <div id="example">
       <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
          <a href="<%= @product.try(:default_image).try(:path)%>">
-         <img src="<%= @product.try(:default_image).try(:path)%>" alt="" class="img-responsive"/>
+         <img src="<%= @product.try(:default_image).try(:path) ? @product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" alt="" class="img-responsive"/>
          </a>
       </div>
       <ul class="thumbnails">

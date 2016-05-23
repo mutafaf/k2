@@ -11,7 +11,7 @@
             <article class="">
                <div class="row">
                   <div class="col-md-3">
-                     <img src="<%= @product.try(:default_image).try(:path)%>" class="img-responsive" alt="" width="265" height="179">
+                     <img src="<%= @product.try(:default_image).try(:path) ? @product.try(:default_image).try(:path) : '/assets/placeholder.jpg'%>" class="img-responsive" alt="" width="265" height="179">
                   </div>
                   <div class="col-md-9 col-sm-12">
                      <div class="product-item product-single">
