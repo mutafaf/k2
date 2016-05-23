@@ -42,7 +42,7 @@ module Shoppe
     # @param quantity [Fixnum] the number of items to order
     # @return [Shoppe::OrderItem]
     def self.add_item(ordered_item, quantity = 1, size)
-      fail Errors::UnorderableItem, ordered_item: ordered_item unless ordered_item.orderable?
+      fail Shoppe::Errors::UnorderableItem, ordered_item: ordered_item unless ordered_item.orderable?
       transaction do
         if existing = where(ordered_item_id: ordered_item.id, ordered_item_type: ordered_item.class.to_s, size: size).first
           existing.increase!(quantity)
