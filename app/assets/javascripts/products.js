@@ -45,3 +45,16 @@ function updateProductDisplay(element){
      }
    });
 }
+
+$(function() {
+  $( "#slider-range-min" ).slider({
+    range: "min",
+    value: 37,
+    min: 1,
+    max: 700,
+    slide: function( event, ui ) {
+      $( "#amount" ).val( "Rs " + ui.value );
+    }
+  });
+  $( "#amount" ).val( "Rs " + $( "#slider-range-min" ).slider( "value" ) );
+});
