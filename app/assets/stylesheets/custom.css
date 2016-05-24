@@ -837,7 +837,7 @@ textarea {
 #modalAdvertising .modal-body h3 {
 	font-weight:900;
     color:#666666;
-    letter-spacing:-1px;
+    
     margin-top:0;
     font-size:32px;
 }
@@ -1871,7 +1871,7 @@ article.product-item,
     box-shadow: 7px 7px 14px 11px rgb(100,100,100);
    margin-bottom: 30px;
     background: #fff;
-    padding-bottom: 29px;
+  
     margin-bottom: 30px;     background: #fff;}
 
 .default-style {
@@ -7428,7 +7428,7 @@ body{font-family: 'HelveticaNeueLTPro-Th' !important;}
 .product-pop2 { width: 186px;float: left; margin-bottom: 10px}
 .product-pop { margin-bottom: 10px}
 .label-pop{float: left;margin-top: 8px !important;}
-.pro-img{ height: 215px !important;
+.pro-img{ height: 190px !important;
     line-height: 310px;
     display: flex;
     overflow: hidden;
