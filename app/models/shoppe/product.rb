@@ -74,12 +74,6 @@ module Shoppe
     # All featured products
     scope :featured, -> { where(featured: true) }
 
-    # All New Arrivals products
-    scope :new_arrivals, -> { where(new_arrivals: true) }
-
-    # All Hot Selling products
-    scope :hot_selling, -> { where(hot_selling: true) }
-
     # Localisations
     translates :name, :permalink, :description, :short_description
     scope :ordered, -> { includes(:translations).order(:name) }
@@ -302,11 +296,11 @@ module Shoppe
     end
 
     def self.new_arrivals
-      where(new_arrivals: true).limit(15)
+      where(new_arrivals: true).active.limit(15)
     end
 
     def self.hot_selling
-      where(hot_selling: true).limit(15)
+      where(hot_selling: true).active.limit(15)
     end
 
     def get_product_attributes
@@ -326,19 +320,19 @@ module Shoppe
       category = ""
       if params[:new_arrivals].present?
         category = NEW_ARRIVALS
-        products = self.new_arrivals.page(params[:page]).per(PER_PAGE)
+        products = self.active.new_arrivals.page(params[:page]).per(PER_PAGE)
 
       elsif params[:hot_selling].present?
         category = HOT_SELLING
-        products = self.hot_selling.page(params[:page]).per(PER_PAGE)
+        products = self.active.hot_selling.page(params[:page]).per(PER_PAGE)
 
       elsif params[:category_permalink].present?
         category = Shoppe::ProductCategory.ordered.find_by_permalink(params[:category_permalink])
-        products = category.products.page(params[:page]).per(PER_PAGE) if category
+        products = category.products.active.page(params[:page]).per(PER_PAGE) if category
 
       elsif params[:category_name].present?
         category = Shoppe::ProductCategory.search_home_category(params[:category_name])
-        products = category.products.page(params[:page]).per(PER_PAGE) if category
+        products = category.products.active.page(params[:page]).per(PER_PAGE) if category
 
       else
         products = Shoppe::Product.root.active.page(params[:page]).per(PER_PAGE) #.ordered.includes(:product_categories, :variants)
@@ -348,11 +342,11 @@ module Shoppe
     end
 
     def styles
-      products = self.product_category.products.where.not(id:self.id)
+      products = self.product_category.products.active.where.not(id:self.id)
       if products
         products = products.order("created_at DESC").limit(3)
       else
-        products = Shoppe::Product.last(3)
+        products = Shoppe::Product.active.last(3)
       end
     end
 
