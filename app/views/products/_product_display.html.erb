@@ -3,7 +3,7 @@
    <div id="example">
       <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
          <a href="<%= @product.try(:default_image).try(:path)%>">
-         <img src="<%= @product.try(:default_image).try(:path)%>" alt="" class="img-responsive"/>
+         <img src="<%= @product.try(:default_image).try(:path) ? @product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" alt="" class="img-responsive"/>
          </a>
       </div>
       <ul class="thumbnails">
@@ -32,7 +32,7 @@
         <br>
         <%= rating_for @product, "name", :star => 5 %>
         </span>
-        <p style=" margin: 6px 0 0px;"><%= @product.short_description.try(:html_safe) %>
+        <p style=" margin: 6px 0 0px;"><%= @product.get_short_description.try(:html_safe) %>
         </p>
         </div>
 <div class="">

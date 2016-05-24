@@ -37,9 +37,7 @@ module Shoppe
     before_validation :set_permalink, :set_ancestral_permalink
     after_save :set_child_permalinks
 
-    attr_accessor :view_on_homepage
-    validates :homepage_title, presence: true,
-                               if: -> { view_on_homepage ? view_on_homepage > '0' : false }
+    validates_presence_of :homepage_title, :if => lambda { |o| o.view_on_homepage == true }
 
     def attachments=(attrs)
       attachments.build(attrs['homepage_image']) if attrs['homepage_image']['file'].present?

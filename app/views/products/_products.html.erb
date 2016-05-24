@@ -19,7 +19,7 @@
     overflow: hidden;
     vertical-align: middle !important;
     text-align: center;
-    margin: auto;margin-top: 32px;" src="<%= product.try(:default_image).try(:path) %>" class="img-responsive product_image_size" alt="Not found">
+    margin: auto;margin-top: 32px;" src="<%= product.try(:default_image).try(:path) ? product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" class="img-responsive product_image_size" alt="Not found">
                  </div>
                  <div class="product-quickview" onclick="getProductDetail(this)">
                     <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>

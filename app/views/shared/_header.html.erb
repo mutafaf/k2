@@ -307,10 +307,10 @@
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Footwear<b class="caret"></b></a>
                <ul class="dropdown-menu">
                   <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @men.permalink) %>">Men </a>
+                     <a href="<%= products_path(category_permalink: @men.try(:permalink)) %>">Men </a>
                   </li>
                   <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @women.permalink) %>" >Women</a>
+                     <a href="<%= products_path(category_permalink: @women.try(:permalink)) %>" >Women</a>
                   </li>
                </ul>
             </li>

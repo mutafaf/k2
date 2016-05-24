@@ -37,8 +37,7 @@ class ProductsController < ApplicationController
   def buy
     @product = Shoppe::Product.active.find_by_permalink!(params[:permalink])
     quantity = params[:quantity] ? params[:quantity].to_i : 1
-
-    if @product.has_variants?
+    if @product.has_variants? and @product.default_variant.present?
       # For Main Product
       @product = @product.default_variant # get default variant here
     end
@@ -52,7 +51,7 @@ class ProductsController < ApplicationController
       rescue Shoppe::Errors::NotEnoughStock
         flash[:error] = "Not enough stock available for this product."
         redirect_to product_path(@product.permalink)
-      rescue Errors::UnorderableItem
+      rescue Shoppe::Errors::UnorderableItem
         flash[:error] = "Sorry, This product can not be ordered."
         redirect_to product_path(@product.permalink)
       end

@@ -4,9 +4,9 @@
       <div class="col-md-6 col-sm-6 ">
 
       <% if item.ordered_item.default %>
-        <img src='<%= item.ordered_item.parent.try(:default_image).try(:path)%>' class="img-responsive">
+        <img src='<%= item.ordered_item.parent.try(:default_image).try(:path) ? item.ordered_item.parent.try(:default_image).try(:path) : '/assets/placeholder.jpg'%>' class="img-responsive">
         <% else %>
-        <img src='<%= item.ordered_item.try(:default_image).try(:path)%>' class="img-responsive">
+        <img src='<%= item.ordered_item.try(:default_image).try(:path) ? item.ordered_item.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>' class="img-responsive">
       <% end %>
       </div>
       <div class="col-md-6 col-sm-6 " style="padding: 0;">
