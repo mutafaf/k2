@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Shoppe::Product.active.find_by_permalink(params[:permalink])
+    @product = Shoppe::Product.all.find_by_permalink(params[:permalink])
 
     if @product.default
       # For Main Product
