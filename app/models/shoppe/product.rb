@@ -94,7 +94,8 @@ module Shoppe
     def create_default_variant
       variant = self.variants.new
       variant.name = self.color_name
-      variant.permalink = "#{self.name}-default"
+      variant_name = self.name.squish.gsub(" ", "-")
+      variant.permalink = "#{variant_name}-default"
       variant.sku = "sku"
       variant.color = self.color
       variant.sizes = self.sizes
