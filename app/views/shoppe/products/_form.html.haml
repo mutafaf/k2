@@ -16,15 +16,19 @@
         %dt= f.label :sku, t('shoppe.products.sku')
         %dd= f.text_field :sku, :class => 'text', :required => true
     .splitContainer
-      %dl.third
-        %dt= f.label :article_no, t('shoppe.products.article_no')
-        %dd= f.text_field :article_no, :class => 'text focus', :required => true
-      %dl.third
-        %dt= f.label :brand, t('shoppe.products.brand')
-        %dd= f.text_field :brand, :class => 'text focus', :required => true
-      %dl.third
+      %dl.half
+        %dt= f.label :color_name, t('shoppe.products.color_name')
+        %dd= f.text_field :color_name, :class => 'text focus', :required => true
+      %dl.half
         %dt= f.label :color, t('shoppe.variants.color')
         %dd= f.text_field :color, :class => 'text focus jscolor'
+    .splitContainer
+      %dl.half
+        %dt= f.label :article_no, t('shoppe.products.article_no')
+        %dd= f.text_field :article_no, :class => 'text focus', :required => true
+      %dl.half
+        %dt= f.label :brand, t('shoppe.products.brand')
+        %dd= f.text_field :brand, :class => 'text focus', :required => true
     - unless @product.has_variants?
       %dl
         %dt= f.label :available_sizes, t('shoppe.products.available_sizes')

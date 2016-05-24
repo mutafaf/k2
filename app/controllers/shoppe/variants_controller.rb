@@ -42,8 +42,9 @@ module Shoppe
     private
 
     def safe_params
+      params[:product][:color_name] = params[:product][:name] if params[:product][:name].present?
       file_params = [:file, :parent_id, :role, :parent_type, file: []]
-      params[:product].permit(:name, :color, :permalink, :sku, :price, :cost_price, :tax_rate_id, :weight, :stock_control, :active, :default, size_ids: [], attachments: [default_image: file_params, extra: file_params])
+      params[:product].permit(:name, :color, :color_name, :permalink, :sku, :price, :cost_price, :tax_rate_id, :weight, :stock_control, :active, :default, size_ids: [], attachments: [default_image: file_params, extra: file_params])
     end
   end
 end

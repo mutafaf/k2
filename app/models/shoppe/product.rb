@@ -93,7 +93,7 @@ module Shoppe
 
     def create_default_variant
       variant = self.variants.new
-      variant.name = "Default"
+      variant.name = self.color_name
       variant.permalink = "#{self.name}-default"
       variant.sku = "sku"
       variant.color = self.color
