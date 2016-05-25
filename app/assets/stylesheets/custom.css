@@ -7448,3 +7448,10 @@ body{font-family: 'HelveticaNeueLTPro-Th' !important;}
 .parsley-errors-list label { margin-top: 6px; }
 
 .total-text{text-align: -webkit-right !important; }
+.price-range{border: 0;
+  color: #000;
+  font-weight: bold;   margin-bottom: 5px;
+  font-size: 16px !important;  
+  clear: both;
+  width: 100%;
+  background-color: transparent;}

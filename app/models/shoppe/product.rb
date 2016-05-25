@@ -13,6 +13,8 @@ module Shoppe
 
     HOT_SELLING = "Hot Selling"
 
+    MAX_PRICE = "Max Price"
+
     # Add dependencies for products
     require_dependency 'shoppe/product/product_attributes'
     require_dependency 'shoppe/product/variants'
@@ -316,29 +318,76 @@ module Shoppe
       !get_colors.empty?
     end
 
+    def self.find_by_brands(brand)
+      where(color_name: color_name).active
+    end
+
+    def self.find_by_color_name(color_name)
+      where(color_name: color_name).active
+    end
+
+    def self.find_by_size_id(size_id)
+      size = Shoppe::Size.find(size_id)
+      products = size.products.active if size.present?
+    end
+
+
+    def self.find_by_price(price)
+      where("price <= ?", price).active
+    end
+
     def self.find_products(params)
       category = ""
       if params[:new_arrivals].present?
         category = NEW_ARRIVALS
-        products = self.active.new_arrivals.page(params[:page]).per(PER_PAGE)
+        products = self.new_arrivals
 
       elsif params[:hot_selling].present?
         category = HOT_SELLING
-        products = self.active.hot_selling.page(params[:page]).per(PER_PAGE)
+        products = self.hot_selling
 
       elsif params[:category_permalink].present?
         category = Shoppe::ProductCategory.ordered.find_by_permalink(params[:category_permalink])
-        products = category.products.active.page(params[:page]).per(PER_PAGE) if category
+        products = category.products if category
 
       elsif params[:category_name].present?
         category = Shoppe::ProductCategory.search_home_category(params[:category_name])
-        products = category.products.active.page(params[:page]).per(PER_PAGE) if category
+        products = category.products if category
 
+      elsif params[:color_name].present?
+        category = params[:color_name]
+        products = self.find_by_color_name(params[:color_name])
+
+      elsif params[:brand].present?
+        category = params[:brand]
+        products = self.find_by_brands(params[:brand])
+
+      elsif params[:size_id].present?
+        category = Shoppe::Size.find(params[:size_id]).try(:name)
+        products = self.find_by_size_id(params[:size_id])
+
+      elsif params[:price].present?
+        category = MAX_PRICE
+        products = self.find_by_price(params[:price])
       else
-        products = Shoppe::Product.root.active.page(params[:page]).per(PER_PAGE) #.ordered.includes(:product_categories, :variants)
+        products = self.root #.ordered.includes(:product_categories, :variants)
       end
 
+      products = products.page(params[:page]).per(PER_PAGE)
+
       return category, products
+    end
+
+    def self.collect_brands
+      self.active.collect(&:brand).reject(&:blank?).uniq
+    end
+
+    def self.collect_color_names
+      self.active.collect(&:color_name).reject(&:blank?).uniq
+    end
+
+    def self.collect_sizes
+      return Shoppe::Size.all
     end
 
     def styles
@@ -349,21 +398,6 @@ module Shoppe
         products = Shoppe::Product.active.last(3)
       end
     end
-
-    # def styles
-    #   if self.variant?
-    #     current_product = self.parent
-    #   else
-    #     current_product = self
-    #   end
-
-    #   products = current_product.product_category.products.where.not(id:current_product.id)
-    #   if products
-    #     products = products.order("created_at DESC").limit(3)
-    #   else
-    #     products = Shoppe::Product.last(3)
-    #   end
-    # end
 
     private
 
