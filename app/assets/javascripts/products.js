@@ -49,12 +49,26 @@ function updateProductDisplay(element){
 $(function() {
   $( "#slider-range-min" ).slider({
     range: "min",
-    value: 37,
-    min: 1,
-    max: 700,
+    value: 500,
+    step: 50,
+    min: 100,
+    max: 7000,
     slide: function( event, ui ) {
       $( "#amount" ).val( "Rs " + ui.value );
     }
   });
   $( "#amount" ).val( "Rs " + $( "#slider-range-min" ).slider( "value" ) );
 });
+
+
+function filterProducts() {
+  var price = $( "#slider-range-min" ).slider( "value" );
+   $.ajax({
+     url: '/products',
+     data: {"price" : price},
+     method: 'GET',
+     success: function(data) {
+       // alert("success!")
+     }
+   });
+}

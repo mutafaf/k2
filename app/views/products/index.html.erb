@@ -6,10 +6,8 @@
             <div class="row">
                <div class="col-xs-12">
                   <center>
-                     <% if @category == Shoppe::Product::NEW_ARRIVALS %>
-                     <h2 ><span id="category_heading" style=" color:#333;"><%= Shoppe::Product::NEW_ARRIVALS %></span><span style=" color:#333;"></h2>
-                     <% elsif @category == Shoppe::Product::HOT_SELLING %>
-                     <h2 ><span id="category_heading" style=" color:#333;"><%= Shoppe::Product::HOT_SELLING %></span><span style=" color:#333;"></h2>
+                     <% if @category.is_a?(String) %>
+                     <h2 ><span id="category_heading" style=" color:#333;"><%= @category %></span><span style=" color:#333;"></h2>
                      <% elsif @category.present? %>
                       <h2 ><span id="category_heading" style=" color:#333;"><%= @category.name %></span><span style=" color:#333;">'s </span>Collection</h2>
                      <% end %>

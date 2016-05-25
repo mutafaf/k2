@@ -1,4 +1,6 @@
-<%if @category.present? %>
+<%if @category.is_a?(String)%>
+  $("#category_heading").html("<%= @category %>")
+<% elsif @category.present? %>
   $("#category_heading").html("<%= @category.name %>")
   // $("body").animate({ scrollTop: 0});
 <%end%>

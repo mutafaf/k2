@@ -36,40 +36,42 @@
 <!--  brands -->
 <a href="#brands" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Brands</a>
 <div class="collapse" id="brands">
-   <a href="" class="list-group-item">Digger</a>
-   <a href="" class="list-group-item">Skywalk</a>
-   <a href="" class="list-group-item">Gig</a>
-   <a href="" class="list-group-item">Matilla</a>
+  <% if @brands.present? %>
+    <% @brands.each do |brand| %>
+     <a href="<%= products_path(brand: brand) %>" class="list-group-item" data-remote="true"> <%= brand %> </a>
+    <% end %>
+  <% end %>
 </div>
 <hr style=" margin-top: 4px;margin-bottom: 4px;">
 <!--  size -->
 <a href="#size" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Size</a>
 <div class="collapse" id="size">
-   <a href="" class="list-group-item">8</a>
-   <a href="" class="list-group-item">7</a>
-   <a href="" class="list-group-item">6</a>
-   <a href="" class="list-group-item">5</a>
+  <% if @sizes.present? %>
+    <% @sizes.each do |size| %>
+     <a href="<%= products_path(size_id: size.id) %>" class="list-group-item" data-remote="true"> <%= size.name %> </a>
+    <% end %>
+  <% end %>
 </div>
 <!--  size -->
 <a href="#color" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Color</a>
 <div class="collapse" id="color">
-   <a href="" class="list-group-item"> Forozi </a>
-   <a href="" class="list-group-item">  Black</a>
-   <a href="" class="list-group-item">  White  </a>
-   <a href="" class="list-group-item">Black</a>
+  <% if @color_names.present? %>
+    <% @color_names.each do |color| %>
+     <a href="<%= products_path(color_name: color) %>" class="list-group-item" data-remote="true"> <%= color %> </a>
+    <% end %>
+  <% end %>
+
 </div>
 <!--  price -->
 <a href="#price" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Price</a>
 <div class="collapse " id="price">
-   <button class="btn pricebutton"> Update </button>
+  <p><input type="text" id="amount" readonly  class="price-range"></p>
+  <div id="slider-range-min"></div>
+  <br>
+   <button class="btn pricebutton" onclick="filterProducts()"> Update </button>
+   
 </div>
- 
-<p>
-  
-  <input type="text" id="amount" readonly  class="price-range">
-</p>
- 
-<div id="slider-range-min"></div>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
