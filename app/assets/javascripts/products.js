@@ -47,25 +47,27 @@ function updateProductDisplay(element){
 }
 
 $(function() {
-  $( "#slider-range-min" ).slider({
-    range: "min",
-    value: 500,
-    step: 50,
+  $( "#slider-range" ).slider({
+    range: true,
     min: 100,
-    max: 7000,
+    max: 5000,
+    step: 50,
+    values: [ 100, 2000 ],
     slide: function( event, ui ) {
-      $( "#amount" ).val( "Rs " + ui.value );
+      $( "#amount" ).val( "Rs " + ui.values[ 0 ] + " - Rs " + ui.values[ 1 ] );
     }
   });
-  $( "#amount" ).val( "Rs " + $( "#slider-range-min" ).slider( "value" ) );
+  $( "#amount" ).val( "Rs " + $( "#slider-range" ).slider( "values", 0 ) +
+    " - Rs" + $( "#slider-range" ).slider( "values", 1 ) );
 });
 
-
 function filterProducts() {
+  var min_price = $( "#slider-range" ).slider( "values", 0 );
+  var max_price = $( "#slider-range" ).slider( "values", 1 );
   var price = $( "#slider-range-min" ).slider( "value" );
    $.ajax({
      url: '/products',
-     data: {"price" : price},
+     data: {"min_price" : min_price, "max_price": max_price},
      method: 'GET',
      success: function(data) {
        // alert("success!")

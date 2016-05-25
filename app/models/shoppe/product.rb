@@ -13,7 +13,7 @@ module Shoppe
 
     HOT_SELLING = "Hot Selling"
 
-    MAX_PRICE = "Max Price"
+    PRICE_RANGE = "Price"
 
     # Add dependencies for products
     require_dependency 'shoppe/product/product_attributes'
@@ -343,8 +343,8 @@ module Shoppe
     end
 
 
-    def self.find_by_price(price)
-      where("price <= ?", price).active
+    def self.find_by_price(min_price, max_price)
+      where("price >= ? AND price <= ?", min_price, max_price).active
     end
 
     def self.find_products(params)
@@ -376,10 +376,10 @@ module Shoppe
       elsif params[:size_id].present?
         category = Shoppe::Size.find(params[:size_id]).try(:name)
         products = self.find_by_size_id(params[:size_id])
-
-      elsif params[:price].present?
-        category = MAX_PRICE
-        products = self.find_by_price(params[:price])
+      elsif params[:min_price].present? and params[:max_price].present?
+        category = PRICE_RANGE
+        products = self.find_by_price(params[:min_price], params[:max_price])
+        products = products.order("price") if products
       else
         products = self.root #.ordered.includes(:product_categories, :variants)
       end
