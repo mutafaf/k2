@@ -39,7 +39,7 @@ module ProductsHelper
   end
 
   def get_category_sequence(product)
-    category = product.product_categories.try(:last)
+    category = product.get_categories.try(:last)
     if category
     return category.hierarchy_array.collect(&:name).join(" / ")
     end

@@ -232,7 +232,7 @@ module Shoppe
       else fail I18n.t('shoppe.imports.errors.unknown_format', filename: File.original_filename)
       end
     end
-
+# ===========================GET===============================
     def get_short_description
       return  self.parent.short_description if self.variant?
       return self.short_description
@@ -256,6 +256,16 @@ module Shoppe
     def get_variants
       return  self.parent.variants if self.variant?
       return self.variants
+    end
+
+    def get_category
+      return  self.parent.product_category if self.variant?
+      return self.product_category
+    end
+
+    def get_categories
+      return  self.parent.product_categories if self.variant?
+      return self.product_categories
     end
 
     def get_sizes
@@ -282,6 +292,17 @@ module Shoppe
       
     end
 
+    def get_colors
+      return  self.parent.variants.collect(&:color) if self.variant?
+      return self.variants.collect(&:color)
+    end
+
+    def get_product_attributes
+      return  self.parent.product_attributes if self.variant?
+      return self.product_attributes
+    end
+# ========================GET============================
+
     def stockable_sizes(current_product, sizes)
       available_sizes = []
       sizes.each do |size|
@@ -292,22 +313,12 @@ module Shoppe
       return available_sizes
     end
 
-    def get_colors
-      return  self.parent.variants.collect(&:color) if self.variant?
-      return self.variants.collect(&:color)
-    end
-
     def self.new_arrivals
       where(new_arrivals: true).active.limit(15)
     end
 
     def self.hot_selling
       where(hot_selling: true).active.limit(15)
-    end
-
-    def get_product_attributes
-      return  self.parent.product_attributes if self.variant?
-      return self.product_attributes
     end
 
     def has_sizes?
@@ -391,7 +402,8 @@ module Shoppe
     end
 
     def styles
-      products = self.product_category.products.active.where.not(id:self.id)
+      category = self.get_category
+      products = category.products.active.where.not(id:self.id) if category
       if products
         products = products.order("created_at DESC").limit(3)
       else
