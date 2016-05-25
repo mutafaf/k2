@@ -8,18 +8,18 @@
 
      <article class="product-item ">
         <div class="row border-shade">
-           <div class="col-md-3  ">
+           <div class=" ">
               <div class="">
                  <div class="product-mask"></div>
                  <a href="<%=product_path(product.permalink)%>" class="product-permalink" ></a>
-                 <div style="height: 160px;
-       line-height: 300px;  
-       display: flex;
-       overflow: hidden;
-       vertical-align: middle;
-       text-align: center;
-       margin: auto;">
-                 <img src="<%= product.try(:default_image).try(:path) ? product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" class="img-responsive product_image_size" alt="Not found">
+                 <div >
+                 <img  style="height: 157px;
+    line-height: 346px;
+    display: flex;
+    overflow: hidden;
+    vertical-align: middle !important;
+    text-align: center;
+    margin: auto;margin-top: 32px;" src="<%= product.try(:default_image).try(:path) ? product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" class="img-responsive product_image_size" alt="Not found">
                  </div>
                  <div class="product-quickview" onclick="getProductDetail(this)">
                     <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>
@@ -31,9 +31,11 @@
 
 
 
-           <div class="col-sm-9" style="    padding: 0px;">
+           <div class="col-sm-9" style="    padding: 0px; margin-top: -17px;">
               <div class="product-body">
-                 <h3><%= link_to product.name, product_path(product.permalink)%></h3>
+                 <h3 style="font-size: large;
+    font-family: initial;
+}"><%= link_to product.name, product_path(product.permalink)%></h3>
                  <span class="price">
                  <ins><span class="amount"><%= number_to_currency product.price %></span></ins>
                  </span>                                          
