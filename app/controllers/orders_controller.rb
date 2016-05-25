@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  
   def show
     
   end
@@ -40,14 +40,9 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
+    # jghvhbknl
     @order = Shoppe::Order.find(current_order.id)
-    if request.post?
-      ipg_payment
-      # current_order.confirm!
-      # session[:order_id] = nil
-      # redirect_to root_path, :notice => "Order has been placed successfully!"
-      redirect_to checkout_confirmation_path
-    end
+    @transaction_id = ipg_payment
   end
 
   def update_order_items
@@ -88,50 +83,8 @@ class OrdersController < ApplicationController
   end
 
   def ipg_payment
-
-    # byebug
-
-    savonConfig = {
-      :soap_version => 1.2,
-      :logger => Rails.logger,
-      :log => true,
-      :wsdl => 'https://demo-ipg.comtrust.ae:2443/MerchantAPI.svc?singleWsdl',
-      # :trace => 1,
-      # :keep_alive => true,
-      # :exceptions => 0,
-      :ssl_ca_cert_file => '/home/atif/Desktop/Merchant.pem',
-      :ssl_cert_key_password => "Comtrust",
-      :env_namespace => :soapenv,
-      :namespace_identifier => 'ns2',
-      :headers => {'Content-Type' => 'application/soap+xml'}
-      # :stream_context => stream_context_create($opts),
-      # :cache_wsdl => WSDL_CACHE_NONE
-    }
-    # byebug
-
-    client = Savon.client(savonConfig)
-
-    # byebug
-
-    soapBody = {
-      :Register => '',
-      :request => {
-        :Customer => 'Demo Merchant',
-        :Language => 'en',
-        :version => 2,
-        :Amount => 0.01,
-        :Currency => 'AED',
-        :OrderID => 1234563434,
-        :OrderInfo => 141850,
-        :OrderName => 141850,
-        :ReturnPath => 'http://localhost/IPG_Finalise.php/',
-        :TransactionHint => 'CPT:Y;VCC:Y'
-      }
-    }
-
-    # byebug
-    client.call(:register, :message => soapBody);
-    # byebug
+    path = "lib/"
+    `php -f #{ path + 'IPG_Registration.php'} arg1 arg2`
   end
 
 
