@@ -1,11 +1,9 @@
 class ProductsController < ApplicationController
   def index
-
     @category, @products = Shoppe::Product.active.find_products(params)
 
     @product_categories_without_parent = Shoppe::ProductCategory.without_parent.custom_ordered
     # @products = @products.group_by(&:product_category)
-    @pagination = params[:pagination]
 
     @brands = Shoppe::Product.collect_brands
     @color_names = Shoppe::Product.collect_color_names

@@ -8,7 +8,7 @@
 <%if @products.present? %>
 
   $("#products").find("h1").remove();
-    <% if @pagination.present? %>
+    <% if params[:page].present? %>
     // Append new data
       $("<%=j render(:partial => 'products', :object => @products) %>")
         .appendTo($(".infinite-table #products"));
@@ -20,7 +20,7 @@
     <% if @products.last_page? %>
       $('.pagination').html("That's all!");
     <% else %>
-      $('.pagination').html("<%=j link_to_next_page(@products, 'Next Page', :remote => true) %>");
+      $('.pagination').html("<%=j link_to_next_page(@products, 'Next Page', :remote => true, :params => params) %>");
     <% end %>
 
 <%else%>
