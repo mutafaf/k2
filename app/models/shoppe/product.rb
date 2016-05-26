@@ -339,9 +339,21 @@ module Shoppe
 
     def self.find_by_size_id(size_id)
       size = Shoppe::Size.find(size_id)
-      products = size.products.active if size.present?
+      products = size.products.active
+      if products.present?
+        self.filter_stockable_products(products, size_id)
+      end
     end
 
+    def self.filter_stockable_products(products, size_id)
+      ids = []
+      products.each do |product|
+        if product.stock(size_id) > 0
+        ids << product.id
+        end
+      end
+      products = products.where(id: ids)
+    end
 
     def self.find_by_price(min_price, max_price)
       where("price >= ? AND price <= ?", min_price, max_price).active
