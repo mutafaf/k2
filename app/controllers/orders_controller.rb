@@ -39,10 +39,23 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    # jghvhbknl
     @order = Shoppe::Order.find(current_order.id)
-    @transaction_id = ipg_payment
+    if request.post?
+      if current_order.payment_method == "Credit Card"
+        @transaction_id = ipg_payment
+      else
+        current_order.confirm!
+        session[:order_id] = nil
+        redirect_to root_path, :notice => "Order has been placed successfully!"
+      end
+    end
   end
+
+  # def confirmation
+  #   # jghvhbknl
+  #   @order = Shoppe::Order.find(current_order.id)
+  #   @transaction_id = ipg_payment
+  # end
 
   def update_order_items
     order = Shoppe::Order.find(current_order.id)
@@ -81,13 +94,13 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  private
+
   def ipg_payment
     path = "lib/"
     `php -f #{ path + 'IPG_Registration.php'} arg1 arg2`
   end
-
-
-  private
 
   def safe_params
     params[:order].permit(:first_name, :last_name, :billing_address1, :billing_city, :billing_country_id, :delivery_address1, :delivery_city, :delivery_country_id, :order_notes, :email_address, :phone_number, :separate_delivery_address, :delivery_name, :payment_method, :terms_of_service)
