@@ -74,7 +74,7 @@ Rails.application.configure do
     user_name: "AKIAI6ZYVEMMBSVWNW4A",
     password: "AuF3d9niLQBoP9NlRkUXiWiEl83Qb+0GIyZVQEIGAds/"
     authentication: 'plain',   #you can also use login
-    ssl: true,   #For TLS SSL connection
+    # ssl: true   #For TLS SSL connection
   }
 
   # ActionMailer Config
