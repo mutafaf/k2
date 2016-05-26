@@ -65,16 +65,26 @@ Rails.application.configure do
    #Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  # config.action_mailer.smtp_settings = {
+  #   address: "email-smtp.eu-west-1.amazonaws.com",
+  #   port: 25,
+  #   domain: 'info@borjan.com.pk',
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: "AKIAI6ZYVEMMBSVWNW4A",
+  #   password: "AuF3d9niLQBoP9NlRkUXiWiEl83Qb+0GIyZVQEIGAds/"
+  #   authentication: 'plain',   #you can also use login
+  #   ssl: true,   #For TLS SSL connection
+  # }
+
   config.action_mailer.smtp_settings = {
-    address: "email-smtp.eu-west-1.amazonaws.com",
-    port: 25,
-    domain: 'info@borjan.com.pk',
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: 'gmail.com',
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "AKIAI6ZYVEMMBSVWNW4A",
-    password: "AuF3d9niLQBoP9NlRkUXiWiEl83Qb+0GIyZVQEIGAds/"
-    authentication: 'plain'   #you can also use login
-    # ssl: true   #For TLS SSL connection
+    user_name: "atifjaved.techverx@gmail.com",
+    password: "mytechverx"
   }
 
   # ActionMailer Config
