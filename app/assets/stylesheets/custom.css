@@ -11,6 +11,7 @@
 /*.chosen-container {width: 40% !important; margin-left:10px !important;}*/
 
 .date_of_birth{width:100% !important; }
+.range_slider_amont{border:0; color:#000; font-weight:bold;background: transparent;}
 
 header.navbar .navbar-nav > li > a.dropdown-toggle:after,
 header.navbar .dropdown-menu > li > a:before,
