@@ -1,104 +1,18 @@
 <br><br><br>
 <section class="content products">
    <div class="container">
-      <article class="product-item product-single" style="     padding: 20px;">
-         <div class="row">
-            <br>
-            <center>
-               <h1> ORDER CONFIRMATION</h1>
-            </center>
-            <hr>
-         </div>
-      </article>
+Processing......
+<div style="display: none;">
+<form action="https://demo-ipg.comtrust.ae/Payment/PaymentPortal.aspx?lang=en&layout=C0NBESDF" method="post">
+    <input type='Hidden' name='TransactionID' value="<%=@transaction_id%>"/>
+    <input type="submit" value="Submit">
+</form>
+</div>
+ <script>
+    $( document ).ready(function() {
+        $('form').submit();
+    });
+   </script>
+
    </div>
-   <section class="container">
-      <div class="col-md-12">
-         <div >
-            <div class="signin-half col-md-8 ">
-               <div class="col-md-12">
-                  <h3>Contact Details</h3>
-                  <br>
-               </div>
-               <div class="col-md-8">
-                  <h3>Shipping Address</h3>
-                  <br><br>
-                  <div class="signin-half  no-padding">
-                     <div class="col-md-6 " style="padding:0;">
-                        <h3>Shipping to:</h3>
-                        <p>
-                          <%= @order.full_delivery_address %>
-                        </p>
-                     </div>
-                     <div class="col-md-6">
-<!--                         <h3>Shipping method:</h3>
-                        <p>Ground Shipping  <br>
-                           $0.00<br>
-                        </p> -->
-                     </div>
-                     <div style="clear:both"></div>
-                     <br><br>
-                     <h3>Billing Address</h3>
-                     <br>
-                     <div class="col-md-6">
-                        <h3>Billing to:</h3>
-                        <p>
-                          <%= @order.full_billing_address %>
-                        </p>
-                     </div>
-                     <div style="clear:both"></div>
-                     <br><br>
-                     <div class="col-md-6"> 
-                     <%= button_to "Complete your order",{}, {:class=>"btn btn-default btn-lg", :'data-toggle'=>"modal", :'data-target'=>"#thankyou"} %>
-                     </div>
-                     <div class="col-md-6"> 
-                     <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#Cancel-order">Cancel order</button>
-                     </div>
-                     <div style="clear:both"></div>
-                  </div>
-                  <!-- Modal -->
-                  <div id="thankyou" class="modal fade" role="dialog">
-                     <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                           <div class="modal-header">
-                              <button type="button" class="close button-stype" data-dismiss="modal">×</button>
-                              <center>
-                                 <h1 class="modal-title">Thank you! </h1>
-                              </center>
-                           </div>
-                           <center>
-                              <div class="modal-body">
-                                 <p>your order has been completed successfully</p>
-                              </div>
-                           </center>
-                        </div>
-                     </div>
-                  </div>
-                  <div id="Cancel-order" class="modal fade" role="dialog">
-                     <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                           <div class="modal-header">
-                              <button type="button" class="close button-stype" data-dismiss="modal">×</button>
-                              <center>
-                                 <h1 class="modal-title">Are you Sure? </h1>
-                              </center>
-                           </div>
-                           <center>
-                              <div class="modal-body">
-                                 <p>your wont to cancel your order</p>
-                                 <%= link_to 'Yes', basket_path, :method => :delete, :class=>"btn btn-default" %>
-                                 <a href="#" class="btn btn-default"  data-dismiss="modal">No</a>
-                              </div>
-                           </center>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- ..................................................... -->
-            <%= render "order_summary", order:@order %>
-         </div>
-      </div>
    </section>
-</section>

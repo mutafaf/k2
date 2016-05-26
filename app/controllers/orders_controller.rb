@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  
   def show
     
   end
@@ -39,12 +39,9 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
+    # jghvhbknl
     @order = Shoppe::Order.find(current_order.id)
-    if request.post?
-      current_order.confirm!
-      session[:order_id] = nil
-      redirect_to root_path, :notice => "Order has been placed successfully!"
-    end
+    @transaction_id = ipg_payment
   end
 
   def update_order_items
@@ -82,6 +79,11 @@ class OrdersController < ApplicationController
     if params[:order_id].present?
       @order = Shoppe::Order.find_by_id(params[:order_id])
     end
+  end
+
+  def ipg_payment
+    path = "lib/"
+    `php -f #{ path + 'IPG_Registration.php'} arg1 arg2`
   end
 
 
