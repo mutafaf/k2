@@ -41,7 +41,7 @@ gem 'delayed_job_active_record'
 gem "daemons"
 gem 'geocoder'
  # For payments
-gem 'savon', '~> 2.11.0'
+# gem 'savon', '~> 2.11.0'
 
 # Ratings
 gem 'ratyrate'
