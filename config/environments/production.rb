@@ -73,7 +73,7 @@ Rails.application.configure do
     enable_starttls_auto: true,
     user_name: "AKIAI6ZYVEMMBSVWNW4A",
     password: "AuF3d9niLQBoP9NlRkUXiWiEl83Qb+0GIyZVQEIGAds/"
-    authentication: 'plain',   #you can also use login
+    authentication: 'plain'   #you can also use login
     # ssl: true   #For TLS SSL connection
   }
 
