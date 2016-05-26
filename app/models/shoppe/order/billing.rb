@@ -15,8 +15,10 @@ module Shoppe
       # order.validates :billing_address1, presence: true
       # order.validates :billing_address3, presence: true
       # order.validates :billing_address4, presence: true
-      # order.validates :billing_country, presence: true
-      # order.validates :city, presence: true
+      order.validates :terms_of_service, acceptance: true
+      order.validates :payment_method, presence: true
+      order.validates :billing_country, presence: true
+      order.validates :billing_city, presence: true
     end
 
     # The name for billing purposes

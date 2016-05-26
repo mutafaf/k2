@@ -27,6 +27,8 @@ module Shoppe
       # order.validates :delivery_postcode, presence: true
       order.validates :delivery_city, presence: true
       order.validates :delivery_country, presence: true
+      order.validates :terms_of_service, acceptance: true
+      order.validates :payment_method, presence: true
     end
 
     validate do

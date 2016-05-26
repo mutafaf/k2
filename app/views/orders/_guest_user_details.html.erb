@@ -68,7 +68,17 @@
                </div>
                <div style="clear:both"></div>
                <hr>
+               <div class="col-md-6">
+                  <h3>Payment Method</h3>
+               </div>
+               <div style="clear:both"></div>
                <br>
+               <div class="col-md-6">
+                  <span class="checkout-bulit">Payment Type*</span>
+                  <%= f.select :payment_method, Shoppe::Order::PAYMENT_TYPES, {:prompt=>"Select Payment Type"}, {class: "input-checkout", :required=>true}%>
+               </div>            
+                <div style="clear:both"></div>
+                <br>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">Order Notes</span>
                   <%= f.text_area :order_notes, :class=>"input-checkout", :placeholder=>"Order Notes", :style=>"min-height: 80px;" %>
@@ -77,7 +87,12 @@
                <div style="clear:both"></div>
                <hr>
                <div class="col-md-6"> 
-                  <input type="checkbox"> <span class="checkout-bulit">I agree to the Terms & Conditions.</span><br><br>
+                  <%= f.check_box :terms_of_service, :'data-parsley-required'=>"true" %>
+                  <span class="checkout-bulit">I agree to the Terms & Conditions.</span>
+               </div>
+               <div style="clear:both"></div>
+               <br>
+               <div class="col-md-6"> 
                   <%= f.submit 'Order Now', :class=>"btn btn-default btn-lg" %>
                </div>
             </div>

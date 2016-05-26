@@ -27,8 +27,7 @@ class OrdersController < ApplicationController
       if request.patch?
         for_separate_delivery_address(params)
         if @order.proceed_to_confirm(safe_params)
-          redirect_to checkout_payment_path
-          # redirect_to checkout_confirmation_path
+          redirect_to checkout_confirmation_path
         end
       end
   end
@@ -89,7 +88,7 @@ class OrdersController < ApplicationController
   private
 
   def safe_params
-    params[:order].permit(:first_name, :last_name, :billing_address1, :billing_city, :billing_country_id, :delivery_address1, :delivery_city, :delivery_country_id, :order_notes, :email_address, :phone_number, :separate_delivery_address, :delivery_name)
+    params[:order].permit(:first_name, :last_name, :billing_address1, :billing_city, :billing_country_id, :delivery_address1, :delivery_city, :delivery_country_id, :order_notes, :email_address, :phone_number, :separate_delivery_address, :delivery_name, :payment_method, :terms_of_service)
   end
 
   def login_user(params)
