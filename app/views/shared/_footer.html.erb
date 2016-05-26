@@ -27,10 +27,19 @@
                      <div class="footer-widget footer-widget-contacts">
                         <h4>SHOP</h4>
                         <ul class="list-unstyled" style="line-height: 29px;">
-                           <li><a href="#"> Women's Shoes</a></li>
-                           <li><a href="#"> Men's Shoes</a></li>
-                           <li><a href="#"> Bags</a></li>
-                           <li><a href="#"> Accessories</a></li>
+                        <% if @women.present? %>
+                           <li><a href="<%= products_path(category_permalink: @women.permalink) %>"> Women's Shoes</a></li>
+                        <% end %>
+                        <% if @men.present? %>
+                           <li><a href="<%= products_path(category_permalink: @men.permalink) %>"> Men's Shoes</a></li>
+                        <% end %>
+                        <% if @bags.present? %>
+                           <li><a href="<%= products_path(category_permalink: @bags.permalink) %>"> Bags</a></li>
+                        <% end %>
+                        <% if @assessories.present? %>
+                           <li><a href="<%= products_path(category_permalink: @assessories.permalink) %>"> Accessories</a></li>
+                        <% end %>
+                           
                         </ul>
                      </div>
                   </div>
@@ -62,8 +71,8 @@
                      <div class="footer-widget footer-widget-links">
                         <h4>GET IN TOUCH</h4>
                         <ul class="list-unstyled">
-                           <li><a href="#"><i class="fa fa-phone"></i> +92 00078601</a></li>
-                           <li><a href="#"><i class="fa fa-envelope"></i> hello@borjan.com</a></li>
+                           <li><a href="#"><i class="fa fa-phone"></i> +92 42 111 000 174</a></li>
+                           <li><a href="#"><i class="fa fa-envelope"></i> customercare@borjan.com.pk</a></li>
                            <li><a href="#">FAQ</a></li>
                            <div style=" ">
                               <div style=" text-transform: uppercase;

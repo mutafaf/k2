@@ -29,6 +29,9 @@ class ApplicationController < ActionController::Base
 
     @earrings = Shoppe::ProductCategory.search_category("Earrings")
     @bracelets = Shoppe::ProductCategory.search_category("Bracelets")
+
+    @bags = Shoppe::ProductCategory.search_category("Bags")
+    @assessories = Shoppe::ProductCategory.search_category("Assessories")
   end
 
   private
