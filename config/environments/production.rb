@@ -64,6 +64,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
    #Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+  config.action_mailer.delivery_method = :smtp
 
   # config.action_mailer.smtp_settings = {
   #   address: "email-smtp.eu-west-1.amazonaws.com",
@@ -77,24 +78,22 @@ Rails.application.configure do
   #   ssl: true,   #For TLS SSL connection
   # }
 
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: 'gmail.com',
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "atifjaved.techverx@gmail.com",
-    password: "mytechverx"
+  config.action_mailer.smtp_settings = {  
+    :address => 'email-smtp.us-east-1.amazonaws.com',
+    :authentication => :login,
+    :user_name => 'AKIAI6ZYVEMMBSVWNW4A',
+    :password => 'AuF3d9niLQBoP9NlRkUXiWiEl83Qb+0GIyZVQEIGAds/',
+    :enable_starttls_auto => true,
+    :port => 25
   }
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'http://borjan.techverx.com/' }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'http://borjanamazon.techverx.com/' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
 
 
-  Rails.application.routes.default_url_options[:host] = 'borjan.techverx.com'
+  Rails.application.routes.default_url_options[:host] = 'http://borjanamazon.techverx.com/'
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
