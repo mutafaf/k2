@@ -13,21 +13,21 @@
       'stream_context' => stream_context_create($opts),
       'cache_wsdl' => WSDL_CACHE_NONE
     );
-    
+
     $client = new SoapClient("https://demo-ipg.comtrust.ae:2443/MerchantAPI.svc?singleWsdl", $options);
 
     $params = array(
         'Register' => '',
         'request' => array(
-        'Customer' => 'Demo Merchant',
+        'Customer' => $argv[1],
         'Language' => 'en',
         'version' => 2,
-        'Amount' => 10.0,
+        'Amount' => $argv[2],
         'Currency' => 'PKR',
-        'OrderID' => 1234563434,
+        'OrderID' => $argv[3],
         'OrderInfo' => 141850,
         'OrderName' => 141850,
-        'ReturnPath' => 'http://localhost/IPG_Finalise.php/',
+        'ReturnPath' => 'http://localhost:3000/checkout/confirmation_page',
         'TransactionHint' => 'CPT:Y;VCC:Y'
         )
     );

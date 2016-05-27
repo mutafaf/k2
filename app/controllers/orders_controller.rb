@@ -38,24 +38,46 @@ class OrdersController < ApplicationController
     end
   end
 
+  # def confirmation
+  #     byebug
+  #   @order = Shoppe::Order.find(current_order.id)
+  #   if request.post?
+  #     if current_order.payment_method == "Credit Card"
+  #       byebug
+  #       @transaction_id = ipg_payment
+  #     else
+  #       current_order.confirm!
+  #       session[:order_id] = nil
+  #       redirect_to root_path, :notice => "Order has been placed successfully!"
+  #     end
+  #   end
+  # end
+
   def confirmation
     @order = Shoppe::Order.find(current_order.id)
-    if request.post?
-      if current_order.payment_method == "Credit Card"
+    if current_order.payment_method == "Credit Card"
         @transaction_id = ipg_payment
-      else
+    end
+
+    if request.post?
         current_order.confirm!
         session[:order_id] = nil
         redirect_to root_path, :notice => "Order has been placed successfully!"
-      end
     end
   end
 
-  # def confirmation
-  #   # jghvhbknl
-  #   @order = Shoppe::Order.find(current_order.id)
-  #   @transaction_id = ipg_payment
-  # end
+  def confirmation_page
+    @order = Shoppe::Order.find(current_order.id)
+    session[:transaction_id] = params[:TransactionID]
+  end
+
+  def finalize
+    result = finalize_payment
+    result = JSON.parse(result)
+    puts result
+
+    redirect_to root_path, :alert => result["FinalizeResult"]["ResponseDescription"]
+  end
 
   def update_order_items
     order = Shoppe::Order.find(current_order.id)
@@ -95,11 +117,24 @@ class OrdersController < ApplicationController
   end
 
 
+
   private
 
   def ipg_payment
+    customer = "Demo Merchant"
+    amount = "40"
+    order_id = "00005"
     path = "lib/"
-    `php -f #{ path + 'IPG_Registration.php'} arg1 arg2`
+    # args = [customer, amount, order_id]
+    `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id }`
+  end
+
+  def finalize_payment
+    transaction_id = session[:transaction_id]
+    customer = "Demo Merchant"
+    # transaction_id = params[:TransactionID]
+    path = "lib/"
+    `php -f #{ path + 'IPG_Finalise.php "' + customer + '" ' + transaction_id}`
   end
 
   def safe_params
