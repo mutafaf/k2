@@ -27,7 +27,7 @@
         'OrderID' => $argv[3],
         'OrderInfo' => 141850,
         'OrderName' => 141850,
-        'ReturnPath' => 'http://localhost:3000/checkout/confirmation_page',
+        'ReturnPath' => 'http://borjanamazon.techverx.com/checkout/confirmation_page',
         'TransactionHint' => 'CPT:Y;VCC:Y'
         )
     );
