@@ -16,7 +16,6 @@ class RegistrationsController < DeviseController
   # POST /resource
   def create
     build_resource(sign_up_params)
-
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -146,7 +145,7 @@ class RegistrationsController < DeviseController
 
   def sign_up_params
     # devise_parameter_sanitizer.sanitize(:sign_up)
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, customer_attributes: [:first_name, :last_name, :phone, :mobile, addresses_attributes: [:address_type, :country_id, :address1, :city]])
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :age_limit, customer_attributes: [:first_name, :last_name, :phone, :mobile, addresses_attributes: [:address_type, :country_id, :address1, :city, :postcode]])
   end
 
   def account_update_params
