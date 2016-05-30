@@ -26,12 +26,15 @@
      <div class="product-body" style="    margin-top: 2%;">
      <div class="col-sm-6 col-xs-6">
         <h2><%= @product.get_name %></h2>
+
+        <p><span>Article No:&nbsp;</span><%= @product.article_no %></p>
         <span class="">
         <br>
         <%= number_to_currency @product.get_price %> 
         <br>
         <%= rating_for @product, "name", :star => 5 %>
         </span>
+        <br>
         <p style=" margin: 6px 0 0px;"><%= @product.get_short_description.try(:html_safe) %>
         </p>
         </div>
