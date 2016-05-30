@@ -32,7 +32,7 @@
         <br>
         <%= number_to_currency @product.get_price %> 
         <br>
-        <%= rating_for @product, "name", :star => 5 %>
+          <%= rating_for product_for_rating(@product), "name", :star => 5 %>
         </span>
         <br>
         <p style=" margin: 6px 0 0px;"><%= @product.get_short_description.try(:html_safe) %>

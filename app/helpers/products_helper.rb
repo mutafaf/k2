@@ -46,4 +46,9 @@ module ProductsHelper
     return ""
   end
 
+  def product_for_rating(product)
+    return product.parent if product.variant?
+    return product
+  end
+
 end

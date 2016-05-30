@@ -468,16 +468,6 @@ function print_window(){
 	e.close()
 }
 
-/*------------------------------
-	PRODUCT SIZE
-------------------------------*/
-
-function selectSize(element){
-	$("#size").val($(element).text());
-	$(".size-list").css("border", "solid 1px #ddd");
-	$(element).css("border", "solid 3px #ddd");
-
-}
 
 
 

@@ -42,8 +42,25 @@ function updateProductDisplay(element){
      method: 'get',
      success: function(data) {
        $("#product_display").html(data);
+       setAlreadySeletedSize();
+
      }
    });
+}
+
+function setAlreadySeletedSize(){
+  var selectedSize = localStorage.getItem("selectedSize");
+  if (selectedSize) {
+   var currentProductSize = $("#size_block").find(".size-list:contains("+selectedSize+")")
+     // Set the already seleted size to current Variant size if available
+     if (currentProductSize.length > 0) {
+       $(".size-list").css("border", "solid 1px #ddd");
+       currentProductSize.css("border", "solid 3px #ddd");
+      $("#size").val(selectedSize);
+     } else {
+       toastr.success("Size: "+ selectedSize +" is not available for this Product.");
+     }
+  };
 }
 
 $(function() {
@@ -73,4 +90,16 @@ function filterProducts() {
        // alert("success!")
      }
    });
+}
+
+/*------------------------------
+  PRODUCT SIZE
+------------------------------*/
+
+function selectSize(element){
+  $("#size").val($(element).text());
+  $(".size-list").css("border", "solid 1px #ddd");
+  $(element).css("border", "solid 3px #ddd");
+  localStorage.setItem("selectedSize", $(element).text());
+
 }
