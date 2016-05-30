@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         post :import
       end
     end
+    resources :blogs
     resources :brands
     resources :careers
     resources :dynamic_options do

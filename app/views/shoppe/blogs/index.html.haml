@@ -1,0 +1,23 @@
+- @page_title = t('shoppe.blogs.blogs')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.blogs.new_blog'), :new_blog, class: 'button green'
+  %h2.users= t('shoppe.blogs.blogs')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.blogs.name')
+    %tbody
+      - if @blogs.empty?
+        %tr.empty
+          %td= t('shoppe.blogs.no_blogs')
+      - else
+        - for blog in @blogs
+          %tr
+            %td=link_to blog.name, [:edit, blog]
+= paginate @blogs

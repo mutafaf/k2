@@ -37,9 +37,12 @@ en:
       shoppe/job:
         one: Jobs
         other: Jobs
-      shoppe/brad:
+      shoppe/brand:
         one: Brands
         other: Brands
+      shoppe/blog:
+        one: Blog
+        other: Blogs
       shoppe/subscriber:
         one: Subscribers
         other: Subscribers
@@ -772,6 +775,7 @@ en:
         dynamic_options: Dynamic Options
         jobs: Jobs
         brands: Brands
+        blogs: Blogs
         subscribers: Subscribers
         product_categories: Product Categories
         delivery_services: Delivery Services
@@ -1040,6 +1044,28 @@ en:
       created_successfully: Dynamic Option has been created successfully.
       updated_successfully: Dynamic Option has been updated successfully.
       deleted_successfully: Dynamic Option has been deleted successfully.
+
+    blogs:
+      blogs: Blogs
+      new_blog: New Blog
+      name: Name
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_blogs : No Blogs
+      blog_detail : Blog Detail
+      back_to_blogs_list : Back to Blog list
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_size: Creating Blog...
+      updating_size: Updating Blog...
+      delete_confirmation: Are you sure you wish to remove this Blog?
+      type: Type
+      default: Default
+      created_successfully: Blog has been created successfully.
+      updated_successfully: Blog has been updated successfully.
+      deleted_successfully: Blog has been deleted successfully.
 
   layouts:
     shoppe:

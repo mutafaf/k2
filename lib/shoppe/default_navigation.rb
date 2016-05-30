@@ -23,5 +23,6 @@ Shoppe::NavigationManager.build(:admin_primary) do
   add_item :countries
   add_item :dynamic_options
   add_item :jobs
+  add_item :blogs
   add_item :settings
 end
