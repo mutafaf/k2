@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   def confirmation
     @order = Shoppe::Order.find(current_order.id)
     if current_order.payment_method == "Credit Card"
-        @transaction_id = ipg_payment
+        @transaction_id = ipg_payment(@order)
     end
 
     if request.post?
@@ -120,10 +120,11 @@ class OrdersController < ApplicationController
 
   private
 
-  def ipg_payment
+  def ipg_payment(order)
+
     customer = "Demo Merchant"
-    amount = "40"
-    order_id = "00005"
+    amount = order.total.to_s
+    order_id = order.id.to_s
     path = "lib/"
     # args = [customer, amount, order_id]
     `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id }`
