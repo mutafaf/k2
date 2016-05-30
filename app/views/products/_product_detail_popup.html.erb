@@ -7,57 +7,64 @@
          <div class="modal-header">
             <button type="button" class="close button-stype" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
          </div>
-         <div class="modal-body">
+         <div class="modal-body product-detail-popup">
             <article class="">
                <div class="row">
-                  <div class="col-md-3">
-                     <img src="<%= @product.try(:default_image).try(:path) ? @product.try(:default_image).try(:path) : '/assets/placeholder.jpg'%>" class="img-responsive" alt="" width="265" height="179">
+                  <div class="col-md-4">
+                     <img src="<%= @product.try(:default_image).try(:path) ? @product.try(:default_image).try(:path) : '/assets/placeholder.jpg'%>" class="img-responsive center-block popup-image" alt="" >
                   </div>
-                  <div class="col-md-9 col-sm-12">
+                  <div class="col-md-8 col-sm-12">
                      <div class="product-item product-single">
                         <h3><%= @product.get_name %></h3>
-                        <div>
+                        <div class="rating-stars-popup">
                           <%= rating_for @product, "name", :star => 5 %>
                         </div>
 
                      </div>
-                     <br>
                       <div class="detail-tab">
-                       <div class="col-md-2 col-sm-3 col-xs-3">
-                         <% if @product.in_stock? %>
-                           In Stock
-                         <% else %>
-                           Out of stock
-                         <% end %>
+                      <div class="row">
+                        <div class="col-md-2 col-sm-3 col-xs-3">
+                          <% if @product.in_stock? %>
+                            In Stock
+                          <% else %>
+                            Out of stock
+                          <% end %>
+                        </div>
+                      </div>
+                     </div>
+                     <div class="clearfix"></div>
+                      <div class="detail-tab">
+                      <div class="row">
+                        <div class="col-md-2 col-sm-3 col-xs-3">ID:</div>
+                        <div class="col-md-9 col-sm-9 col-xm-3"><%= @product.article_no %></div>
+                      </div>
+                     </div>
+                     <div class="clearfix"></div>
+                      <div class="detail-tab">
+                       <div class="row">
+                         <div class="col-md-2 col-sm-3 col-xs-3">Brand:</div>
+                         <div class="col-md-9 col-sm-9 col-xm-3"><%= @product.brand %></div>
                        </div>
                      </div>
                      <div class="clearfix"></div>
-                      <div class="detail-tab">
-                       <div class="col-md-2 col-sm-3 col-xs-3">ID:</div>
-                       <div class="col-md-9 col-sm-9 col-xm-3"><%= @product.article_no %></div>
-                     </div>
-                     <div class="clearfix"></div>
-                      <div class="detail-tab">
-                       <div class="col-md-2 col-sm-3 col-xs-3">Brand:</div>
-                       <div class="col-md-9 col-sm-9 col-xm-3"><%= @product.brand %></div>
-                     </div>
-                     <div class="clearfix"></div>
-                     <br>
                      <% @product.get_product_attributes.each do |attribute| %>
                         <div class="detail-tab">
-                         <div class="col-md-2 col-sm-3 col-xs-3"><%= attribute.key %>: </div>
-                         <div class="col-md-9 col-sm-9 col-xm-3"><%= attribute.value %></div>
+                        <div class="row">
+                          <div class="col-md-2 col-sm-3 col-xs-3"><%= attribute.key %>: </div>
+                          <div class="col-md-9 col-sm-9 col-xm-3"><%= attribute.value %></div>
+                        </div>
                        </div>
                      <%end%>
+
                      <div class="clearfix"></div>
                     
 
 
-                     <div class="popbottom">
+                     <div class="popbottom popup-description">
                        <p><%= @product.description.try(:html_safe) %></p>
                      </div>
 
-                     <div class="clear20"></div>
+                     <div class="clear"></div>
                      <div class="product-form clearfix">
                         <div id="popup_product_form" class="row row-no-padding ">
                            <%= form_tag product_path(@product.permalink), :method => :post, :class=>"form-inline" do %>
@@ -75,7 +82,7 @@
                                     <% if @product.has_sizes? %>
                                        <div id="size_block" class="form-group">
                                           <label class="label-pop">Size:</label>
-                                       <%= select_tag 'size', options_for_select(@product.get_available_sizes.collect(&:name)),{:prompt=>"Please select", :class=> "form-control quent1"} %>
+                                       <%= select_tag 'size', options_for_select(@product.get_available_sizes.collect(&:name)),{:prompt=>"Select", :class=> "form-control quent1"} %>
                                        </div>
                                     <% end %>
                                  </div>
@@ -85,7 +92,7 @@
                                  <% if @product.has_colors? %>
                                    <div id="color_block" class="form-group">
                                       <label class="label-pop">Color:</label>
-                                      <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Please select", :class=> "form-control quent1"} %>
+                                      <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Select", :class=> "form-control quent1"} %>
                                    </div>
                                  <% end %>
                                  </div>
