@@ -58,7 +58,7 @@ function setAlreadySeletedSize(){
        currentProductSize.css("border", "solid 3px #ddd");
       $("#size").val(selectedSize);
      } else {
-       toastr.success("Size: "+ selectedSize +" is not available for this Product.");
+       toastr.error("Size: "+ selectedSize +" is not available for this Product.");
      }
   };
 }
