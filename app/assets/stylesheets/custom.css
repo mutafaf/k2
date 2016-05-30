@@ -7345,9 +7345,11 @@ background-image: url("/assets/footer-img.jpg");
 
 
 .modal-fullscreen { font-family: 'HelveticaNeueLTPro-Th' !important;}
-#modalAdvertising .modal-body h3 { font-weight: 900; color: #FAFAFA !important;}
-#modalAdvertising .modal-body p {color: #F1F1F1 !important;}
-.checkbox > label, .radio > label { color: #E6E3E3 !important;}
+#modalAdvertising .modal-body h3 { font-weight: 900; 
+  /*color: #FAFAFA !important;*/
+}
+/*#modalAdvertising .modal-body p {color: #F1F1F1 !important;}*/
+/*.checkbox > label, .radio > label { color: #E6E3E3 !important;}*/
 
 .modal-open .modal { overflow-x: hidden;  overflow-y: auto;}
 
@@ -7456,3 +7458,9 @@ body{font-family: 'HelveticaNeueLTPro-Th' !important;}
   clear: both;
   width: 100%;
   background-color: transparent;}
+
+#modalAdvertising{
+  overflow-y: hidden;
+}
+
+#modalAdvertising .modal-dialog { margin-top:80px; }
