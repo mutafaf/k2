@@ -7304,7 +7304,7 @@ background-image: url("/assets/footer-img.jpg");
 }
 	.phone-drop-menu{ clear: both; }
 		.phone-menu-drop{ position: absolute !important;
-    background: #535353 !important; left and right arrow
+    background: #535353 !important; 
     padding-top: 26px; }
 	.flex-nav-next{ display: none; }
 .flex-nav-prev{ display: none; }
@@ -7584,14 +7584,16 @@ z-index: 999999 !important;
     text-align: center;
     margin: auto;margin-top: 32px;     width: 100%;}
 
-.products-height{  margin-top: 34px !important;height: 170px;
+.products-height 
+{  margin-top: 34px !important;
+	height: 170px;
     line-height: 300px;
-
     display: flex;
     overflow: hidden;
     vertical-align: middle;
     text-align: center;
-    margin: auto;}
+    margin: auto;
+}
     
 
 
