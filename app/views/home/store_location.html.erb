@@ -42,13 +42,13 @@
 
     map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
     // placeMarker(myCenter, "");
+    google.maps.event.addListenerOnce(map, 'idle', function(){
+        // console.log('Google map is fully loaded in Gmap V3')
+        getLocation();
+    });
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
-
-  $(document).ready(function() {
-    getLocation();
-  });
 
 </script>
