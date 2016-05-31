@@ -276,7 +276,7 @@
             <li class="dropdown " style="    margin-top: 7px;">
                <a href=""  class="dropdown-toggle" type="button" data-toggle="dropdown">
                <img src="/assets/user.png" class="img-responsive" alt=""></a>
-               <ul class="dropdown-menu">
+               <ul class="dropdown-menu phone-menu-drop">
                   <% if user_signed_in? %>
                   <li><a href="<%= edit_user_registration_path %>" data-no-turbolink =true>My Profile</a></li>
                   <li><a href="#">Settings</a></li>
@@ -284,8 +284,8 @@
                      <%= link_to "Sign out", destroy_user_session_path , :method => "delete" %>
                   </li>
                   <% else %>
-                  <li><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
-                  <li><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
+                  <li class="phone-drop-menu"><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
+                  <li class="phone-drop-menu"><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
                   <% end %>
                </ul>
             </li>

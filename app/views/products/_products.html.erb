@@ -3,7 +3,7 @@
   <!-- PRODUCT - START -->
 
 
-  <div class=" col-md-3 col-sm-4  products-item ">
+  <div class=" col-md-3 col-sm-6  col-xs-12 phone-width ">
 
 
      <article class="product-item ">
@@ -12,14 +12,8 @@
               <div class="">
                  <div class="product-mask"></div>
                  <a href="<%=product_path(product.permalink)%>" class="product-permalink" ></a>
-                 <div >
-                 <img  style="height: 157px;
-    line-height: 346px;
-    display: flex;
-    overflow: hidden;
-    vertical-align: middle !important;
-    text-align: center;
-    margin: auto;margin-top: 32px;" src="<%= product.try(:default_image).try(:path) ? product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" class="img-responsive product_image_size" alt="Not found">
+                 <div class="products-height" >
+                 <img   src="<%= product.try(:default_image).try(:path) ? product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" class=" " alt="Not found" style="    width: 100%;">
                  </div>
                  <div class="product-quickview" onclick="getProductDetail(this)">
                     <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>
@@ -31,7 +25,7 @@
 
 
 
-           <div class="col-sm-9" style="    padding: 0px; margin-top: -17px;">
+           <div class="col-md-9" style="    padding: 0px;     margin-bottom: 25px;">
               <div class="product-body">
                  <h3 style="font-size: large;
     font-family: initial;
