@@ -1,0 +1,70 @@
+<br><br><br>
+<section class="content products">
+   <div class="container">
+      <article class="product-item product-single" style="     padding: 20px;">
+         <div class="row">
+            <br>
+            <center>
+               <h1>BLOG</h1>
+            </center>
+         </div>
+         <hr>
+      </article>
+   </div>
+   <div class="container">
+   <div class="container">
+      <div class="row">
+         <!-- Blog Post Content Column -->
+         <div class="col-md-1 col-sm-12 " style="margin-left: 20px;"></div>
+         <div class="col-md-9 col-sm-12 ">
+            <!-- Blog Post -->
+            <!-- Title --> 
+            <% if @first_blog.present? %>
+               <center>
+                  <img class="img-responsive" src="<%= @first_blog.try(:default_image).try(:path) %>" alt="">
+               </center>
+               <br>
+               <h3 class="pull-left"><%= @first_blog.title %></h3>
+               <!-- Date/Time -->
+               <p class="pull-right"> <%= format_date(@first_blog.created_at) %></p>
+               <br>
+               <div>
+                  <br>
+                  <div class="blog-detail">
+                     <% if @first_blog.description.length > 250 %>
+                        <p><%= truncate(@first_blog.description.try(:html_safe), :length => 250, :escape => false) %></p>
+                        <br>
+                        <a href="<%= blog_path(@first_blog.permalink)%>" class="btn btn-default btn-lg pull-right">Read More</a>
+                     <% else %>
+                        <p><%= @first_blog.description.try(:html_safe) %></p>
+                     <% end %>
+                  </div>
+                  <hr>
+               </div>
+            <% end %>
+            <div style="clear:both:"></div>
+            <br><br>
+            <% if @blogs.present? and @blogs.count > 1 %>
+               <% @blogs.drop(1).each_with_index do |blog, i|  %>
+                  <div class="col-md-6" style="padding-left: 0;">
+                     <center><img class="img-responsive" src="<%= blog.try(:default_image).try(:path) %>" alt=""></center>
+                     <br>
+                     <h3 ><%= blog.title %></h3>
+                     <p> <%= format_date(blog.created_at) %></p>
+                     <% if blog.description.length > 250 %>
+                        <p><%= truncate(blog.description, :length => 250, :escape => false) %></p>
+                        <br>
+                        <a href="<%= blog_path(blog.permalink)%>" class="btn btn-default btn-lg pull-right">Read More</a>
+                     <% else %>
+                        <p><%= blog.description.try(:html_safe) %></p>
+                     <% end %>
+                  </div>
+                  <br>
+               <% end %>
+            <% end %>
+         </div>
+         <!-- /.row -->
+      </div>
+</section>
+<div style="clear:both:"></div>
+<br><br>

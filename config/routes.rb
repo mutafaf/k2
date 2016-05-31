@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get 'home/index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  get "blog/:permalink", to: "blogs#show", as: "blog"
+  get "blogs", to: "blogs#index"
 
   get "product/:permalink", to: "products#show", as: "product"
   post "product/:permalink", to: "products#buy", as: "buy"
@@ -54,18 +56,19 @@ Rails.application.routes.draw do
 
   get "products", to: "products#index"
 
-   get "blog", to: "home#blog"
-   get "videos", to: "home#videos"
-   get "store_location", to: "home#store_location"
-   get "find_nearest_stores", to: "home#find_nearest_stores"
-   get "about_us", to: "home#about_us"
-   get "contact_us", to: "home#contact_us"
-   post '/contact' => "home#contact"
-   get "careers", to: "careers#careers"
-   post "add_subscriber", to: "home#add_subscriber"
-   post "add_careers", to: "careers#add_careers"
+  get "videos", to: "home#videos"
+  get "store_location", to: "home#store_location"
+  get "find_nearest_stores", to: "home#find_nearest_stores"
+  get "about_us", to: "home#about_us"
+  get "contact_us", to: "home#contact_us"
+  post '/contact' => "home#contact"
+  get "careers", to: "careers#careers"
+  post "add_subscriber", to: "home#add_subscriber"
+  post "add_careers", to: "careers#add_careers"
 
-   devise_for :users , :controllers => { :sessions => "sessions", :registrations => "registrations"}
+
+  devise_for :users , :controllers => { :sessions => "sessions", :registrations => "registrations"}
+
 
   root to: "home#index"
   # You can have the root of your site routed with "root"

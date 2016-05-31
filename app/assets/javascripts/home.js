@@ -50,40 +50,30 @@ function find_nearest_stores(lat, lng){
 }
 
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-    }
+  if (!navigator.geolocation){
+     toastr.error("Geolocation is not supported by your browser.")
+     return;
+   }
+
+  navigator.geolocation.getCurrentPosition(success, error);
 }
 
-function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.")
-            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.")
-            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
-            break;
-        case error.TIMEOUT:
-            alert("The request to get user location timed out.")
-            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
-            break;
-        case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.")
-            setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 1000);
-            break;
-    }
-}
+function success(position) {
+  var latitude  = position.coords.latitude;
+  var longitude = position.coords.longitude;
 
-function showPosition (position) {
+   current_location = new google.maps.LatLng(latitude, longitude);
+   if (current_location) {
+    find_nearest_stores(current_location.lat(), current_location.lng());
+    map.panTo(current_location);
+     
+   }
+};
 
-   var current_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    if (current_location) {
-      map.panTo(current_location);
-      find_nearest_stores(current_location.lat(), current_location.lng());
-    }
-}
+function error() {
+  setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 500);
+  toastr.error("Unable to retrieve your location")
+};
 
 function show_other_field(element){
   if ($(element).val() == "Other") {
