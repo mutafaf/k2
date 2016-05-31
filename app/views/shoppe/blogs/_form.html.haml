@@ -4,8 +4,8 @@
   = field_set_tag t('shoppe.blogs.blog_detail') do
     .splitContainer
       %dl.third
-        %dt= f.label :name, t('shoppe.blogs.name')
-        %dd= f.text_field :name, class: 'text focus'
+        %dt= f.label :title, t('shoppe.blogs.title')
+        %dd= f.text_field :title, class: 'text focus'
       %dl.third
         %dt= f.label :permalink, t('shoppe.blogs.permalink')
         %dd= f.text_field :permalink, class: 'text focus'

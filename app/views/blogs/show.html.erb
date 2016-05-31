@@ -1,0 +1,26 @@
+<div class="container">
+   <div class="row">
+      <!-- Blog Post Content Column -->
+      <div class="col-md-1 col-sm-12 " style="margin-left: 20px;"></div>
+      <div class="col-md-9 col-sm-12 ">
+         <!-- Blog Post -->
+         <!-- Title --> 
+         <center>
+            <img class="img-responsive" src="<%= @blog.try(:default_image).try(:path) %>" alt="">
+         </center>
+         <br>
+         <h3 class="pull-left"><%= @blog.title %></h3>
+         <!-- Date/Time -->
+         <p class="pull-right"> <%= format_date(@blog.created_at) %></p>
+         <br>
+         <div>
+            <br>
+            <div class="blog-detail">
+                  <p><%= @blog.description.html_safe %></p>
+            </div>
+            <hr>
+         </div>
+         <div style="clear:both:"></div>
+      </div>
+   </div>
+</div>

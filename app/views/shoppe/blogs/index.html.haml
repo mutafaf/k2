@@ -11,7 +11,7 @@
   %table.data
     %thead
       %tr
-        %th= t('shoppe.blogs.name')
+        %th= t('shoppe.blogs.title')
     %tbody
       - if @blogs.empty?
         %tr.empty
@@ -19,5 +19,5 @@
       - else
         - for blog in @blogs
           %tr
-            %td=link_to blog.name, [:edit, blog]
+            %td=link_to blog.title, [:edit, blog]
 = paginate @blogs

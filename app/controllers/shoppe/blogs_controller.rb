@@ -40,7 +40,7 @@ class Shoppe::BlogsController < Shoppe::ApplicationController
 
   def blog_params
     file_params = [:file, :parent_id, :role, :parent_type, file: []]
-    params[:blog].permit(:name, :description, :permalink, :position, attachments: [default_image: file_params, data_sheet: file_params, extra: file_params])
+    params[:blog].permit(:title, :description, :permalink, :position, attachments: [default_image: file_params, data_sheet: file_params, extra: file_params])
   end
 
   def find_blog
