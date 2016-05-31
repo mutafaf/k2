@@ -31,6 +31,7 @@
 //= require products.js
 //= require orders.js
 //= require home.js
+//= require blogs.js
 //= require js/easyzoom.js
 //= require jquery.infinite-pages
 //= require parsley

@@ -36,9 +36,7 @@
     <div class="social-sharing">
       <h3>Share</h3>
 
-      <div class="fb-share-button" data-href="<%= request.original_url %>" data-layout="button" data-mobile-iframe="true"></div>
-
-      <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      <a href="javascript:fbShare('<%= request.original_url %>', 'Fb Share', 'Facebook share popup', 'http://goo.gl/dS52U', 520, 350)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
       <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
       <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
     </div>
