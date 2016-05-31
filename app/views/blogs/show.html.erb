@@ -1,26 +1,45 @@
-<div class="container">
-   <div class="row">
-      <!-- Blog Post Content Column -->
-      <div class="col-md-1 col-sm-12 " style="margin-left: 20px;"></div>
-      <div class="col-md-9 col-sm-12 ">
-         <!-- Blog Post -->
-         <!-- Title --> 
-         <center>
-            <img class="img-responsive" src="<%= @blog.try(:default_image).try(:path) %>" alt="">
-         </center>
-         <br>
-         <h3 class="pull-left"><%= @blog.title %></h3>
-         <!-- Date/Time -->
-         <p class="pull-right"> <%= format_date(@blog.created_at) %></p>
-         <br>
-         <div>
-            <br>
-            <div class="blog-detail">
-                  <p><%= @blog.description.html_safe %></p>
-            </div>
-            <hr>
-         </div>
-         <div style="clear:both:"></div>
+<br><br><br>
+<section class="content products">
+  <div class="container">
+    <article class="product-item product-single" style="     padding: 20px;">
+      <div class="row">
+        <br>
+        <center>
+          <h1>BLOG</h1>
+        </center>
       </div>
-   </div>
-</div>
+      <hr>
+    </article>
+  </div>
+  <div class="container">
+  <div class="container">
+  <div class="row">
+  <!-- Blog Post Content Column -->
+  <div class="col-md-1 col-sm-12 " style="margin-left: 20px;"></div>
+  <div class="col-md-9 col-sm-12 ">
+    <!-- Blog Post -->
+    <!-- Title --> 
+    <center>
+      <h2><%= @blog.title %></h2>
+      <!-- Date/Time -->
+      <p> Posted on <%= format_datetime(@blog.created_at) %></p>
+      <br>
+      <img class="img-responsive" src="<%= @blog.try(:default_image).try(:path) %>" alt="">
+    </center>
+    <div>
+      <br>
+      <div class="blog-detail">
+        <%= @blog.description.html_safe %>
+      </div>
+    </div>
+    <hr>
+    <div class="social-sharing">
+      <h3>Share</h3>
+      <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+      <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+<div style="clear:both:"></div>
+<br><br>
