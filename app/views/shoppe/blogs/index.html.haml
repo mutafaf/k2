@@ -12,12 +12,14 @@
     %thead
       %tr
         %th= t('shoppe.blogs.title')
+        %th= t('shoppe.blogs.position')
     %tbody
       - if @blogs.empty?
         %tr.empty
-          %td= t('shoppe.blogs.no_blogs')
+          %td{:colspan => 2}= t('shoppe.blogs.no_blogs')
       - else
         - for blog in @blogs
           %tr
             %td=link_to blog.title, [:edit, blog]
+            %td= blog.position
 = paginate @blogs
