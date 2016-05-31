@@ -50,9 +50,12 @@ function find_nearest_stores(lat, lng){
 }
 
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error);
-    }
+  if (!navigator.geolocation){
+     toastr.error("Geolocation is not supported by your browser.")
+     return;
+   }
+
+  navigator.geolocation.getCurrentPosition(success, error);
 }
 
 function success(position) {
