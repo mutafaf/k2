@@ -75,7 +75,7 @@ $(function() {
     }
   });
   $( "#amount" ).val( "Rs " + $( "#slider-range" ).slider( "values", 0 ) +
-    " - Rs" + $( "#slider-range" ).slider( "values", 1 ) );
+    " - Rs " + $( "#slider-range" ).slider( "values", 1 ) );
 });
 
 function filterProducts() {
