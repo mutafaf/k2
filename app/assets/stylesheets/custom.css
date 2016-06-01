@@ -7665,3 +7665,17 @@ z-index: 999999 !important;
 
 
 
+.ui-widget-content {
+  
+    height: 1px !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+   
+    margin-top: -5px !important;
+}
+
+.ui-widget-content {
+   
+    margin-top: 19px !important;
+}
