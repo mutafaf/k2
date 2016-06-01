@@ -70,9 +70,16 @@ function success(position) {
    }
 };
 
-function error() {
+function error(error) {
   setTimeout(function(){ placeMarker(myCenter, "Borjan"); }, 500);
-  toastr.error("Unable to retrieve your location")
+  // toastr.error("Unable to retrieve your location")
+ 
+    console.log('Error occurred. Error code: ' + error.code);
+      if (error.code == 0){toastr.error("unknown error has occured");}
+      else if (error.code == 1) {toastr.error("permission not granted");}
+      else if (error.code == 2) {toastr.error("position unavailable (error response from location provider)");}
+      else if (error.code == 3) {toastr.error("timed out");}
+  
 };
 
 function show_other_field(element){
@@ -82,3 +89,32 @@ function show_other_field(element){
     $('#other_institute').addClass('hidden');
   }
 }
+
+
+
+// function getLocation() {
+ 
+//   navigator.geolocation.getCurrentPosition(success, error);
+
+// var startPos;
+//   var geoOptions = {
+//     enableHighAccuracy: true
+//   }
+
+//   var geoSuccess = function(position) {
+//     startPos = position;
+//     document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+//     document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+//   };
+  // var geoError = function(error) {
+  //   console.log('Error occurred. Error code: ' + error.code);
+  //     if (error.code == 0){toastr.error("unknown error has occured");}
+  //     else if (error.code == 1) {toastr.error("permission not granted");}
+  //     else if (error.code == 2) {toastr.error("position unavailable (error response from location provider)");}
+  //     else if (error.code == 3) {toastr.error("timed out");}
+  // };
+
+//   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+// ?key=AIzaSyD2R0Pkt_QnbBv05OiorFFe4N46kt9KrLA
+
+// }
