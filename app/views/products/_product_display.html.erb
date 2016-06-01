@@ -24,7 +24,7 @@
 <%= form_tag product_path(@product.permalink), :method => :post, :id => "product_form" do %>
   <div class="col-md-5">
      <div class="product-body" style="    margin-top: 2%;">
-     <div class="col-sm-6 col-xs-6">
+     <div class="col-sm-6 col-xs-6" style="    padding: 0;">
         <h2><%= @product.get_name %></h2>
 
         <p><span>Article No:&nbsp;</span><%= @product.article_no %></p>
@@ -73,7 +73,7 @@
                   </div>
                 </div>
               <% end %>
-             
+             <br>
               <h3>Quantity</h3>
               <div class="product-quantity clearfix">
                  <a class="btn btn-default" id="modal-qty-minus">-</a>
