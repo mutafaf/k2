@@ -7410,8 +7410,9 @@ background-image: url("/assets/footer-img.jpg");
 
 .thumbnails li {
     display: inline-block;
-    width: 105px !important;
+    width: 110px !important;
     margin: 0px 5px;
+
 }
 
    .phoneicones{ float: left; margin-left:5%; } 
