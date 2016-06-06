@@ -396,7 +396,7 @@ module Shoppe
         products = self.root #.ordered.includes(:product_categories, :variants)
       end
 
-      products = products.page(params[:page]).per(PER_PAGE)
+      products = products.page(params[:page]).per(PER_PAGE) if products
 
       return category, products
     end
