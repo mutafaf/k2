@@ -3,7 +3,7 @@ module Shoppe
     EMAIL_REGEX = /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i
     PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/
 
-    PAYMENT_TYPES = ["Cash On Delivery", "Credit Card"]
+    PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
 
     self.table_name = 'shoppe_orders'
 

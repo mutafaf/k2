@@ -85,7 +85,7 @@ $('input[name="creditcard"]').keydown(function(e){
   if( creditcards.active == null && card.length > 4 && $('#credit-card-error').find('p').length == 0 ){
 
 	//Show Error
-	$('#credit-card-error').html('<p>Invalid Credit Card</p>');
+	$('#credit-card-error').html('<p>Invalid Credit/Debit Card</p>');
 
   }
 

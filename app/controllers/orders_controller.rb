@@ -38,31 +38,16 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def confirmation
-  #     byebug
-  #   @order = Shoppe::Order.find(current_order.id)
-  #   if request.post?
-  #     if current_order.payment_method == "Credit Card"
-  #       byebug
-  #       @transaction_id = ipg_payment
-  #     else
-  #       current_order.confirm!
-  #       session[:order_id] = nil
-  #       redirect_to root_path, :notice => "Order has been placed successfully!"
-  #     end
-  #   end
-  # end
-
   def confirmation
     @order = Shoppe::Order.find(current_order.id)
-    if current_order.payment_method == "Credit Card"
+    if current_order.payment_method == "Credit/Debit Card"
         @transaction_id = ipg_payment(@order)
-    end
-
-    if request.post?
-        current_order.confirm!
-        session[:order_id] = nil
-        redirect_to root_path, :notice => "Order has been placed successfully!"
+    else
+      if request.post?
+          current_order.confirm!
+          session[:order_id] = nil
+          redirect_to root_path, :notice => "Order has been placed successfully!"
+      end
     end
   end
 
@@ -74,9 +59,7 @@ class OrdersController < ApplicationController
   def finalize
     result = finalize_payment
     result = JSON.parse(result)
-    puts result
-
-    redirect_to root_path, :alert => result["FinalizeResult"]["ResponseDescription"]
+    confirm_payment(result)
   end
 
   def update_order_items
@@ -117,25 +100,60 @@ class OrdersController < ApplicationController
   end
 
 
-
   private
 
   def ipg_payment(order)
-
     customer = "Demo Merchant"
     amount = order.total.to_s
     order_id = order.id.to_s
+    order_info = order_info(order)
+    order_name = "141850"
+    returnpath = "#{request.base_url}/checkout/confirmation_page"
     path = "lib/"
-    # args = [customer, amount, order_id]
-    `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id }`
+    `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id + ' "' + order_info + '" '+ order_name + ' '+ returnpath }`
   end
 
   def finalize_payment
     transaction_id = session[:transaction_id]
     customer = "Demo Merchant"
-    # transaction_id = params[:TransactionID]
     path = "lib/"
     `php -f #{ path + 'IPG_Finalise.php "' + customer + '" ' + transaction_id}`
+  end
+
+  def confirm_payment(result)
+    if result["FinalizeResult"]["ResponseCode"] == 0
+      confirmed = true
+      current_order.confirm!
+      session[:order_id] = nil
+      Shoppe::Payment.create(:order_id => current_order.id,
+        :method => current_order.payment_method,
+        :confirmed => confirmed,
+        :response_code => result["FinalizeResult"]["ResponseCode"],
+        :response_description => result["FinalizeResult"]["ResponseDescription"],
+        :uniqueId => result["FinalizeResult"]["UniqueID"],
+        :version => result["FinalizeResult"]["version"],
+        :amount => result["FinalizeResult"]["Amount"],
+        :account => result["FinalizeResult"]["Account"],
+        :approval_code => result["FinalizeResult"]["ApprovalCode"],
+        :balance => result["FinalizeResult"]["Balance"],
+        :card_brand => result["FinalizeResult"]["CardBrand"],
+        :card_number => result["FinalizeResult"]["CardNumber"],
+        :card_token => result["FinalizeResult"]["CardToken"],
+        :fees => result["FinalizeResult"]["Fees"],
+        :orderID => result["FinalizeResult"]["OrderID"])
+
+      redirect_to "/", :notice => result["FinalizeResult"]["ResponseDescription"]
+    else
+      redirect_to "/", :alert => result["FinalizeResult"]["ResponseDescription"]
+    end
+  end
+
+  def order_info(order)
+    s = " "
+      for item in order.order_items
+        s = s + "#{item.quantity} x #{item.ordered_item.full_name} " 
+      end
+    return s
   end
 
   def safe_params

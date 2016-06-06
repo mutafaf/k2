@@ -25,9 +25,9 @@
         'Amount' => $argv[2],
         'Currency' => 'PKR',
         'OrderID' => $argv[3],
-        'OrderInfo' => 141850,
-        'OrderName' => 141850,
-        'ReturnPath' => 'http://borjanamazon.techverx.com/checkout/confirmation_page',
+        'OrderInfo' => $argv[4],
+        'OrderName' => $argv[5],
+        'ReturnPath' => $argv[6],
         'TransactionHint' => 'CPT:Y;VCC:Y'
         )
     );

@@ -1,0 +1,24 @@
+- unless @payments.empty?
+  .table
+    %table.data
+      %thead
+        %tr
+          %th= t('shoppe.orders.orderID')
+          %th= t('shoppe.orders.method')
+          %th= t('shoppe.orders.amount')
+          %th= t('shoppe.orders.response_code')
+          %th= t('shoppe.orders.card_brand')
+          %th= t('shoppe.orders.fees')
+          %th= t('shoppe.orders.confirmed')
+      %tbody
+        - for payment in @payments
+          %tr
+            %td= payment.orderID
+            %td= payment.method
+            %td= payment.amount
+            %td= payment.response_code
+            %td= payment.card_brand
+            %td= payment.fees
+            %td= boolean_tag payment.confirmed
+- else
+  %p.notice= t('shoppe.orders.no_payments')

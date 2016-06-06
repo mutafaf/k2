@@ -1,4 +1,4 @@
-<% if current_order.payment_method == "Credit Card" %>
+<% if current_order.payment_method == "Credit/Debit Card" %>
    <%= render "ubl_payments" %>
 <% else %>
    <%= render "cash_on_delivery" %>
