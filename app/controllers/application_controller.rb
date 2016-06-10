@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   before_action :set_header, :brands
   helper_method :resource, :resource_name, :devise_mapping
+  before_filter :set_default_url_options
 
   def resource_name
     :user
@@ -55,9 +56,14 @@ class ApplicationController < ActionController::Base
   def has_order?
     !!(
       session[:order_id] &&
-      @current_order = Shoppe::Order.includes(:order_items => :ordered_item).find_by_id(session[:order_id])
+        @current_order = Shoppe::Order.includes(:order_items => :ordered_item).find_by_id(session[:order_id])
     )
   end
 
+  def set_default_url_options
+    ActionMailer::Base.default_url_options[:host] = request.host_with_port
+    Rails.application.routes.default_url_options[:host] = request.host_with_port
+  end
+  
   helper_method :current_order, :has_order?
 end

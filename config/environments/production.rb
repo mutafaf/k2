@@ -78,22 +78,22 @@ Rails.application.configure do
   #   ssl: true,   #For TLS SSL connection
   # }
 
-  config.action_mailer.smtp_settings = {  
-    :address => 'email-smtp.us-east-1.amazonaws.com',
-    :authentication => :login,
-    :user_name => 'AKIAI6ZYVEMMBSVWNW4A',
-    :password => 'AuF3d9niLQBoP9NlRkUXiWiEl83Qb+0GIyZVQEIGAds/',
-    :enable_starttls_auto => true,
-    :port => 25
-  }
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings= {  
+ :address => 'email-smtp.eu-west-1.amazonaws.com',
+ :authentication => :plain,
+ :user_name => 'AKIAI2Y5NYHQ2ZUVI3VA',
+ :password => 'AjrXR6XGsMBsALYHxflvy+M0qe1kE8HZZ8VZx69ybYgO',
+ :enable_starttls_auto => true,
+ :port => "465",
+  :ssl                    => true,
+  :tls                    => true
+}
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'http://borjanamazon.techverx.com/' }
+  
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-
-
-  Rails.application.routes.default_url_options[:host] = 'http://borjanamazon.techverx.com/'
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
