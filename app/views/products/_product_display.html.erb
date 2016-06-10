@@ -26,8 +26,9 @@
      <div class="product-body" style="    margin-top: 2%;">
      <div class="col-sm-6 col-xs-6" style="    padding: 0;">
         <h2><%= @product.get_name %></h2>
-
-        <p><span>Article No:&nbsp;</span><%= @product.article_no %></p>
+        <% if @product.article_no.present? %>
+          <p><span>Article No:&nbsp;</span><%= @product.article_no %></p>
+        <% end %>
         <span class="">
         <br>
         <%= number_to_currency @product.get_price %> 
