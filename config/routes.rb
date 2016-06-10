@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   get "products", to: "products#index"
 
   get "videos", to: "home#videos"
+  get "faq", to: "home#faq"
   get "store_location", to: "home#store_location"
   get "find_nearest_stores", to: "home#find_nearest_stores"
   get "about_us", to: "home#about_us"

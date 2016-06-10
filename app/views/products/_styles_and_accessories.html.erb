@@ -93,53 +93,55 @@
                      </div>
                   </center>
                </div>
-               <div class="container">
-                  <div class="col-md-12">
-                     <br>
-                     <div class="col-md-6">
-                        <div class="panel-group" id="accordion">
-                           <div style="    border-bottom: solid 1px #ccc;">
-                           </div>
-                           <div class="panel panel-default">
-                              <div class="panel-heading">
-                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false">
-                                    Product Details
-                                    </a>
-                                 </h4>
-                              </div>
-                              <div id="collapseOne" class="panel-collapse collapse ">
-                                 <div class="panel-body">
-                                    <%= @product.description.try(:html_safe) %>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- /.panel-group -->
-                     </div>
-                     <div class="col-md-6">
-                        <div class="panel-group" id="accordion">
-                           <div style="    border-bottom: solid 1px #ccc;">
-                           </div>
-                           <div class="panel panel-default">
-                              <div class="panel-heading">
-                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#fb" class="collapsed" aria-expanded="false">
-                                    Facebook Comments 
-                                    </a>
-                                 </h4>
-                              </div>
-                              <div id="fb" class="panel-collapse collapse ">
-                                 <div class="panel-body">
-                                    <div class="fb-comments" data-href="<%= request.original_url %>" data-width="346" data-numposts="3"></div>
+               <% unless @product.try(:product_category).try(:name) == "Men" %>
+                <div class="container">
+                   <div class="col-md-12">
+                      <br>
+                      <div class="col-md-6">
+                         <div class="panel-group" id="accordion">
+                            <div style="    border-bottom: solid 1px #ccc;">
+                            </div>
+                            <div class="panel panel-default">
+                               <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false">
+                                     Product Details
+                                     </a>
+                                  </h4>
+                               </div>
+                               <div id="collapseOne" class="panel-collapse collapse ">
+                                  <div class="panel-body">
+                                     <%= @product.description.try(:html_safe) %>
                                   </div>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- /.panel-group -->
-                     </div>
-                  </div>
-               </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- /.panel-group -->
+                      </div>
+                      <div class="col-md-6">
+                         <div class="panel-group" id="accordion">
+                            <div style="    border-bottom: solid 1px #ccc;">
+                            </div>
+                            <div class="panel panel-default">
+                               <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                     <a data-toggle="collapse" data-parent="#accordion" href="#fb" class="collapsed" aria-expanded="false">
+                                     Facebook Comments 
+                                     </a>
+                                  </h4>
+                               </div>
+                               <div id="fb" class="panel-collapse collapse ">
+                                  <div class="panel-body">
+                                     <div class="fb-comments" data-href="<%= request.original_url %>" data-width="346" data-numposts="3"></div>
+                                   </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- /.panel-group -->
+                      </div>
+                   </div>
+                </div>
+               <% end %>
                <div style="clear:both;"></div>
             </div>
          </div>

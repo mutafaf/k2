@@ -1,0 +1,16 @@
+Hello <%=@order.first_name%>!
+
+Re: Order #<%=@order.number%>
+
+<% if @order.payment_method == "Credit/Debit Card" %>
+ We're pleased to let you know that we have accepted your order and your payment of <%=number_to_currency @order.total%> has been taken from your card successfully.
+<% else %>
+ We're pleased to let you know that we have accepted your order and you have selected cash on delivery.
+<% end %>
+
+We will e-mail you again when we ship your order from our warehouse.
+
+Many thanks,
+
+<%=Shoppe.settings.store_name%>
+<%=Shoppe.settings.email_address%>
