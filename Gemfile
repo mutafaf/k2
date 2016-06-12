@@ -49,6 +49,7 @@ gem 'ratyrate'
 
 #cache
 gem "rack-cache"
+gem 'dalli'
 
 #editor
 gem 'ckeditor_rails'
