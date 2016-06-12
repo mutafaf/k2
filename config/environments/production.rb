@@ -108,3 +108,11 @@ config.action_mailer.smtp_settings= {
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+    :email_prefix => "[Borjan - ExceptionNotification] ",
+    :sender_address => %{"Borjan - ExceptionNotification" <info@borjan.com.pk>},
+    :exception_recipients => %w{usman@gems.techverx.com iqra@gems.techverx.com atif@gems.techverx.com rao.bilal@gems.techverx.com}
+  }
