@@ -25,5 +25,6 @@ module Borjan
     config.active_job.queue_adapter = :delayed_job
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join('app', 'assets', 'stylesheets','fonts')
+    config.cache_store = :dalli_store
   end
 end
