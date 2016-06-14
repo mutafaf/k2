@@ -2,7 +2,6 @@
   <% @products.each do |product| %>
    <%if product.permalink%>  <!-- PRODUCT - START -->
 
-
   <div class=" col-md-3 col-sm-6  col-xs-12 phone-width ">
 
 
@@ -13,7 +12,7 @@
                  <div class="product-mask"></div>
                  <a href="<%=product_path(product.permalink)%>" class="product-permalink" ></a>
                  <div class="products-height" >
-                 <img   src="<%= product.try(:default_image).try(:path) ? product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" class=" " alt="Not found" style="    width: 100%;">
+                 <img   src="<%= product_image(product) %>" class=" " alt="Not found" style="    width: 100%;">
                  </div>
                  <div class="product-quickview" onclick="getProductDetail(this)">
                     <%= hidden_field_tag :product_id,{}, :value=>"#{product.permalink}"  %>
@@ -27,11 +26,9 @@
 
            <div class="col-md-9" style="    padding: 0px;     margin-bottom: 25px;">
               <div class="product-body">
-                 <h3 style="font-size: large;
-    font-family: initial;
-}"><%= link_to product.name, product_path(product.permalink)%></h3>
+                 <h3 style="font-size: large;font-family: initial;}"><%= link_to product.name, product_path(product.permalink)%></h3>
                  <span class="price">
-                 <ins><span class="amount"><%= number_to_currency product.price %></span></ins>
+                 <ins><span class="amount"><%= number_to_currency product.get_price %></span></ins>
                  </span>                                          
                  <center>
 

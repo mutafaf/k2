@@ -1,7 +1,16 @@
 <%if @category.is_a?(String)%>
   $("#category_heading").html("<%= @category %>")
 <% elsif @category.present? %>
+  document.getElementById("just").style.backgroundImage = "url('<%= @category.try(:background_image).try(:path) %>')";
   $("#category_heading").html("<%= @category.name %>")
+
+  <% if @category.try(:parent_id)  %>
+  // Show collection word only for main headings
+    $("#collection").html("")
+  <% else %>
+    $("#collection").html("Collection")
+  <% end %>
+
   // $("body").animate({ scrollTop: 0});
 <%end%>
 
