@@ -57,6 +57,10 @@ Rails.application.routes.draw do
 
   get "videos", to: "home#videos"
   get "faq", to: "home#faq"
+  get "exchange", to: "home#exchange"
+  get "privacy", to: "home#privacy"
+  get "terms", to: "home#terms"
+  
   get "store_location", to: "home#store_location"
   get "find_nearest_stores", to: "home#find_nearest_stores"
   get "about_us", to: "home#about_us"
