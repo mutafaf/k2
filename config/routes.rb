@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :return_forms
   post '/rate' => 'rater#create', :as => 'rate'
   mount Shoppe::Engine => "/admin"
 
   Shoppe::Engine.routes.draw do
+    resources :return_forms
     resources :sizes
     resources :subscribers
     resources :jobs do

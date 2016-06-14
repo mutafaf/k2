@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order number:</strong>
+  <%= @return_form.order_number %>
+</p>
+
+<p>
+  <strong>Serial number:</strong>
+  <%= @return_form.serial_number %>
+</p>
+
+<p>
+  <strong>Item number:</strong>
+  <%= @return_form.item_number %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @return_form.description %>
+</p>
+
+<p>
+  <strong>Return quantity:</strong>
+  <%= @return_form.return_quantity %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @return_form.reason %>
+</p>
+
+<p>
+  <strong>Action detail:</strong>
+  <%= @return_form.action_detail %>
+</p>
+
+<%= link_to 'Edit', edit_return_form_path(@return_form) %> |
+<%= link_to 'Back', return_forms_path %>
