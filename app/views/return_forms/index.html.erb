@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Return Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order number</th>
+      <th>Serial number</th>
+      <th>Item number</th>
+      <th>Description</th>
+      <th>Return quantity</th>
+      <th>Reason</th>
+      <th>Action detail</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @return_forms.each do |return_form| %>
+      <tr>
+        <td><%= return_form.order_number %></td>
+        <td><%= return_form.serial_number %></td>
+        <td><%= return_form.item_number %></td>
+        <td><%= return_form.description %></td>
+        <td><%= return_form.return_quantity %></td>
+        <td><%= return_form.reason %></td>
+        <td><%= return_form.action_detail %></td>
+        <td><%= link_to 'Show', return_form %></td>
+        <td><%= link_to 'Edit', edit_return_form_path(return_form) %></td>
+        <td><%= link_to 'Destroy', return_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Return form', new_return_form_path %>

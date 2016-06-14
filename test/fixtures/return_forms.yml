@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_number: MyString
+  serial_number: MyString
+  item_number: MyString
+  description: MyText
+  return_quantity: MyText
+  reason: MyString
+  action_detail: MyString
+
+two:
+  order_number: MyString
+  serial_number: MyString
+  item_number: MyString
+  description: MyText
+  return_quantity: MyText
+  reason: MyString
+  action_detail: MyString

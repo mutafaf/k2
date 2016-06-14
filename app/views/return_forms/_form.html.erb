@@ -1,0 +1,58 @@
+<%= form_for @return_form, html: {"data-parsley-validate" => true}   do |f| %>
+  <% if @return_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@return_form.errors.count, "error") %> prohibited this return_form from being saved:</h2>
+
+      <ul>
+      <% @return_form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, :required=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, :required=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :order_number %><br>
+    <%= f.text_field :order_number, :required=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :serial_number %><br>
+    <%= f.text_field :serial_number, :required=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :item_number %><br>
+    <%= f.text_field :item_number, :required=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :reason %><br>
+     <%= f.select :action_detail, [['CHANGED MY MIND', 'CHANGED MY MIND'], ['WRONG ITEM ORDERED', 'WRONG ITEM ORDERED'], ['NOT THE ONE AS SHOWN','NOT THE ONE AS SHOWN'], ['QUALITY NOT AS EXPECTED','QUALITY NOT AS EXPECTED'], ['ARRIVED DAMAGED','ARRIVED DAMAGED'], ['DEFECTIVE','DEFECTIVE'], ['ARRIVED LATE','ARRIVED LATE'], ['WRONG ITEM SENT','WRONG ITEM SENT'], ['OTHER REASON','OTHER REASON']]  %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, :required=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :return_quantity %><br>
+    <%= f.text_field :return_quantity, :required=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :action_detail %><br>
+    <%= f.select :action_detail, [['REFUND PURCHASERS ORIGINAL FORM OF PAYMENT ', 'REFUND PURCHASERS ORIGINAL FORM OF PAYMENT'], ['REPLACE ITEM WITH SAME PRODUCT', 'REPLACE ITEM WITH SAME PRODUCT'], ['REPLACE ITEM WITH SAME PRODUCT','REPLACE ITEM WITH SAME PRODUCT']]  %>
+  </div>
+  <div class="field">
+    <%= f.label "comments" %><br>
+    <%= f.text_area :comment%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
