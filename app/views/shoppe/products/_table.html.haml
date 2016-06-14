@@ -26,7 +26,7 @@
       - else
         - for category, products in products
           %tr
-            %th{:colspan => 5}= category.name
+            %th{:colspan => 5}= category.get_category_sequence
           - for product in products
             %tr
               %td= product.sku

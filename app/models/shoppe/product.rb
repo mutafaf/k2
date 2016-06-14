@@ -330,7 +330,7 @@ module Shoppe
     end
 
     def self.find_by_brands(brand)
-      where(color_name: color_name).active
+      where(brand: brand).active
     end
 
     def self.find_by_color_name(color_name)

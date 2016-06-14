@@ -51,4 +51,10 @@ module ProductsHelper
     return product
   end
 
+  def product_image(product)
+    product = product.parent if product.default # get default variant here
+    return product.default_image.path if product.try(:default_image).try(:path)
+    return '/assets/placeholder.jpg'
+  end
+
 end
