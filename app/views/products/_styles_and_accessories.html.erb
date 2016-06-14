@@ -11,6 +11,7 @@
                   <br><br>
                   <% if @product.styles.present? %>
                    <% @product.styles.each do |product| %>
+ <%if product.permalink%> 
                    <div class="col-md-4">
                       <article class="product-item pro-inner style-may-you ">
                          <div class="row">
@@ -32,6 +33,7 @@
                    </div>
                    <% end %>
                   <% end %>
+                  <%end%>
                </div>
                <div class="col-md-6">
                   <center>
@@ -95,7 +97,7 @@
                </div>
                <% unless @product.try(:product_category).try(:name) == "Men" %>
                 <div class="container">
-                   <div class="col-md-12">
+                   <div class="col-md-12" style="display:none;">
                       <br>
                       <div class="col-md-6">
                          <div class="panel-group" id="accordion">

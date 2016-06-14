@@ -1,6 +1,6 @@
 
   <% @products.each do |product| %>
-  <!-- PRODUCT - START -->
+   <%if product.permalink%>  <!-- PRODUCT - START -->
 
 
   <div class=" col-md-3 col-sm-6  col-xs-12 phone-width ">
@@ -47,7 +47,7 @@
      </article>
   </div>
   <!-- PRODUCT - END -->
-  <%end%>
+  <%end%><%end%>
 
 <div id="product-quickview2">
 </div>
