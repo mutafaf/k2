@@ -29,6 +29,18 @@ class HomeController < ApplicationController
   def brand_page
     @brand = Shoppe::Brand.find_by_permalink(params[:permalink])
   end
+  
+  def exchange
+    
+  end
+  
+  def privacy
+    
+  end
+  
+  def terms
+    
+  end
 
   private
 
