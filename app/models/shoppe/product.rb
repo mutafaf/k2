@@ -337,11 +337,41 @@ module Shoppe
       where(color_name: color_name).active
     end
 
+    def self.find_by_category_and_descendants(category)
+        cat_ids = category.descendants.collect(&:id)
+        cat_ids << category.id
+        includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
+    end
+
+
+    # def self.find_by_size_id(size_id, category_permalink)
+    #   category = self.find_category(category_permalink)
+    #   # products of current category
+    #   category_products = category.products
+    #   # filter products of current category for current size
+    #   products = category_products.includes(:sizes).where('shoppe_sizes.id' => size_id)
+    #   if products.present?
+    #     self.filter_stockable_products(products, size_id)
+    #   end
+    # end
+
+    # def self.filter_stockable_products(products, size_id)
+    #   ids = []
+    #   products.each do |product|
+    #     # if product.default_variant
+    #     #    product = product.default_variant # get default variant here
+    #     # end
+    #     if product.stock(size_id) > 0
+    #     ids << product.id
+    #     end
+    #   end
+    #   products = products.where(id: ids)
+    # end
+
     def self.find_by_size_id(size_id, category_permalink)
       size = Shoppe::Size.find(size_id)
       products = size.products.active
-      # category = self.find_category(category_permalink)
-      # category_products = category.products
+
       if products.present?
         self.filter_stockable_products(products, size_id)
       end
@@ -373,7 +403,7 @@ module Shoppe
 
       elsif params[:category_permalink].present?
         category = self.find_category(category_permalink)
-        products = category.products if category
+        products = self.find_by_category_and_descendants(category) if category
 
       elsif params[:category_name].present?
         category = Shoppe::ProductCategory.search_home_category(params[:category_name])

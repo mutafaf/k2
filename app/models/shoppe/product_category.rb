@@ -20,8 +20,8 @@ module Shoppe
 
     # Validations
     validates :name, presence: true
-    # validates :permalink, presence: true, uniqueness: { scope: :parent_id }, permalink: true
-    validates :permalink, presence: true, uniqueness: true, permalink: true
+    validates :permalink, presence: true, uniqueness: { scope: :parent_id }, permalink: true
+    # validates :permalink, presence: true, uniqueness: true, permalink: true
 
     # Root (no parent) product categories only
     scope :without_parent, -> { where(parent_id: nil) }
