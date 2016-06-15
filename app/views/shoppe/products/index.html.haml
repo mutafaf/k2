@@ -4,7 +4,10 @@
   %p.buttons
     = link_to t('shoppe.products.new_product'), :new_product, :class => 'button green'
     / = link_to t('shoppe.products.import_products'), :import_products, :class => 'button gray'
+    = link_to t('shoppe.products.search_product'), '#', class: 'button', rel: 'searchProducts'
   %h2.products= t('shoppe.products.products')
+
+= render 'search_form'
 
 = render 'table', :products => @products
 

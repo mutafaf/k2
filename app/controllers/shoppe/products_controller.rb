@@ -11,7 +11,6 @@ module Shoppe
         @products_paged = @products_paged
                           .where('shoppe_product_categorizations.product_category_id = ?', params[:category_id])
       end
-
       case
       when params[:sku]
         @products_paged = @products_paged
@@ -20,9 +19,8 @@ module Shoppe
                           .ransack(sku_cont_all: params[:sku].split).result
       when params[:name]
         @products_paged = @products_paged
-                          .with_translations(I18n.locale)
                           .page(params[:page])
-                          .ransack(translations_name_or_translations_description_cont_all: params[:name].split)
+                          .ransack(with_translated_name: params[:name].split)
                           .result
       else
         @products_paged = @products_paged.page(params[:page])

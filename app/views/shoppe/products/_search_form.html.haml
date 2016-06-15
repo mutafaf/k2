@@ -1,0 +1,6 @@
+.productSearch{:style => action_name == 'search' ? "display:block" : ''}
+  = form_tag "/admin/products", :method => :get do |f|
+    %dl.left
+      %dt= label_tag :name, t('shoppe.products.name')
+      %dd= text_field_tag :name
+      %dd= submit_tag t('shoppe.orders.search'), :class => 'button green button'

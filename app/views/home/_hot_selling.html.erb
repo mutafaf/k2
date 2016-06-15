@@ -13,7 +13,7 @@
             <section class="slider">
                <div class="flexslider carousel">
                   <ul class="slides">
-                     <% @new_arrivals.each do |product| %>
+                     <% @hot_selling.each do |product| %>
                      <%if product.permalink%>
                      <li class="col-md-3">
                         <a href="<%=product_path(product.permalink) %>">
