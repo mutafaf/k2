@@ -82,7 +82,7 @@
                                     <% if @product.has_sizes? %>
                                        <div id="size_block" class="form-group">
                                           <label class="label-pop">Size:</label>
-                                       <%= select_tag 'size', options_for_select(@product.get_available_sizes.collect(&:name)),{:prompt=>"Select", :class=> "form-control quent1"} %>
+                                       <%= select_tag 'size', options_for_select(@product.get_available_sizes.collect(&:name)),{:prompt=>"Select", :class=> "form-control quent1", :id=>"size_select"} %>
                                        </div>
                                     <% end %>
                                  </div>
@@ -92,7 +92,7 @@
                                  <% if @product.has_colors? %>
                                    <div id="color_block" class="form-group">
                                       <label class="label-pop">Color:</label>
-                                      <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Select", :class=> "form-control quent1"} %>
+                                      <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Select", :class=> "form-control quent1", :id=>"color_select"} %>
                                    </div>
                                  <% end %>
                                  </div>
@@ -119,8 +119,8 @@
 <%= javascript_include_tag 'ratyrate.js'%>
 <script type="text/javascript">
    $('#popup_product_form form').submit(function() {
-       var size = $("#size").val();
-       var color = $("#color").val();
+       var size = $("#size_select").val();
+       var color = $("#color_select").val();
        var quantity = $('#modal-qty').val();
           if ((size == null || size == "") && ($("#size_block").length)) {
               toastr.error("Please select any Size.");

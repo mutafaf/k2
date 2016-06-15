@@ -69,6 +69,6 @@ class ReturnFormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def return_form_params
-      params.require(:return_form).permit(:order_number, :serial_number, :item_number, :description, :return_quantity, :reason, :action_detail)
+      params.require(:return_form).permit(:name, :email, :order_number, :serial_number, :item_number, :description, :return_quantity, :reason, :action_detail, :comment)
     end
 end
