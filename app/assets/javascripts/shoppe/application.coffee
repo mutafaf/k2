@@ -16,6 +16,10 @@ $ ->
   $('a[rel=searchOrders]').on 'click', ->
     $('div.orderSearch').toggle()
 
+  # When clicking the product search button, toggle the form
+  $('a[rel=searchProducts]').on 'click', ->
+    $('div.productSearch').toggle()
+
   # When clicking the customer search button, toggle the form
   $('a[rel=searchCustomers]').on 'click', ->
     $('div.customerSearch').toggle()

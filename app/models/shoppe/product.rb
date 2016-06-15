@@ -337,9 +337,11 @@ module Shoppe
       where(color_name: color_name).active
     end
 
-    def self.find_by_size_id(size_id)
+    def self.find_by_size_id(size_id, category_permalink)
       size = Shoppe::Size.find(size_id)
       products = size.products.active
+      # category = self.find_category(category_permalink)
+      # category_products = category.products
       if products.present?
         self.filter_stockable_products(products, size_id)
       end
@@ -359,7 +361,7 @@ module Shoppe
       where("price >= ? AND price <= ?", min_price, max_price).active
     end
 
-    def self.find_products(params)
+    def self.find_products(params, category_permalink)
       category = ""
       if params[:new_arrivals].present?
         category = NEW_ARRIVALS
@@ -370,7 +372,7 @@ module Shoppe
         products = self.hot_selling
 
       elsif params[:category_permalink].present?
-        category = Shoppe::ProductCategory.ordered.find_by_permalink(params[:category_permalink])
+        category = self.find_category(category_permalink)
         products = category.products if category
 
       elsif params[:category_name].present?
@@ -387,7 +389,7 @@ module Shoppe
 
       elsif params[:size_id].present?
         category = Shoppe::Size.find(params[:size_id]).try(:name)
-        products = self.find_by_size_id(params[:size_id])
+        products = self.find_by_size_id(params[:size_id], category_permalink)
       elsif params[:min_price].present? and params[:max_price].present?
         category = PRICE_RANGE
         products = self.find_by_price(params[:min_price], params[:max_price])
@@ -399,6 +401,10 @@ module Shoppe
       products = products.page(params[:page]).per(PER_PAGE) if products
 
       return category, products
+    end
+
+    def self.find_category(category_permalink)
+      Shoppe::ProductCategory.ordered.find_by_permalink(category_permalink)
     end
 
     def self.collect_brands
@@ -423,7 +429,15 @@ module Shoppe
       end
     end
 
+    def self.with_translated_name(name_string)
+      with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
+    end
+
     private
+
+    def self.ransackable_scopes(auth_object = nil)
+      %i(with_translated_name) 
+    end
 
     # Validates
 
