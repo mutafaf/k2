@@ -3636,11 +3636,6 @@ footer.navbar a:hover {
 	margin-top:-25px;
 }
 
-.jumbotron .owl-carousel .item {
-	position:relative;
-	background-size:cover;
-	height:400px;
-}
 
 .jumbotron-full-height .owl-carousel,
 .jumbotron-full-height .owl-carousel .item,
@@ -7621,6 +7616,7 @@ z-index: 999999 !important;
     width:93.5% !important;
   }
    .phone-width{ width: 100% !important; }
+   
 
 }
 @media screen and (min-width: 480px) and (max-width: 639px) {
@@ -7629,6 +7625,7 @@ z-index: 999999 !important;
     width:96% !important;
   }
     .phone-width{ width: 50% !important; }
+   
 }
 @media screen and (min-width: 640px) and (max-width: 767px) {
   #modalAdvertising{ overflow-y: visible; }
@@ -7636,15 +7633,34 @@ z-index: 999999 !important;
     width:97% !important;
   }
   .phone-width{ width: 50% !important; }
+  .jumbotron .owl-carousel .item {
+	
+	background-size:contain !important;
+	background-repeat: no-repeat !important;
+	
+}
 }
 @media screen and (min-width: 768px) and (max-width: 1003px) {
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
+.jumbotron .owl-carousel .item {
+	
+	background-size:contain !important;
+	background-repeat: no-repeat !important;
+	
+}
 
 }
 @media screen and (min-width: 1004px) and (max-width: 1259px) {
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
+
+.jumbotron .owl-carousel .item {
+	
+	background-size:contain !important;
+	background-repeat: no-repeat !important;
+	
+}
 }
 @media screen and (min-width: 1260px) and (max-width: 1279px) {
 
@@ -7680,3 +7696,13 @@ z-index: 999999 !important;
    
     margin-top: 19px !important;
 }
+
+
+
+.jumbotron .owl-carousel .item {
+	
+	background-size:cover ;
+	background-repeat: no-repeat ;
+	
+}
+.body{background: rgb(238, 237, 239);}
