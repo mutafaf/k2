@@ -2555,6 +2555,7 @@ article.product-item .price ins,
 	text-decoration:none;
 	font-weight:600;
 	color:#333333;
+	line-height: 5;
 }
 
 article.product-item .price del + ins,
@@ -3636,11 +3637,6 @@ footer.navbar a:hover {
 	margin-top:-25px;
 }
 
-.jumbotron .owl-carousel .item {
-	position:relative;
-	background-size:cover;
-	height:400px;
-}
 
 .jumbotron-full-height .owl-carousel,
 .jumbotron-full-height .owl-carousel .item,
@@ -7200,7 +7196,7 @@ background-image: url("/assets/footer-img.jpg");
 
 @media screen and (min-width: 480px) and (max-width: 639px) {
 	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-    color: #555;
+    color: #fff;
     background-color: transparent !important;
 }
 	.phone-drop-menu{ clear: both; }
@@ -7623,6 +7619,7 @@ z-index: 999999 !important;
     width:93.5% !important;
   }
    .phone-width{ width: 100% !important; }
+   
 
 
 }
@@ -7646,33 +7643,44 @@ z-index: 999999 !important;
     width:97% !important;
   }
   .phone-width{ width: 50% !important; }
-
-.jumbotron .owl-carousel .item {
-    width: 100%;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
+  .jumbotron .owl-carousel .item {
+	
+	background-size:contain !important;
+	background-repeat: no-repeat !important;
+	
 }
+.owl-stage-outer{ height: 338px !important; }
 }
 @media screen and (min-width: 768px) and (max-width: 1003px) {
+	.owl-stage-outer{ height: 400px !important; }
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
-
+.jumbotron .owl-carousel .item {
+	
+	background-size:contain !important;
+	background-repeat: no-repeat !important;
+	
+}
 
 .jumbotron .owl-carousel .item {
     width: 100%;
     background-size: contain !important;
     background-repeat: no-repeat !important;
 }
+.owl-stage-outer{ height: 450px !important; }
 }
 @media screen and (min-width: 1004px) and (max-width: 1259px) {
+
+
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
 
-.jumbotron .owl-carousel .item {
-    width: 100%;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-}
+  .jumbotron .owl-carousel .item {
+  	
+  	background-size:contain !important;
+  	background-repeat: no-repeat !important;
+  	
+  }
 }
 @media screen and (min-width: 1260px) and (max-width: 1279px) {
 
@@ -7718,3 +7726,13 @@ article.product-item .price ins, .small-product li .price ins {
     line-height: 5;
 }
 
+
+
+.jumbotron .owl-carousel .item {
+	
+	background-size:cover;
+	background-repeat: no-repeat; 
+	
+}
+.body{background: rgb(238, 237, 239);}
+.jumbotron { background: #eeedef }
