@@ -15,13 +15,14 @@
       %dl.third
         %dt= f.label :sku, t('shoppe.products.sku')
         %dd= f.text_field :sku, :class => 'text', :required => true
-    .splitContainer
-      %dl.half
-        %dt= f.label :color_name, t('shoppe.products.color_name')
-        %dd= f.text_field :color_name, :class => 'text focus', :required => true
-      %dl.half
-        %dt= f.label :color, t('shoppe.variants.color')
-        %dd= f.text_field :color, :class => 'text focus jscolor'
+    - unless @product.has_variants?
+      .splitContainer
+        %dl.half
+          %dt= f.label :color_name, t('shoppe.products.color_name')
+          %dd= f.text_field :color_name, :class => 'text focus', :required => true
+        %dl.half
+          %dt= f.label :color, t('shoppe.variants.color')
+          %dd= f.text_field :color, :class => 'text focus jscolor'
     .splitContainer
       %dl.half
         %dt= f.label :article_no, t('shoppe.products.article_no')
