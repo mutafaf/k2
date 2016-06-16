@@ -13,6 +13,10 @@
                       <!-- Show collection word only for main headings -->
                       <span id="collection"><%= "Collection" unless @category.try(:parent_id) %></span>
                       </h2>
+                    <% else %>
+                    <h2 ><span id="category_heading" style=" color:#333;"></span>
+                    <span id="collection"></span>
+                    </h2>
                      <% end %>
                   </center>
                </div>
