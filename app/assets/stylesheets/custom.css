@@ -2555,6 +2555,7 @@ article.product-item .price ins,
 	text-decoration:none;
 	font-weight:600;
 	color:#333333;
+	line-height: 5;
 }
 
 article.product-item .price del + ins,
@@ -7195,7 +7196,7 @@ background-image: url("/assets/footer-img.jpg");
 
 @media screen and (min-width: 480px) and (max-width: 639px) {
 	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-    color: #555;
+    color: #fff;
     background-color: transparent !important;
 }
 	.phone-drop-menu{ clear: both; }
@@ -7639,8 +7640,10 @@ z-index: 999999 !important;
 	background-repeat: no-repeat !important;
 	
 }
+.owl-stage-outer{ height: 338px !important; }
 }
 @media screen and (min-width: 768px) and (max-width: 1003px) {
+	.owl-stage-outer{ height: 400px !important; }
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
 .jumbotron .owl-carousel .item {
@@ -7650,8 +7653,11 @@ z-index: 999999 !important;
 	
 }
 
+.owl-stage-outer{ height: 450px !important; }
 }
 @media screen and (min-width: 1004px) and (max-width: 1259px) {
+
+
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
 
@@ -7701,8 +7707,9 @@ z-index: 999999 !important;
 
 .jumbotron .owl-carousel .item {
 	
-	background-size:cover ;
-	background-repeat: no-repeat ;
+	background-size:cover;
+	background-repeat: no-repeat; 
 	
 }
 .body{background: rgb(238, 237, 239);}
+.jumbotron { background: #eeedef }

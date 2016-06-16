@@ -4,7 +4,8 @@
       <div class="col-md-12">
          <div class="releated-products">
             <div class="row grid" id="products">
-               <div class="col-md-6">
+            <div class="col-md-2"></div>
+               <div class="col-md-8" style="padding: 0;">
                   <center>
                      <h3 >STYLES YOU MAY LIKE:</h3>
                   </center>
@@ -35,66 +36,7 @@
                   <% end %>
                   <%end%>
                </div>
-               <div class="col-md-6">
-                  <center>
-                     <h3>ACCESSORIES YOU MAY LIKE:</h3>
-                     <br><br>
-                     <div class="col-md-4">
-                        <article class="product-item pro-inner style-may-you ">
-                           <div class="row">
-                              <div class="col-sm-3">
-                                 <div class="" >
-                                    <img src="/assets/products/bag.png" class="img-responsive" alt="">
-                                    <div class="product-body"  style=" ">
-                                       <h3>TAMARA</h3>
-                                       <span class="price">
-                                          <!-- <del><span class="amount">$36.00</span></del> -->
-                                          <ins><span class="amount">Rs 30.00</span></ins>
-                                       </span>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </article>
-                     </div>
-                     <div class="col-md-4">
-                        <article class="product-item pro-inner style-may-you ">
-                           <div class="row">
-                              <div class="col-sm-3">
-                                 <div class="">
-                                    <img src="/assets/products/bag1.png" class="img-responsive" alt="">
-                                    <div class="product-body" >
-                                       <h3>TAMARA</h3>
-                                       <span class="price">
-                                          <!--  <del><span class="amount">$36.00</span></del> -->
-                                          <ins><span class="amount">Rs 30.00</span></ins>
-                                       </span>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </article>
-                     </div>
-                     <div class="col-md-4">
-                        <article class="product-item pro-inner style-may-you ">
-                           <div class="row">
-                              <div class="col-sm-3">
-                                 <div class="" >
-                                    <img src="/assets/products/bag2.png" class="img-responsive" alt="">
-                                    <div class="product-body" >
-                                       <h3>TAMARA</h3>
-                                       <span class="price">
-                                          <!--  <del><span class="amount">$36.00</span></del> -->
-                                          <ins><span class="amount">Rs 30.00</span></ins>
-                                       </span>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </article>
-                     </div>
-                  </center>
-               </div>
+               
                <% unless @product.try(:product_category).try(:name) == "Men" %>
                 <div class="container">
                    <div class="col-md-12" style="display:none;">
