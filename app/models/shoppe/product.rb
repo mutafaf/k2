@@ -337,33 +337,41 @@ module Shoppe
     def self.find_by_color_name(color_name, category_permalink)
       # where(color_name: color_name).active  #Use this instead, when only variants have color_name
       products = where(name: color_name).active
+
+      category = self.find_category(category_permalink)
+      cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
+      cat_ids << category.id
+
       category_id = self.find_category(category_permalink).id
-      products = self.products_for_category(products, category_id)
+      products = self.products_for_category(products, cat_ids) if products and cat_ids
     end
 
     def self.find_by_category_and_descendants(category)
-        cat_ids = category.descendants.collect(&:id)
+        cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
         cat_ids << category.id
         includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
     end
 
-    def self.products_for_category(products, category_id)
+    def self.products_for_category(products, cat_ids)
       # Because only Main product has category and variants get categroy from parent.
-      ids = []
+      pro_ids = []
       products.each do |product|
-        if product.get_category.id == category_id
-        ids << product.id
+        if cat_ids.include?(product.get_category.id)
+        # if product.get_category.id == category_id
+        pro_ids << product.id
         end
       end
-      products = products.where(id: ids) # ids of Main Products and [Variants]
+      products = products.where(id: pro_ids) # ids of Main Products and [Variants]
     end
 
     def self.find_by_size_id(size_id, category_permalink)
       size = Shoppe::Size.find(size_id)
       products = size.products.active
       category = self.find_category(category_permalink)
+      cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
+      cat_ids << category.id # current category
       # Now filter products for only current category
-      products = self.products_for_category(products, category.id)
+      products = self.products_for_category(products, cat_ids) if products and cat_ids
       # Now filter products that have stocks
       if products.present?
         self.filter_stockable_products(products, size_id)
@@ -383,50 +391,10 @@ module Shoppe
     def self.find_by_price(min_price, max_price, category_permalink)
       products = where("price >= ? AND price <= ?", min_price, max_price).active
 
-      category_id = self.find_category(category_permalink).id
-      products = self.products_for_category(products, category_id)
-    end
-
-    def self.find_products(params, category_permalink)
-      heading = ""
-      if params[:new_arrivals].present?
-        heading = NEW_ARRIVALS
-        products = self.new_arrivals
-
-      elsif params[:hot_selling].present?
-        heading = HOT_SELLING
-        products = self.hot_selling
-
-      elsif params[:category_permalink].present?
-        category = self.find_category(category_permalink)
-        products = self.find_by_category_and_descendants(category) if category
-
-      elsif params[:category_name].present?
-        category = Shoppe::ProductCategory.search_home_category(params[:category_name])
-        products = category.products if category
-
-      elsif params[:color_name].present?
-        heading = params[:color_name]
-        products = self.find_by_color_name(params[:color_name], category_permalink)
-
-      elsif params[:brand].present?
-        heading = params[:brand]
-        products = self.find_by_brands(params[:brand])
-
-      elsif params[:size_id].present?
-        heading = Shoppe::Size.find(params[:size_id]).try(:name)
-        products = self.find_by_size_id(params[:size_id], category_permalink)
-      elsif params[:min_price].present? and params[:max_price].present?
-        heading = PRICE_RANGE
-        products = self.find_by_price(params[:min_price], params[:max_price], category_permalink)
-        products = products.order("price") if products
-      else
-        products = self.root #.ordered.includes(:product_categories, :variants)
-      end
-
-      products = products.page(params[:page]).per(PER_PAGE) if products
-
-      return heading, category, products
+      category = self.find_category(category_permalink)
+      cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
+      cat_ids << category.id # current category
+      products = self.products_for_category(products, cat_ids) if products and cat_ids
     end
 
     def self.find_category(category_permalink)

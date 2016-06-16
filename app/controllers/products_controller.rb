@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  def index
-    session[:category_permalink] = params[:category_permalink] if params[:category_permalink].present?
-    @heading, @category, @products = Shoppe::Product.active.find_products(params, session[:category_permalink])
 
+  before_action :find_products, only: [:index]
+
+  def index
     @product_categories_without_parent = Shoppe::ProductCategory.without_parent.custom_ordered
     # @products = @products.group_by(&:product_category)
 
@@ -59,6 +59,52 @@ class ProductsController < ApplicationController
         redirect_to product_path(@product.permalink)
       end
     end
+  end
+
+
+  def find_products
+    session[:category_permalink] = params[:category_permalink] if params[:category_permalink].present?
+    heading = ""
+    if params[:new_arrivals].present?
+      heading = NEW_ARRIVALS
+      products = Shoppe::Product.new_arrivals
+
+    elsif params[:hot_selling].present?
+      heading = HOT_SELLING
+      products = Shoppe::Product.hot_selling
+
+    elsif params[:category_permalink].present?
+      category = Shoppe::Product.find_category(session[:category_permalink])
+      products = Shoppe::Product.find_by_category_and_descendants(category) if category
+
+    elsif params[:category_name].present?
+      category = Shoppe::ProductCategory.search_home_category(params[:category_name])
+      products = category.products if category
+
+    elsif params[:color_name].present?
+      heading = params[:color_name]
+      products = Shoppe::Product.find_by_color_name(params[:color_name], session[:category_permalink])
+
+    elsif params[:brand].present?
+      heading = params[:brand]
+      products = Shoppe::Product.find_by_brands(params[:brand])
+
+    elsif params[:size_id].present?
+      heading = Shoppe::Size.find(params[:size_id]).try(:name)
+      products = Shoppe::Product.find_by_size_id(params[:size_id], session[:category_permalink])
+    elsif params[:min_price].present? and params[:max_price].present?
+      heading = Shoppe::Product::PRICE_RANGE
+      products = Shoppe::Product.find_by_price(params[:min_price], params[:max_price], session[:category_permalink])
+      products = products.order("price") if products
+    else
+      products = Shoppe::Product.root #.ordered.includes(:product_categories, :variants)
+    end
+
+    products = products.page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
+
+    @heading = heading
+    @category= category
+    @products = products
   end
 
 end
