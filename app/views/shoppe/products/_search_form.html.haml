@@ -1,4 +1,4 @@
-.productSearch{:style => action_name == 'search' ? "display:block" : ''}
+.orderSearch{:style => action_name == 'search' ? "display:block" : ''}
   = form_tag "/admin/products", :method => :get do |f|
     %dl.left
       %dt= label_tag :name, t('shoppe.products.name')
