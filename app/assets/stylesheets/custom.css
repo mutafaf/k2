@@ -7614,6 +7614,8 @@ z-index: 999999 !important;
   #product_detail_popup .modal-dialog {
     width:93.5% !important;
   }
+
+
 }
 @media screen and (min-width: 320px) and (max-width: 479px) {
   #modalAdvertising{ overflow-y: visible; }
@@ -7622,6 +7624,7 @@ z-index: 999999 !important;
   }
    .phone-width{ width: 100% !important; }
 
+
 }
 @media screen and (min-width: 480px) and (max-width: 639px) {
   #modalAdvertising{ overflow-y: visible; }
@@ -7629,6 +7632,13 @@ z-index: 999999 !important;
     width:96% !important;
   }
     .phone-width{ width: 50% !important; }
+
+.jumbotron .owl-carousel .item {
+    width: 100%;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    height: 384px !important ; 
+}
 }
 @media screen and (min-width: 640px) and (max-width: 767px) {
   #modalAdvertising{ overflow-y: visible; }
@@ -7636,15 +7646,33 @@ z-index: 999999 !important;
     width:97% !important;
   }
   .phone-width{ width: 50% !important; }
+
+.jumbotron .owl-carousel .item {
+    width: 100%;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
 }
 @media screen and (min-width: 768px) and (max-width: 1003px) {
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
 
+
+.jumbotron .owl-carousel .item {
+    width: 100%;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
 }
 @media screen and (min-width: 1004px) and (max-width: 1259px) {
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
+
+.jumbotron .owl-carousel .item {
+    width: 100%;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
 }
 @media screen and (min-width: 1260px) and (max-width: 1279px) {
 
@@ -7680,3 +7708,13 @@ z-index: 999999 !important;
    
     margin-top: 19px !important;
 }
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #fff;
+ }
+
+
+article.product-item .price ins, .small-product li .price ins {
+    line-height: 5;
+}
+

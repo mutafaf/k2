@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     session[:category_permalink] = params[:category_permalink] if params[:category_permalink].present?
-    @category, @products = Shoppe::Product.active.find_products(params, session[:category_permalink])
+    @heading, @category, @products = Shoppe::Product.active.find_products(params, session[:category_permalink])
 
     @product_categories_without_parent = Shoppe::ProductCategory.without_parent.custom_ordered
     # @products = @products.group_by(&:product_category)
