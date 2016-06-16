@@ -1,9 +1,10 @@
-<%if @category.is_a?(String)%>
-  $("#category_heading").html("<%= @category %>")
+<%if @heading.present? %>
+  $("#category_heading").html("<%= @heading %>")
+  $("#collection").html("")
 <% elsif @category.present? %>
-  document.getElementById("just").style.backgroundImage = "url('<%= @category.try(:background_image).try(:path) %>')";
+  $('#just').css('background-image', 'url("<%= @category.background_image.path rescue ''%>")');
+  
   $("#category_heading").html("<%= @category.name %>")
-
   <% if @category.try(:parent_id)  %>
   // Show collection word only for main headings
     $("#collection").html("")

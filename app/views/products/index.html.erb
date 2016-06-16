@@ -1,13 +1,13 @@
-<section class="content grid-products border-top" id="just" style="background:#f5f5f6 url(<%= @category.try(:background_image).try(:path)%>) no-repeat; ; background-size: 100% auto; ">
-   <div class="container"  style=" ">
+<section class="content grid-products border-top" id="just" style="background:#f5f5f6 url(<%= @category.background_image.path rescue '' %>) no-repeat; ; background-size: 100% auto; ">
+   <div class="container">
       <br> <br> <br> <br>
       <section class="breadcrumb-wrapper" style=" ">
          <div class="container">
             <div class="row">
                <div class="col-xs-12">
                   <center>
-                     <% if @category.is_a?(String) %>
-                     <h2 ><span id="category_heading" style=" color:#333;"><%= @category %></span></h2>
+                     <% if @heading.present? %>
+                     <h2 ><span id="category_heading" style=" color:#333;"><%= @heading %></span></h2>
                      <% elsif @category.present? %>
                       <h2 ><span id="category_heading" style=" color:#333;"><%= @category.name %></span>
                       <!-- Show collection word only for main headings -->

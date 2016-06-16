@@ -19,7 +19,11 @@ module Shoppe
         # parent.cost_price = 0
         # parent.tax_rate = nil
         # parent.weight = 0
-        # parent.stock_control = false
+
+        parent.color = ""
+        parent.color_name = ""
+        parent.sizes.clear
+        parent.stock_control = false
         parent.save if parent.changed?
       end
     end

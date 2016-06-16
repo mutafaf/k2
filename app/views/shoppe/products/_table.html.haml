@@ -37,7 +37,11 @@
                   %table.data
                     - for variant in product.variants
                       %tr
-                        %td{:width => '20%'}= link_to variant.name, edit_product_variant_path(product, variant)
+                        %td{:width => '20%'}
+                          - if variant.default
+                            %b= link_to variant.name, edit_product_variant_path(product, variant)
+                          - else
+                            = link_to variant.name, edit_product_variant_path(product, variant)
                         %td{:width => '15%'}
                           - if variant.stock_control?
                             %span.float-right= link_to t('shoppe.products.edit') , stock_level_adjustments_path(:item_type => variant.class, :item_id => variant.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}

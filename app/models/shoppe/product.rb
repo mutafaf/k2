@@ -133,6 +133,7 @@ module Shoppe
     # Return the total number of items currently in stock
     #
     # @return [Fixnum]
+    #Stock is only for variants and default variant Not For main Product itself
     def stock(size_id = nil)
       if size_id.present?
         return stock_level_adjustments.where(size_id: size_id).sum(:adjustment)
@@ -333,8 +334,11 @@ module Shoppe
       where(brand: brand).active
     end
 
-    def self.find_by_color_name(color_name)
-      where(color_name: color_name).active
+    def self.find_by_color_name(color_name, category_permalink)
+      # where(color_name: color_name).active  #Use this instead, when only variants have color_name
+      products = where(name: color_name).active
+      category_id = self.find_category(category_permalink).id
+      products = self.products_for_category(products, category_id)
     end
 
     def self.find_by_category_and_descendants(category)
@@ -343,42 +347,31 @@ module Shoppe
         includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
     end
 
-
-    # def self.find_by_size_id(size_id, category_permalink)
-    #   category = self.find_category(category_permalink)
-    #   # products of current category
-    #   category_products = category.products
-    #   # filter products of current category for current size
-    #   products = category_products.includes(:sizes).where('shoppe_sizes.id' => size_id)
-    #   if products.present?
-    #     self.filter_stockable_products(products, size_id)
-    #   end
-    # end
-
-    # def self.filter_stockable_products(products, size_id)
-    #   ids = []
-    #   products.each do |product|
-    #     # if product.default_variant
-    #     #    product = product.default_variant # get default variant here
-    #     # end
-    #     if product.stock(size_id) > 0
-    #     ids << product.id
-    #     end
-    #   end
-    #   products = products.where(id: ids)
-    # end
+    def self.products_for_category(products, category_id)
+      # Because only Main product has category and variants get categroy from parent.
+      ids = []
+      products.each do |product|
+        if product.get_category.id == category_id
+        ids << product.id
+        end
+      end
+      products = products.where(id: ids) # ids of Main Products and [Variants]
+    end
 
     def self.find_by_size_id(size_id, category_permalink)
       size = Shoppe::Size.find(size_id)
       products = size.products.active
-
+      category = self.find_category(category_permalink)
+      # Now filter products for only current category
+      products = self.products_for_category(products, category.id)
+      # Now filter products that have stocks
       if products.present?
         self.filter_stockable_products(products, size_id)
       end
     end
 
     def self.filter_stockable_products(products, size_id)
-      ids = []
+      ids = [] # will store ids of variants only because main products dont have stock
       products.each do |product|
         if product.stock(size_id) > 0
         ids << product.id
@@ -387,18 +380,21 @@ module Shoppe
       products = products.where(id: ids)
     end
 
-    def self.find_by_price(min_price, max_price)
-      where("price >= ? AND price <= ?", min_price, max_price).active
+    def self.find_by_price(min_price, max_price, category_permalink)
+      products = where("price >= ? AND price <= ?", min_price, max_price).active
+
+      category_id = self.find_category(category_permalink).id
+      products = self.products_for_category(products, category_id)
     end
 
     def self.find_products(params, category_permalink)
-      category = ""
+      heading = ""
       if params[:new_arrivals].present?
-        category = NEW_ARRIVALS
+        heading = NEW_ARRIVALS
         products = self.new_arrivals
 
       elsif params[:hot_selling].present?
-        category = HOT_SELLING
+        heading = HOT_SELLING
         products = self.hot_selling
 
       elsif params[:category_permalink].present?
@@ -410,19 +406,19 @@ module Shoppe
         products = category.products if category
 
       elsif params[:color_name].present?
-        category = params[:color_name]
-        products = self.find_by_color_name(params[:color_name])
+        heading = params[:color_name]
+        products = self.find_by_color_name(params[:color_name], category_permalink)
 
       elsif params[:brand].present?
-        category = params[:brand]
+        heading = params[:brand]
         products = self.find_by_brands(params[:brand])
 
       elsif params[:size_id].present?
-        category = Shoppe::Size.find(params[:size_id]).try(:name)
+        heading = Shoppe::Size.find(params[:size_id]).try(:name)
         products = self.find_by_size_id(params[:size_id], category_permalink)
       elsif params[:min_price].present? and params[:max_price].present?
-        category = PRICE_RANGE
-        products = self.find_by_price(params[:min_price], params[:max_price])
+        heading = PRICE_RANGE
+        products = self.find_by_price(params[:min_price], params[:max_price], category_permalink)
         products = products.order("price") if products
       else
         products = self.root #.ordered.includes(:product_categories, :variants)
@@ -430,7 +426,7 @@ module Shoppe
 
       products = products.page(params[:page]).per(PER_PAGE) if products
 
-      return category, products
+      return heading, category, products
     end
 
     def self.find_category(category_permalink)

@@ -1,5 +1,11 @@
 
 function getProducts(element){
+  if (window.location.search.indexOf('category_permalink') > -1) {
+    // Remove the params in URL to cancel the effect of Double calls due to using background image
+    window.history.pushState("object or string", "Title", "/products");
+      // alert('category_permalink present');
+  }
+
   var category_permalink = $(element).attr("id")
    $.ajax({
      url: '/products',
