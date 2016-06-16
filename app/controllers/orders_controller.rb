@@ -54,7 +54,11 @@ class OrdersController < ApplicationController
   def confirmation_page
     @order = Shoppe::Order.find(current_order.id)
     session[:transaction_id] = params[:TransactionID]
-    # flash[:notice] = "Your Card has been verified. Please Complete your order Now."
+    if session[:transaction_id].present?
+      flash[:notice] = "Your Card has been verified. Please complete your order now."
+    else
+      redirect_to root_path, :notice => "Your Card verification Failed !"
+    end
   end
 
   def finalize
