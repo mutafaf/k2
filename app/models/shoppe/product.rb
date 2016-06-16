@@ -69,6 +69,7 @@ module Shoppe
     before_validation { self.permalink = name.parameterize if permalink.blank? && name.is_a?(String) }
 
     after_create :create_default_variant
+    after_save :update_active_for_variants
 
     # All active products
     scope :active, -> { where(active: true) }
@@ -85,6 +86,15 @@ module Shoppe
       # if attrs['data_sheet']['file'].present? then attachments.build(attrs['data_sheet']) end
 
       if attrs['extra']['file'].present? then attrs['extra']['file'].each { |attr| attachments.build(file: attr, parent_id: attrs['extra']['parent_id'], parent_type: attrs['extra']['parent_type']) } end
+    end
+
+    def update_active_for_variants
+      if self.variants.present? and self.active_changed?
+        self.variants.each do |variant|
+          variant.active = self.active
+          variant.save
+        end
+      end
     end
 
     def create_default_variant
