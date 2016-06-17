@@ -111,7 +111,7 @@ h6 {
 }
 
 @media (min-width: 768px) {
-	 .jumbotron .owl-carousel .item {height:550px!important;}
+	
  	.page-boxed #page-wrapper {
     	width:550px;
   	}
@@ -7659,6 +7659,7 @@ z-index: 999999 !important;
 .owl-stage-outer{ height: 338px !important; }
 }
 @media screen and (min-width: 768px) and (max-width: 1003px) {
+	 .jumbotron .owl-carousel .item {height:550px!important;}
 	.owl-stage-outer{ height: 400px !important; }
 #modalAdvertising{ overflow-y: visible; }
 .phone-width{ width: 33.3% !important; }
@@ -7690,7 +7691,7 @@ z-index: 999999 !important;
   }
 }
 @media screen and (min-width: 1260px) and (max-width: 1279px) {
-	 .jumbotron .owl-carousel .item {height:750px!important;}
+	
 
 }
 @media screen and (min-width: 1280px) and (max-width: 1365px) {
