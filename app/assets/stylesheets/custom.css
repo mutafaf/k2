@@ -109,7 +109,7 @@ h6 {
 	background-color:#DDDDDD;
 	background-image:none;
 }
-@
+
 @media (min-width: 768px) {
 	 .jumbotron .owl-carousel .item {height:550px!important;}
  	.page-boxed #page-wrapper {
@@ -7755,7 +7755,7 @@ article.product-item .price ins, .small-product li .price ins {
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   c color:#000 !important; 
+    color:#000 !important; 
 }
 
 :-ms-input-placeholder {  
