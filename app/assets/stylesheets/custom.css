@@ -5256,6 +5256,13 @@ article.product-item h3 {
 	EXTRA SMALL DEVICES
 ------------------------------*/
 
+@media (max-width:1024px) {
+	.jumbotron {
+    background: #eeedef;
+    height: 556px;
+}
+}
+
 @media (max-width:767px) {
 	.jumbotron .owl-carousel .item {
 		height:432px!important;
@@ -5266,7 +5273,7 @@ article.product-item h3 {
 	}
 	
 	.jumbotron-full-height {
-		height:auto;
+		height:320px;
 	}
 	
 	.vertical-menu .jumbotron-full-height {
@@ -7763,3 +7770,10 @@ article.product-item .price ins, .small-product li .price ins {
    color:#000 !important; 
 }
 input{ color: #000; }
+
+@media screen and (min-width: 480px) and (max-width: 500px) {
+ .jumbotron-full-height {
+    height: 251px !important;  }
+
+
+}
