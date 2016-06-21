@@ -66,11 +66,11 @@ class ProductsController < ApplicationController
     session[:category_permalink] = params[:category_permalink] if params[:category_permalink].present?
     heading = ""
     if params[:new_arrivals].present?
-      heading = "NEW ARRIVALS"
+      heading = Shoppe::Product::NEW_ARRIVALS
       products = Shoppe::Product.new_arrivals
 
     elsif params[:hot_selling].present?
-      heading = "HOT SELLING"
+      heading = Shoppe::Product::HOT_SELLING
       products = Shoppe::Product.hot_selling
 
     elsif params[:category_permalink].present?
