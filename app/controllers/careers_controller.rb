@@ -8,7 +8,7 @@ class CareersController < ApplicationController
   end
 
   def careers
-    @jobs = Shoppe::Job.all.enabled.order("position")
+    @jobs = Shoppe::Job.last_15_days.enabled.order("position")
     @career = Shoppe::Career.new
   end
 
