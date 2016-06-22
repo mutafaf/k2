@@ -4,7 +4,7 @@ namespace :update_image_versions do
   task recreate_versions: :environment do
       puts "Starting....."
     Shoppe::Product.find_each do |product|
-      # product.default_image.file.recreate_versions! if product.default_image.present?
+      product.default_image.file.recreate_versions! if product.default_image.present?
     end
       puts "Success!"
   end
