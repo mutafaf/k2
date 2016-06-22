@@ -3,9 +3,9 @@
   <% order.order_items.each do |item| %>
      <div class="col-md-2 col-sm-4 col-xs-6">
         <% if item.ordered_item.default %>
-          <img src='<%= item.ordered_item.parent.try(:default_image).try(:path) ? item.ordered_item.parent.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
+          <img src='<%= item.ordered_item.parent.try(:default_image) ? item.ordered_item.parent.default_image.file.try(:thumb) : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
           <% else %>
-          <img src='<%= item.ordered_item.try(:default_image).try(:path) ? item.ordered_item.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
+          <img src='<%= item.ordered_item.try(:default_image) ? item.ordered_item.try(:default_image).file.try(:thumb)  : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
         <% end %>
      </div>
      <div class="col-md-10 order-item">
