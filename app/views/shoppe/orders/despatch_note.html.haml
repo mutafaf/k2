@@ -1,0 +1,44 @@
+- @page_title = "#{t('shoppe.orders.despatch_note.order_number')} #{@order.number}"
+
+.despatchNote
+  %header
+    %h1= Shoppe.settings.store_name
+    %h2= t("shoppe.orders.receipt")
+  .address
+    %p.name= @order.delivery_name
+    %p= @order.delivery_address1
+    %p= @order.delivery_city
+    %p= @order.delivery_country.try(:name)
+    %p
+      %span Contact No.
+      %span
+        = @order.phone_number
+
+  %table.details
+    %tr
+      %th= t("shoppe.orders.despatch_note.order_number")
+      %th= t("shoppe.orders.despatch_note.order_placed")
+      %th= t("shoppe.orders.payment_type")
+      %th= t("shoppe.orders.order_total")
+    %tr
+      %td= @order.number
+      %td= @order.received? ? @order.received_at.to_s(:long) : 'n/a'
+      %td= @order.payment_method
+      %td= number_to_currency @order.total
+
+  %table.items
+    %thead
+      %tr
+        %th= t("shoppe.orders.despatch_note.quantity")
+        %th= t("shoppe.orders.despatch_note.product")
+        %th= t("shoppe.orders.despatch_note.sku")
+        %th= t("shoppe.orders.despatch_note.price")
+    %tbody
+      - for item in @order.order_items
+        %tr
+          %td= item.quantity
+          %td= item.ordered_item.full_name
+          %td= item.ordered_item.sku
+          %td= number_to_currency(item.sub_total)
+
+  %p.footer= t('shoppe.orders.despatch_note.footer', :default => "Thank you for your order!")
