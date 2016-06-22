@@ -13,6 +13,7 @@
       %tr
         %th= t('shoppe.jobs.name')
         %th= t('shoppe.jobs.people_applied')
+        %th= "Creation Date"
     %tbody
       - if @jobs.empty?
         %tr.empty
@@ -22,4 +23,5 @@
           %tr
             %td=link_to job.name, [:edit, job]
             %td=link_to job.careers.count, get_emails_by_job_job_path(job)
+            %td= format_date(job.created_at)
 = paginate @jobs
