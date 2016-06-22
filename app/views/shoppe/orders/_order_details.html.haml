@@ -48,9 +48,9 @@
       - if @order.invoiced?
         %dt= t('shoppe.orders.invoice_number')
         %dd= @order.invoice_number
-      %dt= t('shoppe.orders.order_balance')
-      %dd= boolean_tag @order.paid_in_full?, nil, :true_text => number_to_currency(@order.balance), :false_text => number_to_currency(@order.balance)
-      %dt= t('shoppe.orders.payemt_type')
+      %dt= t('shoppe.orders.order_total')
+      %dd= number_to_currency(@order.total)
+      %dt= t('shoppe.orders.payment_type')
       %dd= @order.payment_method
     - if @order.accepted? && !@order.shipped?
       = form_tag [:ship, @order] do
