@@ -15,7 +15,7 @@
     .splitContainer
       %dl.third
         %dt= f.label :email, t('shoppe.customers.email')
-        %dd= f.email_field :email, class: 'text', :required => true
+        %dd= f.email_field :email, class: 'text',:value=>"#{@customer.user.email if @customer.user}",  :disabled => true
       %dl.third
         %dt= f.label :phone, t('shoppe.customers.phone')
         %dd= f.telephone_field :phone, class: 'text', :required => true

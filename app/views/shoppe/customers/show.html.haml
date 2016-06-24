@@ -16,7 +16,7 @@
     .right
       %dl
         %dt= t('shoppe.customers.email')
-        %dd= mail_to @customer.email
+        %dd= @customer.user.email if @customer.user
         %dt= t('shoppe.customers.phone')
         %dd= @customer.phone
         %dt= t('shoppe.customers.mobile_phone')

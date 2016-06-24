@@ -5,7 +5,7 @@ module Shoppe
 
     self.table_name = 'shoppe_customers'
 
-    belongs_to :user, class_name: 'User'
+    belongs_to :user, class_name: '::User'
 
     has_many :addresses, dependent: :restrict_with_exception, class_name: 'Shoppe::Address'
     accepts_nested_attributes_for :addresses
