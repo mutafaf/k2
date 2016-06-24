@@ -27,6 +27,7 @@ module Shoppe
       if @product_category.update(safe_params)
         redirect_to [:edit, @product_category], flash: { notice: t('shoppe.product_category.update_notice') }
       else
+        flash[:alert] = @product_category.errors.full_messages
         render action: 'edit'
       end
     end
