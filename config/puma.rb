@@ -1,12 +1,12 @@
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+workers Integer(ENV['WEB_CONCURRENCY'] || 1)
 threads_count = Integer(ENV['MAX_THREADS'] || 5)
 threads 1, threads_count
 
 preload_app!
 
 rackup      DefaultRackup
-port        ENV['PORT']     || 9899
-environment ENV['RACK_ENV'] || 'production'
+port        9595
+environment  'production'
 stdout_redirect 'log/puma.log', 'log/puma_error.log', true
 on_worker_boot do
   require "active_record"

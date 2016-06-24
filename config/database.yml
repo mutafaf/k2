@@ -9,7 +9,7 @@ development:
 production:
   adapter: postgresql
   encoding: utf8
-  database: borjan_development
-  username: root
-  password: root
+  database: borjan_live
+  username: borjan_live
+  password: Password123.
   host: localhost
