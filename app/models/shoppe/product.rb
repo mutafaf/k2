@@ -349,8 +349,10 @@ module Shoppe
       products = where(name: color_name).active
 
       category = self.find_category(category_permalink)
-      cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
-      cat_ids << category.id
+      if category.present?
+        cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
+        cat_ids << category.id # current category
+      end
 
       category_id = self.find_category(category_permalink).id
       products = self.products_for_category(products, cat_ids) if products and cat_ids
@@ -377,9 +379,12 @@ module Shoppe
     def self.find_by_size_id(size_id, category_permalink)
       size = Shoppe::Size.find(size_id)
       products = size.products.active
+
       category = self.find_category(category_permalink)
-      cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
-      cat_ids << category.id # current category
+      if category.present?
+        cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
+        cat_ids << category.id # current category
+      end
       # Now filter products for only current category
       products = self.products_for_category(products, cat_ids) if products and cat_ids
       # Now filter products that have stocks
@@ -402,8 +407,10 @@ module Shoppe
       products = where("price >= ? AND price <= ?", min_price, max_price).active
 
       category = self.find_category(category_permalink)
-      cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
-      cat_ids << category.id # current category
+      if category.present?
+        cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
+        cat_ids << category.id # current category
+      end
       products = self.products_for_category(products, cat_ids) if products and cat_ids
     end
 
