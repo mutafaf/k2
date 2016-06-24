@@ -24,7 +24,7 @@
         - for customer in @customers
           %tr
             %td= link_to customer.full_name, customer
-            %td= customer.email
+            %td= customer.user.email if customer.user
             %td= customer.phone
             %td= customer.mobile
 = paginate @customers
