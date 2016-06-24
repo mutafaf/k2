@@ -80,7 +80,10 @@
         %p= f.file_field "attachments[homepage_image][file]"
         = f.hidden_field "attachments[homepage_image][role]", value: "homepage_image"
         = f.hidden_field "attachments[homepage_image][parent_id]", value: @product_category.id
-
+        %br
+        %small Recommended image size for position 1 and 2 is 1000px X 667px.
+        %br
+        %small Recommended image size for position 3, 4 and 5 is 568px X 419px.
   %p.submit
     - unless @product_category.new_record?
       %span.right= link_to t('shoppe.delete') , @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.product_category.delete_confirmation') }
