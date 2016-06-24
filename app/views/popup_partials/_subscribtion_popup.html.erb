@@ -14,14 +14,14 @@
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
                   <%= form_tag "/add_subscriber", :method => :post, :remote=>true,:id => "subscription_form", "data-parsley-validate" => true do %>
-                    <div class="input-group" style="    width: 100%;
+                    <div class="input-group placeholders " style="    width: 100%;
                            margin-bottom: 5px;">
-                           <%= text_field_tag :email, params[:email], :class=>"form-control", :placeholder=>"Email Address", :required=>true, :type=>"email" ,:style=>"background: transparent;border: solid 1px;" %>
+                           <%= text_field_tag :email, params[:email], :class=>"form-control ", :placeholder=>"Email Address", :required=>true, :type=>"email" ,:style=>"background: transparent;border: solid 1px;" %>
                         </div>
                         <br>
-                        <div class="input-group" style="    width: 100%;
+                        <div class="input-group placeholders " style="    width: 100%;
                            margin-bottom: 5px;">
-                           <%= text_field_tag :contact_no, params[:contact_no], :class=>"form-control", :placeholder=>"Number", :required=>true ,:style=>"background: transparent;border: solid 1px;", :pattern=>"^([0|\+[0-9]{1,5})?([1-9][0-9]{9})$" %>
+                           <%= text_field_tag :contact_no, params[:contact_no], :class=>"form-control ", :placeholder=>"Number", :required=>true ,:style=>"background: transparent;border: solid 1px;", :pattern=>"^([0|\+[0-9]{1,5})?([1-9][0-9]{9})$" %>
                         </div>
                         <br>
                         <span class="input-group-btn">

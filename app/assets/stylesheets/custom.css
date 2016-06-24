@@ -7777,3 +7777,21 @@ input{ color: #000; }
 
 
 }
+
+
+
+.placeholders input::-webkit-input-placeholder {
+   color:#fff !important;
+}
+
+.placeholders input::-moz-placeholder { /* Firefox 18- */
+   color:#fff !important; 
+}
+
+ .placeholders input::-moz-placeholder {  /* Firefox 19+ */
+    color:#fff !important; 
+}
+
+ .placeholders input::-ms-input-placeholder {  
+   color:#fff !important; 
+}
