@@ -56,6 +56,7 @@ module Shoppe
     end
 
     def show_delivery_charges(order)
+      order = Shoppe::Order.find(order.id)
       if order.delivery_charges > 0
         return number_to_currency order.delivery_charges
       else

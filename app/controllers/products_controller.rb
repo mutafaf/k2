@@ -50,8 +50,8 @@ class ProductsController < ApplicationController
     else
       begin
         current_order.order_items.add_item(@product, quantity, params[:size])
+        set_delivery_charges(current_order) # Set Delivery Charges
         redirect_to product_path(@product.permalink), :notice => "Product has been added successfuly!"
-        set_delivery_charges(current_order)
       rescue Shoppe::Errors::NotEnoughStock
         flash[:error] = "Not enough stock available for this product."
         redirect_to product_path(@product.permalink)
