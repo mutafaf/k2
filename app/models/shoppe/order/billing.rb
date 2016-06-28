@@ -68,9 +68,15 @@ module Shoppe
     # The total of the order including tax
     #
     # @return [BigDecimal]
+    # def total
+    #   delivery_price +
+    #     delivery_tax_amount +
+    #     order_items.inject(BigDecimal(0)) { |t, i| t + i.total }
+    # end
+
+    # The total of the order including Only delivery charges.
     def total
-      delivery_price +
-        delivery_tax_amount +
+      delivery_charges +
         order_items.inject(BigDecimal(0)) { |t, i| t + i.total }
     end
 

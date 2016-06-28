@@ -22,11 +22,13 @@
       %th= t("shoppe.orders.despatch_note.order_number")
       %th= t("shoppe.orders.despatch_note.order_placed")
       %th= t("shoppe.orders.payment_type")
+      %th= t("shoppe.orders.shipping_fee")
       %th= t("shoppe.orders.order_total")
     %tr
       %td= @order.number
       %td= @order.received? ? @order.received_at.to_s(:long) : 'n/a'
       %td= @order.payment_method
+      %td= show_delivery_charges(@order)
       %td= number_to_currency @order.total
 
   %table.items

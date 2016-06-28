@@ -21,13 +21,16 @@
          <div class="col-md-12">
             <div class="col-md-12">
                <br><br>
-               <div class="clear86"></div>
+               <div class="clear99"></div>
               
                <div class="col-md-12">
                <div class="col-md-9">
                <br><br>
                <hr>
-
+               <% if order.products_total < Shoppe::Order::ORDER_AMOUNT %>
+                <p class="pull-right">Congratulations! Enjoy FREE shipping on your order worth Rs 3000 and Above</p>
+                <p class="pull-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
+               <% end %>
               </div>
 
                <div class="col-md-3 ipad-button-size">
@@ -36,6 +39,9 @@
                   <div class="total">
                      <p>
                         <label>Subtotal:</label><!-- --><span><%= number_to_currency order.products_total %></span>
+                     </p>
+                     <p>
+                        <label>Shipping:</label><!-- --><span><%= show_delivery_charges(order) %></span>
                      </p>
                      <p class="final">
                         <label>Grand Total:</label><!-- --><span><%= number_to_currency order.total %></span>

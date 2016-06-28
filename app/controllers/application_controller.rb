@@ -35,6 +35,16 @@ class ApplicationController < ActionController::Base
     @assessories = Shoppe::ProductCategory.search_category("Assessories")
   end
 
+  def set_delivery_charges(order)
+    if order.products_total >= Shoppe::Order::ORDER_AMOUNT || order.products_total == 0
+      order.delivery_charges = 0
+      order.save
+    else
+      order.delivery_charges = Shoppe::Order::DELIVERY_CHARGES
+      order.save
+    end
+  end
+
   private
 
   def brands

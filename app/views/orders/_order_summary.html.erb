@@ -28,6 +28,9 @@
          <p>
             <label>Subtotal:</label><!-- --><span><%= number_to_currency order.products_total %></span>
          </p>
+         <p>
+            <label>Shipping:</label><!-- --><span><%= number_to_currency order.delivery_charges %></span>
+         </p>
          <p class="final">
             <label>GRAND TOTAL</label><!-- --><span><%= number_to_currency order.total %></span>
          </p>
