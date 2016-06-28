@@ -2,6 +2,8 @@ module Shoppe
   class Order < ActiveRecord::Base
     EMAIL_REGEX = /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i
     PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/
+    ORDER_AMOUNT = 3000
+    DELIVERY_CHARGES = 100
 
     # PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
     PAYMENT_TYPES = ["Cash On Delivery"]

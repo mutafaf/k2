@@ -82,6 +82,9 @@ class OrdersController < ApplicationController
         @errors = order_item.errors.full_messages.join()
       end
     end
+
+    set_delivery_charges(order)
+
     @current_order = order
 
     if request.xhr?

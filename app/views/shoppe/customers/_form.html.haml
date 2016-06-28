@@ -26,11 +26,11 @@
   %p.submit
     - unless @customer.new_record?
       %span.right
-        = link_to t('shoppe.customers.delete'),
-                  @customer,
-                  class: 'button purple',
-                  method: :delete,
-                  data: {confirm: t('shoppe.customers.delete_confirmation')}
+        / = link_to t('shoppe.customers.delete'),
+        /           @customer,
+        /           class: 'button purple',
+        /           method: :delete,
+        /           data: {confirm: t('shoppe.customers.delete_confirmation')}
     = f.submit t('shoppe.customers.save'),
                class: 'button green',
                data: {disable_with: (@customer.new_record? ? t('shoppe.customers.creating_customer') : t('shoppe.customers.updating_customer'))}

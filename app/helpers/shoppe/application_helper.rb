@@ -54,5 +54,14 @@ module Shoppe
         text_field_tag "settings[#{field}]", value, options.merge(placeholder: default, class: 'text')
       end
     end
+
+    def show_delivery_charges(order)
+      if order.delivery_charges > 0
+        return number_to_currency order.delivery_charges
+      else
+        return "Free"
+      end
+    end
+
   end
 end
