@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_delivery_charges(order)
+    order = Shoppe::Order.find(order.id)
     if order.products_total >= Shoppe::Order::ORDER_AMOUNT || order.products_total == 0
       order.delivery_charges = 0
       order.save
