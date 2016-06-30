@@ -1,3 +1,5 @@
+<% if @product.styles.present? %>
+
 <section class="content grid-products border-top" id="just"
    style="background:#f5f5f6 url(/assets/pro-bg.png) no-repeat; ; background-size: 100% auto;">
    <div class="container">
@@ -10,7 +12,6 @@
                      <h3 >STYLES YOU MAY LIKE:</h3>
                   </center>
                   <br><br>
-                  <% if @product.styles.present? %>
                    <% @product.styles.each do |product| %>
  <%if product.permalink%> 
                    <div class="col-md-4">
@@ -32,7 +33,7 @@
                          </div>
                       </article>
                    </div>
-                   <% end %>
+     
                   <% end %>
                   <%end%>
                </div>
@@ -92,3 +93,4 @@
       </div>
    </div>
 </section>
+<%end%>
