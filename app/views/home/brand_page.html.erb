@@ -1,11 +1,15 @@
-<br>
-<br>
-<br>
-<br>
-<div class="container">
+<br><br><br>
+<section class="content products">
+   <div class="container">
+<br />
+
   <h1><%= @brand.name %></h1>
-  <br>
-  <br>
-  <br>
+  <%if @brand.attachments.present? and @brand.attachments.first %>
+  <img class="img-responsive" src="<%=@brand.attachments.first.path %>" />
+   <%end%>
   <p><%= @brand.description.html_safe %> <p>
+
 </div>
+  </section>
+<div style="clear:both:"></div>
+<br><br>
