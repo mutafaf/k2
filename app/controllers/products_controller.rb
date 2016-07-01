@@ -19,6 +19,12 @@ class ProductsController < ApplicationController
 
   def show
     @product = Shoppe::Product.active.find_by_permalink(params[:permalink])
+
+    unless @product.present?
+      render "layouts/not_found"
+      return
+    end
+
     if @product.default
       # For Main Product
       @product = @product.parent # get default variant here
