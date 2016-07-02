@@ -7115,6 +7115,11 @@ background-image: url("/assets/footer-img.jpg");
 }
 
 
+.button-grnt { margin-left: 307px !important;margin-top: -1px;padding: 12px 14px; background-image:none; background-color:#6d6d6d; color: #eee;}
+#add_subscriber input {color: #000; font-weight: 900; padding-left: 10px;padding-right: 10px;}
+#bs-example-navbar-collapse-1 #MainMenu a, #MainMenu li a {font-weight: bold !important;}
+a.list-group-item-success, button.list-group-item-success, #MainMenu .list-group-item, a.list-group-item, button.list-group-item {font-weight: bold !important;}
+
 
 
 
