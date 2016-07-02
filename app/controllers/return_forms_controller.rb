@@ -1,4 +1,5 @@
 class ReturnFormsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_return_form, only: [:show, :edit, :update, :destroy]
 
   # GET /return_forms
