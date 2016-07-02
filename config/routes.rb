@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       end
     end
 
+    get "orders/export", to: "orders#export"
   end
 
   get 'home/index'
