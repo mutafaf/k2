@@ -104,6 +104,57 @@ module Shoppe
       sub_total
     end
 
+    def self.to_xls(options = {}, from, to)
+      book = Spreadsheet::Workbook.new :title => "Orders"
+      sheet1 = book.create_worksheet :name => "Orders"
+      sheet1.column(0).width = 12
+      sheet1.column(1).width = 12
+      sheet1.column(2).width = 20
+      sheet1.column(3).width = 15
+      sheet1.column(4).width = 30
+      sheet1.column(5).width = 15
+      sheet1.column(6).width = 12
+      sheet1.column(7).width = 35
+      sheet1.column(8).width = 12
+      sheet1.column(9).width = 12
+      title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14
+      header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
+      date_range_format = Spreadsheet::Format.new :color => :green, :weight => :bold
+      i = 0
+      sheet1.row(i).default_format = title_format
+      sheet1.row(i).push 'Order Summary Status Report'
+      sheet1.row(i).height = 20
+      i = i+1
+      sheet1.row(i).default_format = date_range_format
+      sheet1.row(i).height = 20
+      sheet1.rows[i][1] = "Date From "
+      sheet1.rows[i][2] =  from.strftime("%b %d, %Y") if from.present?
+
+      sheet1.rows[i][4] = "Date To "
+      sheet1.rows[i][5] = to.strftime("%b %d, %Y") if to.present?
+
+      i = i+1
+      sheet1.row(i).default_format = header_format
+      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Contact Number', 'Address', 'City', 'Order Qty', 'Order Amount (Including Ship Charges)' , 'Order Status', 'Ship Date'
+      all.each do |order|
+        i = i+1
+        sheet1.row(i).height = 20
+        order_id = order.number
+        order_date = order.received_at.strftime("%b %d, %Y") if order.received_at.present?
+        customer_name = order.customer_name
+        contact_no = order.phone_number
+        address = order.delivery_address1
+        city = order.delivery_city
+        order_qty = order.total_items
+        order_amount = "#{Shoppe.settings.currency_unit} #{order.total}"
+        status = order.status
+        ship_date = order.shipped_at.strftime("%b %d, %Y") if order.shipped_at.present?
+
+        sheet1.row(i).push order_id, order_date, customer_name, contact_no, address, city, order_qty, order_amount, status, ship_date
+      end
+      return book
+    end
+
     def self.ransackable_attributes(_auth_object = nil)
       %w(id billing_postcode billing_address1 billing_address2 billing_address3 billing_address4 first_name last_name company email_address phone_number consignment_number status received_at) + _ransackers.keys
     end

@@ -4,6 +4,7 @@ module Shoppe
     before_filter { params[:id] && @order = Shoppe::Order.find(params[:id]) }
 
     def index
+
       @query = Shoppe::Order.ordered.received.includes(order_items: :ordered_item).page(params[:page]).search(params[:q])
       @orders = @query.result
     end
@@ -97,6 +98,26 @@ module Shoppe
 
     def despatch_note
       render layout: 'shoppe/printable'
+    end
+
+    def export
+      begin
+        @query = Shoppe::Order.ordered.received.includes(order_items: :ordered_item).search(params[:q])
+        @orders = @query.result
+
+        from = DateTime.parse(params[:q][:received_at_gteq]) if params[:q].present? and params[:q][:received_at_gteq].present?
+        to = DateTime.parse(params[:q][:received_at_lteq]) if params[:q].present? and params[:q][:received_at_lteq].present?
+        respond_to do |format|
+          format.xls{
+            path = StringIO.new
+            book = @orders.to_xls({}, from, to)
+            book.write path
+            send_data path.string, :filename => "Orders.xls", :type =>  "application/excel"
+          }
+        end
+      rescue => ex
+        redirect_to "/admin", :notice =>ex.message
+      end
     end
 
     private

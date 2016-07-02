@@ -43,6 +43,7 @@ gem 'jquery-infinite-pages'
 gem 'delayed_job_active_record'
 gem "daemons"
 gem 'geocoder'
+gem 'spreadsheet'
  # For payments
 # gem 'savon', '~> 2.11.0'
 

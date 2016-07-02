@@ -19,7 +19,7 @@
    <% for cat in @product_categories_without_parent %>
       <ul id="MainMenu"  class=" text-left-phone" style="list-style: none;">
         <li class="list-group " style="    margin-bottom: 0px;">
-          <a id="<%= cat.permalink %>" href="#<%= cat.id %>-cat" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu" onclick="getProducts(this)"><%= cat.name %></a>
+          <a id="<%= cat.permalink %>" href="#<%= cat.id %>-cat" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu" onclick="getProducts(this)"><strong><%= cat.name %></strong></a>
           <li class="collapse " id="<%= cat.id %>-cat">
              <ul>
              <% if cat.children.count > 0 %>
@@ -34,7 +34,7 @@
 
 
 <!--  brands -->
-<a href="#brands" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Brands</a>
+<a href="#brands" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"><strong>Brands</strong></a>
 <div class="collapse" id="brands">
   <% if @brands.present? %>
     <% @brands.each do |brand| %>
@@ -44,7 +44,7 @@
 </div>
 <hr style=" margin-top: 4px;margin-bottom: 4px;">
 <!--  size -->
-<a href="#size" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Size</a>
+<a href="#size" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"><strong>Size</strong></a>
 <div class="collapse" id="size">
   <% if @sizes.present? %>
     <% @sizes.each do |size| %>
@@ -54,7 +54,7 @@
 </div>
 <!--  size -->
 <!-- color -->
-<a href="#color" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Color</a>
+<a href="#color" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"><strong>Color</strong></a>
 <div class="collapse" id="color">
   <% if @color_names.present? %>
     <% @color_names.each do |color| %>
@@ -64,7 +64,7 @@
 </div>
 <!-- color -->
 <!--  price -->
-<a href="#price" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Price</a>
+<a href="#price" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"><strong>Price</strong></a>
 <div class="collapse " id="price">
   <p>
     <input type="text" id="amount" readonly class="range_slider_amont">

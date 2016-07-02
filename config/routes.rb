@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       end
     end
 
+    get "orders/export", to: "orders#export"
   end
 
   get 'home/index'
@@ -128,4 +129,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get '*not_found', to: 'application#not_found'
 end

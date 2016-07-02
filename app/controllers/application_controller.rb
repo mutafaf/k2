@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   helper_method :resource, :resource_name, :devise_mapping
   before_filter :set_default_url_options
 
+  def not_found
+    respond_to do |format|
+      format.html { render template: 'layouts/not_found', status: 404 }
+      format.all { render nothing: true, status: 404 }
+    end
+  end
+
   def resource_name
     :user
   end
