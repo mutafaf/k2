@@ -105,8 +105,8 @@ module Shoppe
         @query = Shoppe::Order.ordered.received.includes(order_items: :ordered_item).search(params[:q])
         @orders = @query.result
 
-        from = DateTime.parse(params[:q][:received_at_gteq]) if params[:q][:received_at_gteq].present?
-        to = DateTime.parse(params[:q][:received_at_lteq]) if params[:q][:received_at_lteq].present?
+        from = DateTime.parse(params[:q][:received_at_gteq]) if params[:q].present? and params[:q][:received_at_gteq].present?
+        to = DateTime.parse(params[:q][:received_at_lteq]) if params[:q].present? and params[:q][:received_at_lteq].present?
         respond_to do |format|
           format.xls{
             path = StringIO.new
