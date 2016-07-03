@@ -4,7 +4,7 @@ module Shoppe
 
     # These additional callbacks allow for applications to hook into other
     # parts of the order lifecycle.
-    define_model_callbacks :confirmation, :acceptance, :rejection
+    define_model_callbacks :confirmation, :acceptance, :rejection, :cancelation, :return
 
     # This method should be called by the base application when the user has completed their
     # first round of entering details. This will mark the order as "confirming" which means
@@ -77,12 +77,49 @@ module Shoppe
       end
     end
 
+    # Mark order as canceled
+    #
+    # @param user [Shoppe::User] the user who carried out the action
+    def cancel!(user = nil)
+      run_callbacks :cancelation do
+        self.canceled_at = Time.now
+        self.canceler = user if user
+        self.status = 'canceled'
+        save!
+        order_items.each(&:cancel!)
+        deliver_canceled_order_email
+      end
+    end
+
+    # Mark order as canceled
+    #
+    # @param user [Shoppe::User] the user who carried out the action
+    def return!(user = nil)
+      # Returned
+      run_callbacks :return do
+        self.returned_at = Time.now ###
+        self.returner = user if user
+        self.status = 'returned'
+        save!
+        order_items.each(&:return!)
+        deliver_returned_order_email
+      end
+    end
+
     def deliver_accepted_order_email
       Shoppe::OrderMailer.accepted(self).deliver
     end
 
     def deliver_rejected_order_email
       Shoppe::OrderMailer.rejected(self).deliver
+    end
+
+    def deliver_canceled_order_email
+      Shoppe::OrderMailer.canceled(self).deliver
+    end
+
+    def deliver_returned_order_email
+      Shoppe::OrderMailer.returned(self).deliver
     end
 
     def deliver_received_order_email

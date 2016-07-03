@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     end
 
     get "orders/export", to: "orders#export"
+    post "orders/:id/cancel", to: "orders#cancel", as: "cancel_order"
+    post "orders/:id/return", to: "orders#return", as: "return_order"
   end
 
   get 'home/index'

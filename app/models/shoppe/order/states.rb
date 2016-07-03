@@ -1,7 +1,7 @@
 module Shoppe
   class Order < ActiveRecord::Base
     # An array of all the available statuses for an order
-    STATUSES = %w(building confirming received accepted rejected shipped).freeze
+    STATUSES = %w(building confirming received accepted rejected shipped canceled returned).freeze
 
     # The Shoppe::User who accepted the order
     #
@@ -12,6 +12,14 @@ module Shoppe
     #
     # @return [Shoppe::User]
     belongs_to :rejecter, class_name: 'Shoppe::User', foreign_key: 'rejected_by'
+    # The Shoppe::User who canceled the order
+    #
+    # @return [Shoppe::User]
+    belongs_to :canceler, class_name: 'Shoppe::User', foreign_key: 'canceled_by'
+    # The Shoppe::User who refunded the order
+    #
+    # @return [Shoppe::User]
+    belongs_to :returner, class_name: 'Shoppe::User', foreign_key: 'returned_by'
 
     # Validations
     validates :status, inclusion: { in: STATUSES }
@@ -47,6 +55,20 @@ module Shoppe
     # @return [Boolean]
     def rejected?
       !!rejected_at
+    end
+
+    # Has this order been canceled?
+    #
+    # @return [Boolean]
+    def canceled?
+      !!canceled_at
+    end
+
+    # Has this order been returned?
+    #
+    # @return [Boolean]
+    def returned?
+      !!returned_at
     end
 
     # Has this order been accepted?
