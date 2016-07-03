@@ -181,7 +181,7 @@ h6 {
 
 .btn-default:hover,
 .btn-default:focus {
-	background-color:transparent;
+	background-color: #4a4848;
 	border-color:#D0D0D0;
 	color:#AAAAAA;
 }
@@ -5273,7 +5273,7 @@ article.product-item h3 {
 	}
 	
 	.jumbotron-full-height {
-		height:320px;
+		height:220px;
 	}
 	
 	.vertical-menu .jumbotron-full-height {
@@ -7115,7 +7115,7 @@ background-image: url("/assets/footer-img.jpg");
 }
 
 
-.button-grnt { margin-left: 307px !important;margin-top: -1px;padding: 12px 14px; background-image:none; background-color:#6d6d6d; color: #eee;}
+.button-grnt { margin-top: 0px;padding: 12px 14px; background-image:none; background-color:#6d6d6d; color: #eee;}
 #add_subscriber input {color: #000; font-weight: 900; padding-left: 10px;padding-right: 10px; font-size: 15px;}
 
 
@@ -7189,7 +7189,7 @@ background-image: url("/assets/footer-img.jpg");
 .flexslider .carousel{ width: 80% !important; margin: auto !important; }
 .flex-control-nav{ display: none !important;}
 .inputnews { width: 100% !important;}
-.button-grnt { margin-left: 72% !important;}
+.button-grnt { margin-left: 62% !important;}
 .col-xs-6 {width: 100% !important;}
 .border-left { border-left: solid 0px #ccc !important;}
 .style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
