@@ -91,6 +91,20 @@ module Shoppe
       redirect_to @order, flash: { alert: e.message }
     end
 
+    def cancel
+      @order.cancel!(current_user_admin)
+      redirect_to @order, flash: { notice: t('shoppe.orders.cancel_notice') }
+    rescue Shoppe::Errors::PaymentDeclined => e
+      redirect_to @order, flash: { alert: e.message }
+    end
+
+    def return
+      @order.return!(current_user_admin)
+      redirect_to @order, flash: { notice: t('shoppe.orders.return_notice') }
+    rescue Shoppe::Errors::PaymentDeclined => e
+      redirect_to @order, flash: { alert: e.message }
+    end
+
     def ship
       @order.ship!(params[:consignment_number], current_user_admin)
       redirect_to @order, flash: { notice: t('shoppe.orders.ship_notice') }

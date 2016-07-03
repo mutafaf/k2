@@ -23,6 +23,14 @@
           - if @order.rejecter
             = t('shoppe.orders.status_bar.by_user', user: @order.rejecter.short_name)
 
+    - if @order.canceled?
+      %li.rejected
+        %h4= t('shoppe.orders.order_canceled')
+        %p
+          = t('shoppe.orders.status_bar.on_date', on: @order.canceled_at.to_s(:short))
+          - if @order.canceler
+            = t('shoppe.orders.status_bar.by_user', user: @order.canceler.short_name)
+
     - if @order.shipped?
       %li.shipped
         %h4= t('shoppe.orders.order_shipped')
@@ -33,3 +41,13 @@
           %p= link_to t('shoppe.orders.status_bar.tracking_url'), @order.courier_tracking_url
         - else
           %p= t('shoppe.orders.status_bar.consignment_no_html', consignment_number: @order.consignment_number)
+
+.status-bar
+  %ul
+    - if @order.returned?
+      %li.rejected
+        %h4= t('shoppe.orders.order_returned')
+        %p
+          = t('shoppe.orders.status_bar.on_date', on: @order.returned_at.to_s(:short))
+          - if @order.returner
+            = t('shoppe.orders.status_bar.by_user', user: @order.returner.short_name)

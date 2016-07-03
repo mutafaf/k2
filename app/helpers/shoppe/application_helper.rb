@@ -5,7 +5,11 @@ module Shoppe
     end
 
     def status_tag(status)
-      content_tag :span, t("shoppe.orders.statuses.#{status}"), class: "status-tag #{status}"
+      if status == "canceled" || status == "returned"
+        content_tag :span, t("shoppe.orders.statuses.#{status}"), class: "status-tag rejected"
+      else
+        content_tag :span, t("shoppe.orders.statuses.#{status}"), class: "status-tag #{status}"
+      end
     end
 
     def attachment_preview(attachment, options = {})

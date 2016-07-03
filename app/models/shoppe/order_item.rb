@@ -190,6 +190,16 @@ module Shoppe
       stock_level_adjustments.destroy_all
     end
 
+    # Trigged when the associated order is canceled..
+    def cancel!
+      stock_level_adjustments.destroy_all
+    end
+
+    # Trigged when the associated order is returned..
+    def return!
+      stock_level_adjustments.destroy_all
+    end
+
     # Do we have the stock needed to fulfil this order?
     #
     # @return [Boolean]

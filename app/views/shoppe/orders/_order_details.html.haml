@@ -52,7 +52,7 @@
       %dd= number_to_currency(@order.total)
       %dt= t('shoppe.orders.payment_type')
       %dd= @order.payment_method
-    - if @order.accepted? && !@order.shipped?
+    - if @order.accepted? && !@order.shipped?  && !@order.canceled? && !@order.returned?
       = form_tag [:ship, @order] do
         %dl.form
           %dt.padding= label_tag 'consignment_number', t('shoppe.orders.consignment_number')
@@ -65,3 +65,11 @@
         %dd
           = link_to t('shoppe.orders.accept'), [:accept, @order], :method => :post, :class => 'button green'
           = link_to t('shoppe.orders.reject'), [:reject, @order], :method => :post, :class => 'button purple'
+
+    - unless @order.canceled? || @order.returned?
+      %dl.form
+        %dd
+          - if !@order.shipped? && !@order.rejected?
+            = link_to t('shoppe.orders.cancel'), [:cancel, @order], :method => :post, :class => 'button green'
+          - if !@order.rejected? && @order.shipped?
+            = link_to t('shoppe.orders.returned'), [:return, @order], :method => :post, :class => 'button purple'

@@ -424,6 +424,8 @@ en:
       refunded?: Refunded?
       reject: Reject
       reject_notice: Order has been rejected successfully
+      cancel_notice: Order has been canceled successfully
+      return_notice: Order has been returned successfully
       save_order: Save order
       search: Search
       search_orders: Search orders
