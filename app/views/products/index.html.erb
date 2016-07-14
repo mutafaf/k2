@@ -45,10 +45,17 @@
                 <h1 class="text-center products_not_found">No Results Found</h1>
               <%end%>
             </div>
-            <p class="pagination hidden">
-                <% if @products.present? %>
-                <%= link_to_next_page(@products, 'Next Page', :remote => true, :params => params) %>
-                <% end %>
+            
+            <ul class="pagination">
+               
+                 <% if @products.present? %>
+                  <%= paginate @products, :remote => true%>
+                 <% end %>
+            </ul>
+
+
+
+            
               </p>
          </div>
       </div>
