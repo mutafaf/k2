@@ -1,0 +1,37 @@
+<h2> All Orders (<%= @orders.received.count %>) </h2>
+<br>
+
+<table class="data">
+
+	<tr>
+		<td>
+			<span class="status-tag received">Orders Receive (<%= @orders.received_orders.count %>)
+			<span>
+		</td>
+		<td>
+			<span class="status-tag accepted">Orders Accepted (<%= @orders.accepted_orders.count %>)<span>
+		</td>
+		<td>
+		<span class="status-tag shipped">Orders Shipped  (<%= @orders.shipped_orders.count  %>)
+			<span>
+			
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<span class="status-tag rejected">Orders Canceled (<%= @orders.canceled_orders.count %>)
+			<span>
+		</td>
+		<td>
+			<span class="status-tag rejected">Orders Rejected (<%= @orders.rejected_orders.count %>)
+			<span>
+		</td>
+		<td>
+			<span class="status-tag rejected">Orders Returned (<%= @orders.returned_orders.count %>)
+			</span>
+		</td>
+	</tr>
+</table>
+<br>
+<br>
