@@ -777,12 +777,14 @@ en:
         dynamic_options: Dynamic Options
         jobs: Jobs
         brands: Brands
+        home_slider_images: Home Slider Images
         blogs: Blogs
         subscribers: Subscribers
         product_categories: Product Categories
         delivery_services: Delivery Services
         tax_rates: Tax Rates
         stores: Stores
+        return_forms: Return Forms
         users: Users
         countries: Countries
         settings: Settings
@@ -1060,14 +1062,36 @@ en:
       cancel: Cancel
       delete: Delete
       save: Save
-      creating_size: Creating Blog...
-      updating_size: Updating Blog...
+      creating_blog: Creating Blog...
+      updating_blog: Updating Blog...
       delete_confirmation: Are you sure you wish to remove this Blog?
       type: Type
       default: Default
       created_successfully: Blog has been created successfully.
       updated_successfully: Blog has been updated successfully.
       deleted_successfully: Blog has been deleted successfully.
+
+    return_forms:
+      return_forms: Return Forms
+      new_return_form: New Return Form
+      name: Name
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_return_forms : No Return Forms
+      return_form_detail : Return Form Detail
+      back_to_return_forms_list : Back to Return Form list
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_return_form: Creating Return Form...
+      updating_return_form: Updating Return Form...
+      delete_confirmation: Are you sure you wish to remove this Return Form?
+      type: Type
+      default: Default
+      created_successfully: Return Form has been created successfully.
+      updated_successfully: Return Form has been updated successfully.
+      deleted_successfully: Return Form has been deleted successfully.
 
   layouts:
     shoppe:

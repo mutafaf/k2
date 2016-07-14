@@ -1,0 +1,52 @@
+= form_for @return_form do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.return_forms.return_form_detail') do
+    .splitContainer
+      %dl.half
+        %dt= f.label :name, t('shoppe.return_forms.name')
+        %dd= f.text_field :name, class: 'text focus', :disabled=>true
+      %dl.half
+        %dt= f.label :email, t('shoppe.return_forms.email')
+        %dd= f.text_field :email, class: 'text focus', :disabled=>true
+    .splitContainer
+      %dl.half
+        %dt= f.label :order_number, t('shoppe.return_forms.order_number')
+        %dd= f.text_field :order_number, class: 'text focus', :disabled=>true
+      %dl.half
+        %dt= f.label :serial_number, t('shoppe.return_forms.serial_number')
+        %dd= f.text_field :serial_number, class: 'text focus', :disabled=>true
+    .splitContainer
+      %dl.half
+        %dt= f.label :item_number, t('shoppe.return_forms.item_number')
+        %dd= f.text_field :item_number, class: 'text focus', :disabled=>true
+      %dl.half
+        %dt= f.label :return_quantity, t('shoppe.return_forms.return_quantity')
+        %dd= f.text_field :return_quantity, class: 'text focus', :disabled=>true
+    %dl
+      %dt= f.label :description, t('shoppe.return_forms.description')
+      %dd= f.text_area :description, class: 'text focus', :disabled=>true
+
+    .splitContainer
+      %dl.half
+        %dt= f.label :action_detail, t('shoppe.return_forms.action_detail')
+        %dd= f.text_field :action_detail, class: 'text focus', :disabled=>true
+      %dl.half
+        %dt= f.label :reason, t('shoppe.return_forms.reason')
+        %dd= f.text_field :reason, class: 'text focus', :disabled=>true
+
+    %dl
+      %dt= f.label :comment, t('shoppe.return_forms.comments')
+      %dd= f.text_area :comment, class: 'text focus', :disabled=>true
+
+  %p.submit
+    - unless @return_form.new_record?
+      %span.right
+        = link_to t('shoppe.return_forms.delete'),
+                  @return_form,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.return_forms.delete_confirmation')}
+
+    = link_to t('shoppe.return_forms.edit'), [:edit, @return_form], class: 'button green'
+    = link_to t('shoppe.return_forms.back'), :return_forms, class: 'button'
