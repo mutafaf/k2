@@ -354,7 +354,7 @@ module Shoppe
         cat_ids << category.id # current category
       end
 
-      category_id = self.find_category(category_permalink).id
+      # category_id = self.find_category(category_permalink).id
       products = self.products_for_category(products, cat_ids) if products and cat_ids
     end
 
