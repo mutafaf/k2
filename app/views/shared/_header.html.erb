@@ -257,11 +257,17 @@
                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/search.png" class="img-responsive" alt=""></a>
                <ul class="dropdown-menu" style="">
                   <li>
-                     <form>
-                        <div class="">
-                           <input type="text" class="form-control track_order_field" placeholder="Search ...">
-                        </div>
-                     </form>
+                    
+                       <%= form_tag('/products', method: :get) do %>
+                          <div class="">
+                              <%= text_field_tag :category_name, nil, class: "form-control", placeholder: "Search ...", style: "font-size: 14px;
+                                          width: 214px;
+                                             float: left;
+                                                margin-top: 12px;
+                                                 position: absolute;" %>
+                           </div>
+                      <% end %>
+                     
                   </li>
                </ul>
             </li>
