@@ -14,7 +14,7 @@ Shoppe::NavigationManager.build(:admin_primary) do
   add_item :products
   add_item :product_categories
   add_item :sizes
-  add_item :home_slider_images
+  # add_item :home_slider_images
   add_item :brands
   # add_item :delivery_services
   # add_item :tax_rates
