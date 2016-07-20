@@ -45,10 +45,17 @@
                 <h1 class="text-center products_not_found">No Results Found</h1>
               <%end%>
             </div>
-            <p class="pagination hidden">
-                <% if @products.present? %>
-                <%= link_to_next_page(@products, 'Next Page', :remote => true, :params => params) %>
-                <% end %>
+            <div class="pagination-wrapper" style="    background: transparent;">
+            <ul class="pagination">
+               
+                 <% if @products.present? %>
+                  <li><%= paginate @products, :remote => true%></li>
+                 <% end %>
+            </ul>
+
+</div>
+
+            
               </p>
          </div>
       </div>
@@ -58,3 +65,19 @@
    PRODUCTS - END 
    =========================== -->
 
+<style type="text/css">
+  
+.pagination span {
+    margin: 0 5px 5px;
+    border: 1px solid #999999;
+    color: #555555;
+    font-weight: bold;
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    padding: 8px;
+    background: transparent;}
+
+
+</style>
