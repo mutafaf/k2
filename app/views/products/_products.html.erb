@@ -29,6 +29,7 @@
                  <h3 style="font-size: large;font-family: initial;}"><%= link_to product.name, product_path(product.permalink)%></h3>
                  <span class="price">
                  <ins><span class="amount"><%= number_to_currency product.get_price %></span></ins>
+                 <ins><s><span class="old_price"><%= number_to_currency product.old_price %></span></s></ins>
                  </span>                                          
                  <center>
 
