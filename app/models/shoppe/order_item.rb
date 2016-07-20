@@ -200,6 +200,10 @@ module Shoppe
       stock_level_adjustments.destroy_all
     end
 
+    def article_color_size
+      "#{ordered_item.full_name} (#{size}) (#{ordered_item.get_category.name})"
+    end
+
     # Do we have the stock needed to fulfil this order?
     #
     # @return [Boolean]

@@ -10,6 +10,8 @@
 
 = render 'search_form'
 
+=render 'orders_status'
+
 .table
   %table.data
     %thead
@@ -33,7 +35,7 @@
             %td
               %ul
                 - for item in order.order_items
-                  %li #{item.quantity} x #{item.ordered_item.full_name}
+                  %li #{item.quantity} x #{item.ordered_item.try(full_name)}
             %td= number_to_currency order.total
             %td= boolean_tag order.paid_in_full?, nil, :true_text => number_to_currency(order.amount_paid), :false_text => number_to_currency(order.amount_paid)
 = paginate @orders

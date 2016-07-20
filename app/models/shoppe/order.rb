@@ -117,6 +117,7 @@ module Shoppe
       sheet1.column(7).width = 35
       sheet1.column(8).width = 12
       sheet1.column(9).width = 12
+      sheet1.column(10).width = 35
       title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14
       header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
       date_range_format = Spreadsheet::Format.new :color => :green, :weight => :bold
@@ -135,7 +136,7 @@ module Shoppe
 
       i = i+1
       sheet1.row(i).default_format = header_format
-      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Contact Number', 'Address', 'City', 'Order Qty', 'Order Amount (Including Ship Charges)' , 'Order Status', 'Ship Date'
+      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Contact Number', 'Address', 'City', 'Order Qty', 'Order Amount (Including Ship Charges)' , 'Order Status', 'Ship Date', 'Article No, Color, Size, Product Category'
       all.each do |order|
         i = i+1
         sheet1.row(i).height = 20
@@ -149,8 +150,9 @@ module Shoppe
         order_amount = "#{Shoppe.settings.currency_unit} #{order.total}"
         status = order.status
         ship_date = order.shipped_at.strftime("%b %d, %Y") if order.shipped_at.present?
+        articles = order.order_items.collect(&:article_color_size).join('  , ') rescue ''
 
-        sheet1.row(i).push order_id, order_date, customer_name, contact_no, address, city, order_qty, order_amount, status, ship_date
+        sheet1.row(i).push order_id, order_date, customer_name, contact_no, address, city, order_qty, order_amount, status, ship_date, articles
       end
       return book
     end
