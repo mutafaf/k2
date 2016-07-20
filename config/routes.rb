@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :return_forms
   post '/rate' => 'rater#create', :as => 'rate'
   mount Shoppe::Engine => "/admin"
 
   Shoppe::Engine.routes.draw do
     resources :return_forms
+    resources :home_slider_images
     resources :sizes
     resources :subscribers
     resources :jobs do
@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   get "careers", to: "careers#careers"
   post "add_subscriber", to: "home#add_subscriber"
   post "add_careers", to: "careers#add_careers"
+  resources :return_forms, only: [:new, :create]
 
 
   devise_for :users , :controllers => { :sessions => "sessions", :registrations => "registrations"}

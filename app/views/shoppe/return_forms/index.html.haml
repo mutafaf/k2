@@ -1,0 +1,37 @@
+- @page_title = t('shoppe.return_forms.return_forms')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.return_forms.new_return_form'), :new_return_form, class: 'button green'
+  %h2.users= t('shoppe.return_forms.return_forms')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.return_forms.name')
+        %th= t("shoppe.return_forms.email")
+        %th= t("shoppe.return_forms.order_number")
+        %th= t("shoppe.return_forms.serial_number")
+        %th= t("shoppe.return_forms.item_number")
+        %th= t("shoppe.return_forms.return_quantity")
+        %th= t("shoppe.return_forms.reason")
+        %th= t("shoppe.return_forms.action_detail")
+    %tbody
+      - if @return_forms.empty?
+        %tr.empty
+          %td= t('shoppe.return_forms.no_return_forms')
+      - else
+        - for return_form in @return_forms
+          %tr
+            %td= link_to return_form.name, [return_form]
+            %td= return_form.email
+            %td= return_form.order_number
+            %td= return_form.serial_number
+            %td= return_form.item_number
+            %td= return_form.return_quantity
+            %td= return_form.reason
+            %td= return_form.action_detail
+= paginate @return_forms
