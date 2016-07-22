@@ -1,18 +1,18 @@
-<h2> All Orders (<%= @orders.received.count %>) </h2>
+<h2> All Orders (<%= @orders.received.total_count %>) </h2>
 <br>
 
 <table class="data">
 
 	<tr>
 		<td>
-			<span class="status-tag received">Orders Receive (<%= @orders.received_orders.count %>)
+			<span class="status-tag received">Orders Receive (<%= @orders.received_orders.total_count %>)
 			<span>
 		</td>
 		<td>
-			<span class="status-tag accepted">Orders Accepted (<%= @orders.accepted_orders.count %>)<span>
+			<span class="status-tag accepted">Orders Accepted (<%= @orders.accepted_orders.total_count %>)<span>
 		</td>
 		<td>
-		<span class="status-tag shipped">Orders Shipped  (<%= @orders.shipped_orders.count  %>)
+		<span class="status-tag shipped">Orders Shipped  (<%= @orders.shipped_orders.total_count  %>)
 			<span>
 			
 		</td>
@@ -20,15 +20,15 @@
 
 	<tr>
 		<td>
-			<span class="status-tag rejected">Orders Canceled (<%= @orders.canceled_orders.count %>)
+			<span class="status-tag rejected">Orders Canceled (<%= @orders.canceled_orders.total_count %>)
 			<span>
 		</td>
 		<td>
-			<span class="status-tag rejected">Orders Rejected (<%= @orders.rejected_orders.count %>)
+			<span class="status-tag rejected">Orders Rejected (<%= @orders.rejected_orders.total_count %>)
 			<span>
 		</td>
 		<td>
-			<span class="status-tag rejected">Orders Returned (<%= @orders.returned_orders.count %>)
+			<span class="status-tag rejected">Orders Returned (<%= @orders.returned_orders.total_count %>)
 			</span>
 		</td>
 	</tr>
