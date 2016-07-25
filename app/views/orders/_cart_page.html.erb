@@ -1,10 +1,10 @@
 <%order = current_order%>
-<br><br><br>
+
 <section class="content products">
    <div class="container">
       <article class="product-item product-single" style="     padding: 20px;">
          <div class="row">
-            <br>
+           
             <center>
                <h1>  SHOPPING CART</h1>
                <p>Customer Service Questions? +92 42 3 5241207-8</p>
@@ -19,21 +19,21 @@
       <div class="">
          <div class="clear:both"></div>
          <div class="col-md-12">
-            <div class="col-md-12">
-               <br><br>
-               <div class="clear99"></div>
+            <div class="">
               
-               <div class="col-md-12">
+              
+              
+               <div class="">
                <div class="col-md-9">
-               <br><br>
-               <hr>
+             <div class="top-margin"></div>
+            
                <% if order.products_total >= 3000 %>
 
                 <p class="pull-right">Congratulations! Enjoy FREE shipping on your order worth Rs 3000 and Above</p>
                 <p class="pull-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
                 <% else %>
                 <p class="pull-right">add more items worth Rs <%=3000 - order.products_total%> to  get free shipping</p>
-                <div class="clear"></div>
+                <div class="all_clear"></div>
                 <p class="pull-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
                <% end %>
 
@@ -57,7 +57,7 @@
                </aside>
                <br>
                <a style="     width: 100%;" href="<%= products_path %>" class="btn btn-default btn-lg" >Continue Shopping</a>
-               <br>
+              <div class="all_clear"></div>
                <a style="    margin-top: 10px; 
                   margin-top: 10px;
                   width: 100%;
@@ -65,7 +65,7 @@
                   color: #fff;   width: 100%;" href="<%= checkout_path %>" class="btn btn-default btn-lg" data-no-turbolink =true>Continue to Checkout</a>
                <center>
                   <%= link_to 'Empty Cart', basket_path, :method => :delete, :class=>"btn btn-link" %>
-                  <br>
+                  <div class="all_clear"></div>
                   
                </center>
             </div>
