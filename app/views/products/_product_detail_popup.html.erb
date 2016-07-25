@@ -95,6 +95,7 @@
                                       <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Select", :class=> "form-control quent1", :id=>"color_select"} %>
                                    </div>
                                  <% end %>
+                                 
                                  </div>
                               </div>
                               <div class="product-pop">

@@ -2,14 +2,22 @@ development:
   adapter: postgresql
   encoding: utf8
   database: borjan_development
-  username: root
-  password: root
+  username: sohail
+  password: daredaval
   host: localhost
 
 production:
   adapter: postgresql
   encoding: utf8
   database: borjan_development
-  username: root
-  password: root
+  username: sohail
+  password: daredaval
   host: localhost
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: borjan_development
+  username: sohail
+  password: daredaval
+  host: localhost
+  
