@@ -73,7 +73,7 @@ module Shoppe
 
     # All active products
     scope :active, -> { where(active: true) }
-
+    scope :color_multi, -> { where(color_name: "Multi") }
     # All featured products
     scope :featured, -> { where(featured: true) }
 

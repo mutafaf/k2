@@ -6,7 +6,8 @@
          <div class="row">
            
             <center>
-               <h1>  SHOPPING CART</h1>
+            <br>
+               <h1>SHOPPING CART</h1>
                <p>Customer Service Questions? +92 42 3 5241207-8</p>
             </center>
             <hr>
@@ -14,34 +15,34 @@
       </article>
    </div>
    <section class="container">
-      <div class="col-md-12">
-         <%= render "shopping_cart", order: order %>
-      <div class="">
-         <div class="clear:both"></div>
-         <div class="col-md-12">
-            <div class="">
-              
-              
-              
-               <div class="">
-               <div class="col-md-9">
-             <div class="top-margin"></div>
-            
-               <% if order.products_total >= 3000 %>
+ <div class="row">
+   
+   <div class="col-md-12">
+      <%= render "shopping_cart", order: order %>
+<hr>
+   </div>
 
-                <p class="pull-right">Congratulations! Enjoy FREE shipping on your order worth Rs 3000 and Above</p>
-                <p class="pull-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
+
+
+
+<div class="col-md-8">
+   
+<br>
+   <% if order.products_total >= 3000 %>
+
+                <p class="text-right">Congratulations! Enjoy FREE shipping on your order worth Rs 3000 and Above</p>
+                <p class="text-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
                 <% else %>
-                <p class="pull-right">add more items worth Rs <%=3000 - order.products_total%> to  get free shipping</p>
-                <div class="all_clear"></div>
-                <p class="pull-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
+                <p class="text-right">add more items worth Rs <%=3000 - order.products_total%> to  get free shipping</p>
+                
+                <p class="text-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
                <% end %>
 
-              </div>
+</div>
 
-               <div class="col-md-3 ipad-button-size">
-           
-               <aside class="sidebar">
+   <div class="col-md-4">
+  <br>
+  <aside class="sidebar">
                   <div class="total">
                      <p>
                         <label>Subtotal:</label><!-- --><span><%= number_to_currency order.products_total %></span>
@@ -57,23 +58,18 @@
                </aside>
                <br>
                <a style="     width: 100%;" href="<%= products_path %>" class="btn btn-default btn-lg" >Continue Shopping</a>
-              <div class="all_clear"></div>
                <a style="    margin-top: 10px; 
                   margin-top: 10px;
                   width: 100%;
                   background: #40B313;
                   color: #fff;   width: 100%;" href="<%= checkout_path %>" class="btn btn-default btn-lg" data-no-turbolink =true>Continue to Checkout</a>
-               <center>
+
+                <center>
                   <%= link_to 'Empty Cart', basket_path, :method => :delete, :class=>"btn btn-link" %>
                   <div class="all_clear"></div>
                   
                </center>
-            </div>
-         </div>
-            </div>
-             </div>
-         <!--  ....................... -->
-      </div>
-      </div>
-   </section>
-</section>
+   </div>
+ </div>
+
+

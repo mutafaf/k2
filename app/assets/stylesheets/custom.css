@@ -702,7 +702,7 @@ textarea {
 }
 
 .pagination {
-	margin:0;
+	margin:0 0 0 12px !important;
 	border-radius:0;
 }
 
@@ -7825,7 +7825,7 @@ input{ color: #000; }
         color-stop(100%, rgba(255, 0, 0, 1)));
         width: 10px;
         height: 10px;
-        margin-left: 25px
+        margin-left: 35px
 }
 
 .all_clear{
