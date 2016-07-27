@@ -4,6 +4,7 @@
 #= require shoppe/jquery_ui
 #= require shoppe/chosen.jquery
 #= require shoppe/jscolor
+#= require shoppe/custom.js
 #= require nifty/dialog
 #= require ckeditor-jquery
 #= require_tree .
