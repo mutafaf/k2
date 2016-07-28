@@ -32,5 +32,12 @@ module Shoppe
         end
       end
     end
+
+    def view_stock
+      @sizes = Shoppe::Size.all
+      @variants = @item.get_variants
+
+      render action: 'view_stock', layout: false if request.xhr?
+    end
   end
 end
