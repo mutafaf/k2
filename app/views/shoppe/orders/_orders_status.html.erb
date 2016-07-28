@@ -1,18 +1,22 @@
 <h2> All Orders (<%= @orders.total_count %>) </h2>
-<br>
 
 <table class="data">
 
 	<tr>
 		<td>
 			<span class="status-tag received">Orders Receive (<%= @orders.received_orders.total_count %>)
+			
+			     <h2>Rs <%=@orders.received_orders.map(&:total).sum %></h2>
 			<span>
 		</td>
 		<td>
 			<span class="status-tag accepted">Orders Accepted (<%= @orders.accepted_orders.total_count%>)<span>
+			<br>
+			<h2>Rs <%=@orders.accepted_orders.map(&:total).sum %></h2>
 		</td>
 		<td>
 		<span class="status-tag shipped">Orders Shipped  (<%= @orders.shipped_orders.total_count  %>)
+		<h2>Rs <%=@orders.shipped_orders.map(&:total).sum %></h2>
 			<span>
 			
 		</td>
@@ -21,14 +25,17 @@
 	<tr>
 		<td>
 			<span class="status-tag rejected">Orders Canceled (<%= @orders.canceled_orders.total_count %>)
+			<h2>Rs <%=@orders.canceled_orders.map(&:total).sum %></h2>
 			<span>
 		</td>
 		<td>
 			<span class="status-tag rejected">Orders Rejected (<%= @orders.rejected_orders.total_count %>)
+			<h2>Rs <%=@orders.rejected_orders.map(&:total).sum %></h2>
 			<span>
 		</td>
 		<td>
 			<span class="status-tag rejected">Orders Returned (<%= @orders.returned_orders.total_count %>)
+			<h2>Rs <%=@orders.returned_orders.map(&:total).sum %></h2>
 			</span>
 		</td>
 	</tr>
