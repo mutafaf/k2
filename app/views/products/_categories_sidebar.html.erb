@@ -54,14 +54,7 @@
 </div>
 <!--  size -->
 <!-- color -->
-<a href="#color" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"><strong>Color</strong></a>
-<div class="collapse" id="color">
-  <% if @color_names.present? %>
-    <% @color_names.each do |color| %>
-     <a href="<%= products_path(color_name: color) %>" class="list-group-item" data-remote="true"> <%= color %> </a>
-    <% end %>
-  <% end %>
-</div>
+<%#=render "color_filter" %>
 <!-- color -->
 <!--  price -->
 <a href="#price" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu"><strong>Price</strong></a>

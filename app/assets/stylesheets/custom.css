@@ -702,7 +702,7 @@ textarea {
 }
 
 .pagination {
-	margin:0;
+	margin:0 0 0 12px !important;
 	border-radius:0;
 }
 
@@ -7125,6 +7125,7 @@ background-image: url("/assets/footer-img.jpg");
 
 
 @media screen and (max-width: 320px) {
+	.top-margin{ margin-top: 0px !important;}
 
 	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
     color: #555;
@@ -7162,6 +7163,8 @@ background-image: url("/assets/footer-img.jpg");
 }
 
 @media screen and (min-width: 320px) and (max-width: 479px) {
+	.top-margin{ margin-top: 0px !important; }
+
 	.button-grnt { margin-left: 125px !important;}
 	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
     color: #555;
@@ -7210,6 +7213,7 @@ background-image: url("/assets/footer-img.jpg");
 
 
 @media screen and (min-width: 480px) and (max-width: 639px) {
+	.top-margin{ margin-top: 0px !important;}
 	.button-grnt { margin-left: 50% !important;}
 	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
     color: #fff;
@@ -7259,6 +7263,7 @@ background-image: url("/assets/footer-img.jpg");
 
 
 @media screen and (min-width: 640px) and (max-width: 767px) {
+	.top-margin{ margin-top: 0px !important;}
 		.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
     color: #555;
     background-color: transparent !important;
@@ -7310,6 +7315,7 @@ background-image: url("/assets/footer-img.jpg");
 }
 
 @media screen and (min-width: 768px) and (max-width: 1003px) {
+	.top-margin{ margin-top: 0px !important;}
 	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
     color: #555;
     background-color: transparent !important;
@@ -7358,28 +7364,29 @@ background-image: url("/assets/footer-img.jpg");
 
 }
 
-@media screen and (min-width: 1004px) and (max-width: 1259px) {
+@media screen and (min-width: 1004px) and (max-width: 1258px) {
+		.top-margin{ margin-top: 14%!important;}
 
 .flexslider {
    width: 80% !important ; margin: auto;}
-
-
-
 }
 
-@media screen and (min-width: 1260px) and (max-width: 1279px) {
-	
+@media screen and (min-width: 1259px) and (max-width: 1279px) {
+		.top-margin{ margin-top: 16%!important;}
+
 .flexslider {
        width: 1065px; margin: auto;}
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1365px) {
+			.top-margin{ margin-top: 9%!important;}
 
 .flexslider {
     width: 1065px;  margin: auto;}
 }
 
 @media screen and (min-width: 1366px) and (max-width: 1599px) {
+	.top-margin{ margin-top: 68px !important;}
 
 .flexslider {
    width: 1065px; margin: auto;}
@@ -7797,4 +7804,37 @@ input{ color: #000; }
 
  .placeholders input::-ms-input-placeholder {  
    color:#fff !important; 
+}
+.rainbow {
+    background: red; /* not working, let's see some red */
+    background: -moz-linear-gradient( top ,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 255, 0, 1) 15%,
+        rgba(0, 255, 0, 1) 30%,
+        rgba(0, 255, 255, 1) 50%,
+        rgba(0, 0, 255, 1) 65%,
+        rgba(255, 0, 255, 1) 80%,
+        rgba(255, 0, 0, 1) 100%);
+    background: -webkit-gradient(linear,  left top,  left bottom, 
+        color-stop(0%, rgba(255, 0, 0, 1)), 
+        color-stop(15%, rgba(255, 255, 0, 1)),
+        color-stop(30%, rgba(0, 255, 0, 1)),
+        color-stop(50%, rgba(0, 255, 255, 1)),
+        color-stop(65%, rgba(0, 0, 255, 1)),
+        color-stop(80%, rgba(255, 0, 255, 1)),
+        color-stop(100%, rgba(255, 0, 0, 1)));
+        width: 10px;
+        height: 10px;
+        margin-left: 15px
+}
+
+.all_clear{
+
+
+	clear: both;
+}
+.top-margin{ 
+    border-bottom: solid 1px #cccccc;
+    margin-bottom: 11px; 
+ margin-top: 9%; 
 }

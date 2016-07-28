@@ -1,3 +1,3 @@
 
-$("<%=j render(:partial => 'popup_partials/track_order_popup', :object => @order) %>").appendTo($("body"));
+$('#track_order_popup').html("<%=j render(:partial => 'popup_partials/track_order_popup', :object => @order) %>");
 $('#track_order').modal('show');

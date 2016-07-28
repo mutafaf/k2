@@ -1,4 +1,5 @@
-<h2> All Orders (<%= @orders.received.total_count %>) </h2>
+
+<h2> All Orders (<%= @orders.total_count %>) </h2>
 <br>
 
 <table class="data">
@@ -9,7 +10,7 @@
 			<span>
 		</td>
 		<td>
-			<span class="status-tag accepted">Orders Accepted (<%= @orders.accepted_orders.total_count %>)<span>
+			<span class="status-tag accepted">Orders Accepted (<%= @orders.accepted_orders.total_count%>)<span>
 		</td>
 		<td>
 		<span class="status-tag shipped">Orders Shipped  (<%= @orders.shipped_orders.total_count  %>)
