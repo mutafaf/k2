@@ -3,6 +3,7 @@
 = content_for :header do
   %p.buttons
     = link_to t('shoppe.variants.edit_product'), [:edit, @product], :class => 'button'
+    = link_to t('shoppe.products.view_stock') , view_stock_path(:item_type => @product.class, :item_id => @product.id), :class => 'button', :rel => 'dialog', :data => {:dialog_width => 700}
     = link_to t('shoppe.variants.new_variant'), [:new, @product, :variant], :class => 'button green'
 
   %h2.products= t('shoppe.variants.variants_of', product: @product.name)
