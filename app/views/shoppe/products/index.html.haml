@@ -2,6 +2,7 @@
 
 = content_for :header do
   %p.buttons
+    = link_to "Export Stock List", export_stock_path(format: "xls"), :class => 'button button'
     = link_to t('shoppe.products.new_product'), :new_product, :class => 'button green'
     / = link_to t('shoppe.products.import_products'), :import_products, :class => 'button gray'
     = link_to t('shoppe.products.search_product'), '#', class: 'button', rel: 'searchOrders'

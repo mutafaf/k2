@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     post "orders/:id/return", to: "orders#return", as: "return_order"
 
     get "view_stock", to: "stock_level_adjustments#view_stock", as: "view_stock"
+    get "export_stock", to: "stock_level_adjustments#export", as: "export_stock"
   end
 
   get 'home/index'
