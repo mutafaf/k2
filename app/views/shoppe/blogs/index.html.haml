@@ -23,3 +23,47 @@
             %td=link_to blog.title, [:edit, blog]
             %td= blog.position
 = paginate @blogs
+:css
+
+  .pagination { border:0px !important;
+   padding:0px !important ;
+   margin:0px auto !important;
+  display:inline-block !important;}  
+  .pagination li {
+    display:inline-block;
+    margin:0px;
+    padding:0;
+    }
+  .pagination li a{
+      margin: 2px;
+      border: 1px solid #999999;
+      color: #999;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+     
+      background: transparent;
+      display:inline-block;
+      padding:5px 10px ;
+      text-decoration:none;
+      }
+
+  nav {
+      margin-top:20px;
+      width:100%;
+      text-align:center;
+  }
+  .pagination .active{
+  
+      
+      
+  }
+  .pagination .active a{
+  
+     border: 1px solid #9AC835;
+      color: #fff;
+      background-color:#9AC835;
+      
+     
+      
+  }
