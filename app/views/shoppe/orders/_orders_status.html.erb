@@ -14,7 +14,7 @@
       
     <td>
     <span class="status-tag shipped">Orders Shipped  (<%= @orders.shipped_orders.total_count  %>)
-    <h2 style="margin-top:10px;">Rs <%=Shoppe::Order.shipped_orders.map(&:total).sum%></h2>
+    <h2 style="margin-top:10px;"> <%=number_to_currency Shoppe::Order.shipped_orders.map(&:total).sum%></h2>
       </span>
     </td>
   </tr>
