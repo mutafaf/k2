@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     end
 
     @sizes = @product.get_available_sizes
-    @variants = @product.get_variants
+    @variants = @product.get_available_variants
 
     if request.xhr?
       if params[:color].present?

@@ -31,7 +31,8 @@
             %tr
               %td= product.sku
               %td
-                = link_to product.name, [:edit, product]
+                = link_to check_for_active(product), [:edit, product]
+
                 %span.float-right= link_to t('shoppe.products.view_stock') , view_stock_path(:item_type => product.class, :item_id => product.id), :class => '', :rel => 'dialog', :data => {:dialog_width => 700}
               %td= number_to_currency product.price
               - if product.has_variants?
@@ -40,10 +41,7 @@
                     - for variant in product.variants
                       %tr
                         %td{:width => '20%'}
-                          - if variant.default
-                            %b= link_to variant.name, edit_product_variant_path(product, variant)
-                          - else
-                            = link_to variant.name, edit_product_variant_path(product, variant)
+                          = link_to check_for_default_and_active(variant), edit_product_variant_path(product, variant)
                         %td{:width => '15%'}
                           - if variant.stock_control?
                             %span.float-right= link_to t('shoppe.products.edit') , stock_level_adjustments_path(:item_type => variant.class, :item_id => variant.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}

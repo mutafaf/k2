@@ -25,10 +25,7 @@
           %tr
             %td= variant.sku
             %td
-              - if variant.default
-                %b= link_to variant.name, edit_product_variant_path(@product, variant)
-              - else
-                = link_to variant.name, edit_product_variant_path(@product, variant)
+              = link_to check_for_default_and_active(variant), edit_product_variant_path(@product, variant)
             %td= number_to_currency variant.price
             %td
               - if variant.stock_control?

@@ -71,8 +71,26 @@ module Shoppe
     def format_date(date)
       date.strftime("%b %d, %Y")
     end
-      def format_datetime(date)
+
+    def format_datetime(date)
       date.strftime("%b %d, %Y at %I:%M %p")
+    end
+
+    def check_for_active(product)
+      return product.name if product.active
+      return "<strike>#{product.name}</strike>".html_safe
+    end
+
+    def check_for_default(product)
+      return "<b>#{product.name}</b>".html_safe if product.default
+      return product.name
+      
+    end
+
+    def check_for_default_and_active(product)
+      return check_for_default(product) if product.active
+      return "<strike>#{check_for_default(product)}</strike>".html_safe
+
     end
 
   end
