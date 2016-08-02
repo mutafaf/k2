@@ -2,12 +2,7 @@
    <h3>ORDER SUMMARY</h3>
    <% order.order_items.each do |item| %>
       <div class="col-md-6 col-sm-6 ">
-
-      <% if item.ordered_item.default %>
-        <img src='<%= item.ordered_item.parent.try(:default_image) ? item.ordered_item.parent.default_image.file.try(:thumb) : '/assets/placeholder.jpg'%>' class="img-responsive">
-        <% else %>
-        <img src='<%= item.ordered_item.try(:default_image) ? item.ordered_item.default_image.file.try(:thumb) : '/assets/placeholder.jpg' %>' class="img-responsive">
-      <% end %>
+        <img src='<%= cart_item_image(item.ordered_item) %>' class="img-responsive">
       </div>
       <div class="col-md-6 col-sm-6 " style="padding: 0;">
          <h3><%= item.ordered_item.get_name %> | <%= number_to_currency item.unit_price %> 

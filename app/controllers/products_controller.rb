@@ -25,9 +25,9 @@ class ProductsController < ApplicationController
       return
     end
 
-    if @product.default
-      # For Main Product
-      @product = @product.parent # get default variant here
+    if @product.has_variants? and @product.default_variant.present?
+      # If Main Product then
+      @product = @product.default_variant # get default variant here
     end
 
     @sizes = @product.get_available_sizes
