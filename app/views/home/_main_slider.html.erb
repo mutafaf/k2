@@ -1,7 +1,89 @@
 <!-- ==========================
    JUMBOTRON - START 
    =========================== -->
-   <section class="content jumbotron jumbotron-full-height">
+<!-- Place somewhere in the <body> of your page -->
+<div id="flexslider">
+<div class="">
+  <ul class="slides" style="margin-left: -8px;">
+
+
+
+
+    <li>
+     
+      <div class="container mini-banner">
+               <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png"></h1>
+                  <div>
+                    <br>
+                  </div>
+                  <a style="letter-spacing: 8px; " href="/products?category_permalink=salecollection" class="btn btn-default btn-lg ">Shop Now</a>
+               </div>
+                <img src="/assets/slide-sales.png" style=" width:100%;" />
+    </li>
+
+
+    <li>
+     
+      <div class="container mini-banner">
+               <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png" ></h1>
+                  <div>
+                    <br>
+                  </div>
+                  <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
+               </div>
+                <img src="/assets/slide-5.jpg" style=" width:100%;" />
+    </li>
+
+    <li>
+     
+      <div class="container mini-banner">
+               <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png"></h1>
+                  <div>
+                    <br>
+                  </div>
+                  <a style="letter-spacing: 8px; " href="/products?category_permalink=salecollection" class="btn btn-default btn-lg ">Shop Now</a>
+               </div>
+                <img src="/assets/slide-3.jpg" style=" width:100%;" />
+    </li>
+
+
+
+
+    <li>
+     
+      <div class="container mini-banner">
+               <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png" ></h1>
+                  <div>
+                    <br>
+                  </div>
+                  <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
+               </div>
+                <img src="/assets/slide-4.jpg" style=" width:100%;" />
+    </li>
+
+
+    
+    <li>
+     
+      <div class="container mini-banner">
+               <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png" ></h1>
+                  <div>
+                    <br>
+                  </div>
+                  <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
+               </div>
+                <img src="/assets/slide-2.jpg" style=" width:100%;" />
+    </li>
+
+
+   
+  </ul>
+</div>
+</div>
+
+<!--  -->
+
+  <!--  <section class="content jumbotron jumbotron-full-height">
       <div id="homepage-2-carousel" class="nav-inside">
 
      <div class="item slide-2 img-responsive center-block" style="     background-image: url(/assets/slide-sales.png);">
@@ -71,3 +153,16 @@
          </div>
       </div>
    </section>
+ -->
+   <style type="text/css">
+
+
+</style>
+
+<script type="text/javascript">
+   $(window).load(function() {
+  $('#flexslider').flexslider({
+    animation: "slide"
+  });
+});
+</script>
