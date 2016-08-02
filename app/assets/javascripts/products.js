@@ -16,7 +16,9 @@ function getProducts(element){
      }
    });
 }
-
+$(document).ready(function(){
+    window.localStorage.removeItem("selectedSize");
+});
 function getProductDetail(element) {
  var permalink = $(element).find('input').val();
   $.ajax({
@@ -63,7 +65,7 @@ function setAlreadySeletedSize(){
        $(".size-list").css("border", "solid 1px #ddd");
        currentProductSize.css("border", "solid 3px #ddd");
       $("#size").val(selectedSize);
-     } else {
+     } else if(document.getElementById("size_block")) {
        toastr.error("Size: "+ selectedSize +" is not available for this Product.");
      }
   };
@@ -107,5 +109,6 @@ function selectSize(element){
   $(".size-list").css("border", "solid 1px #ddd");
   $(element).css("border", "solid 3px #ddd");
   localStorage.setItem("selectedSize", $(element).text());
+
 
 }

@@ -83,28 +83,32 @@
                 </div>
               <% end %>
              <br>
-              <h3>Quantity</h3>
+              
+              <div style="clear;both"></div>
+              
+           </div>
+        </div>
+        </div>
+        <% if @product.in_stock? %>
+          <h3>Quantity</h3>
               <div class="product-quantity clearfix">
                  <a class="btn btn-default" id="modal-qty-minus">-</a>
                  <%= text_field_tag :quantity, params[:quantity], id: 'modal-qty', :class=>"form-control", :value=>"1" %>
                  <a class="btn btn-default" id="modal-qty-plus">+</a>
               </div>
-              <div style="clear;both"></div>
-              <br>
-           </div>
-        </div>
-        </div>
-        <% if @product.in_stock? %>
-          In Stock.
+          <h4>In Stock.</h4>
+          <br>
+            <button type="submit" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;float: left;">
+            Add to cart
+            <i class="fa fa-shopping-cart"></i>
+          </button>
         <% else %>
-          Out Of Stock.
+        <br>
+          <h2>Out Of Stock.</h2>
         <% end %>
         <br>
         <br>
-        <button type="submit" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;float: left;">
-          Add to cart
-          <i class="fa fa-shopping-cart"></i>
-        </button>
+        
      </div>
   </div>
 <% end %>
