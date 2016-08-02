@@ -200,19 +200,28 @@ module Shoppe
       stock_level_adjustments.destroy_all
     end
 
-    def articles_color
-      "#{ordered_item.full_name}" "\n"
+
+
+    def product_name
+      "#{ordered_item.parent.name}\n"
     end
 
     def items_sizes
-     "#{size}" "\n"
+     "#{size}\n"
     end
 
     def show_category
-
-      "#{ordered_item.get_category.name}" "\n"
+     hierarchy_array = ordered_item.get_category.hierarchy_array.collect(&:name)
+      if hierarchy_array.size >1 
+        "#{hierarchy_array.first}/#{hierarchy_array.last}\n"
+      else
+        "#{hierarchy_array.first}\n"
+      end
     end
    
+    def variant_name
+     "#{ordered_item.name}\n"
+    end
  
     # Do we have the stock needed to fulfil this order?
     #

@@ -118,9 +118,10 @@ module Shoppe
       sheet1.column(8).width = 10
       sheet1.column(9).width = 12
       sheet1.column(10).width = 14
-      sheet1.column(11).width = 20
-      sheet1.column(12).width = 5
+      sheet1.column(11).width = 15
+      sheet1.column(12).width = 15
       sheet1.column(13).width = 18
+      sheet1.column(14).width = 15
       title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14
       header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
       date_range_format = Spreadsheet::Format.new :color => :green, :weight => :bold
@@ -140,7 +141,7 @@ module Shoppe
 
       i = i+1
       sheet1.row(i).default_format = header_format
-      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Contact Number','Email' ,'Address', 'City', 'Qty', 'Pkr Rupee' , 'Order Status', 'Ship Date', 'Article No, Color', 'Size',' Product Category'
+      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Contact Number','Email' ,'Address', 'City', 'Qty', 'Pkr Rupee' , 'Order Status', 'Ship Date', 'Article No', 'color',' size','Product Category'
       all.each do |order|
         i = i+1
         sheet1.row(i).height = 50
@@ -155,10 +156,11 @@ module Shoppe
         status = order.status
         email=order.email_address
         ship_date = order.shipped_at.strftime("%b %d, %Y") if order.shipped_at.present?
-        articles = order.order_items.collect(&:articles_color).join('') rescue ''
+        articles = order.order_items.collect(&:product_name).join('') rescue ''
+        articles_color = order.order_items.collect(&:variant_name).join('') rescue ''
         sizes = order.order_items.collect(&:items_sizes).join('') rescue ''
         category = order.order_items.collect(&:show_category).join('') rescue ''
-        sheet1.row(i).push order_id, order_date, customer_name, contact_no,email, address, city, order_qty, order_amount, status, ship_date, articles, sizes, category
+        sheet1.row(i).push order_id, order_date, customer_name, contact_no,email, address, city, order_qty, order_amount, status, ship_date, articles, articles_color, sizes, category
       end
       return book
     end

@@ -17,7 +17,7 @@
     <tbody>
       <% @variants.each do |variant| %>
       <tr>
-        <td><%= variant.name %></td>
+        <td><%= link_to check_for_default_and_active(variant) %></td>
         <% @sizes.each do |size| %>
           <td><%= variant.stock(size.id) %></td>
         <% end %>
