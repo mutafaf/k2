@@ -73,7 +73,7 @@ module Shoppe
 
     # All active products
     scope :active, -> { where(active: true) }
-
+    
     # All featured products
     scope :featured, -> { where(featured: true) }
 
@@ -88,15 +88,16 @@ module Shoppe
       if attrs['extra']['file'].present? then attrs['extra']['file'].each { |attr| attachments.build(file: attr, parent_id: attrs['extra']['parent_id'], parent_type: attrs['extra']['parent_type']) } end
     end
 
+    # Sync active check of Product to its variants
     def update_active_for_variants
       if self.variants.present? and self.active_changed?
         self.variants.each do |variant|
-          variant.active = self.active
-          variant.save
+          variant.update_column(:active, self.active)
         end
       end
     end
 
+    # Create Default Variant Automatically
     def create_default_variant
       variant = self.variants.new
       variant.name = self.color_name
@@ -269,6 +270,10 @@ module Shoppe
       return self.variants
     end
 
+    def get_available_variants
+      return  get_variants.where(active: true) if get_variants.present?
+    end
+
     def get_category
       return  self.parent.product_category if self.variant?
       return self.product_category
@@ -308,6 +313,10 @@ module Shoppe
       return self.variants.collect(&:color)
     end
 
+    def get_available_colors
+      return  get_available_variants.where(active: true).collect(&:color) if get_available_variants.present?
+    end
+
     def get_product_attributes
       return  self.parent.product_attributes if self.variant?
       return self.product_attributes
@@ -338,6 +347,10 @@ module Shoppe
 
     def has_colors?
       !get_colors.empty?
+    end
+
+    def has_available_colors?
+      !get_available_colors.empty?
     end
 
     def self.find_by_brands(brand)

@@ -29,15 +29,27 @@
                  <h3 style="font-size: large;font-family: initial;}"><%= link_to product.name, product_path(product.permalink)%></h3>
                  <span class="price">
                  <ins><span class="amount"><%= number_to_currency product.get_price %></span></ins>
+                 <% if product.old_price.present? %>
+                   <ins><s><span class="old_price"><%= number_to_currency product.old_price %></span></s></ins>
+                 <% end %>
                  </span>                                          
                  <center>
 
                     <div style="margin-top: 12px;     width: 58%;">
-                      <% product.get_colors.each do |color| %>
-                        <div class="color1" style="background:#<%= color %>;"></div>
+                      <% product.get_available_colors.each do |color| %>
+                        <div class="color1" style="background:#<%= color %>;">
+                          
+                          <%if product.color_name == "Multi"%>
+                              <div class="rainbow">
+                              </div>
+                              <% end %>
+                        </div>
+
+                       
                        <% end %>
                     </div>
                  </center>
+
               </div>
            </div>
         </div>

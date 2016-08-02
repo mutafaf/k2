@@ -109,11 +109,11 @@
               .currency= Shoppe.settings.currency_unit.html_safe
               = f.text_field :price, :class => 'text'
         %dl.third
-          %dt= f.label :cost_price, t('shoppe.products.cost_price')
+          %dt= f.label :old_price, t('shoppe.products.old_price')
           %dd
             .moneyInput
               .currency= Shoppe.settings.currency_unit.html_safe
-              = f.text_field :cost_price, :class => 'text'
+              = f.text_field :old_price, :class => 'text'
         %dl.third
           / %dt= f.label :tax_rate_id, t('shoppe.products.tax_rate')
           / %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.products.no_tax')}}

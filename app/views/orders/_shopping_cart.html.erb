@@ -23,9 +23,9 @@
            <% end %>
         </div>
         <div class="col-md-3  col-sm-3 col-xs-12  order-size allan">
-        <% if item.ordered_item.has_colors? %>
+        <% if item.ordered_item.has_available_colors? %>
           <strong><span class="qty-font">COLOR: </span></strong>
-          <%= select_tag 'color', options_for_select(item.ordered_item.get_variants.collect{ |v| [v.name, v.id] }, item.ordered_item.id), :class=> "qty size-select", :style=>"width:40%;", :onChange=>"updateOrderItem(this)" %>
+          <%= select_tag 'color', options_for_select(item.ordered_item.get_available_variants.collect{ |v| [v.name, v.id] }, item.ordered_item.id), :class=> "qty size-select", :style=>"width:40%;", :onChange=>"updateOrderItem(this)" %>
         <% end %>
         </div>
         <div class="col-md-3  col-sm-3 col-xs-6 order-size  allan">
@@ -38,9 +38,9 @@
         <div class="col-md-3  order-size allan total-text"><span class="cart-total"> Total <%= number_to_currency item.sub_total %> </span></div>
      </div>
      <div style="clear:both"></div>
-     <br><br>
+     
   <% end %>
 <% else %>
-  <center><h1>Your cart is empty.</h1></center>
+  <div class="text-center"><h3>Your cart is empty.</h3></div>
 <% end %>
 </div>

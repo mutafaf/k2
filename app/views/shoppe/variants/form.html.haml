@@ -10,7 +10,7 @@
     .splitContainer
       %dl.third
         %dt= f.label :name, t('shoppe.variants.color_name')
-        %dd= f.text_field :name, :class => 'text focus'
+        %dd= f.text_field :name, :id=>'colorbox', :class => 'text focus'
       %dl.third
         %dt= f.label :permalink, t('shoppe.variants.permalink')
         %dd= f.text_field :permalink, :class => 'text'
@@ -20,8 +20,8 @@
 
     .splitContainer
       %dl.third
-        %dt= f.label :color, t('shoppe.variants.color')
-        %dd= f.text_field :color, :class => 'text focus jscolor'
+        %dt= f.label  :color, t('shoppe.variants.color')
+        %dd= f.text_field :color,:id => 'color-field', :class => 'text focus jscolor'
   = field_set_tag t('shoppe.variants.product_sizes') do
     %dl
       %dt= f.label :available_sizes, t('shoppe.products.available_sizes')
@@ -97,3 +97,6 @@
       %span.right= link_to t('shoppe.delete'), product_variant_path(@product, @variant), :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.variants.delete_confirmation')}
     = f.submit t('shoppe.variants.save_variant'), :class => 'button green'
     = link_to t('shoppe.cancel'), :products, :class => 'button'
+
+
+

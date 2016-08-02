@@ -2,6 +2,7 @@
 
 = content_for :header do
   %p.buttons
+    = link_to "Export Stock List", export_stock_path(format: "xls"), :class => 'button button'
     = link_to t('shoppe.products.new_product'), :new_product, :class => 'button green'
     / = link_to t('shoppe.products.import_products'), :import_products, :class => 'button gray'
     = link_to t('shoppe.products.search_product'), '#', class: 'button', rel: 'searchOrders'
@@ -12,3 +13,48 @@
 = render 'table', :products => @products
 
 = paginate @products_paged
+
+:css
+
+  .pagination { border:0px !important;
+   padding:0px !important ;
+   margin:0px auto !important;
+  display:inline-block !important;}  
+  .pagination li {
+    display:inline-block;
+    margin:0px;
+    padding:0;
+    }
+  .pagination li a{
+      margin: 2px;
+      border: 1px solid #999999;
+      color: #999;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+     
+      background: transparent;
+      display:inline-block;
+      padding:5px 10px ;
+      text-decoration:none;
+      }
+
+  nav {
+      margin-top:20px;
+      width:100%;
+      text-align:center;
+  }
+  .pagination .active{
+  
+      
+      
+  }
+  .pagination .active a{
+  
+     border: 1px solid #9AC835;
+      color: #fff;
+      background-color:#9AC835;
+      
+     
+      
+  }
