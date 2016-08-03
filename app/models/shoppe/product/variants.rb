@@ -40,7 +40,6 @@ module Shoppe
           end
         end
           # Otherwise current or default variant will be true
-         # self.default = true
          self.update_column(:default, true)
       end
     end

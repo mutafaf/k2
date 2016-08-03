@@ -52,9 +52,43 @@ module ProductsHelper
   end
 
   def product_image(product)
-    product = product.parent if product.default # get default variant here
-    return product.default_image.file.try(:standard) if product.try(:default_image)
-    return '/assets/placeholder.jpg'
+
+    if product.variant?
+      return product.default_image.file.try(:standard)
+
+    elsif product.default_variant.present? and product.default_variant.default_image
+      return product.default_variant.default_image.file.try(:standard)
+
+    else
+      return '/assets/placeholder.jpg'
+    end
   end
+
+  def cart_item_image(item)
+    # For Items in Cart
+    if item.variant?
+      return item.default_image.file.try(:thumb)
+
+    elsif item.default_variant.present? and item.default_variant.default_image
+      return item.default_variant.default_image.file.try(:thumb)
+
+    else
+      return '/assets/placeholder.jpg'
+    end
+  end
+
+  def product_image_path(product)
+
+    if product.variant?
+      return product.default_image.path
+
+    elsif product.default_variant.present? and product.default_variant.default_image
+      return product.default_variant.default_image.path
+
+    else
+      return '/assets/placeholder.jpg'
+    end
+  end
+
 
 end

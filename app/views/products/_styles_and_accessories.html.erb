@@ -20,7 +20,7 @@
                             <div class="col-sm-3">
                                <a href="<%=product_path(product.permalink)%>">
                                   <div class="" >
-                                     <img style=" width: 100%" src="<%= product.try(:default_image) ? product.try(:default_image).file.try(:standard) : '/assets/placeholder.jpg' %>" class=""  class="img-responsive " alt="" >
+                                     <img style=" width: 100%" src="<%= product_image(product) %>" class=""  class="img-responsive " alt="" >
                                      <div class="product-body" >
                                         <h3><%= product.name %></h3>
                                         <span class="price">

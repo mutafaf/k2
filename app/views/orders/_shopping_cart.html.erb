@@ -2,11 +2,7 @@
 <% if order.order_items.present? %>
   <% order.order_items.each do |item| %>
      <div class="col-md-2 col-sm-4 col-xs-6">
-        <% if item.ordered_item.default %>
-          <img src='<%= item.ordered_item.parent.try(:default_image) ? item.ordered_item.parent.default_image.file.try(:thumb) : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
-          <% else %>
-          <img src='<%= item.ordered_item.try(:default_image) ? item.ordered_item.try(:default_image).file.try(:thumb)  : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
-        <% end %>
+          <img src='<%= cart_item_image(item.ordered_item) %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
      </div>
      <div class="col-md-10 order-item">
         <div class="col-md-3 col-sm-3 col-xs-6 order-size allan">

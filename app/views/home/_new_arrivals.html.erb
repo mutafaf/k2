@@ -22,7 +22,7 @@
                            <div class="border-shade">
                               <article class="product-item" style="border: solid 1px #fff;">
                                 <div class="products-height" >
-                                 <img src="<%= product.try(:default_image) ? product.default_image.file.try(:standard) : '/assets/placeholder.jpg' %>" class=" " alt="" style="">
+                                 <img src="<%= product_image(product) %>" class=" " alt="" style="">
                                  </div>
                                  <h3>
                                     <%= product.name%>

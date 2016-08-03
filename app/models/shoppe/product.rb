@@ -77,6 +77,8 @@ module Shoppe
     # All featured products
     scope :featured, -> { where(featured: true) }
 
+    scope :only_products, -> { where(parent_id: nil) }
+
     # Localisations
     translates :name, :permalink, :description, :short_description
     scope :ordered, -> { includes(:translations).order(:name) }
@@ -108,6 +110,10 @@ module Shoppe
       variant.sizes = self.sizes
       variant.default = true
       variant.save
+
+      self.attachments.each do |attachment|
+        attachment.update_column(:parent_id, variant.id)
+      end
     end
 
     # Return the name of the product
@@ -258,6 +264,11 @@ module Shoppe
     def get_price
       return  self.parent.price if self.variant?
       return self.price
+    end
+
+    def get_old_price
+      return  self.parent.old_price if self.variant?
+      return self.old_price
     end
 
     def get_cost_price
@@ -457,17 +468,11 @@ module Shoppe
       with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
     end
 
-    def self.search_by_name_and_category(value)
-      
-      category = Shoppe::ProductCategory.search_home_category(value)
-      value=value.squish
-      if category
-        products = category.products 
-      else
-        joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{value}%".downcase)
-      end
-      
-    end 
+    def self.search_by_name_and_category(search_value)
+      category = Shoppe::ProductCategory.search_home_category(search_value)
+      return products = category.products if category
+      return joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{search_value}%".downcase)
+    end
 
 
 
