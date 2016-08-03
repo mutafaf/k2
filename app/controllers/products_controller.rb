@@ -37,7 +37,9 @@ class ProductsController < ApplicationController
       if params[:color].present?
         render :partial => "product_display"
       else
+        # byebug
         render :partial => "product_detail_popup"
+        
       end
     end
 
