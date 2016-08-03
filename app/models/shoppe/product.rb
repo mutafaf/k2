@@ -457,6 +457,28 @@ module Shoppe
       with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
     end
 
+    def self.search_by_name_and_category(value)
+      
+      category = Shoppe::ProductCategory.search_home_category(value)
+      if category
+        products = category.products 
+      else
+        joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{value}%".downcase)
+      end
+      
+    end
+
+
+
+
+
+
+
+
+
+
+
+
     private
 
     def self.ransackable_scopes(auth_object = nil)
