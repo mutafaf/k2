@@ -1,4 +1,10 @@
+<p><b> Count: <%= @products.count %></b></p>
+  <p>Ids:<%= @products.ids %></p>
 
+  <p>Duplicate: Entries:<%= @products.ids.select{|element| @products.count(element) > 1 } %></p>
+
+
+<p><b> Uniq: <%= @products.uniq.count %></b></p>
   <% @products.each do |product| %>
    <%if product.permalink%>  <!-- PRODUCT - START -->
 

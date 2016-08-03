@@ -7,7 +7,7 @@ module Shoppe
 
     QUANTITY = (1..15).to_a
 
-    PER_PAGE = 12
+    PER_PAGE = 200
 
     NEW_ARRIVALS = "New Arrivals"
 
