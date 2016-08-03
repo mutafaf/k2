@@ -68,16 +68,16 @@
                   <div style="margin-top: 12px;     width: 58%;">
                     <% @variants.each do |v| %>
               
-                    
-                      <%#= link_to product_path(v.permalink) do%>
-
-                       <div id="<%= v.permalink %>" class="color1" style="background:#<%= v.color %>;cursor:pointer;" onclick="updateProductDisplay(this)">
-                       <%if v.name == "Multi"%>
-                              <div class="rainbow">
+                      <%if v.name != "Multi"%>
+                              <div id="<%= v.permalink %>" class="color1" style="background:#<%= v.color %>;cursor:pointer;" onclick="updateProductDisplay(this)">
                               </div>
-                                <% end %>
-                       </div>
-                      <%# end %>
+                        <% else %>
+                       
+                              <div id="<%= v.permalink %>" class="rainbow color1"   onclick="updateProductDisplay(this)" style="cursor:pointer; position:relative; right:9px;">
+                              </div>
+                        <% end %>
+                       
+                      
                     <% end %>
                   </div>
                 </div>
