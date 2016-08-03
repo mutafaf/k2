@@ -76,7 +76,7 @@
             <div class="col-md-4">
               <span class="checkout-bulit">City*</span>
               
-              <%= a.select :city, Shoppe::DynamicOption.array_for(Shoppe::Career::CITY) ,{},{ :include_blank => true, :class=>"input-checkout", :required=>true} %>
+              <%= a.select :city, Shoppe::DynamicOption.array_for(Shoppe::Career::CITY).sort_by(&:downcase) ,{},{ :include_blank => true, :class=>"input-checkout", :required=>true} %>
             </div>
             <div class="col-md-4"> 
               <span class="checkout-bulit">Area Code*</span>
