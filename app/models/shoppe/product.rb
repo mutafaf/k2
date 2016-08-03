@@ -468,17 +468,11 @@ module Shoppe
       with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
     end
 
-    def self.search_by_name_and_category(value)
-      
-      category = Shoppe::ProductCategory.search_home_category(value)
-      value=value.squish
-      if category
-        products = category.products 
-      else
-        joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{value}%".downcase)
-      end
-      
-    end 
+    def self.search_by_name_and_category(search_value)
+      category = Shoppe::ProductCategory.search_home_category(search_value)
+      return products = category.products if category
+      return joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{search_value}%".downcase)
+    end
 
 
 

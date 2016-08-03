@@ -87,7 +87,7 @@ class ProductsController < ApplicationController
       products = Shoppe::Product.find_by_category_and_descendants(category) if category
 
     elsif params[:category_name].present?
-      products = Shoppe::Product.search_by_name_and_category(params[:category_name])
+      products = Shoppe::Product.search_by_name_and_category(params[:category_name].squish)
 
     elsif params[:color_name].present?
       heading = params[:color_name]
