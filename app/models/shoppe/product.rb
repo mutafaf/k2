@@ -361,7 +361,7 @@ module Shoppe
     end
 
     def has_available_colors?
-      !get_available_colors.empty?
+      get_available_colors and !get_available_colors.empty?
     end
 
     def self.find_by_brands(brand)
@@ -467,6 +467,28 @@ module Shoppe
     def self.with_translated_name(name_string)
       with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
     end
+
+    def self.search_by_name_and_category(value)
+      
+      category = Shoppe::ProductCategory.search_home_category(value)
+      if category
+        products = category.products 
+      else
+        joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{value}%".downcase)
+      end
+      
+    end
+
+
+
+
+
+
+
+
+
+
+
 
     private
 

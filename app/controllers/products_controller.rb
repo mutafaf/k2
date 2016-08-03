@@ -37,7 +37,9 @@ class ProductsController < ApplicationController
       if params[:color].present?
         render :partial => "product_display"
       else
+        # byebug
         render :partial => "product_detail_popup"
+        
       end
     end
 
@@ -85,8 +87,7 @@ class ProductsController < ApplicationController
       products = Shoppe::Product.find_by_category_and_descendants(category) if category
 
     elsif params[:category_name].present?
-      category = Shoppe::ProductCategory.search_home_category(params[:category_name])
-      products = category.products if category
+      products = Shoppe::Product.search_by_name_and_category(params[:category_name])
 
     elsif params[:color_name].present?
       heading = params[:color_name]
