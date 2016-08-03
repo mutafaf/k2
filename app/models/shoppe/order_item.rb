@@ -215,12 +215,12 @@ module Shoppe
       if hierarchy_array.size >1 
         "#{hierarchy_array.first}/#{hierarchy_array.last}\n"
       else
-        "#{hierarchy_array.first}\n"
+        "#{hierarchy_array.first}\n" 
       end
     end
    
     def variant_name
-     "#{ordered_item.name}\n"
+     "#{ordered_item.name}\n" 
     end
  
     # Do we have the stock needed to fulfil this order?

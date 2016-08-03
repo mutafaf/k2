@@ -109,19 +109,19 @@ module Shoppe
       sheet1 = book.create_worksheet :name => "Orders"
       sheet1.column(0).width = 10
       sheet1.column(1).width = 12
-      sheet1.column(2).width = 16
-      sheet1.column(3).width = 15
-      sheet1.column(4).width = 22
-      sheet1.column(5).width = 30
-      sheet1.column(6).width = 10
-      sheet1.column(7).width = 5
-      sheet1.column(8).width = 10
-      sheet1.column(9).width = 12
-      sheet1.column(10).width = 14
-      sheet1.column(11).width = 15
-      sheet1.column(12).width = 15
-      sheet1.column(13).width = 18
-      sheet1.column(14).width = 15
+      sheet1.column(2).width = 20
+      sheet1.column(3).width = 20
+      sheet1.column(4).width = 20
+      sheet1.column(5).width = 20
+      sheet1.column(6).width = 5
+      sheet1.column(7).width = 15
+      sheet1.column(8).width = 15
+      sheet1.column(9).width = 25
+      sheet1.column(10).width = 15
+      sheet1.column(11).width = 25
+      sheet1.column(12).width = 5
+      sheet1.column(13).width = 10
+      sheet1.column(14).width = 12
       title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14
       header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
       date_range_format = Spreadsheet::Format.new :color => :green, :weight => :bold
@@ -141,8 +141,8 @@ module Shoppe
 
       i = i+1
       sheet1.row(i).default_format = header_format
-      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Contact Number','Email' ,'Address', 'City', 'Qty', 'Pkr Rupee' , 'Order Status', 'Ship Date', 'Article No', 'color',' size','Product Category'
-      all.each do |order|
+      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Article #','category' ,'Color', 'Size', 'Pkr Rupee', 'Contact No' ,'Address', ' city','Email', 'qty', 'Status', 'Shipped Date'
+      all.each do |order|          
         i = i+1
         sheet1.row(i).height = 50
         order_id = order.number
@@ -160,7 +160,7 @@ module Shoppe
         articles_color = order.order_items.collect(&:variant_name).join('') rescue ''
         sizes = order.order_items.collect(&:items_sizes).join('') rescue ''
         category = order.order_items.collect(&:show_category).join('') rescue ''
-        sheet1.row(i).push order_id, order_date, customer_name, contact_no,email, address, city, order_qty, order_amount, status, ship_date, articles, articles_color, sizes, category
+        sheet1.row(i).push order_id, order_date, customer_name, articles, category, articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
       end
       return book
     end
