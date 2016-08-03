@@ -385,7 +385,7 @@ module Shoppe
     def self.find_by_category_and_descendants(category)
         cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
         cat_ids << category.id
-        includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
+        return includes(:product_categories).where('shoppe_product_categories.id' => cat_ids).order(:id)
     end
 
     def self.products_for_category(products, cat_ids)
