@@ -350,7 +350,7 @@ module Shoppe
     end
 
     def has_available_colors?
-      !get_available_colors.empty?
+      get_available_colors and !get_available_colors.empty?
     end
 
     def self.find_by_brands(brand)
