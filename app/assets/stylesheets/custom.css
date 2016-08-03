@@ -7968,3 +7968,6 @@ input{ color: #000; }
     margin-bottom: 11px; 
  margin-top: 9%; 
 }
+#category_name{
+	z-index:99999;
+}
