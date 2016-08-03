@@ -460,13 +460,14 @@ module Shoppe
     def self.search_by_name_and_category(value)
       
       category = Shoppe::ProductCategory.search_home_category(value)
+      value=value.squish
       if category
         products = category.products 
       else
         joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{value}%".downcase)
       end
       
-    end
+    end 
 
 
 
