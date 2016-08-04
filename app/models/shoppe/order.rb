@@ -141,7 +141,7 @@ module Shoppe
 
       i = i+1
       sheet1.row(i).default_format = header_format
-      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Article #','category' ,'Color', 'Size', 'Pkr Rupee', 'Contact No' ,'Address', ' city','Email', 'qty', 'Status', 'Shipped Date'
+      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Category','Article #' ,'Color', 'Size', 'Pkr Rupee', 'Contact No' ,'Address', ' City','Email', 'Qty', 'Status', 'Shipped Date'
       all.each do |order|          
         i = i+1
         sheet1.row(i).height = 50
@@ -160,7 +160,7 @@ module Shoppe
         articles_color = order.order_items.collect(&:variant_name).join('') rescue ''
         sizes = order.order_items.collect(&:items_sizes).join('') rescue ''
         category = order.order_items.collect(&:show_category).join('') rescue ''
-        sheet1.row(i).push order_id, order_date, customer_name, articles, category, articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+        sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
       end
       return book
     end
