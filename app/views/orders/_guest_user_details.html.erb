@@ -58,7 +58,7 @@
                </div>
                <div class="col-md-6"> 
                   <span class="checkout-bulit">City/Town*</span>
-                  <%= f.text_field :billing_city, :class=>"input-checkout", :placeholder=>"Enter & Select City" , :required=>true %>
+                  <%= f.select :delivery_city, Shoppe::DynamicOption.array_for(Shoppe::Career::CITY) ,{},{ :include_blank => true, :class=>"input-checkout", :required=>true} %>
                </div>
                <div style="clear:both"></div>
                <br>
