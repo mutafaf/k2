@@ -15,11 +15,11 @@ module Shoppe
     # If a variant is created, the base product should be updated so that it doesn't have stock control enabled
     after_save do
       if parent
-        # parent.price = 0
-        # parent.cost_price = 0
         # parent.tax_rate = nil
         # parent.weight = 0
 
+        parent.price = 0
+        parent.old_price = 0
         parent.color = ""
         parent.color_name = ""
         parent.sizes.clear

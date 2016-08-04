@@ -108,6 +108,8 @@ module Shoppe
       variant.sku = "sku"
       variant.color = self.color
       variant.sizes = self.sizes
+      variant.price = self.price
+      variant.old_price = self.old_price
       variant.default = true
       variant.save
 
@@ -267,12 +269,12 @@ module Shoppe
     end
 
     def get_price_default_variant(product)
-        return product.default_variant.price if product.default_variant.present?
-    end
-    def get_old_price_default_variant(product)
-        return product.default_variant.old_price if product.default_variant.present?
+      return product.default_variant.price if product.default_variant.present?
     end
 
+    def get_old_price_default_variant(product)
+      return product.default_variant.old_price if product.default_variant.present?
+    end
 
     def get_price_product_display
       return self.price

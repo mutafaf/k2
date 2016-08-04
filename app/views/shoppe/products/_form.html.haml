@@ -99,7 +99,7 @@
 
     %p.addAttachments= link_to t('shoppe.products.add_attachments') , '#', :data => {:behavior => 'addAttachmentToExtraAttachments'}, :class => 'button button-mini green'
 
-  - unless @product.variant?
+  - unless @product.has_variants?
     = field_set_tag t('shoppe.products.pricing') do
       .splitContainer
         %dl.third
