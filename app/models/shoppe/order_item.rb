@@ -187,17 +187,17 @@ module Shoppe
 
     # Trigged when the associated order is rejected..
     def reject!
-      stock_level_adjustments.destroy_all
+      stock_level_adjustments.destroy_all if stock_level_adjustments.present?
     end
 
     # Trigged when the associated order is canceled..
     def cancel!
-      stock_level_adjustments.destroy_all
+      stock_level_adjustments.destroy_all if stock_level_adjustments.present?
     end
 
     # Trigged when the associated order is returned..
     def return!
-      stock_level_adjustments.destroy_all
+      stock_level_adjustments.destroy_all if stock_level_adjustments.present?
     end
 
 

@@ -361,7 +361,7 @@ module Shoppe
     end
 
     def has_available_colors?
-      !get_available_colors.empty?
+      get_available_colors and !get_available_colors.empty?
     end
 
     def self.find_by_brands(brand)
@@ -385,7 +385,7 @@ module Shoppe
     def self.find_by_category_and_descendants(category)
         cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
         cat_ids << category.id
-        includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
+        return includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
     end
 
     def self.products_for_category(products, cat_ids)
@@ -467,6 +467,23 @@ module Shoppe
     def self.with_translated_name(name_string)
       with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
     end
+
+    def self.search_by_name_and_category(search_value)
+      category = Shoppe::ProductCategory.search_home_category(search_value)
+      return products = category.products if category
+      return joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{search_value}%".downcase)
+    end
+
+
+
+
+
+
+
+
+
+
+
 
     private
 
