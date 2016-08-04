@@ -23,8 +23,8 @@
                                      <img style=" width: 100%" src="<%= product_image(product) %>" class=""  class="img-responsive " alt="" >
                                      <div class="product-body" >
                                         <h3><%= product.name %></h3>
-                                        <span class="price">
-                                        <ins><span class="amount"><%= number_to_currency product.price %></span></ins>
+                                        <span class="price"> 
+                                        <ins><span class="amount"><%= number_to_currency product.get_price_default_variant(product) %></span></ins>
                                         </span>                                          
                                      </div>
                                   </div>
