@@ -28,8 +28,8 @@
               <div class="product-body">
                  <h3 style="font-size: large;font-family: initial;}"><%= link_to product.name, product_path(product.permalink)%></h3>
                  <span class="price">
-                 <ins><span class="amount"><%= number_to_currency product.get_price_default_variant(product) %>&nbsp;</span></ins>
-                   <ins><s><span class="old_price"><%= number_to_currency product.get_old_price_default_variant(product) %></span></s></ins>
+                 <ins><span class="amount"><%= number_to_currency product.get_price_default_variant %>&nbsp;</span></ins>
+                   <ins><s><span class="old_price"><%= number_to_currency product.get_old_price_default_variant %></span></s></ins>
                  </span>
                  <center>
 

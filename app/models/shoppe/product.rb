@@ -268,12 +268,12 @@ module Shoppe
       return self.price
     end
 
-    def get_price_default_variant(product)
-      return product.default_variant.price if product.default_variant.present?
+    def get_price_default_variant
+      return default_variant.price if default_variant.present?
     end
 
-    def get_old_price_default_variant(product)
-      return product.default_variant.old_price if product.default_variant.present?
+    def get_old_price_default_variant
+      return default_variant.old_price if default_variant.present?
     end
 
     def get_price_product_display
@@ -282,7 +282,7 @@ module Shoppe
 
     def get_old_price
       return self.old_price
-      return  self.parent.old_price if self.variant?
+      # return  self.parent.old_price if self.variant?
       
     end
 
