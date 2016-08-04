@@ -255,7 +255,7 @@ module Shoppe
       return  self.parent.short_description if self.variant?
       return self.short_description
     end
-
+ 
     def get_name
       return  self.parent.name if self.variant?
       return self.name
@@ -266,9 +266,22 @@ module Shoppe
       return self.price
     end
 
+    def get_price_default_variant(product)
+        return product.default_variant.price if product.default_variant.present?
+    end
+    def get_old_price_default_variant(product)
+        return product.default_variant.old_price if product.default_variant.present?
+    end
+
+
+    def get_price_product_display
+      return self.price
+    end
+
     def get_old_price
-      return  self.parent.old_price if self.variant?
       return self.old_price
+      return  self.parent.old_price if self.variant?
+      
     end
 
     def get_cost_price
