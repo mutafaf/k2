@@ -50,9 +50,10 @@ class ProductsController < ApplicationController
     quantity = params[:quantity] ? params[:quantity].to_i : 1
     if @product.has_variants? and @product.default_variant.present?
       # For Main Product
+      
       @product = @product.default_variant # get default variant here
+      # byebug
     end
-
     if params[:size].blank? and @product.try(:has_sizes?)
     redirect_to product_path(@product.permalink), :alert => "Please select any Size."
     else

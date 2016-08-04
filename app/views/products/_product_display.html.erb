@@ -31,7 +31,7 @@
         <% end %>
         <span class="">
         <br>
-        <%= number_to_currency @product.get_price %> 
+        <%= number_to_currency @product.get_price_product_display %> 
        <s><%= number_to_currency @product.get_old_price %></s>
         <br>
           <%= rating_for product_for_rating(@product), "name", :star => 5 %>

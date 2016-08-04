@@ -7,7 +7,7 @@ module Shoppe
     def index
       @variants = @product.variants.ordered
     end
-
+ 
     def new
       @variant = @product.variants.build
       render action: 'form'

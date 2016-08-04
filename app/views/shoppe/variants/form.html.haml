@@ -53,18 +53,22 @@
               = attachment_preview attachment
 
     %p.addAttachments= link_to t('shoppe.products.add_attachments') , '#', :data => {:behavior => 'addAttachmentToExtraAttachments'}, :class => 'button button-mini green'
-  - if @product.variant?
-    = field_set_tag t("shoppe.variants.pricing") do
-      .splitContainer
-        %dl.third
-          %dt= f.label :price, t('shoppe.variants.price')
-          %dd= f.text_field :price, :class => 'text'
-        %dl.third
-          %dt= f.label :cost_price, t('shoppe.variants.cost_price')
-          %dd= f.text_field :cost_price, :class => 'text'
-        %dl.third
-          %dt= f.label :tax_rate_id, t('shoppe.variants.tax_rate')
-          %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.variants.no_tax')}}
+
+
+  = field_set_tag t("shoppe.variants.pricing") do
+    .splitContainer
+      %dl.third
+        %dt= f.label :price, t('shoppe.variants.price')
+        %dd
+          .moneyInput
+            .currency= Shoppe.settings.currency_unit.html_safe
+            = f.text_field :price, :class => 'text'
+      %dl.third
+        %dt= f.label :old_price, t('shoppe.variants.Old_price')
+        %dd
+          .moneyInput
+            .currency= Shoppe.settings.currency_unit.html_safe
+            = f.text_field :old_price, :class => 'text' 
 
   = field_set_tag t('shoppe.variants.stock_control') do
     .splitContainer
