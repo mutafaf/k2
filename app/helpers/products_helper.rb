@@ -79,7 +79,7 @@ module ProductsHelper
 
   def product_image_path(product)
 
-    if product.variant?
+    if product.variant? and product.default_image
       return product.default_image.path
 
     elsif product.default_variant.present? and product.default_variant.default_image
