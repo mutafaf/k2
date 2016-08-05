@@ -1,23 +1,28 @@
 
 function getProducts(element){
-  if (window.location.search.indexOf('category_permalink') > -1) {
-    // Remove the params in URL to cancel the effect of Double calls due to using background image
-    window.history.pushState("object or string", "Title", "/products");
-       // alert('category_permalink present');
-  }
+  // if (window.location.search.indexOf('category_permalink') > -1) {
+  //   // Remove the params in URL to cancel the effect of Double calls due to using background image
+  //   window.history.pushState("object or string", "Title", "/products");
+  //      // alert('category_permalink present');
+  // }
 
-  var category_permalink = $(element).attr("id")
+  var category_permalink = $(element).attr("id");
    $.ajax({
+     cache: false,
      url: '/products',
      data: {"category_permalink" : category_permalink},
      method: 'GET',
      success: function(data) {
+
+      window.history.pushState("object","Title","/products?category_permalink="+category_permalink);
+      // window.location.reload(true) 
        // alert("success!")
      }
    });
 }
 $(document).ready(function(){
     window.localStorage.removeItem("selectedSize");
+    // $.ajaxSetup({ cache: false });
 });
 function getProductDetail(element) {
  var permalink = $(element).find('input').val();
