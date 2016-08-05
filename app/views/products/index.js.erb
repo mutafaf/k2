@@ -19,5 +19,6 @@
       $("#products").html("<%=j render(:partial => 'products', :object => @products) %>");
       $('.pagination').html('<%=j(paginate(@products, :remote => true).to_s) %>');
 <%else%>
-  $('.infinite-table').html('<h1 class="text-center products_not_found">No Results Found</h1>');
+  $('#products').html('<h1 class="text-center products_not_found">No Results Found</h1>');
+  $('.pagination').html('');
 <%end%>
