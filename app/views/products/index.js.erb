@@ -22,3 +22,14 @@
   $('#products').html('<h1 class="text-center products_not_found">No Results Found</h1>');
   $('.pagination').html('');
 <%end%>
+
+if("<%=params[:page]%>")
+{
+  // adding paginarion link to history and appending time for cache clearing issue
+  window.history.pushState("object","Title","/products?category_permalink="+"<%=params[:category_permalink]%>"+"&page="+"<%=params[:page]%>"+"&date="+new Date());
+}  
+else{
+  window.history.pushState("object","Title","/products?category_permalink="+"<%=params[:category_permalink]%>"+"&page="+"1"+"&date="+new Date());
+}
+
+
