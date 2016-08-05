@@ -15,10 +15,9 @@
   // $("body").animate({ scrollTop: 0});
 <%end%>
 
-
-<%if Shoppe::Product.present? %>
+<% if @products.present? %> 
       $("#products").html("<%=j render(:partial => 'products', :object => @products) %>");
       $('.pagination').html('<%=j(paginate(@products, :remote => true).to_s) %>');
 <%else%>
-  $('#products').html('<h1 class="text-center products_not_found">No Results Found</h1>');
+  $('.infinite-table').html('<h1 class="text-center products_not_found">No Results Found</h1>');
 <%end%>
