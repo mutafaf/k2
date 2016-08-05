@@ -42,7 +42,7 @@ module Shoppe
       i = i+2
       sheet1.row(i).default_format = header_format
 
-      sheet1.row(i).push 'Product Name','Variants', *sizes_names,'total'
+      sheet1.row(i).push 'Product Name','Variant', *sizes_names,'Grand Total'
       
       products.each do |product|
       i = i+1
