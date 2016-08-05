@@ -1,0 +1,39 @@
+- @page_title = t('shoppe.stock_level_adjustments.stock_level_adjustments')
+
+= content_for :header do
+  %h2.stock_level_adjustments= t('shoppe.stock_level_adjustments.import_stock_level_adjustments')
+
+= form_for "import", :url => import_stock_level_adjustments_path, :html => {:multipart => true} do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.imports.file_upload') do
+    %dl
+      %dt= f.label :import_file, t('shoppe.imports.required_formats')
+      %dd= f.file_field :import_file
+
+  = field_set_tag t('shoppe.imports.example_file') do
+    %dl
+      %dd
+        %table.importExample
+          %thead
+            %tr
+              %th Name
+              %th Email
+          %tbody
+            %tr
+              %td= t('shoppe.stock_level_adjustments.imports.examples.first.name')
+              %td= t('shoppe.stock_level_adjustments.imports.examples.first.email')
+            %tr
+              %td= t('shoppe.stock_level_adjustments.imports.examples.second.name')
+              %td= t('shoppe.stock_level_adjustments.imports.examples.second.email')
+            %tr
+              %td= t('shoppe.stock_level_adjustments.imports.examples.third.name')
+              %td= t('shoppe.stock_level_adjustments.imports.examples.third.email')
+            %tr.tear-off
+              %td{:colspan => "4"}
+      %dd
+        %p.help= t('shoppe.stock_level_adjustments.imports.help')
+
+  %p.submit
+    = f.submit t('shoppe.import'), :class => "button green"
+    = link_to t('shoppe.cancel'), :stock_level_adjustments, :class => "button"

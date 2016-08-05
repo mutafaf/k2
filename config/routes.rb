@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
     get "view_stock", to: "stock_level_adjustments#view_stock", as: "view_stock"
     get "export_stock", to: "stock_level_adjustments#export", as: "export_stock"
+    match "import_stock_level_adjustments", to: "stock_level_adjustments#import", as: "import_stock_level_adjustments", via: [:get, :post]
   end
 
   get 'home/index'

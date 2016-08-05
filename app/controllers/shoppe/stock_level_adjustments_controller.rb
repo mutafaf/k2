@@ -1,7 +1,7 @@
 module Shoppe
   class StockLevelAdjustmentsController < ApplicationController
     SUITABLE_OBJECTS = ['Shoppe::Product'].freeze
-    before_filter :suitable_objects, except: [:export]
+    before_filter :suitable_objects, except: [:export, :import]
 
     def index
       @stock_level_adjustments = @item.stock_level_adjustments.ordered.page(params[:page]).per(10)
@@ -51,7 +51,16 @@ module Shoppe
       end
     end
 
-
+    def import
+      if request.post?
+        if params[:import].nil?
+          redirect_to products_path, flash: { alert: t('shoppe.imports.errors.no_file') }
+        else
+          Shoppe::StockLevelAdjustment.import(params[:import][:import_file])
+          redirect_to products_path, flash: { notice: t('shoppe.stock_level_adjustments.imports.success') }
+        end
+      end
+    end
 
 
 

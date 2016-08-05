@@ -19,7 +19,11 @@ module Shoppe
 
 
     def self.to_xls(options = {})
-      products = Shoppe::Product.all
+      grouped_products = Shoppe::Product.root
+                                       .includes(:translations, :stock_level_adjustments, :product_categories, :variants)
+                                       .order(:name)
+                                       .group_by(&:product_category)
+                                       .sort_by { |cat, _pro| cat.name }
       sizes = Shoppe::Size.all
       if sizes.present?
         sizes_names = sizes.collect(&:name)
@@ -33,7 +37,7 @@ module Shoppe
       
       title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14, :align => :centre
       header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
-      product_format = Spreadsheet::Format.new :color => :green, :align => :centre
+      category_format = Spreadsheet::Format.new :color => :green, :align => :centre, :weight => :bold
       i = 0
       sheet1.row(i).default_format = title_format
       sheet1.merge_cells(i, 0, i, sizes.count)
@@ -43,28 +47,34 @@ module Shoppe
       sheet1.row(i).default_format = header_format
 
       sheet1.row(i).push 'Product Name','Variant', *sizes_names,'Grand Total'
-      
-      products.each do |product|
-      i = i+1
-      sheet1.row(i).height = 15
-      sheet1.row(i).default_format = product_format
-      sheet1.merge_cells(i, 0, i, sizes.count)
-      variants = product.get_variants
-        variants.each do |variant|
+      grouped_products.each do |category, products|
         i = i+1
         sheet1.row(i).height = 15
-        line = []
-        line << product.name.to_s
-        line << variant.name.to_s
-          sizes.each do |size|
-          line << variant.stock(size.id).to_s
+        sheet1.row(i).default_format = category_format
+        sheet1.row(i).push category.get_category_sequence
+        sheet1.merge_cells(i, 0, i, sizes.count)
+        products.each do |product|
+        variants = product.get_variants
+          variants.each do |variant|
+          i = i+1
+          sheet1.row(i).height = 15
+          line = []
+          line << product.name.to_s
+          line << variant.name.to_s
+            sizes.each do |size|
+            line << variant.stock(size.id).to_s
+            end
+            line << variant.stock
+          sheet1.row(i).push *line
           end
-          line << variant.stock
-        sheet1.row(i).push *line
         end
       end
 
       return book
+    end
+
+    def self.import(file)
+      
     end
 
   end

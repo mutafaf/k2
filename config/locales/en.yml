@@ -629,6 +629,7 @@ en:
       error_occurred: An error has occurred
 
     stock_level_adjustments:
+      stock_level_adjustments: Stock Level Adjustment
       add: Add
       adjustment: Adjustment
       back_to_product: Back to product list
@@ -640,6 +641,9 @@ en:
       invalid_item_type: "Invalid item_type (must be one of %{suitable_objects})"
       stock_levels_for: "Stock Levels for %{item_name}"
       stock_levels_title: "Stock Levels - %{item_name}"
+      imports:
+        help: Stock Level Adjustments matched by Title.  If no Stock Level Adjustment is found, a new one will be created with all the attributes on the line..One Stock Level Adjustment per line.
+        success: Stock Level Adjustments imported successfully
 
     tax_rates:
       address_type_option: "Apply to orders where the %{address} address matches one of the countries below"
