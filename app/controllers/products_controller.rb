@@ -109,7 +109,7 @@ class ProductsController < ApplicationController
       products = Shoppe::Product.root #.ordered.includes(:product_categories, :variants)
     end
 
-    products = products.active.page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
+    products = products.active.order("shoppe_products.id DESC").page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
 
     @heading = heading
     @category= category

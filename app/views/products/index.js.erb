@@ -16,7 +16,7 @@
 <%end%>
 
 
-<%if @products.present? %>
+<%if Shoppe::Product.present? %>
       $("#products").html("<%=j render(:partial => 'products', :object => @products) %>");
       $('.pagination').html('<%=j(paginate(@products, :remote => true).to_s) %>');
 <%else%>

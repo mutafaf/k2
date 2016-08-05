@@ -108,6 +108,8 @@ module Shoppe
       variant.sku = "sku"
       variant.color = self.color
       variant.sizes = self.sizes
+      variant.price = self.price
+      variant.old_price = self.old_price
       variant.default = true
       variant.save
 
@@ -266,13 +268,13 @@ module Shoppe
       return self.price
     end
 
-    def get_price_default_variant(product)
-        return product.default_variant.price if product.default_variant.present?
-    end
-    def get_old_price_default_variant(product)
-        return product.default_variant.old_price if product.default_variant.present?
+    def get_price_default_variant
+      return default_variant.price if default_variant.present?
     end
 
+    def get_old_price_default_variant
+      return default_variant.old_price if default_variant.present?
+    end
 
     def get_price_product_display
       return self.price
@@ -280,7 +282,7 @@ module Shoppe
 
     def get_old_price
       return self.old_price
-      return  self.parent.old_price if self.variant?
+      # return  self.parent.old_price if self.variant?
       
     end
 
@@ -398,7 +400,7 @@ module Shoppe
     def self.find_by_category_and_descendants(category)
         cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
         cat_ids << category.id
-        includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
+        return includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
     end
 
     def self.products_for_category(products, cat_ids)

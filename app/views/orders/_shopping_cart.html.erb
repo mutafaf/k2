@@ -1,6 +1,7 @@
 <div>
 <% if order.order_items.present? %>
   <% order.order_items.each do |item| %>
+
      <div class=" col-md-2 col-sm-12 col-xs-12">
           <img class="img-responsive center-block" src='<%= cart_item_image(item.ordered_item) %>' width='200px' height='98px;' alt='Not found' alt="" draggable="false">
      </div>
@@ -29,10 +30,12 @@
           </div>
           <div class="col-md-3 col-sm-12 col-xs-12 order-size allan" ">
               <strong><span class="qty-font">QTY:</span> </strong>
+
            <%= select_tag 'quantity', options_for_select(Shoppe::Product::QUANTITY, item.quantity), :class=> "qty ", :onChange=>"updateOrderItem(this)" %>
            <span class="remove-qty">
            <button class="removerow" onclick="updateOrderItem(this)">Remove</button>
            </span>
+
           </div>
           <div class="col-md-2 col-sm-12 col-xs-12 order-size allan no-padding" ">
             <span class="cart-total"> Total <%= number_to_currency item.sub_total %> </span>
@@ -41,6 +44,7 @@
           </div>
        <div style="clear:both"></div>
      
+
      
   <% end %>
 <% else %>

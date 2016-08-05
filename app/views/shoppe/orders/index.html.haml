@@ -39,7 +39,6 @@
             %td= number_to_currency order.total
             %td= boolean_tag order.paid_in_full?, nil, :true_text => number_to_currency(order.amount_paid), :false_text => number_to_currency(order.amount_paid)
 
-/ = paginate @orders
 = paginate @orders, :params => { :controller => 'orders', :action => 'index', _: nil, _method: nil, authenticity_token: nil, order: nil, commit: nil, utf8: nil}
 :css
 
