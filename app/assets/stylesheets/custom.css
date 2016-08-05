@@ -2925,8 +2925,10 @@ footer.navbar a:hover {
 .details-cart{  
     margin-bottom: 8px;}
 
-
-.cart-total {        margin-left: 64px;    font-size: 15px;
+.padding-top-30{
+	padding-top: 3%;
+}
+.cart-total {          font-size: 15px;
     font-weight: 600;
     letter-spacing: 1px;
     color: #666;}
