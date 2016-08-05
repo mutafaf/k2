@@ -53,10 +53,10 @@ module ProductsHelper
 
   def product_image(product)
 
-    if product.variant?
+    if product.variant? and product.default_image.present?
       return product.default_image.file.try(:standard)
 
-    elsif product.default_variant.present? and product.default_variant.default_image
+    elsif product.default_variant.present? and product.default_variant.default_image.present?
       return product.default_variant.default_image.file.try(:standard)
 
     else
@@ -66,10 +66,10 @@ module ProductsHelper
 
   def cart_item_image(item)
     # For Items in Cart
-    if item.variant?
+    if item.variant? and item.default_image.present?
       return item.default_image.file.try(:thumb)
 
-    elsif item.default_variant.present? and item.default_variant.default_image
+    elsif item.default_variant.present? and item.default_variant.default_image.present?
       return item.default_variant.default_image.file.try(:thumb)
 
     else
@@ -79,10 +79,10 @@ module ProductsHelper
 
   def product_image_path(product)
 
-    if product.variant? and product.default_image
+    if product.variant? and product.default_image.present?
       return product.default_image.path
 
-    elsif product.default_variant.present? and product.default_variant.default_image
+    elsif product.default_variant.present? and product.default_variant.default_image.present?
       return product.default_variant.default_image.path
 
     else
