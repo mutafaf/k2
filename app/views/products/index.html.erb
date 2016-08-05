@@ -46,14 +46,12 @@
               <%end%>
             </div>
             <div class="pagination-wrapper" style="    background: transparent;">
-            <ul class="pagination">
-               
+              <ul class="pagination">         
                  <% if @products.present? %>
                   <li><%= paginate @products, :remote => true%></li>
                  <% end %>
-            </ul>
-
-</div>
+              </ul>
+            </div>
 
             
               </p>
