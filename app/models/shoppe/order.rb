@@ -172,14 +172,19 @@ module Shoppe
           mytotal=mytotal+order.total
         else
 
-          sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
-          mytotal=mytotal+order.total
-          sheet1.row(i+1).height = 30
-          sheet1.row(i+1).default_format = title_format
+          
+          sheet1.row(i).height = 30
+          sheet1.row(i).default_format = title_format
           mydate=order.received_at.strftime("%b %d, %Y") 
-          sheet1.row(i+1).push "","","","","","","Total",mytotal
-          mytotal=0
+          sheet1.row(i).push "","","","","","","Total",mytotal
           i=i+1
+          sheet1.row(i).height = 30
+          sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          mytotal=0
+          mytotal=mytotal+order.total
+
+          
+          
           
         end
 
