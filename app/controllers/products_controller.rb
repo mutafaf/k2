@@ -101,6 +101,7 @@ class ProductsController < ApplicationController
     elsif params[:size_id].present?
       heading = Shoppe::Size.find(params[:size_id]).try(:name)
       products = Shoppe::Product.find_by_size_id(params[:size_id], session[:category_permalink])
+      
     elsif params[:min_price].present? and params[:max_price].present?
       heading = Shoppe::Product::PRICE_RANGE
       products = Shoppe::Product.find_by_price(params[:min_price], params[:max_price], session[:category_permalink])

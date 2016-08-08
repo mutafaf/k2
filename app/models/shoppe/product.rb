@@ -489,17 +489,6 @@ module Shoppe
       return joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{search_value}%".downcase)
     end
 
-
-
-
-
-
-
-
-
-
-
-
     private
 
     def self.ransackable_scopes(auth_object = nil)
