@@ -62,5 +62,7 @@
       %tr
         %td= 'File'
         %td
-          - if @career.attachments.first.present?
+          - if @career.attachments.first.present? and @file_exist
             %a{:href => request.base_url + @career.attachments.try(:first).try(:file).try(:url)} Download
+          - else
+            No attachment found.
