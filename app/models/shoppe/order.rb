@@ -113,7 +113,7 @@ module Shoppe
       sheet1.column(3).width = 20
       sheet1.column(4).width = 20
       sheet1.column(5).width = 20
-      sheet1.column(6).width = 5
+      sheet1.column(6).width = 10
       sheet1.column(7).width = 15
       sheet1.column(8).width = 15
       sheet1.column(9).width = 25
@@ -142,7 +142,9 @@ module Shoppe
       i = i+1
       sheet1.row(i).default_format = header_format
       sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Category','Article #' ,'Color', 'Size', 'Pkr Rupee', 'Contact No' ,'Address', ' City','Email', 'Qty', 'Status', 'Shipped Date'
-      all.each do |order|          
+      mydate=nil
+      mytotal=0
+      all.each_with_index do |order,p|          
         i = i+1
         sheet1.row(i).height = 50
         order_id = order.number
@@ -160,7 +162,28 @@ module Shoppe
         articles_color = order.order_items.collect(&:variant_name).join('') rescue ''
         sizes = order.order_items.collect(&:items_sizes).join('') rescue ''
         category = order.order_items.collect(&:show_category).join('') rescue ''
-        sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+        if p==0
+          mydate=order.received_at.strftime("%b %d, %Y") 
+          # mytotal=mytotal+order.total    
+        end
+
+        if mydate==order.received_at.strftime("%b %d, %Y") 
+          sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          mytotal=mytotal+order.total
+        else
+
+          sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          mytotal=mytotal+order.total
+          sheet1.row(i+1).height = 30
+          sheet1.row(i+1).default_format = title_format
+          mydate=order.received_at.strftime("%b %d, %Y") 
+          sheet1.row(i+1).push "","","","","","","Total",mytotal
+          mytotal=0
+          i=i+1
+          
+        end
+
+        # sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
       end
       return book
     end
