@@ -15,11 +15,11 @@
     %dl
       %dd
         %table.importExample
-          %thead
-            %tr
-              %center{:colspan => "8"} Product Stock Level
-            %tr.tear-off
-              %th{:colspan => "8"}
+        
+          %tr
+            %center{:colspan => "8"} Product Stock Level
+            %th{:colspan => "8"}
+          %tr.tear-off
           %thead
             %tr
               %th Product Name
@@ -33,7 +33,7 @@
           %tbody
             %tr
               %td= t('D13000112')
-              %td= t('Cream')
+              %td= t('cream')
               %td= t('0')
               %td= t('1')
               %td= t('2')
@@ -42,7 +42,7 @@
               %td= t('2')
             %tr
               %td= t('D13000112')
-              %td= t('Cream')
+              %td= t('blue')
               %td= t('0')
               %td= t('1')
               %td= t('2')
@@ -51,7 +51,7 @@
               %td= t('2')
             %tr
               %td= t('D13000112')
-              %td= t('Cream')
+              %td= t('multi')
               %td= t('1')
               %td= t('3')
               %td= t('4')
@@ -59,10 +59,10 @@
               %td= t('5')
               %td= t('1')
             %tr.tear-off
-              %td{:colspan => "4"}
+              %td{:colspan => "8"}
       %dd
         %p.help= t('shoppe.stock_level_adjustments.imports.help')
-
+           
   %p.submit
     = f.submit t('shoppe.import'), :class => "button green"
     = link_to t('shoppe.cancel'), :stock_level_adjustments, :class => "button"
