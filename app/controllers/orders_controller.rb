@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
     @order = Shoppe::Order.find(current_order.id)
 
     if card_token.present?
-      if Shoppe::Payment.last_month.where(card_token: card_token).count < 3
+      if Shoppe::Payment.last_month.where(card_token: card_token).count < 5
         flash[:notice] = "Your Card has been verified. Please complete your order now."
         return
       else
