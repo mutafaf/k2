@@ -234,6 +234,7 @@ module Shoppe
     end
 
     def perform_merging(sheet1,i,temp)
+      #arguments details start row ,start col ,end row ,end col
       sheet1.merge_cells(i-temp, 0, i, 0)
       sheet1.merge_cells(i-temp, 1, i, 1)
       sheet1.merge_cells(i-temp, 2, i, 2)
