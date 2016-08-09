@@ -203,24 +203,25 @@ module Shoppe
 
 
     def product_name
-      "#{ordered_item.parent.name}\n"
+      "#{ordered_item.parent.name}\n" rescue ''
     end
 
     def items_sizes
-     "#{size}\n"
+     "#{size}\n" rescue ''
     end
+
 
     def show_category
      hierarchy_array = ordered_item.get_category.hierarchy_array.collect(&:name)
       if hierarchy_array.size >1 
-        "#{hierarchy_array.first}/#{hierarchy_array.last}\n"
+        "#{hierarchy_array.first}/#{hierarchy_array.last}\n" rescue ''
       else
-        "#{hierarchy_array.first}\n" 
+        "#{hierarchy_array.first}\n" rescue ''
       end
     end
    
     def variant_name
-     "#{ordered_item.name}\n" 
+     "#{ordered_item.name}\n" rescue ''
     end
  
     # Do we have the stock needed to fulfil this order?
