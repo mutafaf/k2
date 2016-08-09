@@ -19,10 +19,10 @@
       .splitContainer
         %dl.half
           %dt= f.label :color_name, t('shoppe.products.color_name')
-          %dd= f.text_field :color_name, :class => 'text focus', :required => true
+          %dd= f.text_field :color_name, :id => 'colorbox', :class => 'text focus',   :required => true
         %dl.half
           %dt= f.label :color, t('shoppe.variants.color')
-          %dd= f.text_field :color, :class => 'text focus jscolor'
+          %dd= f.text_field :color,:id => 'color-field', :class => 'text focus jscolor'
     .splitContainer
       %dl.half
         %dt= f.label :article_no, t('shoppe.products.article_no')
