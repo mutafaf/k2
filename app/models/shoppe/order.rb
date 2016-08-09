@@ -141,12 +141,12 @@ module Shoppe
 
       i = i+1
       sheet1.row(i).default_format = header_format
-      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Category','Article #' ,'Color', 'Size', 'Pkr Rupee', 'Contact No' ,'Address', ' City','Email', 'Qty', 'Status', 'Shipped Date'
+      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Category','Article #' ,'Color', 'Size', 'PKR Rupee', 'Contact No' ,'Address', ' City','Email', 'Qty', 'Status', 'Shipped Date'
       mydate=nil
       mytotal=0
       all.each_with_index do |order,p|          
-        i = i+1
-        sheet1.row(i).height = 50
+        
+        sheet1.row(i).height = 30
         order_id = order.number
         order_date = order.received_at.strftime("%b %d, %Y") if order.received_at.present?
         customer_name = order.customer_name
@@ -162,36 +162,92 @@ module Shoppe
         articles_color = order.order_items.collect(&:variant_name).join('') rescue ''
         sizes = order.order_items.collect(&:items_sizes).join('') rescue ''
         category = order.order_items.collect(&:show_category).join('') rescue ''
+        temp=0
+        #storing date in mydate it will work in ist iter only
         if p==0
           mydate=order.received_at.strftime("%b %d, %Y") 
-          # mytotal=mytotal+order.total    
         end
-
+        
+        
+        #start block for the orders of the same date
         if mydate==order.received_at.strftime("%b %d, %Y") 
-          sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          #adding amount in total for calculating sum of price of orders having same date
           mytotal=mytotal+order.total
+          #start block if the order contain multiple items 
+          if order.order_items.count>1
+            order.order_items.each_with_index do |order_item,d|
+              i+=1
+              sheet1.row(i).height = 25
+              #if we have ist item in order the insert it full else insert on repeated data
+              if d==0
+                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
+              else
+                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", "", "", ""
+                temp=d
+              end
+            end
+            #as we have entered the whole order so now we will merge rows
+            order.perform_merging(sheet1,i,temp)
+            #else block if the order has only one item in it.
+          else
+            i+=1
+            sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          end
+        #start for the orders having different dates
         else
-
-          
+          #inserting a row for total 
+          i+=1
           sheet1.row(i).height = 30
           sheet1.row(i).default_format = title_format
           mydate=order.received_at.strftime("%b %d, %Y") 
           sheet1.row(i).push "","","","","","","Total",mytotal
+          #inserting a row for total end 
+
+          #after inserting the total row we will insert the current order 
           i=i+1
           sheet1.row(i).height = 30
-          sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          #if the order contains the multiple items 
+          if order.order_items.count>1
+            order.order_items.each_with_index do |order_item,d|
+              i+=1
+              sheet1.row(i).height = 25
+              #if we have ist item in order the insert it full else insert on repeated data
+              if d==0
+                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
+              else
+                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", "", "", ""
+                temp=d
+              end
+            end
+            order.perform_merging(sheet1,i,temp)
+          #if order contains only a single item
+          else
+            i+=1
+            sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          end
+          #resetting total to zero and adding the amount of current order.
           mytotal=0
-          mytotal=mytotal+order.total
-
-          
-          
-          
-        end
-
-        # sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+           mytotal=mytotal+order.total 
+        end        
       end
       return book
     end
+
+    def perform_merging(sheet1,i,temp)
+      sheet1.merge_cells(i-temp, 0, i, 0)
+      sheet1.merge_cells(i-temp, 1, i, 1)
+      sheet1.merge_cells(i-temp, 2, i, 2)
+      sheet1.merge_cells(i-temp, 7, i, 7)
+      sheet1.merge_cells(i-temp, 8, i, 8)
+      sheet1.merge_cells(i-temp, 9, i, 9)
+      sheet1.merge_cells(i-temp, 10, i, 10)
+      sheet1.merge_cells(i-temp, 11, i, 11)
+      sheet1.merge_cells(i-temp, 12, i, 12)
+      sheet1.merge_cells(i-temp, 13, i, 13)
+      sheet1.merge_cells(i-temp, 14, i, 14)
+
+    end
+
 
     def self.ransackable_attributes(_auth_object = nil)
       %w(id billing_postcode billing_address1 billing_address2 billing_address3 billing_address4 first_name last_name company email_address phone_number consignment_number status received_at) + _ransackers.keys
