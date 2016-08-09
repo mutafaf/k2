@@ -122,12 +122,13 @@ module Shoppe
       sheet1.column(12).width = 5
       sheet1.column(13).width = 10
       sheet1.column(14).width = 12
-      title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14
+      title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14, :align => :center
       header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
       date_range_format = Spreadsheet::Format.new :color => :green, :weight => :bold
       i = 0
       sheet1.row(i).default_format = title_format
       sheet1.row(i).push 'Order Summary Status Report'
+      sheet1.merge_cells(i, 0, i, 14)
       sheet1.row(i).height = 20
       i = i+1
       sheet1.row(i).default_format = date_range_format
@@ -177,7 +178,7 @@ module Shoppe
           if order.order_items.count>1
             order.order_items.each_with_index do |order_item,d|
               i+=1
-              sheet1.row(i).height = 25
+              sheet1.row(i).height = 23
               #if we have ist item in order the insert it full else insert on repeated data
               if d==0
                 sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
@@ -197,20 +198,20 @@ module Shoppe
         else
           #inserting a row for total 
           i+=1
-          sheet1.row(i).height = 30
-          sheet1.row(i).default_format = title_format
+          sheet1.row(i).height = 25
+          sheet1.row(i).default_format = header_format
           mydate=order.received_at.strftime("%b %d, %Y") 
           sheet1.row(i).push "","","","","","","Total",mytotal
           #inserting a row for total end 
 
           #after inserting the total row we will insert the current order 
           i=i+1
-          sheet1.row(i).height = 30
+          sheet1.row(i).height = 25
           #if the order contains the multiple items 
           if order.order_items.count>1
             order.order_items.each_with_index do |order_item,d|
               i+=1
-              sheet1.row(i).height = 25
+              sheet1.row(i).height = 23
               #if we have ist item in order the insert it full else insert on repeated data
               if d==0
                 sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
