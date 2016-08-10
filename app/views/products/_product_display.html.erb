@@ -22,6 +22,13 @@
    </div>
 </div>
 <%= form_tag product_path(@product.permalink), :method => :post, :id => "product_form" do %>
+  <%if @msg %>
+    <script type="text/javascript">
+      $(window).load(function(){
+          $('#myModal').modal('show');
+      });
+  </script>
+  <% end %>
   <div class="col-md-5">
      <div class="product-body" style="    margin-top: 2%;">
      <div class="col-sm-6 col-xs-6" style="    padding: 0;">
@@ -113,6 +120,28 @@
   </div>
 <% end %>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Help</h4>
+      </div>
+      <div class="modal-body text-center">
+        <p>Do you want to continue shopping or go to cart?</p>
+        <br>        
+          <button type="submit" class="btn btn-default" data-dismiss="modal" onclick="location.href='<%= basket_path %>'">Go to Basket</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+        <br>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
 <%= javascript_include_tag 'ratyrate.js'%>
 <script>
    // Instantiate EasyZoom instances
