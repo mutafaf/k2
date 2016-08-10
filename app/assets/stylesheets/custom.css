@@ -178,7 +178,7 @@ h6 {
 }
 
 .btn-default {
-	background-color:transparent;
+	background-color:#fff;
 	border-color: #A5A3A3;
     color: #5A5757;
 }
@@ -7131,6 +7131,9 @@ background-image: url("/assets/footer-img.jpg");
 
 
 @media screen and (max-width: 320px) {
+	.margin-50{
+	margin-top: 20px !important;
+}
 	.cart-text{clear: both; display: inherit;}
 	.margin-10{margin-top: 10px;}
 	.top-margin{ margin-top: 0px !important;}
@@ -7176,6 +7179,9 @@ background-image: url("/assets/footer-img.jpg");
 }
 
 @media screen and (min-width: 320px) and (max-width: 479px) {
+	.margin-50{
+	margin-top: 20px !important;
+}
 	.cart-text{clear: both; display: inherit;}
 	.margin-10{margin-top: 10px;}
 		article.product-item.product-single { margin: 0px 0 20px;}
@@ -7233,6 +7239,9 @@ background-image: url("/assets/footer-img.jpg");
 
 
 @media screen and (min-width: 480px) and (max-width: 639px) {
+	.margin-50{
+	margin-top: 20px !important;
+}
 	.cart-text{clear: both; display: inherit;}
 	.margin-10{margin-top: 10px;}
 	.min-banner-width { width: 200px; }
@@ -7993,3 +8002,6 @@ input{ color: #000; }
 }
 .order-summery a { margin:auto !important; vertical-align:middle; display:inline-block; }
 .order-summery img { max-height:120px; margin:auto !important; vertical-align:middle; display:inline-block;  }
+.margin-50{
+	margin-top: 70px;
+}
