@@ -1,0 +1,5 @@
+- @page_title = t('shoppe.homepage_dynamics.homepage_dynamics')
+= content_for :header do
+  %p.buttons= link_to t('shoppe.homepage_dynamics.back_to_homepage_dynamics_list'), :homepage_dynamics, class: 'button'
+  %h2.users= t('shoppe.homepage_dynamics.homepage_dynamics')
+= render 'form'

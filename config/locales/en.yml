@@ -789,7 +789,7 @@ en:
         dynamic_options: Dynamic Options
         jobs: Jobs
         brands: Brands
-        home_slider_images: Home Slider Images
+        homepage_dynamics: Dynamic Home Page
         blogs: Blogs
         subscribers: Subscribers
         product_categories: Product Categories
@@ -1104,6 +1104,28 @@ en:
       created_successfully: Return Form has been created successfully.
       updated_successfully: Return Form has been updated successfully.
       deleted_successfully: Return Form has been deleted successfully.
+
+    homepage_dynamics:
+      homepage_dynamics: Homepage Dynamics
+      new_homepage_dynamic: New HomepageDynamic
+      name: Name
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_homepage_dynamics : No HomepageDynamics
+      homepage_dynamic_detail : HomepageDynamic Detail
+      back_to_homepage_dynamics_list : Back to HomepageDynamics
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_homepage_dynamic: Creating HomepageDynamic...
+      updating_homepage_dynamic: Updating HomepageDynamic...
+      delete_confirmation: Are you sure you wish to remove this HomepageDynamic?
+      type: Type
+      default: Default
+      created_successfully: HomepageDynamic has been created successfully.
+      updated_successfully: HomepageDynamic has been updated successfully.
+      deleted_successfully: HomepageDynamic has been deleted successfully.
 
   layouts:
     shoppe:

@@ -1,0 +1,46 @@
+= form_for @homepage_dynamic do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.homepage_dynamics.logo') do
+    .splitContainer.extraAttachments
+      %dl.half
+        %dt= f.label "attachments[logo_image][file]", t('shoppe.homepage_dynamics.logo_image')
+        %dd
+          = attachment_preview @homepage_dynamic.logo_image
+          %p= f.file_field "attachments[logo_image][file]"
+          = f.hidden_field "attachments[logo_image][role]", value: "logo_image"
+          = f.hidden_field "attachments[logo_image][parent_id]", value: @homepage_dynamic.id
+
+  = field_set_tag t('shoppe.homepage_dynamics.slider_images') do
+    .splitContainer.extraAttachments
+      %dl.half
+        %dt= f.label "attachments[default_image][file]", t('shoppe.homepage_dynamics.default_image')
+        %dd
+          = attachment_preview @homepage_dynamic.default_image
+          %p= f.file_field "attachments[default_image][file]"
+          = f.hidden_field "attachments[default_image][role]", value: "default_image"
+          = f.hidden_field "attachments[default_image][parent_id]", value: @homepage_dynamic.id
+
+      %dl.half
+        %dt= f.label "attachments[default_image][file]", t('shoppe.homepage_dynamics.other_images')
+        %dd
+          = attachment_preview nil, hide_if_blank: false
+          %p= f.file_field "attachments[extra][file]", :multiple => true
+          = f.hidden_field "attachments[extra][parent_type]", value: "Shoppe::homepage_dynamic"
+          = f.hidden_field "attachments[extra][parent_id]", value: @homepage_dynamic.id
+
+
+    %p.addAttachments= link_to t('shoppe.homepage_dynamics.add_attachments') , '#', :data => {:behavior => 'addAttachmentToExtraAttachments'}, :class => 'button button-mini green'
+
+  %p.submit
+    - unless @homepage_dynamic.new_record?
+      %span.right
+        = link_to t('shoppe.homepage_dynamics.delete'),
+                  @homepage_dynamic,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.homepage_dynamics.delete_confirmation')}
+    = f.submit t('shoppe.homepage_dynamics.save'),
+               class: 'button green',
+               data: {disable_with: (@homepage_dynamic.new_record? ? t('shoppe.homepage_dynamics.creating_homepage_dynamic') : t('shoppe.homepage_dynamics.updating_homepage_dynamic'))}
+    = link_to t('shoppe.homepage_dynamics.cancel'), :homepage_dynamics, class: 'button'
