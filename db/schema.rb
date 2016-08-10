@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428155937) do
+ActiveRecord::Schema.define(version: 20160810141357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "average_caches", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "avg",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "nifty_key_value_store", force: :cascade do |t|
     t.integer "parent_id"
@@ -24,11 +49,59 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.string  "value"
   end
 
+  create_table "overall_averages", force: :cascade do |t|
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "overall_avg",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.integer  "cacheable_id"
+    t.string   "cacheable_type"
+    t.float    "avg",            null: false
+    t.integer  "qty",            null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "return_forms", force: :cascade do |t|
+    t.string   "order_number"
+    t.string   "serial_number"
+    t.string   "item_number"
+    t.text     "description"
+    t.text     "return_quantity"
+    t.string   "reason"
+    t.string   "action_detail"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "name"
+    t.string   "email"
+    t.text     "comment"
+  end
+
   create_table "shoppe_addresses", force: :cascade do |t|
     t.integer  "customer_id"
     t.string   "address_type"
     t.boolean  "default"
-    t.string   "address1"
+    t.text     "address1"
     t.string   "address2"
     t.string   "address3"
     t.string   "address4"
@@ -36,6 +109,7 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "city"
   end
 
   add_index "shoppe_addresses", ["customer_id"], name: "index_shoppe_addresses_on_customer_id", using: :btree
@@ -51,6 +125,49 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "shoppe_blogs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "permalink"
+    t.integer  "position"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "shoppe_brands", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "permalink"
+    t.integer  "position"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "shoppe_careers", force: :cascade do |t|
+    t.integer  "job_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "contact_no"
+    t.string   "cnic_no"
+    t.datetime "date_of_birth"
+    t.string   "gender"
+    t.string   "martial_status"
+    t.string   "mailing_address"
+    t.string   "city"
+    t.string   "highest_degree"
+    t.string   "institute"
+    t.integer  "year_of_completion"
+    t.string   "gpa"
+    t.string   "certification"
+    t.integer  "relevant_experice"
+    t.string   "designation"
+    t.string   "organization"
+    t.string   "address"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "shoppe_countries", force: :cascade do |t|
@@ -72,6 +189,7 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.string   "mobile"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "shoppe_delivery_service_prices", force: :cascade do |t|
@@ -104,6 +222,28 @@ ActiveRecord::Schema.define(version: 20160428155937) do
   end
 
   add_index "shoppe_delivery_services", ["active"], name: "index_shoppe_delivery_services_on_active", using: :btree
+
+  create_table "shoppe_dynamic_options", force: :cascade do |t|
+    t.string   "title"
+    t.string   "options_for"
+    t.string   "status",      default: "active"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "shoppe_homepage_dynamics", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shoppe_jobs", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "status"
+    t.integer  "position"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "shoppe_order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -166,8 +306,15 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.boolean  "exported",                                          default: false
     t.string   "invoice_number"
     t.integer  "customer_id"
-    t.string   "city"
+    t.string   "billing_city"
     t.text     "order_notes"
+    t.string   "delivery_city"
+    t.string   "payment_method"
+    t.integer  "delivery_charges",                                  default: 0
+    t.datetime "canceled_at"
+    t.integer  "canceled_by"
+    t.datetime "returned_at"
+    t.integer  "returned_by"
   end
 
   add_index "shoppe_orders", ["delivery_service_id"], name: "index_shoppe_orders_on_delivery_service_id", using: :btree
@@ -176,16 +323,28 @@ ActiveRecord::Schema.define(version: 20160428155937) do
 
   create_table "shoppe_payments", force: :cascade do |t|
     t.integer  "order_id"
-    t.decimal  "amount",            precision: 8, scale: 2, default: 0.0
+    t.decimal  "amount",               precision: 8, scale: 2, default: 0.0
     t.string   "reference"
     t.string   "method"
-    t.boolean  "confirmed",                                 default: true
-    t.boolean  "refundable",                                default: false
-    t.decimal  "amount_refunded",   precision: 8, scale: 2, default: 0.0
+    t.boolean  "confirmed",                                    default: false
+    t.boolean  "refundable",                                   default: false
+    t.decimal  "amount_refunded",      precision: 8, scale: 2, default: 0.0
     t.integer  "parent_payment_id"
-    t.boolean  "exported",                                  default: false
+    t.boolean  "exported",                                     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "response_code"
+    t.string   "response_description"
+    t.string   "uniqueId"
+    t.string   "version"
+    t.string   "account"
+    t.string   "approval_code"
+    t.string   "balance"
+    t.string   "card_brand"
+    t.string   "card_number"
+    t.string   "card_token"
+    t.string   "fees"
+    t.string   "orderID"
   end
 
   add_index "shoppe_payments", ["order_id"], name: "index_shoppe_payments_on_order_id", using: :btree
@@ -218,6 +377,10 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.integer  "depth"
     t.string   "ancestral_permalink"
     t.boolean  "permalink_includes_ancestors", default: false
+    t.boolean  "view_on_homepage"
+    t.string   "homepage_title"
+    t.integer  "position"
+    t.integer  "home_categories_position"
   end
 
   add_index "shoppe_product_categories", ["lft"], name: "index_shoppe_product_categories_on_lft", using: :btree
@@ -286,6 +449,12 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.boolean  "stock_control",                             default: true
     t.boolean  "default",                                   default: false
     t.string   "color"
+    t.boolean  "new_arrivals"
+    t.boolean  "hot_selling"
+    t.string   "article_no"
+    t.string   "brand"
+    t.string   "color_name"
+    t.integer  "old_price"
   end
 
   add_index "shoppe_products", ["parent_id"], name: "index_shoppe_products_on_parent_id", using: :btree
@@ -315,10 +484,29 @@ ActiveRecord::Schema.define(version: 20160428155937) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "size_id"
   end
 
   add_index "shoppe_stock_level_adjustments", ["item_id", "item_type"], name: "index_shoppe_stock_level_adjustments_items", using: :btree
   add_index "shoppe_stock_level_adjustments", ["parent_id", "parent_type"], name: "index_shoppe_stock_level_adjustments_parent", using: :btree
+
+  create_table "shoppe_stores", force: :cascade do |t|
+    t.integer  "store_no"
+    t.string   "address"
+    t.string   "city"
+    t.string   "phone_number"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "shoppe_subscribers", force: :cascade do |t|
+    t.string   "email"
+    t.string   "contact_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "shoppe_tax_rates", force: :cascade do |t|
     t.string   "name"
@@ -339,5 +527,23 @@ ActiveRecord::Schema.define(version: 20160428155937) do
   end
 
   add_index "shoppe_users", ["email_address"], name: "index_shoppe_users_on_email_address", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
