@@ -27,14 +27,34 @@ module Shoppe
     # Set the status to building if we don't have a status
     after_initialize { self.status = STATUSES.first if status.blank? }
 
-    # All orders which have been received
+     # All orders which have been received
     scope :received, -> { where('received_at is not null') }
+
+     #All orders which have status recieve
+    scope :received_orders,->{ where(status: "received") } 
+    # All orders which have been rejected
+    scope :rejected_orders, -> { where(status: "rejected") }
+
+    # All orders which have been accepted
+    scope :accepted_orders, -> { where(status: "accepted") }
+
+    # All orders which have been shipped
+    scope :shipped_orders, -> { where(status: "shipped" )}
+
+    # All orders which have been canceled
+    
+    scope :canceled_orders, -> { where(status: "canceled"  )}
+    
+    # All orders which have been returned
+    
+    scope :returned_orders, -> {where(status: "returned")}
+
 
     # All orders which are currently pending acceptance/rejection
     scope :pending, -> { where(status: 'received') }
 
     # All ordered ordered by their ID desending
-    scope :ordered, -> { order(id: :desc) }
+    scope :ordered, -> { order(received_at: :desc) }
 
     # Is this order still being built by the user?
     #

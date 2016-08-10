@@ -22,6 +22,8 @@ module Shoppe
     # Payments can have associated properties
     key_value_store :properties
 
+    scope :last_month, -> { where("created_at > ?", 1.month.ago) }
+
     # Callbacks
     after_create :cache_amount_paid
     after_destroy :cache_amount_paid

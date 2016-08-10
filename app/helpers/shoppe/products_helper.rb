@@ -1,0 +1,7 @@
+module Shoppe::ProductsHelper
+
+
+end
+
+
+

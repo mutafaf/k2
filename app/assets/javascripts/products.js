@@ -1,22 +1,29 @@
 
 function getProducts(element){
-  if (window.location.search.indexOf('category_permalink') > -1) {
-    // Remove the params in URL to cancel the effect of Double calls due to using background image
-    window.history.pushState("object or string", "Title", "/products");
-      // alert('category_permalink present');
-  }
+  // if (window.location.search.indexOf('category_permalink') > -1) {
+  //   // Remove the params in URL to cancel the effect of Double calls due to using background image
+  //   window.history.pushState("object or string", "Title", "/products");
+  //      // alert('category_permalink present');
+  // }
 
-  var category_permalink = $(element).attr("id")
+  var category_permalink = $(element).attr("id");
    $.ajax({
+     cache: false,
      url: '/products',
      data: {"category_permalink" : category_permalink},
      method: 'GET',
      success: function(data) {
+
+      window.history.pushState("object","Title","/products?category_permalink="+category_permalink+"&date="+new Date());
+      // window.location.reload(true) 
        // alert("success!")
      }
    });
 }
-
+$(document).ready(function(){
+    window.localStorage.removeItem("selectedSize");
+    // $.ajaxSetup({ cache: false });
+});
 function getProductDetail(element) {
  var permalink = $(element).find('input').val();
   $.ajax({
@@ -29,16 +36,16 @@ function getProductDetail(element) {
   });
 }
 
-$(function() {
-  return $('.infinite-table').infinitePages({
-    loading: function() {
-      return $(this).text('Loading next page...');
-    },
-    error: function() {
-      return $(this).button('There was an error, please try again');
-    }
-  });
-});
+// $(function() {
+//   return $('.infinite-table').infinitePages({
+//     loading: function() {
+//       return $(this).text('Loading next page...');
+//     },
+//     error: function() {
+//       return $(this).button('There was an error, please try again');
+//     }
+//   });
+// });
 
 function updateProductDisplay(element){
   var permalink = color_value = $(element).attr("id");
@@ -63,7 +70,7 @@ function setAlreadySeletedSize(){
        $(".size-list").css("border", "solid 1px #ddd");
        currentProductSize.css("border", "solid 3px #ddd");
       $("#size").val(selectedSize);
-     } else {
+     } else if(document.getElementById("size_block")) {
        toastr.error("Size: "+ selectedSize +" is not available for this Product.");
      }
   };
@@ -75,7 +82,7 @@ $(function() {
     min: 100,
     max: 5000,
     step: 50,
-    values: [ 100, 2000 ],
+    values: [ 100, 5000 ],
     slide: function( event, ui ) {
       $( "#amount" ).val( "Rs " + ui.values[ 0 ] + " - Rs " + ui.values[ 1 ] );
     }
@@ -107,5 +114,6 @@ function selectSize(element){
   $(".size-list").css("border", "solid 1px #ddd");
   $(element).css("border", "solid 3px #ddd");
   localStorage.setItem("selectedSize", $(element).text());
+
 
 }

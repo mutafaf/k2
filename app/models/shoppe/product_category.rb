@@ -113,7 +113,7 @@ module Shoppe
     end
 
     def self.search_home_category(category_name)
-      joins(:translations).where("LOWER(shoppe_product_category_translations.name) LIKE ?" , "%#{category_name}%".downcase).try(:first)
+      joins(:translations).where("LOWER(shoppe_product_category_translations.name) LIKE ?" , "%#{category_name}%".downcase).try(:last)
     end
 
     private

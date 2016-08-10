@@ -7,7 +7,6 @@
           %th= t('shoppe.orders.item')
           %th= t('shoppe.orders.size')
           %th= t('shoppe.orders.sku')
-          %th.money= t('shoppe.orders.cost')
           %th.money= t('shoppe.orders.price')
           / %th.money= Shoppe.settings.tax_name
           %th.money= t('shoppe.orders.sub_total')
@@ -18,7 +17,6 @@
             %td.product= item.ordered_item.full_name
             %td.qty= item.size
             %td.sku= item.ordered_item.sku
-            %td.money= number_to_currency item.total_cost
             %td.money= number_to_currency item.sub_total
             / %td.money= number_to_currency item.tax_amount
             %td.money= number_to_currency item.total
@@ -38,7 +36,6 @@
         %tr
           %td.qty= @order.total_items
           %td{:colspan => 3}
-          %td.money= number_to_currency @order.total_cost
           %td.money= number_to_currency @order.total_before_tax
           / %td.money= number_to_currency @order.tax
           %td.money= number_to_currency @order.total

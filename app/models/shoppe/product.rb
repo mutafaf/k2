@@ -73,9 +73,11 @@ module Shoppe
 
     # All active products
     scope :active, -> { where(active: true) }
-
+    
     # All featured products
     scope :featured, -> { where(featured: true) }
+
+    scope :only_products, -> { where(parent_id: nil) }
 
     # Localisations
     translates :name, :permalink, :description, :short_description
@@ -88,15 +90,16 @@ module Shoppe
       if attrs['extra']['file'].present? then attrs['extra']['file'].each { |attr| attachments.build(file: attr, parent_id: attrs['extra']['parent_id'], parent_type: attrs['extra']['parent_type']) } end
     end
 
+    # Sync active check of Product to its variants
     def update_active_for_variants
       if self.variants.present? and self.active_changed?
         self.variants.each do |variant|
-          variant.active = self.active
-          variant.save
+          variant.update_column(:active, self.active)
         end
       end
     end
 
+    # Create Default Variant Automatically
     def create_default_variant
       variant = self.variants.new
       variant.name = self.color_name
@@ -105,8 +108,14 @@ module Shoppe
       variant.sku = "sku"
       variant.color = self.color
       variant.sizes = self.sizes
+      variant.price = self.price
+      variant.old_price = self.old_price
       variant.default = true
       variant.save
+
+      self.attachments.each do |attachment|
+        attachment.update_column(:parent_id, variant.id)
+      end
     end
 
     # Return the name of the product
@@ -248,7 +257,7 @@ module Shoppe
       return  self.parent.short_description if self.variant?
       return self.short_description
     end
-
+ 
     def get_name
       return  self.parent.name if self.variant?
       return self.name
@@ -259,6 +268,24 @@ module Shoppe
       return self.price
     end
 
+    def get_price_default_variant
+      return default_variant.price if default_variant.present?
+    end
+
+    def get_old_price_default_variant
+      return default_variant.old_price if default_variant.present?
+    end
+
+    def get_price_product_display
+      return self.price
+    end
+
+    def get_old_price
+      return self.old_price
+      # return  self.parent.old_price if self.variant?
+      
+    end
+
     def get_cost_price
       return  self.parent.cost_price if self.variant?
       return self.cost_price
@@ -267,6 +294,10 @@ module Shoppe
     def get_variants
       return  self.parent.variants if self.variant?
       return self.variants
+    end
+
+    def get_available_variants
+      return  get_variants.where(active: true) if get_variants.present?
     end
 
     def get_category
@@ -308,6 +339,10 @@ module Shoppe
       return self.variants.collect(&:color)
     end
 
+    def get_available_colors
+      return  get_available_variants.where(active: true).collect(&:color) if get_available_variants.present?
+    end
+
     def get_product_attributes
       return  self.parent.product_attributes if self.variant?
       return self.product_attributes
@@ -340,6 +375,10 @@ module Shoppe
       !get_colors.empty?
     end
 
+    def has_available_colors?
+      get_available_colors and !get_available_colors.empty?
+    end
+
     def self.find_by_brands(brand)
       where(brand: brand).active
     end
@@ -361,7 +400,7 @@ module Shoppe
     def self.find_by_category_and_descendants(category)
         cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
         cat_ids << category.id
-        includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
+        return includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
     end
 
     def self.products_for_category(products, cat_ids)
@@ -442,6 +481,12 @@ module Shoppe
 
     def self.with_translated_name(name_string)
       with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
+    end
+
+    def self.search_by_name_and_category(search_value)
+      category = Shoppe::ProductCategory.search_home_category(search_value)
+      return products = category.products if category
+      return joins(:translations).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{search_value}%".downcase)
     end
 
     private

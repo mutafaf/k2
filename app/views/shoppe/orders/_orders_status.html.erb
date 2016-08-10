@@ -1,0 +1,38 @@
+
+<h2> All Orders (<%= @orders.total_count %>) </h2>
+
+<table class="data">
+
+  <tr>
+    <td>
+      <span class="status-tag received">Orders Receive (<%= @orders.received_orders.total_count %>)
+      <span>
+    </td>
+    <td>
+      <span class="status-tag accepted">Orders Accepted (<%= @orders.accepted_orders.total_count%>)<span>
+    </td>
+      
+    <td>
+    <span class="status-tag shipped">Orders Shipped  (<%= @orders.shipped_orders.total_count  %>)
+    <h2 style="margin-top:10px;"> <%=number_to_currency Shoppe::Order.shipped_orders.map(&:total).sum%></h2>
+      </span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <span class="status-tag rejected">Orders Canceled (<%= @orders.canceled_orders.total_count %>)
+      <span>
+    </td>
+    <td>
+      <span class="status-tag rejected">Orders Rejected (<%= @orders.rejected_orders.total_count %>)
+      </span>
+    </td>
+    <td>
+      <span class="status-tag rejected">Orders Returned (<%= @orders.returned_orders.total_count %>)
+      </span>
+    </td>
+  </tr>
+</table>
+<br>
+<br>

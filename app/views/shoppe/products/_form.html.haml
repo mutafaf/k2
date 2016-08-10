@@ -19,10 +19,10 @@
       .splitContainer
         %dl.half
           %dt= f.label :color_name, t('shoppe.products.color_name')
-          %dd= f.text_field :color_name, :class => 'text focus', :required => true
+          %dd= f.text_field :color_name, :id => 'colorbox', :class => 'text focus',   :required => true
         %dl.half
           %dt= f.label :color, t('shoppe.variants.color')
-          %dd= f.text_field :color, :class => 'text focus jscolor'
+          %dd= f.text_field :color,:id => 'color-field', :class => 'text focus jscolor'
     .splitContainer
       %dl.half
         %dt= f.label :article_no, t('shoppe.products.article_no')
@@ -72,34 +72,34 @@
               %td.remove= link_to t("shoppe.remove"), '#', :class => 'button button-mini purple'
               %td.handle
       %p.addAttribute= link_to t('shoppe.products.add_attribute') , '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
+  - unless @product.has_variants?   
+    = field_set_tag t('shoppe.products.attachments') do
+      .splitContainer.extraAttachments
+        %dl.half
+          %dt= f.label "attachments[default_image][file]", t('shoppe.products.default_image')
+          %dd
+            = attachment_preview @product.default_image
+            %p= f.file_field "attachments[default_image][file]"
+            = f.hidden_field "attachments[default_image][role]", value: "default_image"
+            = f.hidden_field "attachments[default_image][parent_id]", value: @product.id
 
-  = field_set_tag t('shoppe.products.attachments') do
-    .splitContainer.extraAttachments
-      %dl.half
-        %dt= f.label "attachments[default_image][file]", t('shoppe.products.default_image')
-        %dd
-          = attachment_preview @product.default_image
-          %p= f.file_field "attachments[default_image][file]"
-          = f.hidden_field "attachments[default_image][role]", value: "default_image"
-          = f.hidden_field "attachments[default_image][parent_id]", value: @product.id
+        %dl.half
+          %dt= f.label "attachments[default_image][file]", t('shoppe.products.other_images')
+          %dd
+            = attachment_preview nil, hide_if_blank: false
+            %p= f.file_field "attachments[extra][file]", :multiple => true
+            = f.hidden_field "attachments[extra][parent_type]", value: "Shoppe::Product"
+            = f.hidden_field "attachments[extra][parent_id]", value: @product.id
 
-      %dl.half
-        %dt= f.label "attachments[default_image][file]", t('shoppe.products.other_images')
-        %dd
-          = attachment_preview nil, hide_if_blank: false
-          %p= f.file_field "attachments[extra][file]", :multiple => true
-          = f.hidden_field "attachments[extra][parent_type]", value: "Shoppe::Product"
-          = f.hidden_field "attachments[extra][parent_id]", value: @product.id
+        - @product.attachments.each do |attachment|
+          - unless ["default_image", "data_sheet"].include?(attachment.role)
+            %dl.half
+              %dd
+                = attachment_preview attachment
 
-      - @product.attachments.each do |attachment|
-        - unless ["default_image", "data_sheet"].include?(attachment.role)
-          %dl.half
-            %dd
-              = attachment_preview attachment
+      %p.addAttachments= link_to t('shoppe.products.add_attachments') , '#', :data => {:behavior => 'addAttachmentToExtraAttachments'}, :class => 'button button-mini green'
 
-    %p.addAttachments= link_to t('shoppe.products.add_attachments') , '#', :data => {:behavior => 'addAttachmentToExtraAttachments'}, :class => 'button button-mini green'
-
-  - unless @product.variant?
+  - unless @product.has_variants?
     = field_set_tag t('shoppe.products.pricing') do
       .splitContainer
         %dl.third
@@ -109,11 +109,11 @@
               .currency= Shoppe.settings.currency_unit.html_safe
               = f.text_field :price, :class => 'text'
         %dl.third
-          %dt= f.label :cost_price, t('shoppe.products.cost_price')
+          %dt= f.label :old_price, t('shoppe.products.old_price')
           %dd
             .moneyInput
               .currency= Shoppe.settings.currency_unit.html_safe
-              = f.text_field :cost_price, :class => 'text'
+              = f.text_field :old_price, :class => 'text'
         %dl.third
           / %dt= f.label :tax_rate_id, t('shoppe.products.tax_rate')
           / %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.products.no_tax')}}

@@ -1,46 +1,53 @@
 <div>
 <% if order.order_items.present? %>
   <% order.order_items.each do |item| %>
-     <div class="col-md-2 col-sm-4 col-xs-6">
-        <% if item.ordered_item.default %>
-          <img src='<%= item.ordered_item.parent.try(:default_image) ? item.ordered_item.parent.default_image.file.try(:thumb) : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
-          <% else %>
-          <img src='<%= item.ordered_item.try(:default_image) ? item.ordered_item.try(:default_image).file.try(:thumb)  : '/assets/placeholder.jpg' %>' width='200px' height='98px;' alt='Not found' class="img-responsive" alt="" draggable="false">
-        <% end %>
+
+     <div class=" col-md-2 col-sm-12 col-xs-12">
+          <img class="img-responsive center-block" src='<%= cart_item_image(item.ordered_item) %>' width='200px' height='98px;' alt='Not found' alt="" draggable="false">
      </div>
-     <div class="col-md-10 order-item">
-        <div class="col-md-3 col-sm-3 col-xs-6 order-size allan">
-           <h3> <%= item.ordered_item.get_name %> |<strong><%= number_to_currency item.unit_price %> 
-           <small>
-           <!-- PKR -->
-           </small>
+     <div class="col-md-10 col-sm-12 col-xs-12 order-item padding-top-30">
+       
+          <div class="col-md-2 col-sm-12 col-xs-12 order-size allan " >
+              <h3> <%= item.ordered_item.get_name %> <br><strong><%= number_to_currency item.unit_price %> 
+               <small>
+               <!-- PKR -->
+               </small>
            </strong></h3>
-           <%= hidden_field_tag :item_id,{}, :value=>item.id  %>
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12 order-size allan" >
+            <%= hidden_field_tag :item_id,{}, :value=>item.id  %>
            <!-- <p class="details-cart">peltro distressed (H38222)</p> -->
            <% if item.ordered_item.has_sizes? %>
              <strong>Size: </strong>
              <%= select_tag 'size', options_for_select(item.ordered_item.get_available_sizes.collect(&:name), item.size), :class=> "qty size-select", :onChange=>"updateOrderItem(this)" %>
            <% end %>
-        </div>
-        <div class="col-md-3  col-sm-3 col-xs-12  order-size allan">
-        <% if item.ordered_item.has_colors? %>
-          <strong><span class="qty-font">COLOR: </span></strong>
-          <%= select_tag 'color', options_for_select(item.ordered_item.get_variants.collect{ |v| [v.name, v.id] }, item.ordered_item.id), :class=> "qty size-select", :style=>"width:40%;", :onChange=>"updateOrderItem(this)" %>
-        <% end %>
-        </div>
-        <div class="col-md-3  col-sm-3 col-xs-6 order-size  allan">
-           <strong><span class="qty-font">QTY:</span> </strong>
+          </div>
+          <div class="col-md-3 col-sm-12 col-xs-12 order-size allan">
+            <% if item.ordered_item.has_available_colors? %>
+            <strong><span class="qty-font">COLOR: </span></strong>
+            <%= select_tag 'color', options_for_select(item.ordered_item.get_available_variants.collect{ |v| [v.name, v.id] }, item.ordered_item.id), :class=> "qty size-select", :style=>"", :onChange=>"updateOrderItem(this)" %>
+          <% end %>
+          </div>
+          <div class="col-md-3 col-sm-12 col-xs-12 order-size allan" ">
+              <strong><span class="qty-font">QTY:</span> </strong>
+
            <%= select_tag 'quantity', options_for_select(Shoppe::Product::QUANTITY, item.quantity), :class=> "qty ", :onChange=>"updateOrderItem(this)" %>
            <span class="remove-qty">
            <button class="removerow" onclick="updateOrderItem(this)">Remove</button>
            </span>
-        </div>
-        <div class="col-md-3  order-size allan total-text"><span class="cart-total"> Total <%= number_to_currency item.sub_total %> </span></div>
-     </div>
-     <div style="clear:both"></div>
-     <br><br>
+
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12 order-size allan no-padding" ">
+            <span class="cart-total"> Total <%= number_to_currency item.sub_total %> </span>
+          </div>
+          
+          </div>
+       <div style="clear:both"></div>
+     
+
+     
   <% end %>
 <% else %>
-  <center><h1>Your cart is empty.</h1></center>
+  <div class="text-center"><h3>Your cart is empty.</h3></div>
 <% end %>
 </div>

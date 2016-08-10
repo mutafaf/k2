@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     get "orders/export", to: "orders#export"
     post "orders/:id/cancel", to: "orders#cancel", as: "cancel_order"
     post "orders/:id/return", to: "orders#return", as: "return_order"
+
+    get "view_stock", to: "stock_level_adjustments#view_stock", as: "view_stock"
+    get "export_stock", to: "stock_level_adjustments#export", as: "export_stock"
+    match "import_stock_level_adjustments", to: "stock_level_adjustments#import", as: "import_stock_level_adjustments", via: [:get, :post]
   end
 
   get 'home/index'
