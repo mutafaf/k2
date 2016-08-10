@@ -112,7 +112,7 @@ module Shoppe
     # @return [BigDecimal]
     def unit_price
       # read_attribute(:unit_price) || ordered_item.try(:price) || BigDecimal(0)
-      read_attribute(:unit_price) || ordered_item.try(:get_price) || BigDecimal(0)
+      read_attribute(:unit_price) || ordered_item.try(:get_price_product_display) || BigDecimal(0)
     end
 
     # The cost price for the item
@@ -187,19 +187,43 @@ module Shoppe
 
     # Trigged when the associated order is rejected..
     def reject!
-      stock_level_adjustments.destroy_all
+      stock_level_adjustments.destroy_all if stock_level_adjustments.present?
     end
 
     # Trigged when the associated order is canceled..
     def cancel!
-      stock_level_adjustments.destroy_all
+      stock_level_adjustments.destroy_all if stock_level_adjustments.present?
     end
 
     # Trigged when the associated order is returned..
     def return!
-      stock_level_adjustments.destroy_all
+      stock_level_adjustments.destroy_all if stock_level_adjustments.present?
     end
 
+
+
+    def product_name
+      "#{ordered_item.parent.name}\n" rescue ''
+    end
+
+    def items_sizes
+     "#{size}\n" rescue ''
+    end
+
+
+    def show_category
+     hierarchy_array = ordered_item.get_category.hierarchy_array.collect(&:name)
+      if hierarchy_array.size >1 
+        "#{hierarchy_array.first}/#{hierarchy_array.last}\n" rescue ''
+      else
+        "#{hierarchy_array.first}\n" rescue ''
+      end
+    end
+   
+    def variant_name
+     "#{ordered_item.name}\n" rescue ''
+    end
+ 
     # Do we have the stock needed to fulfil this order?
     #
     # @return [Boolean]

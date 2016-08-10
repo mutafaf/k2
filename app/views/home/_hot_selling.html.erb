@@ -21,14 +21,14 @@
                               <article class="product-item" style="border: solid 1px #fff;">
                               
                                <div class="products-height" >
-                                 <img  src="<%= product.try(:default_image) ? product.try(:default_image).file.try(:standard) : '/assets/placeholder.jpg'  %>" class="" alt="" style="    width: 100%;">
+                                 <img  src="<%= product_image(product) %>" class="" alt="" style="    width: 100%;">
                                  </div>
                                
                                  <h3>
                                     <%= product.name%>
                                  </h3>
                                  <span class="price">
-                                 <ins><span class="amount"><%= number_to_currency product.price %></span></ins>
+                                 <ins><span class="amount"><%= number_to_currency product.get_price_default_variant %></span></ins>
                                  </span>
                                  <br> <br>
                               </article>

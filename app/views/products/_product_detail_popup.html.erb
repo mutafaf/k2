@@ -11,7 +11,7 @@
             <article class="">
                <div class="row">
                   <div class="col-md-4">
-                     <img src="<%= @product.try(:default_image) ? @product.try(:default_image).file.try(:standard) : '/assets/placeholder.jpg'%>" class="img-responsive center-block popup-image" alt="" >
+                     <img src="<%= product_image(@product) %>" class="img-responsive center-block popup-image" alt="" >
                   </div>
                   <div class="col-md-8 col-sm-12">
                      <div class="product-item product-single">
@@ -89,12 +89,15 @@
                               </div>
                               <div class="product-pop">
                                  <div class="product-color">
-                                 <% if @product.has_colors? %>
+                                 <%if @product.has_colors?%>
+                                 <% if @product.has_available_colors? %>
                                    <div id="color_block" class="form-group">
                                       <label class="label-pop">Color:</label>
-                                      <%= select_tag 'color', options_for_select(@product.get_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Select", :class=> "form-control quent1", :id=>"color_select"} %>
+                                      <%= select_tag 'color', options_for_select(@product.get_available_variants.collect{ |v| [v.name, v.permalink] }),{:prompt=>"Select", :class=> "form-control quent1", :id=>"color_select"} %>
                                    </div>
                                  <% end %>
+                                  <% end %>
+                                 
                                  </div>
                               </div>
                               <div class="product-pop">

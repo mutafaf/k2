@@ -1,0 +1,68 @@
+- @page_title = t('shoppe.stock_level_adjustments.stock_level_adjustments')
+
+= content_for :header do
+  %h2.stock_level_adjustments= t('shoppe.stock_level_adjustments.import_stock_level_adjustments')
+
+= form_for "import", :url => import_stock_level_adjustments_path, :html => {:multipart => true} do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.imports.file_upload') do
+    %dl
+      %dt= f.label :import_file, t('shoppe.imports.required_formats')
+      %dd= f.file_field :import_file
+
+  = field_set_tag t('shoppe.imports.example_file') do
+    %dl
+      %dd
+        %table.importExample
+        
+          %tr
+            %center{:colspan => "8"} Product Stock Level
+            %th{:colspan => "8"}
+          %tr.tear-off
+          %thead
+            %tr
+              %th Product Name
+              %th Variants
+              %th 08
+              %th 09
+              %th 10
+              %th 11
+              %th 12
+              %th STD
+          %tbody
+            %tr
+              %td= t('D13000112')
+              %td= t('cream')
+              %td= t('0')
+              %td= t('1')
+              %td= t('2')
+              %td= t('3')
+              %td= t('1')
+              %td= t('2')
+            %tr
+              %td= t('D13000112')
+              %td= t('blue')
+              %td= t('0')
+              %td= t('1')
+              %td= t('2')
+              %td= t('3')
+              %td= t('1')
+              %td= t('2')
+            %tr
+              %td= t('D13000112')
+              %td= t('multi')
+              %td= t('1')
+              %td= t('3')
+              %td= t('4')
+              %td= t('4')
+              %td= t('5')
+              %td= t('1')
+            %tr.tear-off
+              %td{:colspan => "8"}
+      %dd
+        %p.help= t('shoppe.stock_level_adjustments.imports.help')
+           
+  %p.submit
+    = f.submit t('shoppe.import'), :class => "button green"
+    = link_to t('shoppe.cancel'), :stock_level_adjustments, :class => "button"

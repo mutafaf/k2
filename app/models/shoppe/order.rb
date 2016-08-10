@@ -5,8 +5,8 @@ module Shoppe
     ORDER_AMOUNT = 3000
     DELIVERY_CHARGES = 100
 
-    # PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
-    PAYMENT_TYPES = ["Cash On Delivery"]
+    PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
+    # PAYMENT_TYPES = ["Cash On Delivery"]
 
     self.table_name = 'shoppe_orders'
 
@@ -107,38 +107,47 @@ module Shoppe
     def self.to_xls(options = {}, from, to)
       book = Spreadsheet::Workbook.new :title => "Orders"
       sheet1 = book.create_worksheet :name => "Orders"
-      sheet1.column(0).width = 12
+      sheet1.column(0).width = 10
       sheet1.column(1).width = 12
       sheet1.column(2).width = 20
-      sheet1.column(3).width = 15
-      sheet1.column(4).width = 30
-      sheet1.column(5).width = 15
-      sheet1.column(6).width = 12
-      sheet1.column(7).width = 35
-      sheet1.column(8).width = 12
-      sheet1.column(9).width = 12
-      title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14
+      sheet1.column(3).width = 20
+      sheet1.column(4).width = 20
+      sheet1.column(5).width = 20
+      sheet1.column(6).width = 10
+      sheet1.column(7).width = 15
+      sheet1.column(8).width = 15
+      sheet1.column(9).width = 25
+      sheet1.column(10).width = 15
+      sheet1.column(11).width = 25
+      sheet1.column(12).width = 5
+      sheet1.column(13).width = 10
+      sheet1.column(14).width = 12
+      title_format = Spreadsheet::Format.new :color => :green, :weight => :bold, :size => 14, :align => :center
       header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
       date_range_format = Spreadsheet::Format.new :color => :green, :weight => :bold
       i = 0
       sheet1.row(i).default_format = title_format
       sheet1.row(i).push 'Order Summary Status Report'
+      sheet1.merge_cells(i, 0, i, 14)
       sheet1.row(i).height = 20
       i = i+1
       sheet1.row(i).default_format = date_range_format
       sheet1.row(i).height = 20
-      sheet1.rows[i][1] = "Date From "
+
+      sheet1.rows[i][1] = "Date From " if from.present?
       sheet1.rows[i][2] =  from.strftime("%b %d, %Y") if from.present?
 
-      sheet1.rows[i][4] = "Date To "
+      sheet1.rows[i][4] = "Date To " if from.present?
       sheet1.rows[i][5] = to.strftime("%b %d, %Y") if to.present?
 
       i = i+1
       sheet1.row(i).default_format = header_format
-      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Contact Number', 'Address', 'City', 'Order Qty', 'Order Amount (Including Ship Charges)' , 'Order Status', 'Ship Date'
-      all.each do |order|
-        i = i+1
-        sheet1.row(i).height = 20
+      sheet1.row(i).push 'Order#','Order Date', 'Customer Name', 'Category','Article #' ,'Color', 'Size', 'PKR Rupee', 'Contact No' ,'Address', ' City','Email', 'Qty', 'Status', 'Shipped Date'
+      mydate=nil
+      mytotal=0
+      all.each_with_index do |order,p|          
+        
+        sheet1.row(i).height = 30
         order_id = order.number
         order_date = order.received_at.strftime("%b %d, %Y") if order.received_at.present?
         customer_name = order.customer_name
@@ -146,14 +155,101 @@ module Shoppe
         address = order.delivery_address1
         city = order.delivery_city
         order_qty = order.total_items
-        order_amount = "#{Shoppe.settings.currency_unit} #{order.total}"
+        order_amount = "#{order.total}"
         status = order.status
+        email=order.email_address
         ship_date = order.shipped_at.strftime("%b %d, %Y") if order.shipped_at.present?
+        articles = order.order_items.collect(&:product_name).join('') rescue ''
+        articles_color = order.order_items.collect(&:variant_name).join('') rescue ''
+        sizes = order.order_items.collect(&:items_sizes).join('') rescue ''
+        category = order.order_items.collect(&:show_category).join('') rescue ''
+        temp=0
+        #storing date in mydate it will work in ist iter only
+        if p==0
+          mydate=order.received_at.strftime("%b %d, %Y") 
+        end
+        
+        
+        #start block for the orders of the same date
+        if mydate==order.received_at.strftime("%b %d, %Y") 
+          #adding amount in total for calculating sum of price of orders having same date
+          mytotal=mytotal+order.total
+          #start block if the order contain multiple items 
+          if order.order_items.count>1
+            order.order_items.each_with_index do |order_item,d|
+              i+=1
+              sheet1.row(i).height = 23
+              #if we have ist item in order the insert it full else insert on repeated data
+              if d==0
+                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
+              else
+                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", "", "", ""
+                temp=d
+              end
+            end
+            #as we have entered the whole order so now we will merge rows
+            order.perform_merging(sheet1,i,temp)
+            #else block if the order has only one item in it.
+          else
+            i+=1
+            sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          end
+        #start for the orders having different dates
+        else
+          #inserting a row for total 
+          i+=1
+          sheet1.row(i).height = 25
+          sheet1.row(i).default_format = header_format
+          mydate=order.received_at.strftime("%b %d, %Y") 
+          sheet1.row(i).push "","","","","","","Total",mytotal
+          #inserting a row for total end 
 
-        sheet1.row(i).push order_id, order_date, customer_name, contact_no, address, city, order_qty, order_amount, status, ship_date
+          #after inserting the total row we will insert the current order 
+          i=i+1
+          sheet1.row(i).height = 25
+          #if the order contains the multiple items 
+          if order.order_items.count>1
+            order.order_items.each_with_index do |order_item,d|
+              i+=1
+              sheet1.row(i).height = 23
+              #if we have ist item in order the insert it full else insert on repeated data
+              if d==0
+                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
+              else
+                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", "", "", ""
+                temp=d
+              end
+            end
+            order.perform_merging(sheet1,i,temp)
+          #if order contains only a single item
+          else
+            i+=1
+            sheet1.row(i).push order_id, order_date, customer_name , category, articles , articles_color, sizes,  order_amount, contact_no, address, city,  email, order_qty, status, ship_date
+          end
+          #resetting total to zero and adding the amount of current order.
+          mytotal=0
+           mytotal=mytotal+order.total 
+        end        
       end
       return book
     end
+
+    def perform_merging(sheet1,i,temp)
+      #arguments details start row ,start col ,end row ,end col
+      sheet1.merge_cells(i-temp, 0, i, 0)
+      sheet1.merge_cells(i-temp, 1, i, 1)
+      sheet1.merge_cells(i-temp, 2, i, 2)
+      sheet1.merge_cells(i-temp, 7, i, 7)
+      sheet1.merge_cells(i-temp, 8, i, 8)
+      sheet1.merge_cells(i-temp, 9, i, 9)
+      sheet1.merge_cells(i-temp, 10, i, 10)
+      sheet1.merge_cells(i-temp, 11, i, 11)
+      sheet1.merge_cells(i-temp, 12, i, 12)
+      sheet1.merge_cells(i-temp, 13, i, 13)
+      sheet1.merge_cells(i-temp, 14, i, 14)
+
+    end
+
 
     def self.ransackable_attributes(_auth_object = nil)
       %w(id billing_postcode billing_address1 billing_address2 billing_address3 billing_address4 first_name last_name company email_address phone_number consignment_number status received_at) + _ransackers.keys

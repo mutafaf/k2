@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-6">  
           <span class="checkout-bulit">Serial Number*</span>
-          <%= f.text_field :serial_number,:class=>"input-checkout", :placeholder=>"Email", :required => true %>
+          <%= f.number_field :serial_number,:class=>"input-checkout", :placeholder=>"Serial number", :required => true,:min =>1 %>
         </div>
         <div style="clear:both"></div>
         <br>
@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-6">  
           <span class="checkout-bulit">Return Quantity*</span>
-          <%= f.text_field :return_quantity,:class=>"input-checkout", :placeholder=>"Return Quantity", :required => true %>
+          <%= f.number_field :return_quantity,:class=>"input-checkout", :placeholder=>"Return Quantity", :required => true,:min =>1 %>
         </div>
         <div style="clear:both"></div>
         <br>

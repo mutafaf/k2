@@ -2,8 +2,6 @@ workers Integer(ENV['WEB_CONCURRENCY'] || 1)
 threads_count = Integer(ENV['MAX_THREADS'] || 5)
 threads 1, threads_count
 
-preload_app!
-
 rackup      DefaultRackup
 port        9595
 environment  'production'

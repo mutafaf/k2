@@ -25,19 +25,21 @@ class ProductsController < ApplicationController
       return
     end
 
-    if @product.default
-      # For Main Product
-      @product = @product.parent # get default variant here
+    if @product.has_variants? and @product.default_variant.present?
+      # If Main Product then
+      @product = @product.default_variant # get default variant here
     end
 
     @sizes = @product.get_available_sizes
-    @variants = @product.get_variants
+    @variants = @product.get_available_variants
 
     if request.xhr?
       if params[:color].present?
         render :partial => "product_display"
       else
+        # byebug
         render :partial => "product_detail_popup"
+        
       end
     end
 
@@ -48,9 +50,10 @@ class ProductsController < ApplicationController
     quantity = params[:quantity] ? params[:quantity].to_i : 1
     if @product.has_variants? and @product.default_variant.present?
       # For Main Product
+      
       @product = @product.default_variant # get default variant here
+      # byebug
     end
-
     if params[:size].blank? and @product.try(:has_sizes?)
     redirect_to product_path(@product.permalink), :alert => "Please select any Size."
     else
@@ -85,8 +88,7 @@ class ProductsController < ApplicationController
       products = Shoppe::Product.find_by_category_and_descendants(category) if category
 
     elsif params[:category_name].present?
-      category = Shoppe::ProductCategory.search_home_category(params[:category_name])
-      products = category.products if category
+      products = Shoppe::Product.search_by_name_and_category(params[:category_name].squish)
 
     elsif params[:color_name].present?
       heading = params[:color_name]
@@ -99,6 +101,7 @@ class ProductsController < ApplicationController
     elsif params[:size_id].present?
       heading = Shoppe::Size.find(params[:size_id]).try(:name)
       products = Shoppe::Product.find_by_size_id(params[:size_id], session[:category_permalink])
+      
     elsif params[:min_price].present? and params[:max_price].present?
       heading = Shoppe::Product::PRICE_RANGE
       products = Shoppe::Product.find_by_price(params[:min_price], params[:max_price], session[:category_permalink])
@@ -107,7 +110,7 @@ class ProductsController < ApplicationController
       products = Shoppe::Product.root #.ordered.includes(:product_categories, :variants)
     end
 
-    products = products.active.page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
+    products = products.active.order("shoppe_products.id DESC").page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
 
     @heading = heading
     @category= category

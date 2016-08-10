@@ -21,23 +21,36 @@
               </div>
            </div>
 
-
+ 
 
 
            <div class="col-md-9" style="    padding: 0px;     margin-bottom: 25px;">
               <div class="product-body">
                  <h3 style="font-size: large;font-family: initial;}"><%= link_to product.name, product_path(product.permalink)%></h3>
                  <span class="price">
-                 <ins><span class="amount"><%= number_to_currency product.get_price %></span></ins>
-                 </span>                                          
+                 <ins><span class="amount"><%= number_to_currency product.get_price_default_variant %>&nbsp;</span></ins>
+                   <ins><s><span class="old_price"><%= number_to_currency product.get_old_price_default_variant %></span></s></ins>
+                 </span>
                  <center>
 
                     <div style="margin-top: 12px;     width: 58%;">
-                      <% product.get_colors.each do |color| %>
-                        <div class="color1" style="background:#<%= color %>;"></div>
+                      <%if product.get_available_variants.present? %>
+                      <% #byebug %>
+                        <% product.get_available_variants.each do |v| %>
+                          <%if v.name != "Multi"%>
+                              <div id="<%= v.permalink %>" class="color1" style="background:#<%= v.color %>;cursor:pointer;" onclick="updateProductDisplay(this)">
+                              </div>
+                        <% else %>
+                       
+                              <div id="<%= v.permalink %>" class="rainbow color1"   onclick="updateProductDisplay(this)" style="cursor:pointer; position:relative; right:9px;">
+                              </div>
+                        <% end %>
+                         <% end %>
                        <% end %>
+
                     </div>
                  </center>
+
               </div>
            </div>
         </div>

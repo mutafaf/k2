@@ -52,13 +52,23 @@ class OrdersController < ApplicationController
   end
 
   def confirmation_page
-    @order = Shoppe::Order.find(current_order.id)
     session[:transaction_id] = params[:TransactionID]
-    if session[:transaction_id].present?
-      flash[:notice] = "Your Card has been verified. Please complete your order now."
+    result = query_transaction()
+    result = JSON.parse(result)
+    card_token = result["QueryTransactionResult"]["Payer"]["CardToken"]
+    @order = Shoppe::Order.find(current_order.id)
+
+    if card_token.present?
+      if Shoppe::Payment.last_month.where(card_token: card_token).count < 5
+        flash[:notice] = "Your Card has been verified. Please complete your order now."
+        return
+      else
+        redirect_to root_path, :alert =>"Your have reached maximum limit (5 times in a month) of shopping using Credit/Debit Card. Please contact Borjan for details."
+      end
     else
-      redirect_to root_path, :notice => "Your Card verification Failed !"
+      redirect_to root_path, :alert => "Your Card verification Failed !"
     end
+    
   end
 
   def finalize
@@ -109,6 +119,13 @@ class OrdersController < ApplicationController
 
 
   private
+
+  def query_transaction
+    transaction_id = session[:transaction_id]
+    customer = "Demo Merchant"
+    path = "lib/"
+    `php -f #{ path + 'IPG_Query.php "' + customer + '" ' + transaction_id}`
+  end
 
   def ipg_payment(order)
     customer = "Demo Merchant"

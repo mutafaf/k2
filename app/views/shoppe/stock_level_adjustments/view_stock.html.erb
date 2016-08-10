@@ -1,0 +1,28 @@
+<div class="table">
+  <p class="info">
+    <strong>Product Name: </strong><%= @item.name %>
+    <span class="float-right">
+      <%#= page_entries_info @stock_level_adjustments %>
+    </span>
+  </p>
+  <table class="data">
+    <thead>
+      <tr>
+      <th>Variant</th>
+      <% @sizes.each do |size| %>
+        <th><%= size.name %></th>
+      <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @variants.each do |variant| %>
+      <tr>
+        <td><%= link_to check_for_default_and_active(variant) %></td>
+        <% @sizes.each do |size| %>
+          <td><%= variant.stock(size.id) %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

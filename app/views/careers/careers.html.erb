@@ -17,7 +17,7 @@
       <% @jobs.try(:each) do |job| %>
         <div class="job-post" >
           <center>
-            <h3><%= job.name %> </h3>
+            <h3><%= job.name %> </h3> 
             <p>
               <%= job.description%>
             </p>
@@ -58,7 +58,7 @@
             <%= f.select :gender, Shoppe::Career::GENDER, {:prompt=>"Select Gender"}, {class: "input-checkout"}%>
             <%= f.select :martial_status, Shoppe::Career::MARTIAL_STATUS, {:prompt=>"Select Maritial Status"}, {class: "input-checkout"}%>
             <%= f.text_field :mailing_address, class: "input-checkout", placeholder: "Mailing address"%>
-            <%= f.select :city, Shoppe::DynamicOption.array_for(Shoppe::Career::CITY), {:prompt=>"Select City"}, {class: "input-checkout"}%>
+            <%= f.select :city, Shoppe::DynamicOption.array_for(Shoppe::Career::CITY).sort_by(&:downcase), {:prompt=>"Select City"}, {class: "input-checkout"}%>
 
             <h1>Educational Info </h1>
 

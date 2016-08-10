@@ -1,9 +1,9 @@
-
+<!-- Now only Variants will be displayed in show page -->
 <div class="col-md-7">
    <div id="example">
       <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-         <a href="<%= @product.try(:default_image).try(:path)%>">
-         <img src="<%= @product.try(:default_image).try(:path) ? @product.try(:default_image).try(:path) : '/assets/placeholder.jpg' %>" alt="" class="img-responsive"/>
+         <a href="<%= product_image_path(@product) %>">
+         <img src="<%= product_image_path(@product) %>" alt="" class="img-responsive"/>
          </a>
       </div>
       <ul class="thumbnails">
@@ -31,7 +31,8 @@
         <% end %>
         <span class="">
         <br>
-        <%= number_to_currency @product.get_price %> 
+        <%= number_to_currency @product.get_price_product_display %> 
+       <s><%= number_to_currency @product.get_old_price %></s>
         <br>
           <%= rating_for product_for_rating(@product), "name", :star => 5 %>
         </span>
@@ -58,43 +59,56 @@
               <% end %>
               <div class="clearfix"></div>
               <br><br>
+           
               <% if @variants.present? %>
                 <div class="color_block">
+                
                   <h3 style="    margin-top: -12px;">Available Colors</h3>
 
                   <div style="margin-top: 12px;     width: 58%;">
                     <% @variants.each do |v| %>
-                      <%#= link_to product_path(v.permalink) do%>
-                        <%#= v.name %>
-
-                       <div id="<%= v.permalink %>" class="color1" style="background:#<%= v.color %>;cursor:pointer;" onclick="updateProductDisplay(this)">
-                       </div>
-                      <%# end %>
+              
+                      <%if v.name != "Multi"%>
+                              <div id="<%= v.permalink %>" class="color1" style="background:#<%= v.color %>;cursor:pointer;" onclick="updateProductDisplay(this)">
+                              </div>
+                        <% else %>
+                       
+                              <div id="<%= v.permalink %>" class="rainbow color1"   onclick="updateProductDisplay(this)" style="cursor:pointer; position:relative; right:9px;">
+                              </div>
+                        <% end %>
+                       
+                      
                     <% end %>
                   </div>
                 </div>
               <% end %>
              <br>
-              <h3>Quantity</h3>
+              
+              <div style="clear;both"></div>
+              
+           </div>
+        </div>
+        </div>
+        <% if @product.in_stock? %>
+          <h3>Quantity</h3>
               <div class="product-quantity clearfix">
                  <a class="btn btn-default" id="modal-qty-minus">-</a>
                  <%= text_field_tag :quantity, params[:quantity], id: 'modal-qty', :class=>"form-control", :value=>"1" %>
                  <a class="btn btn-default" id="modal-qty-plus">+</a>
               </div>
-              <div style="clear;both"></div>
-              <br>
-           </div>
-        </div>
-        </div>
-        <% if @product.in_stock? %>
-          In Stock.
+          <h4>In Stock.</h4>
+          <br>
+            <button type="submit" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;float: left;">
+            Add to cart
+            <i class="fa fa-shopping-cart"></i>
+          </button>
+        <% else %>
+        <br>
+          <h2>Out Of Stock.</h2>
         <% end %>
         <br>
         <br>
-        <button type="submit" class="btn btn-primary add-to-cart" style=" color: #ddd; background: #00215F;float: left;">
-          Add to cart
-          <i class="fa fa-shopping-cart"></i>
-        </button>
+        
      </div>
   </div>
 <% end %>
