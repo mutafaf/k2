@@ -62,7 +62,7 @@ module Shoppe
           line << product.name.to_s
           line << variant.name.to_s
             sizes.each do |size|
-            line << variant.stock(size.id).to_s
+            line << variant.stock(size.id).to_i
             end
             line << variant.stock
           sheet1.row(i).push *line
