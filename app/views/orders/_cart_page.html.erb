@@ -5,11 +5,11 @@
       <article class="product-item product-single" style="     padding: 20px;">
          <div class="row">
            
-            <center>
+            <div class="text-center ">
             <br>
                <h1>SHOPPING CART</h1>
-               <p>Customer Service Questions? +92 42 3 5241207-8</p>
-            </center>
+               <p>Customer Service Questions?<span class="cart-text"> +92 42 3 5241207-8</span></p>
+            </div>
             <hr>
          </div>
       </article>
@@ -33,7 +33,7 @@
                 <p class="text-right">Congratulations! Enjoy FREE shipping on your order worth Rs 3000 and Above</p>
                 <p class="text-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
                 <% else %>
-                <p class="text-right">add more items worth Rs <%=3000 - order.products_total%> to  get free shipping</p>
+                <p class="text-right">add more items worth<span class="cart-text"> Rs <%=3000 - order.products_total%> to  get free shipping</span></p>
                 
                 <p class="text-right">Shipping amount fixed = Rs 100 (Nationwide)</p>
                <% end %>
