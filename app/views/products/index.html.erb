@@ -1,6 +1,6 @@
 <section class="content grid-products border-top" id="just" style="background:#f5f5f6 url(<%= @category.background_image.path rescue '' %>) no-repeat; ; background-size: cover;  ">
    <div class="container">
-      <br> <br> <br> <br>
+      <div class="margin-50"></div>
       <section class="breadcrumb-wrapper" style=" ">
          <div class="container">
             <div class="row">
@@ -14,7 +14,7 @@
                       <span id="collection"><%= "Collection" unless @category.try(:parent_id) %></span>
                       </h2>
                     <% else %>
-                    <h2 ><span id="category_heading" style=" color:#333;"></span>
+                    <h2 ><span id="category_heading" style=" color:#333;"><h2>Results</h2></span>
                     <span id="collection"></span>
                     </h2>
                      <% end %>
