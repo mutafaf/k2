@@ -17,6 +17,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def sliderprice
+    price=Shoppe::Product.order("price DESC").first.price.to_f
+    render  :text => price
+
+  end
+
   def show
     @product = Shoppe::Product.active.find_by_permalink(params[:permalink])
 
