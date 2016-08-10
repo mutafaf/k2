@@ -82,7 +82,7 @@ $(function() {
     min: 100,
     max: 5000,
     step: 50,
-    values: [ 100, 2000 ],
+    values: [ 100, 5000 ],
     slide: function( event, ui ) {
       $( "#amount" ).val( "Rs " + ui.values[ 0 ] + " - Rs " + ui.values[ 1 ] );
     }
