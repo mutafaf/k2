@@ -7211,7 +7211,7 @@ background-image: url("/assets/footer-img.jpg");
 .button-grnt { margin-left: 62% !important;}
 .col-xs-6 {width: 100% !important;}
 .border-left { border-left: solid 0px #ccc !important;}
-.style-may-you{height: auto; width:49% !important;   margin-bottom: 13px !important;  margin: auto;}
+.style-may-you{height: auto; margin-bottom: 13px !important;  margin: auto;}
 #homepage-2-carousel .slide-2 h1 {
 		font-size:26px;
 		margin:59px 0 0;
@@ -7973,3 +7973,17 @@ input{ color: #000; }
 #category_name{
 	z-index:99999;
 }
+.products-height { height:180px; line-height: 170px; margin-top: 0px !important;  display: flex; align-items: center; overflow:hidden; padding:1px; vertical-align:middle; text-align:center; }
+.products-height a { margin:auto !important; vertical-align:middle; display:inline-block; }
+.products-height img { max-height:180px; margin:auto !important; vertical-align:middle; display:inline-block;  }
+
+
+.products-style{ ; line-height: 170px; margin-top: 0px !important;  display: flex; align-items: center; overflow:hidden; padding:1px; vertical-align:middle; text-align:center; }
+}
+.products-style a { margin:auto !important; vertical-align:middle; display:inline-block; }
+.products-style img { max-height:120px; margin:auto !important; vertical-align:middle; display:inline-block;  }
+
+.order-summery{ ; line-height: 170px; margin-top: -21px !important;  display: flex; align-items: center; overflow:hidden; padding:1px; vertical-align:middle; text-align:center; }
+}
+.order-summery a { margin:auto !important; vertical-align:middle; display:inline-block; }
+.order-summery img { max-height:120px; margin:auto !important; vertical-align:middle; display:inline-block;  }

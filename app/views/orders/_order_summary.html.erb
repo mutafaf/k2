@@ -2,7 +2,9 @@
    <h3>ORDER SUMMARY</h3>
    <% order.order_items.each do |item| %>
       <div class="col-md-6 col-sm-6 ">
+      <div class="order-summery">
         <img src='<%= cart_item_image(item.ordered_item) %>' class="img-responsive">
+        </div>
       </div>
       <div class="col-md-6 col-sm-6 " style="padding: 0;">
          <h3><%= item.ordered_item.get_name %> | <%= number_to_currency item.unit_price %> 
