@@ -7993,15 +7993,15 @@ input{ color: #000; }
 .products-height img { max-height:180px; margin:auto !important; vertical-align:middle; display:inline-block;  }
 
 
-.products-style{ ; line-height: 170px; margin-top: 0px !important;  display: flex; align-items: center; overflow:hidden; padding:1px; vertical-align:middle; text-align:center; }
-}
+.products-style{ ; line-height: 170px; margin-top: 0px !important;  display: flex; 
+	align-items: center; overflow:hidden; padding:1px; vertical-align:middle; text-align:center; }
+
 .products-style a { margin:auto !important; vertical-align:middle; display:inline-block; }
 .products-style img { max-height:120px; margin:auto !important; vertical-align:middle; display:inline-block;  }
 
-.order-summery{ ; line-height: 170px; margin-top: -21px !important;  display: flex; align-items: center; overflow:hidden; padding:1px; vertical-align:middle; text-align:center; }
-}
+.order-summery{ ; line-height: 170px; margin-top: -21px !important; 
+ display: flex; align-items: center; overflow:hidden; padding:1px; vertical-align:middle; text-align:center; }
+
 .order-summery a { margin:auto !important; vertical-align:middle; display:inline-block; }
 .order-summery img { max-height:120px; margin:auto !important; vertical-align:middle; display:inline-block;  }
-.margin-50{
-	margin-top: 70px;
-}
+.margin-50{	margin-top: 70px;}
