@@ -101,20 +101,22 @@ module Shoppe
 
     # Create Default Variant Automatically
     def create_default_variant
-      variant = self.variants.new
-      variant.name = self.color_name
-      variant_name = self.name.squish.gsub(" ", "-")
-      variant.permalink = "#{variant_name}-default"
-      variant.sku = "sku"
-      variant.color = self.color
-      variant.sizes = self.sizes
-      variant.price = self.price
-      variant.old_price = self.old_price
-      variant.default = true
-      variant.save
+      unless self.variant?
+        variant = self.variants.new
+        variant.name = self.color_name
+        variant_name = self.name.squish.gsub(" ", "-")
+        variant.permalink = "#{variant_name}-default"
+        variant.sku = "sku"
+        variant.color = self.color
+        variant.sizes = self.sizes
+        variant.price = self.price
+        variant.old_price = self.old_price
+        variant.default = true
+        variant.save
 
-      self.attachments.each do |attachment|
-        attachment.update_column(:parent_id, variant.id)
+        self.attachments.each do |attachment|
+          attachment.update_column(:parent_id, variant.id)
+        end
       end
     end
 
