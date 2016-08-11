@@ -5,8 +5,8 @@ module Shoppe
     ORDER_AMOUNT = 3000
     DELIVERY_CHARGES = 100
 
-    # PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
-    PAYMENT_TYPES = ["Cash On Delivery"]
+    PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
+    # PAYMENT_TYPES = ["Cash On Delivery"]
 
     self.table_name = 'shoppe_orders'
 
