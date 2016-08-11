@@ -27,10 +27,28 @@
            <div class="col-md-9" style="    padding: 0px;     margin-bottom: 25px;">
               <div class="product-body">
                  <h3 style="font-size: large;font-family: initial;}"><%= link_to product.name, product_path(product.permalink)%></h3>
+
+
+                 <%if product.get_price_default_variant.present?%>
                  <span class="price">
-                 <ins><span class="amount"><%= number_to_currency product.get_price_default_variant %>&nbsp;</span></ins>
+                 <ins><span class="amount"><%= number_to_currency product.get_price_default_variant %>
+                 <%#byebug%>
+                 &nbsp;</span>
+                 </ins>
                    <ins><s><span class="old_price"><%= number_to_currency product.get_old_price_default_variant %></span></s></ins>
                  </span>
+                 <%elsif product.price.present?%>
+                    <span class="price">
+                     <ins><span class="amount"><%= number_to_currency product.price %>
+                     <%#byebug%>
+                     &nbsp;</span>
+                     </ins>
+                       <ins><s><span class="old_price"><%= number_to_currency product.get_old_price %></span></s></ins>
+                     </span>
+                 <%end%>
+
+
+
                  <center>
 
                     <div style="margin-top: 12px;     width: 58%;">
