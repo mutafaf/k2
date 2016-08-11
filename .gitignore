@@ -19,3 +19,4 @@
 /public/
 /config/database.yml
 /config/puma.rb
+.byebug_history
