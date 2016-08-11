@@ -102,6 +102,7 @@ $(function() {
     max: a,
     step: 50,
     values: [ 100, a],
+
     slide: function( event, ui ) {
       $( "#amount" ).val( "Rs " + ui.values[ 0 ] + " - Rs " + ui.values[ 1 ] );
     }
