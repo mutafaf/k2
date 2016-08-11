@@ -3,8 +3,7 @@ class Shoppe::HomepageDynamicsController < Shoppe::ApplicationController
   before_filter { params[:id] && @homepage_dynamic = Shoppe::HomepageDynamic.find(params[:id]) }
 
   def index
-    @query = Shoppe::HomepageDynamic.all.page(params[:page]).search(params[:q])
-    @homepage_dynamics = @query.result
+    @homepage_dynamic = Shoppe::HomepageDynamic.first
   end
 
   def new
@@ -16,7 +15,6 @@ class Shoppe::HomepageDynamicsController < Shoppe::ApplicationController
 
   def create
     @homepage_dynamic = Shoppe::HomepageDynamic.new(safe_params)
-    byebug
     if @homepage_dynamic.save
       redirect_to :homepage_dynamics, flash: { notice: t('shoppe.homepage_dynamics.created_successfully') }
     else

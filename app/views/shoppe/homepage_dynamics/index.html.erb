@@ -1,0 +1,77 @@
+<% @page_title = t('shoppe.homepage_dynamics.homepage_dynamics') %>
+<%= content_for :header do %>
+
+<% if @homepage_dynamic.present? %>
+  <p class="buttons">
+    <%= link_to t('shoppe.homepage_dynamics.edit_homepage_dynamic'), [:edit, @homepage_dynamic], class: 'button green' %>
+  </p>
+<% else %>
+  <p class="buttons">
+    <%= link_to t('shoppe.homepage_dynamics.new_homepage_dynamic'), :new_homepage_dynamic, class: 'button green' %>
+  </p>
+<% end %>
+
+
+  <h2 class="users">
+    <%= t('shoppe.homepage_dynamics.homepage_dynamics') %>
+  </h2>
+<% end %>
+
+
+<% if @homepage_dynamic.present? %>
+<form>
+  <%= field_set_tag t('shoppe.homepage_dynamics.logo') do %>
+    <div class="splitContainer">
+      <dl class="half">
+        <dt>
+          <%= t('shoppe.homepage_dynamics.logo_image') %>
+        </dt>
+        <dd>
+          <%= attachment_preview_only @homepage_dynamic.logo_image %>
+        </dd>
+      </dl>
+    </div>
+  <% end %>
+  <%= field_set_tag t('shoppe.homepage_dynamics.slider_images') do %>
+    <div class="splitContainer">
+      <dl class="half">
+        <dt>
+          <%= t('shoppe.homepage_dynamics.default_image') %>
+        </dt>
+        <dd>
+          <%= attachment_preview_only @homepage_dynamic.default_image %>
+        </dd>
+      </dl>
+
+      <dl class="half">
+        <br><br><br><br><br><br><br><br>
+      </dl>
+      <dl class="half">
+        <br>
+      </dl>
+
+      <dl class="half">
+        <dt>
+          <%= t('shoppe.products.other_images') %>
+        </dt>
+      </dl>
+
+      <dl class="half">
+        <br><br>
+      </dl>
+
+      <% @homepage_dynamic.attachments.each do |attachment| %>
+        <% unless ["default_image", "data_sheet", "logo_image"].include?(attachment.role) %>
+          <dl class="half" style="margin-right: 5px;">
+            <dd>
+              <%= attachment_preview_only attachment %>
+            </dd>
+          </dl>
+        <% end %>
+      <% end %>
+
+
+    </div>
+  <% end %>
+</form>
+<% end %>

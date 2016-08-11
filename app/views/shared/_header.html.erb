@@ -3,7 +3,7 @@
       <div class="col-md-2">
          <div class="navbar-header">
             <a href="/" class="navbar-brand" data-no-turbolink =true>
-            <img src="/assets/logo.png" alt="borjan">
+            <img src="<%= @homepage_dynamic.try(:logo_image).try(:path) %>" alt="Borjan">
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
          </div>
