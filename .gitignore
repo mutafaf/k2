@@ -18,5 +18,6 @@
 /nbproject/private/
 /public/
 /config/database.yml
+config/database.yml
 /config/puma.rb
 .byebug_history
