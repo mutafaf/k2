@@ -77,21 +77,21 @@ function setAlreadySeletedSize(){
 }
 
 function getprice(){
-  var pri= parseInt(10000);
+  var pri= 10000;
   $.ajax({
      url: '/products/sliderprice',
      method: 'get',
-     format: 'js',
+     async: false,
      success: function(maximum_price) {
        
-       pri=parseInt(maximum_price);
+        pri=parseFloat(maximum_price);
         console.log( pri);
 
      }
    });
 
   
-  return pri;
+  return Math.ceil(pri/100)*100;
 }
 
 $(function() {

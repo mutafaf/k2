@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
   end
 
   def sliderprice
-    price=Shoppe::Product.order("price DESC").first.price.to_f
+    price=Shoppe::Product.order("price DESC").first.price.to_s
     render  :text => price
 
   end
