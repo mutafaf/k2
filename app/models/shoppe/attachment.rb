@@ -14,7 +14,7 @@ module Shoppe
     validates :file_type, presence: true
     validates :file_size, presence: true
     validates :file, presence: true
-    validate :check_file_size
+    # validate :check_file_size
     validates :token, presence: true, uniqueness: true
 
     # All attachments should have a token assigned to this
