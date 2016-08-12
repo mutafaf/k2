@@ -1,0 +1,20 @@
+<% if @logo.present? %>
+  <form>
+    <%= field_set_tag t('shoppe.homepage_settings.logo') do %>
+      <div class="splitContainer">
+        <dl class="half">
+          <dt>
+            <%= t('shoppe.homepage_settings.image') %>
+          </dt>
+          <dd>
+            <%= attachment_preview_only @logo.try(:image) %>
+          </dd>
+        </dl>
+        <dl class="half">
+          <br><br><br>
+          <%= link_to "Edit Logo" , [:edit, @logo], class: 'button' %>
+        </dl>
+      </div>
+    <% end %>
+  </form>
+<% end %>

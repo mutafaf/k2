@@ -1,0 +1,32 @@
+- @page_title = t('shoppe.homepage_settings.homepage_settings')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.homepage_settings.new_logo'), new_homepage_setting_path(setting_for: "Logo"), class: 'button green' if @logo.blank?
+    = link_to t('shoppe.homepage_settings.new_homepage_setting'), :new_homepage_setting, class: 'button green'
+  %h2.users= t('shoppe.homepage_settings.homepage_settings')
+
+= render 'logo_section'
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th{:width => '15%'}= t('shoppe.homepage_settings.setting_for')
+        %th{:width => '30%'}= t('shoppe.homepage_settings.slider_image')
+        %th{:width => '30%'}= t('shoppe.homepage_settings.category_permalink')
+        %th{:width => '10%'}= t('shoppe.homepage_settings.position')
+        %th{:width => '8%'}= t('shoppe.homepage_settings.action')
+    %tbody
+      - if @homepage_settings.empty?
+        %tr.empty
+          %td{:colspan=>4}= t('shoppe.homepage_settings.no_homepage_settings')
+      - else
+        - for homepage_setting in @homepage_settings
+          %tr
+            %td=homepage_setting.setting_for
+            %td= attachment_preview_only homepage_setting.image
+            %td=homepage_setting.category_permalink
+            %td=homepage_setting.position
+            %td= link_to "Edit" , [:edit, homepage_setting], class: 'button'
+

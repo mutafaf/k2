@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   Shoppe::Engine.routes.draw do
     resources :return_forms
-    resources :homepage_dynamics
+    resources :homepage_settings
     resources :sizes
     resources :subscribers
     resources :jobs do

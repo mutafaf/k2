@@ -8,29 +8,17 @@
   <div id="flexslider">
     <div class="">
       <ul class="slides">
-        <li>
-          <div class="container mini-banner">
-            <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png"></h1>
-            <div>
-              <br>
-            </div>
-            <a style="letter-spacing: 8px; " href="/products?category_permalink=salecollection" class="btn btn-default btn-lg ">Shop Now</a>
-          </div>
-          <!-- Default Image -->
-          <img src="<%= @homepage_dynamic.try(:default_image).try(:path) %>" style=" width:100%;" class="img-responsive center-block" />
-        </li>
-
-        <%@homepage_dynamic.attachments.each do |attachment|%>
-           <%unless ["default_image", "data_sheet", "logo_image"].include?(attachment.role)%>
+        <%@homepage_settings.each do |homepage_setting|%>
+           <% if homepage_setting.image.present? %>
               <li>
                 <div class="container mini-banner">
                   <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png" ></h1>
                   <div>
                     <br>
                   </div>
-                  <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
+                  <a style="letter-spacing: 8px; " href="<%= products_path(category_permalink: homepage_setting.category_permalink) %>" class="btn btn-default btn-lg ">Shop Now</a>
                 </div>
-                <img src="<%=attachment.path%>" style=" width:100%;" class="img-responsive center-block"/>
+                <img src="<%=homepage_setting.image.path%>" style=" width:100%;" class="img-responsive center-block"/>
               </li>
            <% end %>
         <% end %>
