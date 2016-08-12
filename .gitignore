@@ -17,5 +17,7 @@
 /tmp
 /nbproject/private/
 /config/database.yml
+/config/puma.rb
+/db/schema.rb
 /public/
 

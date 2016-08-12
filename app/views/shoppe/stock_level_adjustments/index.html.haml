@@ -30,7 +30,7 @@
         %tr.form
           %td
           - if @item.variant?
-            %td= f.collection_select :size_id, @item.get_sizes, :id, :name,{},{}
+            %td= f.collection_select :size_id, @item.get_sizes, :id, :name,{},{:required=>true}
           %td.desc= f.text_field :description
           %td.adjustment
             = f.text_field :adjustment

@@ -739,6 +739,7 @@ textarea {
 .pagination > li.active > a:hover,
 .pagination > li.active > a:focus {
 	    background-color: transparent;
+	    border: 2px solid black;
 }
 
 .pagination-lg > li > a {
