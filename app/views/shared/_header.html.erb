@@ -3,7 +3,11 @@
       <div class="col-md-2">
          <div class="navbar-header">
             <a href="/" class="navbar-brand" data-no-turbolink =true>
-            <img src="/assets/logo.png" alt="borjan">
+            <% if @logo.present? and @logo.image.present? %>
+               <img src="<%= @logo.image.try(:path) %>" alt="Borjan">
+            <% else %>
+               <img src="/assets/logo.png" alt="Borjan">
+            <% end %>
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
          </div>

@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 /nbproject/private/
-/public/
+/public
 /config/database.yml
 /config/puma.rb
-.byebug_history
+/db/schema.rb
