@@ -20,7 +20,7 @@
     %tbody
       - if @homepage_settings.empty?
         %tr.empty
-          %td{:colspan=>4}= t('shoppe.homepage_settings.no_homepage_settings')
+          %td{:colspan=>5}= t('shoppe.homepage_settings.no_homepage_settings')
       - else
         - for homepage_setting in @homepage_settings
           %tr

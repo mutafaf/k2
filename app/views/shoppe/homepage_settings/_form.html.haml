@@ -28,6 +28,11 @@
           = f.hidden_field "attachments[image][role]", value: "image"
           = f.hidden_field "attachments[image][parent_id]", value: @homepage_setting.id
 
+        -if @homepage_setting.is_logo? || params[:setting_for] == "Logo"
+          %small Recommended image size for Logo is 170px X 60px.
+        - else
+          %small Recommended image size for Main Slider is 1600px X 870px.
+
   %p.submit
     - unless @homepage_setting.new_record? || @homepage_setting.is_logo?
       %span.right
