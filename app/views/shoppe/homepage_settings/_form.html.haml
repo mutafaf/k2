@@ -1,0 +1,47 @@
+= form_for @homepage_setting do |f|
+  = f.error_messages
+
+  -if @homepage_setting.is_logo? || params[:setting_for] == "Logo"
+    = f.hidden_field :setting_for , :value=>"Logo"
+  -else
+    = field_set_tag t('shoppe.homepage_settings.homepage_setting_detail') do
+      .splitContainer
+        %dl.half
+          %dt= f.label :category_permalink, t('shoppe.homepage_settings.category_permalink')
+          %dd
+            = f.text_field :category_permalink, class: 'text focus'
+            / = f.select :category_permalink, Shoppe::ProductCategory.ordered.map{ |c| [c.get_category_sequence, c.permalink] }, {:include_blank => 'Nothing'}, {class: "chosen"}
+            = f.hidden_field :setting_for , :value=>"Main Slider"
+
+        %dl.half
+          %dt= f.label :position, t('shoppe.jobs.position')
+          %dd= f.text_field :position, class: 'text focus', :required=>true
+
+  = field_set_tag t('shoppe.homepage_settings.image') do
+    .splitContainer
+      %dl.half
+        / %dt= f.label "attachments[image][file]", t('shoppe.homepage_settings.image')
+        %dd
+          = attachment_preview @homepage_setting.image
+          %p= f.file_field "attachments[image][file]"
+          %br
+          = f.hidden_field "attachments[image][role]", value: "image"
+          = f.hidden_field "attachments[image][parent_id]", value: @homepage_setting.id
+
+        -if @homepage_setting.is_logo? || params[:setting_for] == "Logo"
+          %small Recommended image size for Logo is 170px X 60px.
+        - else
+          %small Recommended image size for Main Slider is 1600px X 870px.
+
+  %p.submit
+    - unless @homepage_setting.new_record? || @homepage_setting.is_logo?
+      %span.right
+        = link_to t('shoppe.homepage_settings.delete'),
+                  @homepage_setting,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.homepage_settings.delete_confirmation')}
+    = f.submit t('shoppe.homepage_settings.save'),
+               class: 'button green',
+               data: {disable_with: (@homepage_setting.new_record? ? t('shoppe.homepage_settings.creating_homepage_setting') : t('shoppe.homepage_settings.updating_homepage_setting'))}
+    = link_to t('shoppe.homepage_settings.cancel'), :homepage_settings, class: 'button'

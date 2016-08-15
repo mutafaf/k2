@@ -12,15 +12,21 @@
     $("#collection").html("Collection")
   <% end %>
 
-  // $("body").animate({ scrollTop: 0});
+  // $(window).animate({ scrollTop: 0});
+  // $(window).scrollTop($('#collection').offset().top);
+
 <%end%>
 
 <% if @products.present? %> 
       $("#products").html("<%=j render(:partial => 'products', :object => @products) %>");
       $('.pagination').html('<%=j(paginate(@products, :remote => true).to_s) %>');
+        $("html, body").delay(200).animate({
+            scrollTop: $('#products').offset().top -100
+     }, 1000)
 <%else%>
   $('#products').html('<h1 class="text-center products_not_found">No Results Found</h1>');
   $('.pagination').html('');
+
 <%end%>
 
 if("<%=params[:page]%>")
@@ -31,5 +37,3 @@ if("<%=params[:page]%>")
 else{
   window.history.pushState("object","Title","/products?category_permalink="+"<%=params[:category_permalink]%>"+"&page="+"1"+"&date="+new Date());
 }
-
-
