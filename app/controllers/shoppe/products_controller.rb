@@ -56,7 +56,8 @@ module Shoppe
     end
 
     def destroy
-      @product.destroy
+      @product.status="deleted"
+      @product.save
       redirect_to :products, flash: { notice: t('shoppe.products.destroy_notice') }
     end
 
