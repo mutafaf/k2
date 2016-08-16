@@ -78,6 +78,7 @@ Rails.application.routes.draw do
   get "careers", to: "careers#careers"
   post "add_subscriber", to: "home#add_subscriber"
   post "add_careers", to: "careers#add_careers"
+  get "/products/sliderprice", to: 'products#sliderprice', as: "slider_price"
   resources :return_forms, only: [:new, :create]
 
 

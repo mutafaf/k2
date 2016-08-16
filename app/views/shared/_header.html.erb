@@ -248,8 +248,8 @@
                <ul class="dropdown-menu" >
                   <li>
                      <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
-                        <div class="" >
-                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control track_order_field", :id=>"category_name", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
+                        <div class="">
+                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control track_order_field", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
                               " %>
                         </div>
                      <% end %>
