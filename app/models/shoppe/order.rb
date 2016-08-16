@@ -95,6 +95,10 @@ module Shoppe
       order_items.inject(0) { |t, i| t + i.quantity }
     end
 
+    def item_per_product
+
+    end
+
     # Total without any tax and shipping changes
     def products_total
       sub_total = 0
@@ -181,9 +185,10 @@ module Shoppe
               sheet1.row(i).height = 23
               #if we have ist item in order the insert it full else insert on repeated data
               if d==0
-                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
+                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_item.quantity, status, ship_date 
               else
-                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", "", "", ""
+                # byebug
+                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", order_item.quantity, "", ""
                 temp=d
               end
             end
@@ -214,9 +219,9 @@ module Shoppe
               sheet1.row(i).height = 23
               #if we have ist item in order the insert it full else insert on repeated data
               if d==0
-                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_qty, status, ship_date 
+                sheet1.row(i).push order_id, order_date, customer_name, order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  order_amount, contact_no, address, city,  email, order_item.quantity, status, ship_date 
               else
-                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", "", "", ""
+                sheet1.row(i).push "", "", "", order_item.try(:show_category) ,order_item.try(:product_name) , order_item.try(:variant_name), order_item.try(:items_sizes),  "", "", "", "",  "", order_item.quantity, "", ""
                 temp=d
               end
             end
@@ -244,7 +249,7 @@ module Shoppe
       sheet1.merge_cells(i-temp, 9, i, 9)
       sheet1.merge_cells(i-temp, 10, i, 10)
       sheet1.merge_cells(i-temp, 11, i, 11)
-      sheet1.merge_cells(i-temp, 12, i, 12)
+      # sheet1.merge_cells(i-temp, 12, i, 12)
       sheet1.merge_cells(i-temp, 13, i, 13)
       sheet1.merge_cells(i-temp, 14, i, 14)
 
