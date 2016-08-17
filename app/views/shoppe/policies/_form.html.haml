@@ -1,0 +1,31 @@
+= form_for @policy do |f|
+  = f.error_messages
+
+  = field_set_tag t('shoppe.policies.policy_detail') do
+    .splitContainer
+      %dl.third
+        %dt= f.label :title, t('shoppe.policies.title')
+        %dd= f.text_field :title, class: 'text focus'
+      %dl.third
+        %dt= f.label :permalink, t('shoppe.policies.permalink')
+        %dd= f.text_field :permalink, class: 'text focus'
+      %dl.third
+        %dt= f.label :position, t('shoppe.policies.position')
+        %dd= f.text_field :position, class: 'text focus'
+    .splitContainer-ck
+      %dl
+        %dt= f.label :description, t('shoppe.policies.description')
+        %dd= f.text_area :description, class: 'ckeditor'
+
+  %p.submit
+    - unless @policy.new_record?
+      %span.right
+        = link_to t('shoppe.policies.delete'),
+                  @policy,
+                  class: 'button purple',
+                  method: :delete,
+                  data: {confirm: t('shoppe.policies.delete_confirmation')}
+    = f.submit t('shoppe.policies.save'),
+               class: 'button green',
+               data: {disable_with: (@policy.new_record? ? t('shoppe.policies.creating_policy') : t('shoppe.policies.updating_policy'))}
+    = link_to t('shoppe.policies.cancel'), :policies, class: 'button'

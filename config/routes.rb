@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     resources :blogs
     resources :brands
+    resources :policies
     resources :careers
     resources :dynamic_options do
       collection do

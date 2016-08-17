@@ -40,6 +40,9 @@ en:
       shoppe/brand:
         one: Brands
         other: Brands
+      shoppe/brand:
+        one: Policies
+        other: Policies
       shoppe/blog:
         one: Blog
         other: Blogs
@@ -789,6 +792,7 @@ en:
         dynamic_options: Dynamic Options
         jobs: Jobs
         brands: Brands
+        policies: Policies
         homepage_settings: Homepage Settings
         blogs: Blogs
         subscribers: Subscribers
@@ -1126,6 +1130,28 @@ en:
       created_successfully: Homepage Setting has been created successfully.
       updated_successfully: Homepage Setting has been updated successfully.
       deleted_successfully: Homepage Setting has been deleted successfully.
+
+    policies:
+      policies: Policies
+      new_brand: New policy
+      title: Title
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_policies : No Policies
+      policy_detail : Policy Detail
+      back_to_policies_list : Back to Policy list
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_policy: Creating Policy...
+      updating_policy: Updating Policy...
+      delete_confirmation: Are you sure you wish to remove this policy?
+      type: Type
+      default: Default
+      created_successfully: Policy has been created successfully.
+      updated_successfully: Policy has been updated successfully.
+      deleted_successfully: Policy has been deleted successfully.
 
   layouts:
     shoppe:
