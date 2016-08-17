@@ -1,0 +1,26 @@
+<div id="thankyou" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close button-stype" data-dismiss="modal">×</button>
+            <center>
+               <h1 class="modal-title">Thank you! </h1>
+            </center>
+         </div>
+         <center>
+            <div class="modal-body">
+               <p>your order has been completed successfully</p>
+            </div>
+         </center>
+      </div>
+   </div>
+</div>
+
+<script type="text/javascript">
+   function thankyouPixel(order_amount){
+      // Purchase
+      // Track purchases or checkout flow completions (ex. landing on "Thank You" or confirmation page)
+      fbq('track', 'Purchase', {value: order_amount, currency: 'PKR'});
+   }
+</script>
