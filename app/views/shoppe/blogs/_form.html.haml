@@ -30,12 +30,12 @@
   %p.submit
     - unless @blog.new_record?
       %span.right
-        = link_to t('shoppe.sizes.delete'),
+        = link_to t('shoppe.blogs.delete'),
                   @blog,
                   class: 'button purple',
                   method: :delete,
                   data: {confirm: t('shoppe.blogs.delete_confirmation')}
-    = f.submit t('shoppe.sizes.save'),
+    = f.submit t('shoppe.blogs.save'),
                class: 'button green',
-               data: {disable_with: (@blog.new_record? ? t('shoppe.blogs.creating_size') : t('shoppe.blogs.updating_size'))}
+               data: {disable_with: (@blog.new_record? ? t('shoppe.blogs.creating_blog') : t('shoppe.blogs.updating_blog'))}
     = link_to t('shoppe.blogs.cancel'), :blogs, class: 'button'
