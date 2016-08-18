@@ -71,6 +71,9 @@ module Shoppe
     after_create :create_default_variant
     after_save :update_active_for_variants
 
+    # For Soft Deletion
+    default_scope -> { where(status: nil) }
+
     # All active products
     scope :active, -> { where(active: true) }
     
@@ -124,6 +127,7 @@ module Shoppe
     #
     # @return [String]
     def full_name
+
       parent ? "#{parent.name} (#{name})" : name
     end
 
