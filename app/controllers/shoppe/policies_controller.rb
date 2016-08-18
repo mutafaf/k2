@@ -3,8 +3,7 @@ class Shoppe::PoliciesController < Shoppe::ApplicationController
   before_filter :find_policy, only: [:edit, :update, :destroy]
 
   def index
-    @query = Shoppe::Policy.all.page(params[:page]).search(params[:q])
-    @policies = @query.result
+    @policies = Shoppe::Policy.all.order("position").page(params[:page])
   end
 
   def new

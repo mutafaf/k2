@@ -12,14 +12,16 @@
     %thead
       %tr
         %th= t('shoppe.policies.title')
+        %th= t('shoppe.policies.position')
     %tbody
       - if @policies.empty?
         %tr.empty
-          %td= t('shoppe.policies.no_policies')
+          %td{:colspan=>2}= t('shoppe.policies.no_policies')
       - else
         - for policy in @policies
           %tr
             %td=link_to policy.title, [:edit, policy]
+            %td= policy.position
 = paginate @policies
 
 :css
