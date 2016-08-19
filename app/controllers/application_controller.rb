@@ -39,6 +39,8 @@ class ApplicationController < ActionController::Base
   private
 
   def set_header
+    @logo = Shoppe::HomepageSetting.find_by_setting_for("Logo")
+
     @men = Shoppe::ProductCategory.search_category("Men")
     @women = Shoppe::ProductCategory.search_category("Women")
 

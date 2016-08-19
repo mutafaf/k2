@@ -3,7 +3,6 @@ class HomeController < ApplicationController
     @featured_categories = Shoppe::ProductCategory.get_featured_categories
     @new_arrivals = Shoppe::Product.new_arrivals
     @hot_selling = Shoppe::Product.hot_selling
-    @logo = Shoppe::HomepageSetting.find_by_setting_for("Logo")
     @homepage_settings = Shoppe::HomepageSetting.slider_records
   end
 
