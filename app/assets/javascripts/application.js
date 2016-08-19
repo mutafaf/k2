@@ -37,6 +37,7 @@
 //= require parsley
 //= require jquery.raty
 //= require ratyrate
+//= require toastr.js
 
 function set_toastr_options() {
     toastr.options = {
