@@ -12,6 +12,9 @@ module Shoppe
     # All products which are not variants
     scope :root, -> { where(parent_id: nil) }
 
+    # For Soft Deletion
+    default_scope-> { where(status: nil) }
+
     # If a variant is created, the base product should be updated so that it doesn't have stock control enabled
     after_save do
       if parent
@@ -100,6 +103,11 @@ module Shoppe
     # @return [Boolean]
     def variant?
       !parent_id.blank?
+    end
+
+    #  To override the getter method and unscope super:
+    def parent
+      Shoppe::Product.unscoped{ super }
     end
   end
 end
