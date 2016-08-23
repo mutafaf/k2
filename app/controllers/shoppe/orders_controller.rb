@@ -5,7 +5,7 @@ module Shoppe
 
     def index
       
-      @query = Shoppe::Order.received.includes(order_items: :ordered_item).search(params[:q])
+      @query = Shoppe::Order.ordered.received.includes(order_items: :ordered_item).search(params[:q])
       @orders = @query.result.page(params[:page])
     end
 
