@@ -486,7 +486,8 @@ module Shoppe
     end
 
     def self.with_translated_name(name_string)
-      with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
+      # with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
+      with_translations(I18n.locale).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{name_string}%".downcase)
     end
 
     def self.search_by_name_and_category(search_value)
