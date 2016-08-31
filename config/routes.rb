@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   Shoppe::Engine.routes.draw do
     resources :return_forms
-    resources :home_slider_images
+    resources :homepage_settings
     resources :sizes
     resources :subscribers
     resources :jobs do
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     resources :blogs
     resources :brands
+    resources :policies
     resources :careers
     resources :dynamic_options do
       collection do
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
   post "product/:permalink", to: "products#buy", as: "buy"
 
   get "brand/:permalink", to: "home#brand_page", as: "brand"
+  get "policy/:permalink", to: "home#policy_page", as: "policy"
 
   get "basket", to: "orders#show"
   delete "basket", to: "orders#destroy"
@@ -66,9 +68,9 @@ Rails.application.routes.draw do
 
   get "videos", to: "home#videos"
   get "faq", to: "home#faq"
-  get "exchange", to: "home#exchange"
-  get "privacy", to: "home#privacy"
-  get "terms", to: "home#terms"
+  # get "exchange", to: "home#exchange"
+  # get "privacy", to: "home#privacy"
+  # get "terms", to: "home#terms"
   
   get "store_location", to: "home#store_location"
   get "find_nearest_stores", to: "home#find_nearest_stores"
@@ -78,6 +80,7 @@ Rails.application.routes.draw do
   get "careers", to: "careers#careers"
   post "add_subscriber", to: "home#add_subscriber"
   post "add_careers", to: "careers#add_careers"
+  get "/products/sliderprice", to: 'products#sliderprice', as: "slider_price"
   resources :return_forms, only: [:new, :create]
 
 

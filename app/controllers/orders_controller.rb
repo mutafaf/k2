@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
         flash[:notice] = "Your Card has been verified. Please complete your order now."
         return
       else
-        redirect_to root_path, :alert =>"Your have reached maximum limit (5 times in a month) of shopping using Credit/Debit Card. Please contact Borjan for details."
+        redirect_to root_path, :alert =>"Your have reached maximum limit (3 times in a month) of shopping using Credit/Debit Card. Please contact Borjan for details."
       end
     else
       redirect_to root_path, :alert => "Your Card verification Failed !"

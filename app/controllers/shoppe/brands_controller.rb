@@ -3,8 +3,7 @@ class Shoppe::BrandsController < Shoppe::ApplicationController
   before_filter :find_brand, only: [:edit, :update, :destroy]
 
   def index
-    @query = Shoppe::Brand.all.page(params[:page]).search(params[:q])
-    @brands = @query.result
+    @brands = Shoppe::Brand.all.order("position").page(params[:page])
   end
 
   def new

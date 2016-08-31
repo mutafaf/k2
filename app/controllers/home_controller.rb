@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     @featured_categories = Shoppe::ProductCategory.get_featured_categories
     @new_arrivals = Shoppe::Product.new_arrivals
     @hot_selling = Shoppe::Product.hot_selling
+    @homepage_settings = Shoppe::HomepageSetting.slider_records
   end
 
   def add_subscriber
@@ -29,18 +30,22 @@ class HomeController < ApplicationController
   def brand_page
     @brand = Shoppe::Brand.find_by_permalink(params[:permalink])
   end
-  
-  def exchange
-    
+
+  def policy_page
+    @policy = Shoppe::Policy.find_by_permalink(params[:permalink])
   end
   
-  def privacy
+  # def exchange
     
-  end
+  # end
   
-  def terms
+  # def privacy
     
-  end
+  # end
+  
+  # def terms
+    
+  # end
 
   private
 

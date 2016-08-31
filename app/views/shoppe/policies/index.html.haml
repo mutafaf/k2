@@ -1,0 +1,70 @@
+- @page_title = t('shoppe.policies.policies')
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.policies.new_policy'), :new_policy, class: 'button green'
+  %h2.users= t('shoppe.policies.policies')
+
+
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.policies.title')
+        %th= t('shoppe.policies.position')
+    %tbody
+      - if @policies.empty?
+        %tr.empty
+          %td{:colspan=>2}= t('shoppe.policies.no_policies')
+      - else
+        - for policy in @policies
+          %tr
+            %td=link_to policy.title, [:edit, policy]
+            %td= policy.position
+= paginate @policies
+
+:css
+
+  .pagination { border:0px !important;
+   padding:0px !important ;
+   margin:0px auto !important;
+  display:inline-block !important;}  
+  .pagination li {
+    display:inline-block;
+    margin:0px;
+    padding:0;
+    }
+  .pagination li a{
+      margin: 2px;
+      border: 1px solid #999999;
+      color: #999;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+     
+      background: transparent;
+      display:inline-block;
+      padding:5px 10px ;
+      text-decoration:none;
+      }
+
+  nav {
+      margin-top:20px;
+      width:100%;
+      text-align:center;
+  }
+  .pagination .active{
+  
+      
+      
+  }
+  .pagination .active a{
+  
+     border: 1px solid #9AC835;
+      color: #fff;
+      background-color:#9AC835;
+      
+     
+      
+  }
