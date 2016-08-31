@@ -3,7 +3,11 @@
       <div class="col-md-2">
          <div class="navbar-header">
             <a href="/" class="navbar-brand" data-no-turbolink =true>
-            <img src="/assets/logo.png" alt="borjan">
+            <% if @logo.present? and @logo.image.present? %>
+               <img src="<%= @logo.image.try(:path) %>" alt="Borjan">
+            <% else %>
+               <img src="/assets/logo.png" alt="Borjan">
+            <% end %>
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
          </div>
@@ -244,8 +248,8 @@
                <ul class="dropdown-menu" >
                   <li>
                      <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
-                        <div class="" >
-                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control track_order_field", :id=>"category_name", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
+                        <div class="">
+                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control track_order_field", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
                               " %>
                         </div>
                      <% end %>

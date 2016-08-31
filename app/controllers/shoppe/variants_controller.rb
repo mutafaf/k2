@@ -35,7 +35,8 @@ module Shoppe
     end
 
     def destroy
-      @variant.destroy
+      @variant.status="deleted"
+      @variant.save
       redirect_to [@product, :variants], notice: t('shoppe.variants.destroy_notice')
     end
 

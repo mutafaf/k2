@@ -20,8 +20,9 @@ module Shoppe
       when params[:name]
         @products_paged = @products_paged
                           .page(params[:page])
-                          .ransack(with_translated_name: params[:name].split)
+                          .ransack(with_translated_name: params[:name])
                           .result
+                          # .ransack(with_translated_name: params[:name].split)
       else
         @products_paged = @products_paged.page(params[:page])
       end
@@ -56,7 +57,8 @@ module Shoppe
     end
 
     def destroy
-      @product.destroy
+      @product.status="deleted"
+      @product.save
       redirect_to :products, flash: { notice: t('shoppe.products.destroy_notice') }
     end
 
@@ -74,6 +76,8 @@ module Shoppe
     private
 
     def safe_params
+      params[:product][:name] = params[:product][:name].squish if params[:product][:name]
+      
       file_params = [:file, :parent_id, :role, :parent_type, file: []]
       params[:product].permit(:name, :color, :color_name, :sku, :permalink, :description, :short_description, :weight, :price, :old_price, :tax_rate_id, :stock_control, :active, :featured, :new_arrivals, :hot_selling, :article_no, :brand, :in_the_box, attachments: [default_image: file_params, extra: file_params], product_attributes_array: [:key, :value, :searchable, :public], product_category_ids: [], size_ids: [])
     end

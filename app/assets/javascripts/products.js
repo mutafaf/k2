@@ -76,13 +76,33 @@ function setAlreadySeletedSize(){
   };
 }
 
+function getprice(){
+  var pri= 10000;
+  $.ajax({
+     url: '/products/sliderprice',
+     method: 'get',
+     async: false,
+     success: function(maximum_price) {
+       
+        pri=parseFloat(maximum_price);
+        console.log( pri);
+
+     }
+   });
+
+  
+  return Math.ceil(pri/100)*100;
+}
+
 $(function() {
+  a=getprice();
   $( "#slider-range" ).slider({
     range: true,
     min: 100,
-    max: 5000,
+    max: a,
     step: 50,
-    values: [ 100, 5000 ],
+    values: [ 100, a],
+
     slide: function( event, ui ) {
       $( "#amount" ).val( "Rs " + ui.values[ 0 ] + " - Rs " + ui.values[ 1 ] );
     }
@@ -90,6 +110,10 @@ $(function() {
   $( "#amount" ).val( "Rs " + $( "#slider-range" ).slider( "values", 0 ) +
     " - Rs " + $( "#slider-range" ).slider( "values", 1 ) );
 });
+
+
+
+
 
 function filterProducts() {
   var min_price = $( "#slider-range" ).slider( "values", 0 );

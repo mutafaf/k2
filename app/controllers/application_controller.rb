@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
-  before_action :set_header, :brands
+  before_action :set_header, :set_footer
   helper_method :resource, :resource_name, :devise_mapping
   before_filter :set_default_url_options
 
@@ -25,7 +25,22 @@ class ApplicationController < ActionController::Base
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def set_delivery_charges(order)
+    order = Shoppe::Order.find(order.id)
+    if order.products_total >= Shoppe::Order::ORDER_AMOUNT || order.products_total == 0
+      order.delivery_charges = 0
+      order.save
+    else
+      order.delivery_charges = Shoppe::Order::DELIVERY_CHARGES
+      order.save
+    end
+  end
+
+  private
+
   def set_header
+    @logo = Shoppe::HomepageSetting.find_by_setting_for("Logo")
+
     @men = Shoppe::ProductCategory.search_category("Men")
     @women = Shoppe::ProductCategory.search_category("Women")
 
@@ -42,21 +57,9 @@ class ApplicationController < ActionController::Base
     @assessories = Shoppe::ProductCategory.search_category("Assessories")
   end
 
-  def set_delivery_charges(order)
-    order = Shoppe::Order.find(order.id)
-    if order.products_total >= Shoppe::Order::ORDER_AMOUNT || order.products_total == 0
-      order.delivery_charges = 0
-      order.save
-    else
-      order.delivery_charges = Shoppe::Order::DELIVERY_CHARGES
-      order.save
-    end
-  end
-
-  private
-
-  def brands
+  def set_footer
     @footer_brands = Shoppe::Brand.order("position ASC").all.limit(4)
+    @policies = Shoppe::Policy.order("position ASC").all
   end
 
   def current_order

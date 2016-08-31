@@ -71,6 +71,9 @@ module Shoppe
     after_create :create_default_variant
     after_save :update_active_for_variants
 
+    # For Soft Deletion
+    default_scope -> { where(status: nil) }
+
     # All active products
     scope :active, -> { where(active: true) }
     
@@ -124,6 +127,7 @@ module Shoppe
     #
     # @return [String]
     def full_name
+
       parent ? "#{parent.name} (#{name})" : name
     end
 
@@ -482,7 +486,8 @@ module Shoppe
     end
 
     def self.with_translated_name(name_string)
-      with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
+      # with_translations(I18n.locale).where('shoppe_product_translations.name' => name_string)
+      with_translations(I18n.locale).where("LOWER(shoppe_product_translations.name) LIKE ?" , "%#{name_string}%".downcase)
     end
 
     def self.search_by_name_and_category(search_value)

@@ -17,6 +17,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def sliderprice
+    price=Shoppe::Product.order("price DESC").first.price.to_s
+    render  :text => price
+
+  end
+
   def show
     @product = Shoppe::Product.active.find_by_permalink(params[:permalink])
 
@@ -32,12 +38,15 @@ class ProductsController < ApplicationController
 
     @sizes = @product.get_available_sizes
     @variants = @product.get_available_variants
-
+    if session["success"]=="success"
+      @msg="true"
+      session["success"]=nil
+    end
     if request.xhr?
+
       if params[:color].present?
         render :partial => "product_display"
       else
-        # byebug
         render :partial => "product_detail_popup"
         
       end
@@ -60,6 +69,7 @@ class ProductsController < ApplicationController
       begin
         current_order.order_items.add_item(@product, quantity, params[:size])
         set_delivery_charges(current_order) # Set Delivery Charges
+        session[:success]="success"
         redirect_to product_path(@product.permalink), :notice => "Product has been added successfuly!"
       rescue Shoppe::Errors::NotEnoughStock
         flash[:error] = "Not enough stock available for this product."

@@ -12,14 +12,16 @@
     %thead
       %tr
         %th= t('shoppe.brands.name')
+        %th= t('shoppe.brands.position')
     %tbody
       - if @brands.empty?
         %tr.empty
-          %td= t('shoppe.brands.no_brands')
+          %td{:colspan=>2}= t('shoppe.brands.no_brands')
       - else
         - for brand in @brands
           %tr
             %td=link_to brand.name, [:edit, brand]
+            %td= brand.position
 = paginate @brands
 
 :css

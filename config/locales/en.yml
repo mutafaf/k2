@@ -40,6 +40,9 @@ en:
       shoppe/brand:
         one: Brands
         other: Brands
+      shoppe/brand:
+        one: Policies
+        other: Policies
       shoppe/blog:
         one: Blog
         other: Blogs
@@ -789,7 +792,8 @@ en:
         dynamic_options: Dynamic Options
         jobs: Jobs
         brands: Brands
-        home_slider_images: Home Slider Images
+        policies: Policies
+        homepage_settings: Homepage Settings
         blogs: Blogs
         subscribers: Subscribers
         product_categories: Product Categories
@@ -1104,6 +1108,50 @@ en:
       created_successfully: Return Form has been created successfully.
       updated_successfully: Return Form has been updated successfully.
       deleted_successfully: Return Form has been deleted successfully.
+
+    homepage_settings:
+      homepage_settings: Homepage Settings
+      new_homepage_setting: New Homepage Setting
+      name: Name
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_homepage_settings : No Homepage Settings
+      homepage_setting_detail : Homepage Setting Detail
+      back_to_homepage_settings_list : Back
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_homepage_setting: Creating Homepage Setting...
+      updating_homepage_setting: Updating Homepage Setting...
+      delete_confirmation: Are you sure you wish to remove this Homepage Setting?
+      type: Type
+      default: Default
+      created_successfully: Homepage Setting has been created successfully.
+      updated_successfully: Homepage Setting has been updated successfully.
+      deleted_successfully: Homepage Setting has been deleted successfully.
+
+    policies:
+      policies: Policies
+      new_brand: New policy
+      title: Title
+      description: Description
+      permalink : Permalink
+      position: Position
+      no_policies : No Policies
+      policy_detail : Policy Detail
+      back_to_policies_list : Back to Policy list
+      cancel: Cancel
+      delete: Delete
+      save: Save
+      creating_policy: Creating Policy...
+      updating_policy: Updating Policy...
+      delete_confirmation: Are you sure you wish to remove this policy?
+      type: Type
+      default: Default
+      created_successfully: Policy has been created successfully.
+      updated_successfully: Policy has been updated successfully.
+      deleted_successfully: Policy has been deleted successfully.
 
   layouts:
     shoppe:
