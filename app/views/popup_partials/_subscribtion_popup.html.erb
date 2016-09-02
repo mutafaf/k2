@@ -27,7 +27,7 @@
                         <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit" style="float: right;
                            background: transparent;
-                           border: solid 1px;">Submit</button>
+                           border: solid 1px;" onclick="leadPixel();">Submit</button>
                         </span>
                      <% end %>
                      <div class="checkbox">  
@@ -47,7 +47,10 @@
 </div>
 
 <script type="text/javascript">
-   // Lead
-   // Track when a user expresses interest in your offering (ex. form submission, sign up for trial, landing on pricing page)
-   fbq('track', 'Lead');
+
+   function leadPixel(){
+      // Lead
+      // Track when a user expresses interest in your offering (ex. form submission, sign up for trial, landing on pricing page)
+      fbq('track', 'Lead');
+   }
 </script>
