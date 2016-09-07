@@ -7974,3 +7974,53 @@ input{ color: #000; }
 #category_name{
 	z-index:99999;
 }
+
+/* Abdul Basit css */
+.mini-banner a.btn.btn-default.btn-lg {
+    margin-top: 360px;
+}
+@media screen and (min-width: 320px) and (max-width: 479px) {
+
+.mini-banner a.btn.btn-default.btn-lg {
+    margin-top: 100px;
+}
+}
+@media screen and (min-width: 480px) and (max-width: 639px) {
+
+.mini-banner a.btn.btn-default.btn-lg {
+    margin-top: 150px;
+}
+}
+@media screen and (min-width: 640px) and (max-width: 767px) {
+
+.mini-banner a.btn.btn-default.btn-lg {
+    margin-top: 200px;
+}
+}
+@media screen and (min-width: 768px) and (max-width: 1003px) {
+
+.mini-banner a.btn.btn-default.btn-lg {
+    margin-top: 250px;
+}
+}
+@media screen and (min-width: 1600px) and (max-width: 1920px) {
+
+.mini-banner a.btn.btn-default.btn-lg {
+    margin-top: 420px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
