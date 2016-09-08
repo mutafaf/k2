@@ -8,7 +8,7 @@ module Shoppe
     belongs_to :order, class_name: 'Shoppe::Order', touch: true, inverse_of: :order_items
 
     # The item which has been ordered
-    belongs_to :ordered_item, polymorphic: true
+    belongs_to :ordered_item, -> { unscope(where: :status) }, polymorphic: true
 
     # Any stock level adjustments which have been made for this order item
     has_many :stock_level_adjustments, as: :parent, dependent: :nullify, class_name: 'Shoppe::StockLevelAdjustment'
