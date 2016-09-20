@@ -21,6 +21,10 @@ $(window).load(function(){
      $('body').removeClass('loading');
    }
  });
+$('#flexslider').flexslider({
+  animation: "slide"
+      });
+
 });
 
 function placeMarker(location, address) {

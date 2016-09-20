@@ -39,3 +39,8 @@ background: linear-gradient(to left, #E0EAFC , #CFDEF3); /* W3C, IE 10+/ Edge, F
 
         
 }
+
+.flexslider .slides > li:first-child {display: block; -webkit-backface-visibility: visible;} 
+.flexslider .slides > li {display: none; -webkit-backface-visibility: hidden;}
+#flexslider .slides > li:first-child {display: block; -webkit-backface-visibility: visible;} 
+#flexslider .slides > li {display: none; -webkit-backface-visibility: hidden;}
