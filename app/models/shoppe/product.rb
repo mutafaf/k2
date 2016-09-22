@@ -104,6 +104,7 @@ module Shoppe
 
     # Sync soft deletion of Product to its variants
     def update_soft_deletion_for_variants
+      byebug
       if self.variants.present? and self.status_changed?
         self.variants.each do |variant|
           variant.update_column(:status, self.status)

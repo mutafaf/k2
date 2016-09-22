@@ -9,7 +9,7 @@ CarrierWave.configure do |cfg|
     cfg.fog_directory  = Rails.application.secrets.AWS_BUCKET
     cfg.fog_public     = true
     cfg.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
-  elsif Rails.env.staging?
+  elsif Rails.env.staging? or Rails.env.development?
     cfg.storage = :fog
     cfg.fog_credentials = {
       :provider               => 'AWS',

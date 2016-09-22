@@ -131,7 +131,8 @@ module Shoppe
     end
 
     def set_child_permalinks
-      children.each(&:save!)
+      byebug
+      children.each(&:save!) #if self.status_changed?
     end
   end
 end

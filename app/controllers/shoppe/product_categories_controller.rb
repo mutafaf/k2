@@ -33,7 +33,9 @@ module Shoppe
     end
 
     def destroy
-      @product_category.destroy
+      # @product_category.destroy
+      @product_category.status = "deleted"
+      @product_category.save
       redirect_to :product_categories, flash: { notice: t('shoppe.product_category.destroy_notice') }
     end
 
