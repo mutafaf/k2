@@ -69,7 +69,7 @@ module Shoppe
     before_validation { self.permalink = name.parameterize if permalink.blank? && name.is_a?(String) }
 
     after_create :create_default_variant
-    after_save :update_active_for_variants
+    after_save :update_active_for_variants, :update_soft_deletion_for_variants
 
     # For Soft Deletion
     default_scope -> { where(status: nil) }
@@ -98,6 +98,15 @@ module Shoppe
       if self.variants.present? and self.active_changed?
         self.variants.each do |variant|
           variant.update_column(:active, self.active)
+        end
+      end
+    end
+
+    # Sync soft deletion of Product to its variants
+    def update_soft_deletion_for_variants
+      if self.variants.present? and self.status_changed?
+        self.variants.each do |variant|
+          variant.update_column(:status, self.status)
         end
       end
     end
