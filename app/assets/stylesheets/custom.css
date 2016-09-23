@@ -7599,7 +7599,6 @@ z-index: 999999 !important;
    width: 32px !important;
    height: 32px  !important;
  }
-.products-height{}
 
 
 
@@ -7627,7 +7626,7 @@ z-index: 999999 !important;
     text-align: center;
     margin: auto;margin-top: 32px;     width: 100%;}
 
-.products-height 
+/*.products-height 
 {  margin-top: 34px !important;
 	height: 170px;
     line-height: 300px;
@@ -7636,8 +7635,29 @@ z-index: 999999 !important;
     vertical-align: middle;
     text-align: center;
     margin: auto;
-}
+}*/
     
+    .products-height { 
+height:170px; 
+line-height: 300px; 
+display: flex; 
+align-items: center; 
+overflow:hidden; 
+padding:1px; 
+vertical-align:middle; 
+text-align:center; }
+
+.products-height a
+{ margin:auto !important; 
+vertical-align:middle;
+ display:inline-block; }
+
+.products-height img { 
+max-height:300px; 
+margin:auto !important; 
+vertical-align:middle; 
+display:inline-block; 
+}
 
 
 
