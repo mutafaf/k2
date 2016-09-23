@@ -7638,7 +7638,7 @@ z-index: 999999 !important;
 }*/
     
     .products-height { 
-height:170px; 
+height:auto; 
 line-height: 300px; 
 display: flex; 
 align-items: center; 
