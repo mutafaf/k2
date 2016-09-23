@@ -23,6 +23,9 @@ module Shoppe
     validates :permalink, presence: true, uniqueness: { scope: :parent_id }, permalink: true
     # validates :permalink, presence: true, uniqueness: true, permalink: true
 
+    # For Soft Deletion
+    default_scope -> { where(status: nil) }
+
     # Root (no parent) product categories only
     scope :without_parent, -> { where(parent_id: nil) }
 
