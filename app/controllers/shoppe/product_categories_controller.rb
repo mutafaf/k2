@@ -33,11 +33,13 @@ module Shoppe
     end
 
     def destroy
-      if @product_category.products.present?
+      if @product_category.products.present? or @product_category.children.present?
         redirect_to :product_categories, flash: { alert: t('shoppe.product_category.destroy_alert2') }
       else
         @product_category.status = "deleted"
+        @product_category.permalink = [@product_category.permalink,"-",SecureRandom.hex(4)].join
         @product_category.save
+
         redirect_to :product_categories, flash: { notice: t('shoppe.product_category.destroy_notice') }
       end
     end
