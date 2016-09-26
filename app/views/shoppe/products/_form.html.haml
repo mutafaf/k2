@@ -24,12 +24,15 @@
           %dt= f.label :color, t('shoppe.variants.color')
           %dd= f.text_field :color, :class => 'text focus jscolor'
     .splitContainer
-      %dl.half
+      %dl.third
         %dt= f.label :article_no, t('shoppe.products.article_no')
         %dd= f.text_field :article_no, :class => 'text focus'
-      %dl.half
+      %dl.third
         %dt= f.label :brand, t('shoppe.products.brand')
         %dd= f.text_field :brand, :class => 'text focus', :required => true
+      %dl.third
+        %dt= f.label :Position, 'Position'
+        %dd= f.number_field :position, :class => 'text focus', :min=>0
     - unless @product.has_variants?
       %dl
         %dt= f.label :available_sizes, t('shoppe.products.available_sizes')

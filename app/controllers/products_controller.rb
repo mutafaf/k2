@@ -96,9 +96,10 @@ class ProductsController < ApplicationController
     elsif params[:category_permalink].present?
       category = Shoppe::Product.find_category(session[:category_permalink])
       products = Shoppe::Product.find_by_category_and_descendants(category) if category
+      # byebug
 
     elsif params[:category_name].present?
-      products = Shoppe::Product.search_by_name_and_category(params[:category_name].squish)
+      products = Shoppe::Product.search_by_name_and_category(params[:category_name].squish).active
 
     elsif params[:color_name].present?
       heading = params[:color_name]
@@ -115,12 +116,14 @@ class ProductsController < ApplicationController
     elsif params[:min_price].present? and params[:max_price].present?
       heading = Shoppe::Product::PRICE_RANGE
       products = Shoppe::Product.find_by_price(params[:min_price], params[:max_price], session[:category_permalink])
-      products = products.order("price") if products
+      products = products.order("price") if products.present?
     else
-      products = Shoppe::Product.root #.ordered.includes(:product_categories, :variants)
+      products = Shoppe::Product.root
+      products = products.active if products.present? 
     end
-
-    products = products.active.order("shoppe_products.id DESC").page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
+    products = Kaminari.paginate_array(products).page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
+    # products.active.page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
+        # products = products.active.order("shoppe_products.position ASC").page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
 
     @heading = heading
     @category= category
