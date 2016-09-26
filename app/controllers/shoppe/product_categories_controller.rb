@@ -37,8 +37,8 @@ module Shoppe
         redirect_to :product_categories, flash: { alert: t('shoppe.product_category.destroy_alert2') }
       else
         @product_category.status = "deleted"
-        @product_category.permalink = [@product_category.permalink,"-",SecureRandom.hex(4)].join
-        @product_category.save
+        @product_category.permalink = [@product_category.permalink,"-",SecureRandom.hex(8)].join
+        @product_category.save(validate: false)
 
         redirect_to :product_categories, flash: { notice: t('shoppe.product_category.destroy_notice') }
       end
