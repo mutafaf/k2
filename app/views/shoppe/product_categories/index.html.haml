@@ -17,7 +17,7 @@
         - for cat in @product_categories_without_parent
           %tr
             %td
-              = "(#{cat.position})"
+              = "#{check_brackets(cat.position)}"
               = link_to cat.name, [:edit, cat]
               = link_to I18n.t('shoppe.products.products'), products_path(category_id: cat.id), style: 'float: right'
           = nested_product_category_rows(cat)

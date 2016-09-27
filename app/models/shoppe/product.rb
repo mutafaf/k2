@@ -416,20 +416,9 @@ module Shoppe
     def self.find_by_category_and_descendants(category)
         cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
         cat_ids << category.id
-        @a=[]
-        cat_ids.each do |id|
-          @a<<(includes(:product_categories).where('shoppe_product_categories.id' => id).active.order(:position))
-        end
-        @a=@a.flatten
-
-        return @a
-        # cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
-        # cat_ids << category.id
-        # # products=Shopee::Product.group_by(&:product_category)
-        # ps = includes(:product_categories).where('shoppe_product_categories.id' => cat_ids).order(:position)
-        # return ps.group_by(&:product_category).keys.flatten
-        
-        
+        products = joins(product_categorizations: :product_category)
+        .where('"shoppe_product_categorizations"."product_category_id" IN (?)', cat_ids)
+        .order('shoppe_product_categories.position, position')
     end
 
     def self.products_for_category(products, cat_ids)

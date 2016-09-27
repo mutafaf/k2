@@ -122,7 +122,6 @@ class ProductsController < ApplicationController
       products = products.active if products.present? 
     end
     products = Kaminari.paginate_array(products).page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
-    # products.active.page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
         # products = products.active.order("shoppe_products.position ASC").page(params[:page]).per(Shoppe::Product::PER_PAGE) if products
 
     @heading = heading
