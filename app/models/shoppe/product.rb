@@ -417,7 +417,7 @@ module Shoppe
         cat_ids << category.id
         products = joins(product_categorizations: :product_category)
         .where('"shoppe_product_categorizations"."product_category_id" IN (?)', cat_ids)
-        .order('shoppe_product_categories.position, position')
+        .active.order('shoppe_product_categories.position, position')
     end
 
     def self.products_for_category(products, cat_ids)
