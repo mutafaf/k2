@@ -25,7 +25,7 @@
     %tbody
       - if products.empty?
         %tr.empty
-          %td{:colspan => 5}= t('shoppe.products.no_products')
+          %td{:colspan => 6}= t('shoppe.products.no_products')
       - else
         - for category, products in products
           %tr
