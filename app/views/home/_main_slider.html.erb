@@ -1,19 +1,10 @@
-  <!-- ==========================
-    JUMBOTRON - START 
-    =========================== -->
-  <!-- Place somewhere in the <body> of your page -->
-  <div id="preloader">
-    <div id="status">&nbsp;</div>
-  </div>
   <div id="flexslider">
     <div class="">
       <ul class="slides">
         <%@homepage_settings.each do |homepage_setting|%>
            <% if homepage_setting.image.present? %>
               <li>
-                <div class="container mini-banner">
-                  <!-- <h1 > <img class="img-responsive min-banner-width" src="/assets/walk-the-fashion.png" ></h1> -->
-                 
+                <div class="container mini-banner"> 
                   <a style="letter-spacing: 8px; " href="<%= products_path(category_permalink: homepage_setting.category_permalink) %>" class="btn btn-default btn-lg ">Shop Now</a>
                 </div>
                 <img src="<%=homepage_setting.image.path%>" style=" width:100%;" class="img-responsive center-block"/>
@@ -23,121 +14,9 @@
       </ul>
     </div>
   </div>
-  <!--  -->
-  <!--  <section class="content jumbotron jumbotron-full-height">
-    <div id="homepage-2-carousel" class="nav-inside">
-    
-    <div class="item slide-2 img-responsive center-block" style="     background-image: url(/assets/slide-sales.png);">
-          <div class="slide-mask"></div>
-          <div class="slide-body">
-             <div class="container">
-             <h1 > <img class="img-responsive" src="/assets/walk-the-fashion.png" style=" width: 300px; "></h1>
-                <div>
-                  <br>
-                </div>
-                <a style="letter-spacing: 8px; " href="/products?category_permalink=salecollection" class="btn btn-default btn-lg ">Shop Now</a>
-             </div>
-          </div>
-       </div>
-    
-       <div class="item slide-2 img-responsive center-block" style="     background-image: url(/assets/slide-5.jpg);">
-          <div class="slide-mask"></div>
-          <div class="slide-body">
-             <div class="container">
-             <h1 > <img class="img-responsive" src="/assets/walk-the-fashion.png" style=" width: 300px; "></h1>
-                <div>
-                  <br>
-                </div>
-                <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
-             </div>
-          </div>
-       </div>
-    
-       <div class="item slide-2 img-responsive center-block" style="     background-image: url(/assets/slide-3.jpg);">
-          <div class="slide-mask"></div>
-          <div class="slide-body">
-             <div class="container">
-             <h1 > <img class="img-responsive" src="/assets/walk-the-fashion.png" style=" width: 300px; "></h1>
-                <div>
-                  <br>
-                </div>
-                <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
-             </div>
-          </div>
-       </div>
-    
-    
-       <div class="item slide-2 img-responsive center-block"  style="background-image: url(/assets/slide-4.jpg); width: 100%">
-          <div class="slide-mask"></div>
-          <div class="slide-body">
-             <div class="container">
-             <h1 > <img class="img-responsive " src="/assets/walk-the-fashion.png" style=" width: 300px; "></h1>
-                <div>
-                  <br>
-                </div>
-                <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
-             </div>
-          </div>
-       </div>
-    
-       <div class="item slide-2 img-responsive center-block" style="    background-image: url(/assets/slide-2.jpg);">
-          <div class="slide-mask"></div>
-          <div class="slide-body">
-             <div class="container">
-             <h1 > <img class="img-responsive " src="/assets/walk-the-fashion.png" style=" width: 300px; "></h1>
-                <div>
-                  <br>
-                </div>
-                <a style="letter-spacing: 8px; " href="<%= products_path %>" class="btn btn-default btn-lg ">Shop Now</a>
-             </div>
-          </div>
-       </div>
-    </div>
-    </section>
-    -->
-  <style type="text/css">
-    body {
-    overflow: hidden;
-    }
-    /* Preloader */
-    #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #fff;
-    /* change if the mask should have another color then white */
-    z-index: 99;
-    /* makes sure it stays on top */
-    }
-    #status {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    left: 50%;
-    /* centers the loading animation horizontally one the screen */
-    top: 50%;
-    /* centers the loading animation vertically one the screen */
-    background-image: url(https://raw.githubusercontent.com/niklausgerber/PreLoadMe/master/img/status.gif);
-    /* path to your loading animation */
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: -100px 0 0 -100px;
-    /* is width and height divided by two */
-    }
-  </style>
+
   <script type="text/javascript">
-    $(window).load(function() { // makes sure the whole site is loaded
-      $('#status').fadeOut(); // will first fade out the loading animation
-      $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
-      $('body').delay(350).css({
-        'overflow': 'visible'
-      });
-    })
-    
-    
-       $(document).ready(function() {
+      $(document).ready(function() {
       $('#flexslider').flexslider({
         animation: "slide"
       });
