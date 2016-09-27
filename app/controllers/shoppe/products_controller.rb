@@ -58,7 +58,8 @@ module Shoppe
 
     def destroy
       @product.status="deleted"
-      @product.save
+      @product.permalink = [@product.permalink,"-",SecureRandom.hex(8)].join
+      @product.save(validate: false)
       redirect_to :products, flash: { notice: t('shoppe.products.destroy_notice') }
     end
 

@@ -106,7 +106,8 @@ module Shoppe
     def update_soft_deletion_for_variants
       if self.variants.present? and self.status_changed?
         self.variants.each do |variant|
-          variant.update_column(:status, self.status)
+          permalink = [variant.permalink,"-",SecureRandom.hex(8)].join
+          variant.update_columns({:permalink => permalink, :status => self.status})
         end
       end
     end

@@ -13,4 +13,14 @@ namespace :sync_soft_deletion do
     end
       puts "**********************Done!*************************"
   end
+
+  task update_permalink: :environment do
+      puts "Update Permalink of Soft Deleted Products....."
+    Shoppe::Product.unscoped.where(status: "deleted").each do |product|
+      product.permalink = [product.permalink,"-",SecureRandom.hex(8)].join
+      product.save
+      puts "Product Name: #{product.name} updated."
+    end
+      puts "**********************Done!*************************"
+  end
 end
