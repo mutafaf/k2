@@ -49,8 +49,13 @@ module Shoppe
       if other_category.present? and self.position_changed?
         current_category = Shoppe::ProductCategory.find(self.id)
         this_position=current_category.position
-        other_category=Shoppe::ProductCategory.find(other_category.first.id)
-        other_category.update_column(:position, this_position)
+        if this_position == current_category.position
+          other_category=Shoppe::ProductCategory.find(other_category.first.id)
+          other_category.update_column(:position, 999)
+        else
+          other_category=Shoppe::ProductCategory.find(other_category.first.id)
+          other_category.update_column(:position, this_position)
+        end
       end
     end
 
