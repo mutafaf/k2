@@ -73,6 +73,7 @@ module Shoppe
 
     # For Soft Deletion
     default_scope -> { where(status: nil) }
+    # default_scope  { order(:position => :asc) }
 
     # All active products
     scope :active, -> { where(active: true) }
@@ -413,11 +414,29 @@ module Shoppe
     end
 
     def self.find_by_category_and_descendants(category)
-        cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
-        cat_ids << category.id
-        products = joins(product_categorizations: :product_category)
-        .where('"shoppe_product_categorizations"."product_category_id" IN (?)', cat_ids)
-        .active.order('shoppe_product_categories.position, position')
+        
+        
+        new_cat_ids=get_category_ids(category)
+
+        products_array=[]
+        new_cat_ids.each do |id|
+          products_array<<(includes(:product_categories).where('shoppe_product_categories.id' => id).active.order(:position))
+        end
+        products_array=products_array.flatten
+        return products_array
+        
+
+    end
+    def self.get_category_ids(category)
+      new_cat_ids=[]
+      cat_ids = category.children.collect(&:id) # Get All descendants of current category
+       cat_ids<<category.id
+      cat_ids.each do |id|
+        category=Shoppe::ProductCategory.ordered.find_by_id(id) rescue''
+        new_cat_ids<<id
+        new_cat_ids<< category.children.collect(&:id) rescue''
+      end
+      new_cat_ids=new_cat_ids.flatten
     end
 
     def self.products_for_category(products, cat_ids)
