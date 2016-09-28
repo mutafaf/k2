@@ -439,6 +439,8 @@ module Shoppe
         new_cat_ids<< category.children.collect(&:id) rescue''
       end
       new_cat_ids=new_cat_ids.flatten
+      new_cat_ids.uniq
+      # byebug
     end
 
     def self.products_for_category(products, cat_ids)
