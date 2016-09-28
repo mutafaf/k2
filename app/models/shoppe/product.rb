@@ -429,8 +429,10 @@ module Shoppe
     end
     def self.get_category_ids(category)
       new_cat_ids=[]
-      cat_ids = category.children.collect(&:id) # Get All descendants of current category
-       cat_ids<<category.id
+      cat_ids=[]
+      cat_ids<<category.id
+      cat_ids << category.children.collect(&:id) # Get All descendants of current category
+       
       cat_ids.each do |id|
         category=Shoppe::ProductCategory.ordered.find_by_id(id) rescue''
         new_cat_ids<<id
