@@ -118,7 +118,7 @@ module Shoppe
       unless self.variant?
         variant = self.variants.new
         variant.name = self.color_name
-        variant_name = self.name.squish.gsub(" ", "-")
+        variant_name = self.permalink.squish.gsub(" ", "-")
         variant.permalink = "#{variant_name}-default"
         variant.sku = "sku"
         variant.color = self.color
