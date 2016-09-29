@@ -36,7 +36,7 @@ module Shoppe
 
     def destroy
       @variant.status="deleted"
-      @variant.permalink = [@variant.permalink, "-", Time.now].join
+      @variant.permalink = [@variant.permalink, "-", SecureRandom.hex(8)].join
       @variant.save
       redirect_to [@product, :variants], notice: t('shoppe.variants.destroy_notice')
     end
