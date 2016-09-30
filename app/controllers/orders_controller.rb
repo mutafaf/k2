@@ -128,7 +128,7 @@ class OrdersController < ApplicationController
   end
 
   def ipg_payment(order)
-    customer = "Demo Merchant"
+    customer = "Borjan Pvt. Ltd"
     amount = order.total.to_s
     order_id = order.id.to_s
     order_info = order_info(order)
@@ -140,7 +140,7 @@ class OrdersController < ApplicationController
 
   def finalize_payment
     transaction_id = session[:transaction_id]
-    customer = "Demo Merchant"
+    customer = "Borjan Pvt. Ltd"
     path = "lib/"
     `php -f #{ path + 'IPG_Finalise.php "' + customer + '" ' + transaction_id}`
   end

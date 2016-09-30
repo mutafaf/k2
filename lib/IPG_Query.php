@@ -1,5 +1,5 @@
 <?php
-    $cert = "lib/ubl_merchant.pem";
+    $cert = "lib/Borjan_Pvt_Ltd.pfx";
     $pass = "Comtrust";
 
     $opts = array();
@@ -19,7 +19,8 @@
     $customer = $argv[1];
     $transaction_id = $argv[2];
 
-    $client = new SoapClient("https://demo-ipg.comtrust.ae:2443/MerchantAPI.svc?singleWsdl", $options);
+    $client = new SoapClient(" https://ipg.comtrust.ae/Payment/PaymentPortal.aspx?lang=en&layout=C0STCBVLEI
+", $options);
 
     $params = array(
         'Finalize' => '',
