@@ -1,6 +1,6 @@
 <?php
     $cert = "lib/borjan_pvt_ltd.pem";
-    $pass = "Comtrust";
+    $pass = "Bpl2016";
 
     $opts = array();
 
