@@ -1,5 +1,5 @@
 <?php
-    $cert = "lib/Borjan_Pvt_Ltd.pfx";
+    $cert = "lib/borjan_pvt_ltd.pem";
     $pass = "Comtrust";
 
     $opts = array();
