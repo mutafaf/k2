@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   
+  before_action :check_products, only: [:checkout, :details, :confirmation]
+
   def show
     
   end
@@ -11,11 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    if current_order.total_items == 0
-      redirect_to basket_path, :alert=> "Please add any Item(s) to Cart."
-    else
-      redirect_to checkout_details_path if user_signed_in?
-    end
+    redirect_to checkout_details_path if user_signed_in?
   end
 
   def details
@@ -207,6 +205,10 @@ class OrdersController < ApplicationController
         params[:order][:billing_country_id] = address.country_id
       end
     end
+  end
+
+  def check_products
+    redirect_to basket_path, :alert=> "Please add any Item(s) to Cart." if current_order.total_items == 0
   end
 
 end
