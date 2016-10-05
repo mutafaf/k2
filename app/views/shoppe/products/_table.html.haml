@@ -2,7 +2,10 @@
   %table.data
     %thead
       %tr
-        %th{:width => '20%'}
+        %th{:width => '7%'}
+          = form_tag(:products, method: "get") do
+            = 'Position'
+        %th{:width => '13%'}
           = form_tag(:products, method: "get") do
             = t('shoppe.products.sku')
             / = search_field_tag :sku, params[:sku], size: 25, min: 2, placeholder: t('shoppe.products.filter.sku')
@@ -15,20 +18,21 @@
         %th{:width => '15%'}= t('shoppe.products.stock')
       %tr
         %th
-        %th(colspan='4')
+        %th(colspan='5')
           / = t('shoppe.product_category.product_categories')
           / - options = options_for_select(nested_set_options(Shoppe::ProductCategory) {|i| "#{'-' * i.level} #{i.name}" }, params[:category_id] )
           / = select_tag 'parent_id', options, { onchange: "window.location.href='#{products_url}/?category_id=' + $(this).val() + ''"}
     %tbody
       - if products.empty?
         %tr.empty
-          %td{:colspan => 5}= t('shoppe.products.no_products')
+          %td{:colspan => 6}= t('shoppe.products.no_products')
       - else
         - for category, products in products
           %tr
-            %th{:colspan => 5}= category.get_category_sequence
+            %th{:colspan => 6}= category.get_category_sequence
           - for product in products
             %tr
+              %td= product.position
               %td= product.sku
               %td
                 = link_to check_for_active(product), [:edit, product]

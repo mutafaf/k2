@@ -7,7 +7,8 @@ module Shoppe
     # which has been referenced in the Gemfile as we can't add a dependency
     # to a branch in the .gemspec
     acts_as_nested_set  dependent: :restrict_with_exception,
-                        after_move: :set_ancestral_permalink
+                        after_move: :set_ancestral_permalink,
+                        :order_column => :position
 
     self.table_name = 'shoppe_product_categories'
 
@@ -40,8 +41,24 @@ module Shoppe
     # Set the permalink on callback
     before_validation :set_permalink, :set_ancestral_permalink
     after_save :set_child_permalinks
-
+    before_save :alter_category_position
     validates_presence_of :homepage_title, :if => lambda { |o| o.view_on_homepage == true }
+
+    def alter_category_position
+      other_category=self.siblings.where(:position => self.position)
+      if other_category.present? and self.position_changed?
+        current_category = Shoppe::ProductCategory.find(self.id)
+        this_position=current_category.position
+        if this_position == current_category.position
+          other_category=Shoppe::ProductCategory.find(other_category.first.id)
+          other_category.update_column(:position, 999)
+        else
+          other_category=Shoppe::ProductCategory.find(other_category.first.id)
+          other_category.update_column(:position, this_position)
+        end
+      end
+    end
+
 
     def attachments=(attrs)
       attachments.build(attrs['homepage_image']) if attrs['homepage_image']['file'].present?

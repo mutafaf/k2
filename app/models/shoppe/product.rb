@@ -73,6 +73,7 @@ module Shoppe
 
     # For Soft Deletion
     default_scope -> { where(status: nil) }
+    # default_scope  { order(:position => :asc) }
 
     # All active products
     scope :active, -> { where(active: true) }
@@ -106,7 +107,9 @@ module Shoppe
     def update_soft_deletion_for_variants
       if self.variants.present? and self.status_changed?
         self.variants.each do |variant|
-          variant.update_column(:status, self.status)
+          variant.permalink = [variant.permalink, "-", SecureRandom.hex(8)].join
+          variant.status = self.status
+          variant.save
         end
       end
     end
@@ -116,8 +119,9 @@ module Shoppe
       unless self.variant?
         variant = self.variants.new
         variant.name = self.color_name
-        variant_name = self.name.squish.gsub(" ", "-")
-        variant.permalink = "#{variant_name}-default"
+        product_name = self.name.squish.gsub(" ", "-")
+        # variant.permalink = "#{product_permalink}-default"
+        variant.permalink = [product_name, "-", SecureRandom.hex(3)].join
         variant.sku = "sku"
         variant.color = self.color
         variant.sizes = self.sizes
@@ -413,9 +417,32 @@ module Shoppe
     end
 
     def self.find_by_category_and_descendants(category)
-        cat_ids = category.descendants.collect(&:id) # Get All descendants of current category
-        cat_ids << category.id
-        return includes(:product_categories).where('shoppe_product_categories.id' => cat_ids)
+        
+        
+        new_cat_ids=get_category_ids(category)
+
+        products_array=[]
+        new_cat_ids.each do |id|
+          products_array<<(includes(:product_categories).where('shoppe_product_categories.id' => id).active.order(:position))
+        end
+        products_array=products_array.flatten
+        return products_array
+        
+
+    end
+    def self.get_category_ids(category)
+      new_cat_ids=[]
+      new_cat_ids<<category.id
+      cat_ids = category.children.collect(&:id) # Get All descendants of current category
+       cat_ids<<category.id
+      cat_ids.each do |id|
+        category=Shoppe::ProductCategory.ordered.find_by_id(id) rescue''
+        new_cat_ids<<id
+        new_cat_ids<< category.children.collect(&:id) rescue''
+      end
+      new_cat_ids=new_cat_ids.flatten
+      new_cat_ids.uniq
+      # byebug
     end
 
     def self.products_for_category(products, cat_ids)
