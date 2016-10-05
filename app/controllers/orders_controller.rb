@@ -39,6 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
+    
     @order = Shoppe::Order.find(current_order.id)
     if current_order.payment_method == "Credit/Debit Card"
         @transaction_id = ipg_payment(@order)
@@ -122,26 +123,26 @@ class OrdersController < ApplicationController
 
   def query_transaction
     transaction_id = session[:transaction_id]
-    customer = "Demo Merchant"
-    path = "lib/"
+    customer = "BORJAN PVT LTD"
+    path = "lib/production_payments/"
     `php -f #{ path + 'IPG_Query.php "' + customer + '" ' + transaction_id}`
   end
 
   def ipg_payment(order)
-    customer = "Demo Merchant"
+    customer = "BORJAN PVT LTD"
     amount = order.total.to_s
     order_id = order.id.to_s
     order_info = order_info(order)
     order_name = "141850"
     returnpath = "#{request.base_url}/checkout/confirmation_page"
-    path = "lib/"
+    path = "lib/production_payments/"
     `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id + ' "' + order_info + '" '+ order_name + ' '+ returnpath }`
   end
 
   def finalize_payment
     transaction_id = session[:transaction_id]
-    customer = "Demo Merchant"
-    path = "lib/"
+    customer = "BORJAN PVT LTD"
+    path = "lib/production_payments/"
     `php -f #{ path + 'IPG_Finalise.php "' + customer + '" ' + transaction_id}`
   end
 

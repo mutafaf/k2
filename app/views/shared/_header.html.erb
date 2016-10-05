@@ -1,392 +1,393 @@
 <header class="navbar navbar-transparent navbar-fixed-top hidden-sm  hidden-xs" >
-   <div class="container">
-      <div class="col-md-2">
-         <div class="navbar-header">
-            <a href="/" class="navbar-brand" data-no-turbolink =true>
-            <% if @logo.present? and @logo.image.present? %>
-               <img src="<%= @logo.image.try(:path) %>" alt="Borjan">
-            <% else %>
-               <img src="/assets/logo.png" alt="Borjan">
-            <% end %>
-            </a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
-         </div>
-      </div>
-      <div class="col-md-7" style="    padding: 0px;     padding-left: 1%;">
-         <div class="navbar-collapse collapse" style="    padding: 0px;">
-            <ul class="nav navbar-nav" >
-               <li class="dropdown megamenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Footwear</a>
-                  <div class="dropdown-menu"   style=" width: 405px;  ">
-                     <ul style="padding: 4px;" >
-                        <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
-                        <% if @men.present? %>
-                           <a href="<%= products_path(category_permalink: @men.permalink) %>" >
-                              <img src="<%= @men.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
-                              <div class="more menucall"> <%= @men.name %></div>
-                           </a>
-                        <% end %>
-                        </li>
-                        <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
-                        <% if @women.present? %>
-                           <a href="<%= products_path(category_permalink: @women.permalink) %>">
-                              <img src="<%= @women.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" />
-                              <div class="more menucall"> <%= @women.name %> </div>
-                           </a>
-                        <% end %>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-               <li class="dropdown megamenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Essentials</a>
-                  <div class="dropdown-menu"   style="  width: 606px;     margin: auto;
-                     margin-top: 9px; ">
-                     <ul style="padding: 4px;" >
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
-                        <% if @belts.present? %>
-                           <a href="<%= products_path(category_permalink: @belts.permalink) %>">
-                              <img src="<%= @belts.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
-                              <div class="more menucall" > <%= @belts.name %>  </div>
-                           </a>
-                        <% end %>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
-                        <% if @cufflinks.present? %>
-                           <a href="<%= products_path(category_permalink: @cufflinks.permalink) %>">
-                              <img src="<%= @cufflinks.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
-                              <div class="more menucall" > <%= @cufflinks.name %>  </div>
-                           </a>
-                        <% end %>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="#">
-                              <img src="/assets/menu-more1.jpg" class="img-responsive center-block  more-img" alt="" />
-                              <div class="more menucall">More</div>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-               <li class="dropdown megamenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Bags</a>
-                  <div class="dropdown-menu"   style="  width: 606px;     margin: auto;
-                     margin-top: 9px; ">
-                     <ul style="padding: 4px;" >
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
-                           <% if @shoulder.present? %>
-                              <a href="<%= products_path(category_permalink: @shoulder.permalink) %>">
-                                 <img src="<%= @shoulder.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
-                                 <div class="more menucall" > <%= @shoulder.name %>  </div>
-                              </a>
-                           <% end %>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <% if @clutch.present? %>
-                              <a href="<%= products_path(category_permalink: @clutch.permalink) %>">
-                                 <img src="<%= @clutch.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
-                                 <div class="more menucall" > <%= @clutch.name %>  </div>
-                              </a>
-                           <% end %>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
-                           <a href="#">
-                              <img src="/assets/menu-more2.jpg" class="img-responsive center-block  more-img" alt="" />
-                              <div  class="more menucall">More</div>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-               <li class="dropdown megamenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Jewellery</a>
-                  <div class="dropdown-menu"   style=" width: 606px;     margin: auto;
-                     margin-top: 9px; ">
-                     <ul style="padding: 4px;" >
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                        <% if @earrings.present? %>
-                           <a href="<%= products_path(category_permalink: @earrings.permalink) %>">
-                              <img src="<%= @earrings.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
-                              <div class="more menucall" > <%= @earrings.name %>  </div>
-                           </a>
-                        <% end %>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <% if @bracelets.present? %>
-                              <a href="<%= products_path(category_permalink: @bracelets.permalink) %>">
-                                 <img src="<%= @bracelets.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
-                                 <div class="more menucall" > <%= @bracelets.name %>  </div>
-                              </a>
-                           <% end %>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="#">
-                              <img src="/assets/menu-more3.jpg" class="img-responsive center-block more-img" alt="" />
-                              <div class="more menucall">More</div>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-               <li class="dropdown megamenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Features</a>
-                  <div class="dropdown-menu"   style="  width: 606px;     margin: auto;
-                     margin-top: 9px;">
-                     <ul style="padding: 4px;" >
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
-                           <a href="<%= blogs_path %>" data-no-turbolink=true>
-                              <img src="/assets/menu-blog.jpg" class="img-responsive center-block more-img" alt="" />
-                              <div class="more menucall"> Blog</div>
-                           </a>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="/videos" data-no-turbolink=true>
-                              <img src="/assets/menu-video.jpg" class="img-responsive center-block more-img" alt="" />
-                              <div class="more menucall"> Videos</div>
-                           </a>
-                        </li>
-                        <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
-                           <a href="/store_location" data-no-turbolink=true >
-                              <img src="/assets/menu-location.jpg" class="img-responsive center-block more-img" alt="" />
-                              <div class="more menucall"> locations</div>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-               <!-- CART ITEM - END -->
-            </ul>
-            </li>
-            </ul>
-         </div>
-      </div>
-      <div class="col-md-3"  style="padding: 0;">
-         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
-               <a href="/" data-no-turbolink=true >
-               <img src="/assets/home-icon.png" class="img-responsive" alt="" ></a>
-            </li>
-
-            <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/track.png" class="img-responsive" alt=""></a>
-               <ul class="dropdown-menu" style="     height: 48px;
-                  padding: 8px;
-                  width: 201px;
-                  right: 0px;
-                  margin-top: 13px;">
-                  <li>
-                     <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
-                        <div class="">
-                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
-                              font-size: 14px;
-                              width: 100%;
-                              float: left;margin-top: -4px;" %>
-                        </div>
-                     <% end %>
-                  </li>
-               </ul>
-            </li>
-
-            <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/search.png" class="img-responsive" alt=""></a>
-               <ul class="dropdown-menu" style="     height: 48px;
-                  padding: 8px;
-                  width: 201px;
-                  right: 0px;
-                  margin-top: 13px;">
-                  <li>
-                  <%= form_tag('/products', {method: :get, :class => 'search_form'}) do %>
-                        <div class="">
-                        <%= text_field_tag :category_name, nil, class: "form-control", placeholder: "Search ...", style: "font-size: 14px;
-                              width: 100%;
-                              float: left;margin-top: -1px;" %>
-                        </div>
-                     <% end %>
-                  </li>
-               </ul>
-            </li>
-            <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
-               <%if current_order.total_items > 0 %>
-               <span id="cart_count" class="label label-danger pull-right"><%= pluralize current_order.total_items, ''%></span>
-               <% end %>
-               <a href="<%= basket_path %>"><img src="/assets/bag_icon.png" class="img-responsive" alt=""></a>
-            </li>
-            <li class="dropdown hidden-xs" style="    margin-top: 7px;">
-               <a href=""  class="dropdown-toggle" type="button" data-toggle="dropdown">
-               <img src="/assets/user.png" class="img-responsive" alt=""></a>
-               <ul class="dropdown-menu">
-                  <% if user_signed_in? %>
-                  <li><a href="<%= edit_user_registration_path %>" data-no-turbolink =true>My Profile</a></li>
-                  <li><a href="#">Settings</a></li>
-                  <li>
-                     <%= link_to "Sign out", destroy_user_session_path , :method => "delete" %>
-                  </li>
-                  <% else %>
-                  <li><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
-                  <li><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
-                  <% end %>
-               </ul>
-            </li>
-         </ul>
-      </div>
-   </div>
-</header>
-<!-- phone menu -->
-<div class="navbar navbar-default navbar-fixed-top  hidden-md hidden-lg" role="navigation">
-   <div class="container">
+  <div class="container">
+    <div class="col-md-2">
       <div class="navbar-header">
-      <div class="pull-left">
-         <a href="/"><img class="phone-mob" src="/assets/logo.png" alt="borjan"></a>
-         </div>
-         <div class="text-center">
-<div class="phoneicones">
-    <div class="col-md-"  style="padding: 0;">
-         <ul class="nav navbar-nav navbar-right">
-
-            <li class="dropdown navbar-search " style="    margin-top: 7px;">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/track.png" class="img-responsive" alt=""></a>
-               <ul class="dropdown-menu" >
-                  <li>
-                     <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
-                        <div class="">
-                           <%= number_field_tag :order_id, params[:order_id], :class=>"form-control track_order_field", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
-                              " %>
-                        </div>
-                     <% end %>
-                  </li>
-               </ul>
-            </li>
-
-            <li class="dropdown navbar-search " style="    margin-top: 7px;">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/search.png" class="img-responsive" alt=""></a>
-               <ul class="dropdown-menu" style="">
-                  <li>
-                    
-                       <%= form_tag('/products', {method: :get, :class => 'search_form'}) do %>
-                          <div class="">
-                              <%= text_field_tag :category_name, nil, class: "form-control", placeholder: "Search ...", style: "font-size: 14px;
-                                          width: 214px;
-                                             float: left;
-                                                margin-top: 12px;
-                                                 position: absolute;" %>
-                           </div>
-                      <% end %>
-                     
-                  </li>
-               </ul>
-            </li>
-            <li class="dropdown navbar-search " style="    margin-top: 7px;">
-               <span id="cart_count" class="label label-danger pull-right"><%= pluralize current_order.total_items, ''%></span>
-               <a href="<%= basket_path %>"><img src="/assets/bag_icon.png" class="img-responsive" alt=""></a>
-            </li>
-            <li class="dropdown " style="    margin-top: 7px;">
-               <a href=""  class="dropdown-toggle" type="button" data-toggle="dropdown">
-               <img src="/assets/user.png" class="img-responsive" alt=""></a>
-               <ul class="dropdown-menu phone-menu-drop">
-                  <% if user_signed_in? %>
-                  <li><a href="<%= edit_user_registration_path %>" data-no-turbolink =true>My Profile</a></li>
-                  <li><a href="#">Settings</a></li>
-                  <li>
-                     <%= link_to "Sign out", destroy_user_session_path , :method => "delete" %>
-                  </li>
-                  <% else %>
-                  <li class="phone-drop-menu"><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
-                  <li class="phone-drop-menu"><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
+        <a href="/" class="navbar-brand" data-no-turbolink =true>
+          <% if @logo.present? and @logo.image.present? %>
+            <img src="<%= @logo.image.try(:path) %>" alt="Borjan">
+          <% else %>
+            <img src="/assets/logo.png" alt="Borjan">
+          <% end %>
+        </a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
+      </div>
+    </div>
+    <div class="col-md-7" style="    padding: 0px;     padding-left: 1%;">
+      <div class="navbar-collapse collapse" style="    padding: 0px;">
+        <ul class="nav navbar-nav" >
+          <li class="dropdown megamenu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Footwear</a>
+            <div class="dropdown-menu"   style=" width: 405px;  ">
+              <ul style="padding: 4px;" >
+                <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
+                  <% if @men.present? %>
+                    <a href="<%= products_path(category_permalink: @men.permalink) %>" >
+                      <img src="<%= @men.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                      <div class="more menucall"> <%= @men.name %></div>
+                    </a>
                   <% end %>
-               </ul>
-            </li>
-         </ul>
+                </li>
+                <li class="col-sm-4 col-md-6" style=" list-style-type: none;">
+                  <% if @women.present? %>
+                    <a href="<%= products_path(category_permalink: @women.permalink) %>">
+                      <img src="<%= @women.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" />
+                      <div class="more menucall"> <%= @women.name %> </div>
+                    </a>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Essentials</a>
+            <div class="dropdown-menu"   style="  width: 606px;     margin: auto;
+                 margin-top: 9px; ">
+              <ul style="padding: 4px;" >
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
+                  <% if @belts.present? %>
+                    <a href="<%= products_path(category_permalink: @belts.permalink) %>">
+                      <img src="<%= @belts.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                      <div class="more menucall" > <%= @belts.name %>  </div>
+                    </a>
+                  <% end %>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;    ">
+                  <% if @cufflinks.present? %>
+                    <a href="<%= products_path(category_permalink: @cufflinks.permalink) %>">
+                      <img src="<%= @cufflinks.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                      <div class="more menucall" > <%= @cufflinks.name %>  </div>
+                    </a>
+                  <% end %>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                  <a href="#">
+                    <img src="/assets/menu-more1.jpg" class="img-responsive center-block  more-img" alt="" />
+                    <div class="more menucall">More</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Bags</a>
+            <div class="dropdown-menu"   style="  width: 606px;     margin: auto;
+                 margin-top: 9px; ">
+              <ul style="padding: 4px;" >
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
+                  <% if @shoulder.present? %>
+                    <a href="<%= products_path(category_permalink: @shoulder.permalink) %>">
+                      <img src="<%= @shoulder.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                      <div class="more menucall" > <%= @shoulder.name %>  </div>
+                    </a>
+                  <% end %>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                  <% if @clutch.present? %>
+                    <a href="<%= products_path(category_permalink: @clutch.permalink) %>">
+                      <img src="<%= @clutch.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                      <div class="more menucall" > <%= @clutch.name %>  </div>
+                    </a>
+                  <% end %>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
+                  <a href="#">
+                    <img src="/assets/menu-more2.jpg" class="img-responsive center-block  more-img" alt="" />
+                    <div  class="more menucall">More</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Jewellery</a>
+            <div class="dropdown-menu"   style=" width: 606px;     margin: auto;
+                 margin-top: 9px; ">
+              <ul style="padding: 4px;" >
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                  <% if @earrings.present? %>
+                    <a href="<%= products_path(category_permalink: @earrings.permalink) %>">
+                      <img src="<%= @earrings.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                      <div class="more menucall" > <%= @earrings.name %>  </div>
+                    </a>
+                  <% end %>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                  <% if @bracelets.present? %>
+                    <a href="<%= products_path(category_permalink: @bracelets.permalink) %>">
+                      <img src="<%= @bracelets.try(:image).try(:path) %>" class="img-responsive center-block more-img" alt="" >
+                      <div class="more menucall" > <%= @bracelets.name %>  </div>
+                    </a>
+                  <% end %>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                  <a href="#">
+                    <img src="/assets/menu-more3.jpg" class="img-responsive center-block more-img" alt="" />
+                    <div class="more menucall">More</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true">Features</a>
+            <div class="dropdown-menu"   style="  width: 606px;     margin: auto;
+                 margin-top: 9px;">
+              <ul style="padding: 4px;" >
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none; ">
+                  <a href="<%= blogs_path %>" data-no-turbolink=true>
+                    <img src="/assets/menu-blog.jpg" class="img-responsive center-block more-img" alt="" />
+                    <div class="more menucall"> Blog</div>
+                  </a>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                  <a href="/videos" data-no-turbolink=true>
+                    <img src="/assets/menu-video.jpg" class="img-responsive center-block more-img" alt="" />
+                    <div class="more menucall"> Videos</div>
+                  </a>
+                </li>
+                <li class="col-sm-4 col-md-4" style=" list-style-type: none;   ">
+                  <a href="/store_location" data-no-turbolink=true >
+                    <img src="/assets/menu-location.jpg" class="img-responsive center-block more-img" alt="" />
+                    <div class="more menucall"> locations</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <!-- CART ITEM - END -->
+        </ul>
+        </li>
+        </ul>
       </div>
+    </div>
+    <div class="col-md-3"  style="padding: 0;">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
+          <a href="/" data-no-turbolink=true >
+            <img src="/assets/home-icon.png" class="img-responsive" alt="" ></a>
+        </li>
 
-</div>
-</div>
-    <div class="pull-right">
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">  
-         <span class="sr-only">Toggle navigation</span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         </button>
-         </div>
+        <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/track.png" class="img-responsive" alt=""></a>
+          <ul class="dropdown-menu" style="     height: 48px;
+              padding: 8px;
+              width: 201px;
+              right: 0px;
+              margin-top: 13px;">
+            <li>
+              <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
+                <div class="">
+                  <%= number_field_tag :order_id, params[:order_id], :class=>"form-control", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
+  font-size: 14px;
+  width: 100%;
+  float: left;margin-top: -4px;" %>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/search.png" class="img-responsive" alt=""></a>
+          <ul class="dropdown-menu" style="     height: 48px;
+              padding: 8px;
+              width: 201px;
+              right: 0px;
+              margin-top: 13px;">
+            <li>
+              <%= form_tag('/products', {method: :get, :class => 'search_form'}) do %>
+                <div class="">
+                  <%= text_field_tag :category_name, nil, class: "form-control", placeholder: "Search ...", style: "font-size: 14px;
+    width: 100%;
+    float: left;margin-top: -1px;" %>
+                  </div>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown navbar-search hidden-xs" style="    margin-top: 7px;">
+            <%if current_order.total_items > 0 %>
+              <span id="cart_count" class="label label-danger pull-right"><%= pluralize current_order.total_items, ''%></span>
+            <% end %>
+            <a href="<%= basket_path %>"><img src="/assets/bag_icon.png" class="img-responsive" alt=""></a>
+          </li>
+          <li class="dropdown hidden-xs" style="    margin-top: 7px;">
+            <a href=""  class="dropdown-toggle" type="button" data-toggle="dropdown">
+              <img src="/assets/user.png" class="img-responsive" alt=""></a>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+                <li><a href="<%= edit_user_registration_path %>" data-no-turbolink =true>My Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path , :method => "delete" %>
+                </li>
+              <% else %>
+                <li><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
+                <li><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
-         <ul class="nav navbar-nav">
+    </div>
+  </header>
+  <!-- phone menu -->
+  <div class="navbar navbar-default navbar-fixed-top  hidden-md hidden-lg" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <div class="pull-left">
+          <a href="/"><img class="phone-mob" src="/assets/logo.png" alt="borjan"></a>
+        </div>
+        <div class="text-center">
+          <div class="phoneicones">
+            <div class="col-md-"  style="padding: 0;">
+              <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown navbar-search " style="    margin-top: 7px;">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/track.png" class="img-responsive" alt=""></a>
+                  <ul class="dropdown-menu" >
+                    <li>
+                      <%= form_tag "/track", :method => :get, "data-parsley-validate" => true, :remote=>true do %>
+                        <div class="">
+                          <%= number_field_tag :order_id, params[:order_id], :class=>"form-control track_order_field", :placeholder=>"Enter Your Order ID", :required=>true, :autocomplete=> :off, :style=>"
+                          " %>
+                        </div>
+                      <% end %>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="dropdown navbar-search " style="    margin-top: 7px;">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/search.png" class="img-responsive" alt=""></a>
+                  <ul class="dropdown-menu" style="">
+                    <li>
+
+                      <%= form_tag('/products', {method: :get, :class => 'search_form'}) do %>
+                        <div class="">
+                          <%= text_field_tag :category_name, nil, class: "form-control", placeholder: "Search ...", style: "font-size: 14px;
+      width: 214px;
+      float: left;
+      margin-top: 12px;
+      position: absolute;" %>
+                          </div>
+                        <% end %>
+
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown navbar-search " style="    margin-top: 7px;">
+                    <span id="cart_count" class="label label-danger pull-right"><%= pluralize current_order.total_items, ''%></span>
+                    <a href="<%= basket_path %>"><img src="/assets/bag_icon.png" class="img-responsive" alt=""></a>
+                  </li>
+                  <li class="dropdown " style="    margin-top: 7px;">
+                    <a href=""  class="dropdown-toggle" type="button" data-toggle="dropdown">
+                      <img src="/assets/user.png" class="img-responsive" alt=""></a>
+                    <ul class="dropdown-menu phone-menu-drop">
+                      <% if user_signed_in? %>
+                        <li><a href="<%= edit_user_registration_path %>" data-no-turbolink =true>My Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li>
+                          <%= link_to "Sign out", destroy_user_session_path , :method => "delete" %>
+                        </li>
+                      <% else %>
+                        <li class="phone-drop-menu"><a href="#" data-toggle="modal" data-target="#login">Sign in</a></li>
+                        <li class="phone-drop-menu"><a href="/users/sign_up" data-no-turbolink =true>Sign up</a></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="pull-right">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">  
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
             <li class="menu-item dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Footwear<b class="caret"></b></a>
-               <ul class="dropdown-menu">
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @men.try(:permalink)) %>">Men </a>
-                  </li>
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @women.try(:permalink)) %>" >Women</a>
-                  </li>
-               </ul>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Footwear<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @men.try(:permalink)) %>">Men </a>
+                </li>
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @women.try(:permalink)) %>" >Women</a>
+                </li>
+              </ul>
             </li>
             <li class="menu-item dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Essentials<b class="caret"></b></a>
-               <ul class="dropdown-menu">
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @belts.try(:permalink)) %>"> Belts  </a>
-                  </li>
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @cufflinks.try(:permalink)) %>" > Cufflinks</a>
-                  </li>
-               </ul>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Essentials<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @belts.try(:permalink)) %>"> Belts  </a>
+                </li>
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @cufflinks.try(:permalink)) %>" > Cufflinks</a>
+                </li>
+              </ul>
             </li>
             <li class="menu-item dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bags<b class="caret"></b></a>
-               <ul class="dropdown-menu">
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @shoulder.try(:permalink)) %>">  Shoulder  </a>
-                  </li>
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @clutch.try(:permalink)) %>">  Clutch</a>
-                  </li>
-               </ul>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bags<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @shoulder.try(:permalink)) %>">  Shoulder  </a>
+                </li>
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @clutch.try(:permalink)) %>">  Clutch</a>
+                </li>
+              </ul>
             </li>
             <li class="menu-item dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jewelry<b class="caret"></b></a>
-               <ul class="dropdown-menu">
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @earrings.try(:permalink)) %>">   Earrings  </a>
-                  </li>
-                  <li class="menu-item dropdown dropdown-submenu">
-                     <a href="<%= products_path(category_permalink: @bracelets.try(:permalink)) %>">   Bracelets</a>
-                  </li>
-               </ul>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jewelry<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @earrings.try(:permalink)) %>">   Earrings  </a>
+                </li>
+                <li class="menu-item dropdown dropdown-submenu">
+                  <a href="<%= products_path(category_permalink: @bracelets.try(:permalink)) %>">   Bracelets</a>
+                </li>
+              </ul>
             </li>
             <li class="menu-item dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<b class="caret"></b></a>
-               <ul class="dropdown-menu">
-                  <li class="menu-item  ">
-                     <a href="/blogs"  class="dropdown-toggle">    Blog </a>
-                  </li>
-                  <li class="menu-item ">
-                     <a href="/videos" class="dropdown-toggle">    Videos</a>
-                  </li>
-                  <li class="menu-item ">
-                     <a href="/store_location" class="dropdown-toggle">    locations</a>
-                  </li>
-               </ul>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="menu-item  ">
+                  <a href="/blogs"  class="dropdown-toggle">    Blog </a>
+                </li>
+                <li class="menu-item ">
+                  <a href="/videos" class="dropdown-toggle">    Videos</a>
+                </li>
+                <li class="menu-item ">
+                  <a href="/store_location" class="dropdown-toggle">    locations</a>
+                </li>
+              </ul>
             </li>
-         </ul>
+          </ul>
+        </div>
       </div>
-   </div>
-</div>
-<div class="clear:both;"></div>
+    </div>
+    <div class="clear:both;"></div>
 
-<div id="track_order_popup"></div>
+    <div id="track_order_popup"></div>
 
-<!-- ==========================HEADER - END =========================== -->
+    <!-- ==========================HEADER - END =========================== -->
+    <%if Rails.env == "production"%>
+      <script type="text/javascript">
 
-<script type="text/javascript">
+        $(document).ready(function() {
+          $(".search_form").submit(function(event) {
+            // Search Pixel
+            // Track searches on your website (ex. product searches)
+            fbq('track', 'Search');
+          });
+        });
 
-$(document).ready(function() {
-   $(".search_form").submit(function(event) {
-      // Search Pixel
-      // Track searches on your website (ex. product searches)
-      fbq('track', 'Search');
-   });
-});
-
-</script>
+      </script>
+    <%end%>

@@ -1,6 +1,6 @@
 <?php
-    $cert = "lib/ubl_merchant.pem";
-    $pass = "Comtrust";
+    $cert = "lib/production_payments/ubl_merchant.pem";
+    $pass = "Bpl2016";
 
     $opts = array();
     $options = array(
@@ -13,7 +13,7 @@
       'cache_wsdl' => WSDL_CACHE_NONE
     );
 
-    $client = new SoapClient("https://demo-ipg.comtrust.ae:2443/MerchantAPI.svc?singleWsdl", $options);
+    $client = new SoapClient("https://ipg.comtrust.ae:2443/MerchantAPI.svc?singleWsdl", $options);
 
     $params = array(
         'Register' => '',
