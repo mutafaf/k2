@@ -121,26 +121,27 @@ class OrdersController < ApplicationController
 
   def query_transaction
     transaction_id = session[:transaction_id]
-    customer = "BORJAN PVT LTD"
-    path = "lib/production_payments/"
+    customer = Order::CUSTOMER
+    path = Order::PATH
     `php -f #{ path + 'IPG_Query.php "' + customer + '" ' + transaction_id}`
   end
 
   def ipg_payment(order)
-    customer = "BORJAN PVT LTD"
+    customer = Order::CUSTOMER
     amount = order.total.to_s
     order_id = order.id.to_s
     order_info = order_info(order)
     order_name = order.id.to_s
     returnpath = "#{request.base_url}/checkout/confirmation_page"
-    path = "lib/production_payments/"
+    path = Order::PATH
     `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id + ' "' + order_info + '" '+ order_name + ' '+ returnpath }`
   end
 
   def finalize_payment
     transaction_id = session[:transaction_id]
     customer = "BORJAN PVT LTD"
-    path = "lib/production_payments/"
+    path = Order::PATH
+
     `php -f #{ path + 'IPG_Finalise.php "' + customer + '" ' + transaction_id}`
   end
 
