@@ -4,8 +4,8 @@ module Shoppe
     PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/
     ORDER_AMOUNT = 3000
     DELIVERY_CHARGES = 100
-      # PAYMENT_TYPES = ["Cash On Delivery"]
-      PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
+      PAYMENT_TYPES = ["Cash On Delivery"]
+      # PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
 
     if Rails.env.production?
       CUSTOMER = "BORJAN PVT LTD"
