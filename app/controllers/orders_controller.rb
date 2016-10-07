@@ -132,7 +132,7 @@ class OrdersController < ApplicationController
     order_id = order.id.to_s
     order_info = order_info(order)
     order_name = order.id.to_s
-    returnpath = "#{request.base_url}/checkout/confirmation_page"
+    returnpath = "https://www.borjan.com.pk/checkout/confirmation_page"
     path = Shoppe::Order::PATH
     `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id + ' "' + order_info + '" '+ order_name + ' '+ returnpath }`
   end
