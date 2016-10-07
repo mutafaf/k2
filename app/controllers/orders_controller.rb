@@ -119,6 +119,14 @@ class OrdersController < ApplicationController
 
   private
 
+  def get_return_path
+    if Rails.env.production?
+      "https://www.borjan.com.pk/checkout/confirmation_page/checkout/confirmation_page"
+    else
+      "#{request.base_url}/checkout/confirmation_page"
+    end
+  end
+
   def query_transaction
     transaction_id = session[:transaction_id]
     customer = Shoppe::Order::CUSTOMER
@@ -132,7 +140,7 @@ class OrdersController < ApplicationController
     order_id = order.id.to_s
     order_info = order_info(order)
     order_name = order.id.to_s
-    returnpath = "https://www.borjan.com.pk/checkout/confirmation_page"
+    returnpath = get_return_path
     path = Shoppe::Order::PATH
     `php -f #{ path + 'IPG_Registration.php "' + customer + '" ' + amount + ' '+ order_id + ' "' + order_info + '" '+ order_name + ' '+ returnpath }`
   end

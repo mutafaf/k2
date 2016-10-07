@@ -7,15 +7,15 @@ module Shoppe
       # PAYMENT_TYPES = ["Cash On Delivery"]
       PAYMENT_TYPES = ["Cash On Delivery", "Credit/Debit Card"]
 
-    # if Rails.env.production?
+    if Rails.env.production?
       CUSTOMER = "BORJAN PVT LTD"
       PASSWORD = "Bpl2016"
       PATH = "lib/production_payments/"
-    # else
-    #   CUSTOMER = "Demo Merchant"
-    #   PASSWORD = "Comtrust"
-    #   PATH = "lib/"
-    # end
+    else
+      CUSTOMER = "Demo Merchant"
+      PASSWORD = "Comtrust"
+      PATH = "lib/"
+    end
 
     self.table_name = 'shoppe_orders'
 
