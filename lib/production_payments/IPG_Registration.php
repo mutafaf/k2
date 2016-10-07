@@ -21,7 +21,7 @@
         'Customer' => $argv[1],
         'Language' => 'en',
         'version' => 2,
-        'Amount' => $argv[2],
+        'Amount' => "1",
         'Currency' => 'PKR',
         'OrderID' => $argv[3],
         'OrderInfo' => $argv[4],
