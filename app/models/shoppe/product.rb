@@ -34,7 +34,7 @@ module Shoppe
     # The product's categories
     #
     # @return [Shoppe::ProductCategory]
-    has_many :product_categories, class_name: 'Shoppe::ProductCategory', through: :product_categorizations
+    has_many :product_categories, -> { unscope(where: :status) }, class_name: 'Shoppe::ProductCategory', through: :product_categorizations
 
     # The product's tax rate
     #
