@@ -32,8 +32,16 @@
 if("<%=params[:page]%>")
 {
   // adding paginarion link to history and appending time for cache clearing issue
-  window.history.pushState("object","Title","/products?category_permalink="+"<%=params[:category_permalink]%>"+"&page="+"<%=params[:page]%>"+"&date="+new Date());
+  if ("<%=params[:brand]%>") {
+    window.history.pushState("object","Title","/products?brand="+"<%=params[:brand]%>"+"&page="+"<%=params[:page]%>"+"&date="+new Date().getMilliseconds());
+  } else {
+    window.history.pushState("object","Title","/products?category_permalink="+"<%=params[:category_permalink]%>"+"&page="+"<%=params[:page]%>"+"&date="+new Date().getMilliseconds());
+  }
 }  
 else{
-  window.history.pushState("object","Title","/products?category_permalink="+"<%=params[:category_permalink]%>"+"&page="+"1"+"&date="+new Date());
+  if ("<%=params[:brand]%>") {
+    window.history.pushState("object","Title","/products?brand="+"<%=params[:brand]%>"+"&page="+"1"+"&date="+new Date().getMilliseconds());
+  } else {
+    window.history.pushState("object","Title","/products?category_permalink="+"<%=params[:category_permalink]%>"+"&page="+"1"+"&date="+new Date().getMilliseconds());
+  }
 }
