@@ -14,7 +14,7 @@ function getProducts(element){
      method: 'GET',
      success: function(data) {
 
-      window.history.pushState("object","Title","/products?category_permalink="+category_permalink+"&date="+new Date());
+      window.history.pushState("object","Title","/products?category_permalink="+category_permalink+"&date="+new Date().getMilliseconds());
       // window.location.reload(true) 
        // alert("success!")
      }
